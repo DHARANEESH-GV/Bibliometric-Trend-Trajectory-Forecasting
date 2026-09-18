@@ -1,0 +1,45 @@
+# Dependencies
+.venv/
+venv/
+node_modules/
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Secrets and credentials
+.env
+.env.*
+!.env.example
+.env.local
+*.pem
+opencode.json
+opencode.jsonc
+opencode.json.backup
+
+# Data products (regenerable, too large for git)
+raw/
+staged/
+snapshots/
+models/
+*.parquet
+*.jsonl
+*.jsonl.gz
+*.json.gz
+
+# Build artifacts
+frontend/dist/
+frontend/.vite/
+.coverage
+htmlcov/
+.pytest_cache/
+.ruff_cache/
+
+# Docker / SAM
+.aws-sam/
+samconfig.toml
+
+# Editors and OS
+.vscode/
+.idea/
+.DS_Store
+*.swp
