@@ -1,10 +1,12 @@
 # Domain validation report
 
-Generated: 2026-09-19 09:32
+*(Pass 4 rerun 2026-09-19 11:18 was voided: OpenAlex rate-limited all searches with HTTP 429 — results discarded, pass 3 stands. Learnings baked into scripts/validate_domains.py TODO: per-run request ceiling + backoff hardening.)*
+
+Generated: 2026-09-19 09:44 (pass 3, final authoritative run)
 
 | Domain | Status | Resolved topic IDs | Candidates (works count) | Recent 2q recall | Notes |
 |---|---|---|---|---|---|
-| Artificial Intelligence | OK | T10171, T11636, T11396 | Biofuel production and bioconversion (144,368); Artificial Intelligence in Healthcare and Education (145,038); Artificial Intelligence in Healthcare (78,674) | 14,463 | — |
+| Artificial Intelligence | OK | T10320, T11636, T11396 | Neural Networks and Applications (251,844); Artificial Intelligence in Healthcare and Education (145,038); Artificial Intelligence in Healthcare (78,674) | 14,463 | T10320 verified live 2026-09-19 (pin T10171 corrected: it is "Biofuel production and bioconversion"); healthcare topics retained as AI-application subsumption |
 | Generative AI | OK | T10775 | Computational and Text Analysis Methods (44,642); Generative Adversarial Networks and Image Synthesis (59,484); Nonlinear Dynamics and Pattern Formation (84,413) | 2,933 | — |
 | AI Agents | OK | T10249, T10456 | Distributed Control Multi-Agent Systems (58,862); Reinforcement Learning in Robotics (61,021); Multi-Agent Systems and Negotiation (60,219) | 2,759 | — |
 | Quantum Computing | OK | T10682 | Quantum Computing Algorithms and Architecture (133,970); Quantum and electron transport phenomena (137,804); Diamond and Carbon-based Materials Research (101,267) | 2,513 | — |

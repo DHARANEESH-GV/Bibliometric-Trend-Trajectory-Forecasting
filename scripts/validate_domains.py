@@ -46,9 +46,17 @@ CONFIG_DIR = REPO / "config"
 DOMAINS = {
     "artificial_intelligence": {
         "display_name": "Artificial Intelligence",
-        "search": ["artificial intelligence"],
+        "search": ["artificial intelligence", "neural network",
+                   "machine learning"],
         "cpc": ["G06N20/00", "G06N3/00", "G06F18/00"],
-        "pin_topics": ["T10171"],  # "Artificial Intelligence" canonical CS topic
+        # Live API says T10171 (my earlier pin) is "Biofuel production and
+        # bioconversion" — wrong ID from memory. T10320 "Neural Networks
+        # and Applications" (251,844 works, CS/AI subfield) isn't the
+        # perfect umbrella either — the panel's OpenAlex subfield has no
+        # single canonical "Artificial Intelligence" topic — so scope =
+        # T10320 + the application topics subsumed by CS/AI.
+        "pin_topics": ["T10320"],
+        "scope_note": "No single umbrella 'AI' topic exists in OpenAlex; scoped to Neural Networks and Applications (CS/AI) as anchor.",
         "description": "Computing systems performing tasks that require intelligence.",
     },
     "generative_ai": {

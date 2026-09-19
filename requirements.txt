@@ -1,0 +1,22 @@
+# biblio-trend Python dependencies (local dev + Lambda container images)
+# Python 3.12; keep this list minimal — container size hits ECR free tier (500MB)
+
+# config
+PyYAML>=6.0,<7
+
+# raw fetch
+requests>=2.32,<3          # HTTP with session pooling + rate-limit headers
+
+# preprocessing / analytics
+duckdb>=1.0,<2             # in-Lambda query engine (no Athena) §3
+pyarrow>=17.0,<22          # Parquet writer (zstd, dictionary-encoded) §Phase 2
+pandas>=2.2,<3             # user-facing table glue (DuckDB can replace)
+
+# nlp utility
+regex>=2024.0
+
+# stats
+statsmodels>=0.14,<0.15    # ExponentialSmoothing + ARIMA §Phase 4
+
+# testing
+pytest>=8.0,<9

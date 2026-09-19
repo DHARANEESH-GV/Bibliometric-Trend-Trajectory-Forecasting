@@ -1,0 +1,213 @@
+# domains.yaml — single source of truth for the 20-technology-domain panel
+# Generated from scripts/validate_domains.py live validation (2026-09-19).
+# Provenance: reports/domain_validation.md (pass 3, final authoritative run).
+#
+# Every openalex_topic_id below was resolved live against api.openalex.org
+# and proven to recall recent papers (2-quarter sample, pass 3 report).
+#
+# Known taxonomy limits (documented, not hidden):
+#   * quantum_error_correction — no dedicated OpenAlex topic exists; scoped
+#     to the quantum computing topic which subsumes QEC literature.
+#   * digital_twins — no dedicated topic exists; nearest genuine topic is
+#     "Digital Transformation in Industry".
+#   * solid_state_batteries — no dedicated topic exists; scoped to
+#     "Advanced Battery Materials and Technologies".
+#   * artificial_intelligence — no single umbrella topic exists in the
+#     CS/AI subfield; anchored on "Neural Networks and Applications"
+#     (251,844 works) plus application topics verified as AI-subsumed.
+
+domains:
+  - domain_slug: artificial_intelligence
+    display_name: Artificial Intelligence
+    openalex_topic_ids:
+      - "T10320"   # Neural Networks and Applications (CS/AI, 251,844 works)
+      - "T11636"   # AI in Healthcare and Education (application)
+      - "T11396"   # AI in Healthcare (application)
+    patent_cpc_codes:
+      - G06N20/00
+      - G06N3/00
+      - G06F18/00
+    scope_note: "No single umbrella 'AI' topic exists in the CS/AI subfield; anchored on 'Neural Networks and Applications' plus AI-application topics verified live. Earlier pin T10171 was corrected (live API showed it is 'Biofuel production and bioconversion')."
+    description: "Computing systems performing tasks that require intelligence."
+
+  - domain_slug: generative_ai
+    display_name: Generative AI
+    openalex_topic_ids:
+      - "T10775"   # Generative Adversarial Networks and Image Synthesis
+    patent_cpc_codes:
+      - G06N3/08
+      - G06N3/04
+    description: "Models generating novel text, images, audio or code."
+
+  - domain_slug: ai_agents
+    display_name: AI Agents
+    openalex_topic_ids:
+      - "T10249"   # Distributed Control Multi-Agent Systems
+      - "T10456"   # Multi-Agent Systems and Negotiation
+    patent_cpc_codes:
+      - G06N3/092
+      - G05B13/00
+    description: "Software systems acting autonomously toward goals."
+
+  - domain_slug: quantum_computing
+    display_name: Quantum Computing
+    openalex_topic_ids:
+      - "T10682"   # Quantum Computing Algorithms and Architecture (CS/AI)
+    patent_cpc_codes:
+      - G06N10/00
+      - G06N10/20
+      - G06N10/40
+    description: "Computing systems using quantum-mechanical phenomena."
+
+  - domain_slug: quantum_error_correction
+    display_name: Quantum Error Correction
+    openalex_topic_ids:
+      - "T10682"   # scoped to quantum computing topic — no dedicated QEC topic exists
+    patent_cpc_codes:
+      - G06N10/70
+    scope_note: "OpenAlex has no dedicated QEC topic; QEC literature is subsumed by the quantum computing topic."
+    description: "Protecting quantum information from decoherence and noise."
+
+  - domain_slug: solid_state_batteries
+    display_name: Solid-State Batteries
+    openalex_topic_ids:
+      - "T10281"   # Advanced Battery Materials and Technologies
+    patent_cpc_codes:
+      - H01M10/0562
+      - H01M2300/0068
+    scope_note: "No dedicated solid-state-battery topic exists; scoped to the battery materials topic."
+    description: "Batteries with solid electrolytes replacing liquid ones."
+
+  - domain_slug: clean_hydrogen
+    display_name: Clean Hydrogen
+    openalex_topic_ids:
+      - "T10078"   # Advanced Photocatalysis Techniques (Energy)
+    patent_cpc_codes:
+      - C25B1/04
+      - C25B15/00
+    description: "Low-carbon hydrogen production, storage and use."
+
+  - domain_slug: carbon_capture
+    display_name: Carbon Capture
+    openalex_topic_ids:
+      - "T10967"   # Carbon Dioxide Capture Technologies
+      - "T11302"   # CO2 Sequestration and Geologic Interactions
+    patent_cpc_codes:
+      - B01D53/62
+      - B01J20/00
+    description: "Capturing and storing carbon dioxide emissions."
+
+  - domain_slug: synthetic_biology
+    display_name: Synthetic Biology
+    openalex_topic_ids:
+      - "T10932"   # Microbial Metabolic Engineering and Bioproduction
+    patent_cpc_codes:
+      - C12N15/00
+    description: "Design and construction of novel biological systems."
+
+  - domain_slug: brain_computer_interfaces
+    display_name: Brain-Computer Interfaces
+    openalex_topic_ids:
+      - "T10429"   # EEG and Brain-Computer Interfaces
+    patent_cpc_codes:
+      - A61B5/16
+      - G06F3/01
+    description: "Direct communication between brain and external devices."
+
+  - domain_slug: cybersecurity
+    display_name: Cybersecurity
+    openalex_topic_ids:
+      - "T10400"   # Network Security and Intrusion Detection
+      - "T11241"   # Advanced Malware Detection Techniques
+      - "T12221"   # Cybersecurity and Cyber Warfare Studies (policy lens)
+    patent_cpc_codes:
+      - H04L63/00
+      - G06F21/00
+    description: "Protection of computer systems and networks."
+
+  - domain_slug: blockchain
+    display_name: Blockchain
+    openalex_topic_ids:
+      - "T10270"   # Blockchain Technology Applications and Security
+      - "T13913"   # Blockchain Technology in Education and Learning
+    patent_cpc_codes:
+      - H04L9/32
+      - G06Q20/00
+    description: "Distributed ledger technologies and consensus systems."
+
+  - domain_slug: internet_of_things
+    display_name: Internet of Things
+    openalex_topic_ids:
+      - "T13038"   # Internet of Things and AI
+    patent_cpc_codes:
+      - H04L67/12
+      - H04W4/33
+    description: "Networked embedded devices sensing and actuating."
+
+  - domain_slug: edge_computing
+    display_name: Edge Computing
+    openalex_topic_ids:
+      - "T10273"   # IoT and Edge/Fog Computing
+    patent_cpc_codes:
+      - G06F9/50
+      - H04L67/10
+    description: "Computing at or near the network edge."
+
+  - domain_slug: digital_twins
+    display_name: Digital Twins
+    openalex_topic_ids:
+      - "T10763"   # Digital Transformation in Industry (nearest genuine topic)
+    patent_cpc_codes:
+      - G05B17/02
+      - G06F30/00
+    scope_note: "No dedicated digital-twin topic exists; scoped to the digital transformation topic."
+    description: "Virtual replicas of physical assets or processes."
+
+  - domain_slug: smart_manufacturing
+    display_name: Smart Manufacturing
+    openalex_topic_ids:
+      - "T10705"   # Additive Manufacturing Materials and Processes
+    patent_cpc_codes:
+      - G05B19/4185
+    description: "Automated, data-driven manufacturing systems."
+
+  - domain_slug: autonomous_vehicles
+    display_name: Autonomous Vehicles
+    openalex_topic_ids:
+      - "T11099"   # Autonomous Vehicle Technology and Safety
+    patent_cpc_codes:
+      - B60W60/00
+      - G01C21/00
+    description: "Vehicles operating without human intervention."
+
+  - domain_slug: space_technologies
+    display_name: Space Technologies
+    openalex_topic_ids:
+      - "T11082"   # Spacecraft Dynamics and Control
+      - "T12042"   # Satellite Communication Systems
+      - "T13200"   # Spacecraft and Cryogenic Technologies
+    patent_cpc_codes:
+      - B64G1/00
+    description: "Technologies for spaceflight and orbital systems."
+
+  - domain_slug: advanced_semiconductors
+    display_name: Advanced Semiconductors
+    openalex_topic_ids:
+      - "T10472"   # Semiconductor materials and devices
+      - "T10099"   # GaN-based semiconductor devices and materials
+      - "T10187"   # Radio Frequency Integrated Circuit Design
+    patent_cpc_codes:
+      - H01L21/00
+      - H01L29/00
+    description: "Semiconductor materials, devices and fabrication."
+
+  - domain_slug: biotechnology
+    display_name: Biotechnology
+    openalex_topic_ids:
+      - "T10120"   # Bacterial Genetics and Biotechnology
+      - "T12489"   # Microbial Metabolites in Food Biotechnology
+      - "T14293"   # Biotechnology and Related Fields
+    patent_cpc_codes:
+      - C12Q1/00
+      - C12P1/00
+    description: "Technology based on living systems and organisms."

@@ -1,0 +1,95 @@
+# settings.yaml — global pipeline settings (PROJECT_MASTER_PLAN.md v3.1)
+
+pipeline:
+  run_id_format: "%Y%m%dT%H%M%SZ"   # UTC; filenames + manifests
+  year_range: [2000, 2025]          # locked decision §4.1-2
+  year_gate_quarantine: true        # null/invalid years quarantined, not dropped
+  reserved_concurrency: 4           # AWS Map state ceiling (local: sequential)
+
+sources:
+  openalex:
+    base_url: https://api.openalex.org
+    mailto: dharaneeshgv@gmail.com          # polite pool → 10 req/s
+    requests_per_second: 10
+    batch_size: 200                          # works per page
+    max_retries: 4
+    backoff_base_s: 0.5
+    backoff_max_s: 8.0
+    # 429 hardening (learned 2026-09-19: full-pass rerun was voided by rate limits)
+    respect_rate_limit_remaining_header: true
+    max_requests_per_run: 20000
+    run_cooldown_s: 60                       # pause between domain fan-out batches
+  patentsview:
+    base_url: https://search.patentsview.org/api/v1
+    api_key_env: PATENTSVIEW_API_KEY         # Phase 3.5 human interaction point #1
+    requests_per_second: 10
+
+s3:
+  raw_prefixes:
+    papers: raw/openalex
+    patents: raw/patents
+  raw_expires_days: 90                       # lifecycle rule §10
+  batch_format:
+    papers: jsonl.gz                         # object-per-page, atomic PUT
+    patents: json.gz
+
+staged:
+  parquet_compression: zstd
+  dict_encode_strings: true
+  partition_scheme: "staged/{table}/domain={slug}/year={yyyy}/part-{run_id}.parquet"
+  tables:
+    - works
+    - work_authors
+    - work_institutions
+    - work_topics
+    - work_keywords
+    - work_refs
+    - patents
+
+analytics:
+  bucket: quarter                            # primary analysis resolution
+  monthly_supplementary: false               # optional Phase 6 polish §9
+  sparse_coverage_years: 10                  # "sparse coverage before YYYY" label
+  lifecycle_hysteresis_buckets: 2            # opposing buckets required to flip label
+
+forecasting:
+  horizon_quarters: [4, 8]
+  primary_model: holt_winters_damped         # additive, damped phi
+  arima:
+    enabled: true
+    min_series_length: 40
+    log_transform: log1p                     # only when variance stabilizes
+    p_range: [0, 2]
+    d_range: [0, 1]
+    q_range: [0, 2]
+    criterion: aic
+    stationarity_tests: [kpss, adf]
+  baselines: [naive, drift]
+  pooled_global_benchmark: true              # free scale upgrade #2 §9
+  backtest:
+    expanding_window: true
+    train_end: 2021-Q4
+    targets: 2022-Q1-2024-Q4
+    metrics: [mae, rmse, smape, directional_accuracy]
+    beats_naive_threshold: 0.60              # honesty gate §Phase 4
+
+bursts:
+  model: kleinberg_2state                    # in-house Viterbi
+  transition_penalty_gamma: log_n
+  short_series_fallback: laplace_ratio       # (recent+1)/(hist_avg+1)
+
+dynamodb:
+  billing: PAY_PER_REQUEST
+  item_limit_guard_bytes: 380000             # warn before the 400KB ceiling
+  tables: [pipeline_state, trajectories, scores]   # bursts optional §10
+
+api:
+  routes: [topics, trajectories, scores, search, drilldown]
+  cache_ttl_s: 3600
+
+snapshots:
+  keep_last_runs: 5
+
+telemetry:
+  log_level: INFO
+  cost_alert_budget_usd: 1.0                 # AWS Budgets §13

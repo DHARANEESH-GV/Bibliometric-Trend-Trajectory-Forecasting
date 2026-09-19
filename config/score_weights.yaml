@@ -1,0 +1,18 @@
+# score_weights.yaml — emergence score priors (PROJECT_MASTER_PLAN.md §Phase 4)
+#
+# These are TUNABLE PRIORS, not derived constants. Phase 4 includes a
+# rank-stability sensitivity analysis measuring how far the leaderboard
+# moves under weight perturbation. Edit freely — the analysis will show
+# the consequence.
+
+score_weights:
+  growth: 0.35            # QoQ growth of last 2 quarterly buckets (damped)
+  citation_momentum: 0.25 # citation acceleration, recent vs prior mean
+  novelty: 0.20           # first-bucket recency within panel, ramp-scaled
+  burst: 0.20             # Kleinberg burst contribution (0 if none)
+
+# Phase 4 sensitivity sweep: each weight perturbed ±0.05/±0.10 while the
+# others renormalize, full-panel leaderboard rank deltas recorded.
+sensitivity:
+  perturbations: [0.05, 0.10]
+  renormalize: true
