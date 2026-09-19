@@ -21,10 +21,11 @@ from pathlib import Path
 
 import yaml
 
-from pipelines.openalex_client import DomainFetcher, OpenAlexClient, PoliteSleeper, RunLimits
-from pipelines.state_store import StateStore
-
 REPO = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(REPO))               # direct-CLI runs without PYTHONPATH
+
+from pipelines.openalex_client import DomainFetcher, OpenAlexClient, PoliteSleeper, RunLimits  # noqa: E402
+from pipelines.state_store import StateStore  # noqa: E402
 
 
 def load_config() -> dict:
