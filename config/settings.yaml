@@ -19,6 +19,16 @@ sources:
     respect_rate_limit_remaining_header: true
     max_requests_per_run: 20000
     run_cooldown_s: 60                       # pause between domain fan-out batches
+    ingest:
+      # incremental-weekly on from_created_date + monthly full
+      # reconciliation (locked §4.1-1); backfill = full 2000-2025
+      run_modes:
+        backfill: "from_publication_date:2000-01-01→2025-12-31, full cursor walk"
+        incremental: "from_created_date:last_successful_run_timestamp→UTC now"
+        reconciliation: "backfill semantics, monthly, re-walks full range"
+      per_domain_record_cap: 500000          # exit dimension ∨ cursor==null
+      raw_bytes_cap_per_domain: 2147483648   # 2 GiB; exit ∨ cap
+      polite_floor_s: 0.12                   # ≥ this between page requests
   patentsview:
     base_url: https://search.patentsview.org/api/v1
     api_key_env: PATENTSVIEW_API_KEY         # Phase 3.5 human interaction point #1
