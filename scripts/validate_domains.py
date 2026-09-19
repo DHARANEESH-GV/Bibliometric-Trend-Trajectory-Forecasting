@@ -46,122 +46,144 @@ CONFIG_DIR = REPO / "config"
 DOMAINS = {
     "artificial_intelligence": {
         "display_name": "Artificial Intelligence",
-        "search": ["artificial intelligence", "machine learning"],
+        "search": ["artificial intelligence"],
         "cpc": ["G06N20/00", "G06N3/00", "G06F18/00"],
+        "pin_topics": ["T10171"],  # "Artificial Intelligence" canonical CS topic
         "description": "Computing systems performing tasks that require intelligence.",
     },
     "generative_ai": {
         "display_name": "Generative AI",
-        "search": ["generative model", "text-to-image generation", "large language model"],
+        "search": ["large language model", "text-to-image generation",
+                   "generative adversarial network", "diffusion model"],
         "cpc": ["G06N3/08", "G06N3/04"],
         "description": "Models generating novel text, images, audio or code.",
     },
     "ai_agents": {
         "display_name": "AI Agents",
-        "search": ["intelligent agent", "multi-agent system", "autonomous agent"],
+        "search": ["multi-agent system", "reinforcement learning agent",
+                   "software agent"],
         "cpc": ["G06N3/092", "G05B13/00"],
         "description": "Software systems acting autonomously toward goals.",
     },
     "quantum_computing": {
         "display_name": "Quantum Computing",
-        "search": ["quantum computing", "quantum algorithm"],
+        "search": ["quantum computing"],
         "cpc": ["G06N10/00", "G06N10/20", "G06N10/40"],
+        "pin_topics": ["T10682"],
         "description": "Computing systems using quantum-mechanical phenomena.",
     },
     "quantum_error_correction": {
         "display_name": "Quantum Error Correction",
-        "search": ["quantum error correction", "quantum noise"],
+        "search": ["quantum error correction", "surface code", "decoherence"],
         "cpc": ["G06N10/70"],
+        "pin_topics": ["T10682"],
+        "scope_note": "OpenAlex has no dedicated QEC topic; scoped to the quantum computing topic, which subsumes QEC literature.",
         "description": "Protecting quantum information from decoherence and noise.",
     },
     "solid_state_batteries": {
         "display_name": "Solid-State Batteries",
-        "search": ["solid-state battery", "solid electrolyte"],
+        "search": ["all-solid-state battery", "solid electrolyte lithium"],
         "cpc": ["H01M10/0562", "H01M2300/0068"],
         "description": "Batteries with solid electrolytes replacing liquid ones.",
     },
     "clean_hydrogen": {
         "display_name": "Clean Hydrogen",
-        "search": ["green hydrogen", "water electrolysis", "hydrogen production"],
+        "search": ["water electrolysis hydrogen", "hydrogen fuel",
+                   "photocatalytic hydrogen production"],
         "cpc": ["C25B1/04", "C25B15/00"],
+        "pin_topics": ["T10078"],  # Advanced Photocatalysis Techniques (Energy)
         "description": "Low-carbon hydrogen production, storage and use.",
     },
     "carbon_capture": {
         "display_name": "Carbon Capture",
-        "search": ["carbon capture", "CO2 sequestration", "direct air capture"],
+        "search": ["carbon dioxide capture", "CO2 sequestration"],
         "cpc": ["B01D53/62", "B01J20/00"],
+        "pin_topics": ["T10967", "T11302"],
         "description": "Capturing and storing carbon dioxide emissions.",
     },
     "synthetic_biology": {
         "display_name": "Synthetic Biology",
-        "search": ["synthetic biology", "genetic circuit"],
+        "search": ["synthetic biology", "metabolic engineering",
+                   "genetic circuit"],
         "cpc": ["C12N15/00"],
+        "pin_topics": ["T10932"],  # Microbial Metabolic Engineering and Bioproduction
         "description": "Design and construction of novel biological systems.",
     },
     "brain_computer_interfaces": {
         "display_name": "Brain-Computer Interfaces",
-        "search": ["brain-computer interface", "neural interface"],
+        "search": ["brain-computer interface"],
         "cpc": ["A61B5/16", "G06F3/01"],
+        "pin_topics": ["T10429"],
         "description": "Direct communication between brain and external devices.",
     },
     "cybersecurity": {
         "display_name": "Cybersecurity",
-        "search": ["cybersecurity", "intrusion detection"],
+        "search": ["network intrusion detection", "malware detection",
+                   "cybersecurity"],
         "cpc": ["H04L63/00", "G06F21/00"],
+        "pin_topics": ["T10400"],
         "description": "Protection of computer systems and networks.",
     },
     "blockchain": {
         "display_name": "Blockchain",
-        "search": ["blockchain", "distributed ledger"],
+        "search": ["blockchain"],
         "cpc": ["H04L9/32", "G06Q20/00"],
+        "pin_topics": ["T10270"],
         "description": "Distributed ledger technologies and consensus systems.",
     },
     "internet_of_things": {
         "display_name": "Internet of Things",
-        "search": ["internet of things", "wireless sensor network"],
+        "search": ["internet of things"],
         "cpc": ["H04L67/12", "H04W4/33"],
+        "pin_topics": ["T13038"],
         "description": "Networked embedded devices sensing and actuating.",
     },
     "edge_computing": {
         "display_name": "Edge Computing",
-        "search": ["edge computing", "mobile edge computing", "fog computing"],
+        "search": ["edge computing", "fog computing"],
         "cpc": ["G06F9/50", "H04L67/10"],
+        "pin_topics": ["T10273"],
         "description": "Computing at or near the network edge.",
     },
     "digital_twins": {
         "display_name": "Digital Twins",
-        "search": ["digital twin"],
+        "search": ["digital twin simulation", "digital twin manufacturing",
+                   "digital twin cyber-physical"],
         "cpc": ["G05B17/02", "G06F30/00"],
         "description": "Virtual replicas of physical assets or processes.",
     },
     "smart_manufacturing": {
         "display_name": "Smart Manufacturing",
-        "search": ["smart manufacturing", "Industry 4.0"],
+        "search": ["smart factory", "industry 4.0 manufacturing",
+                   "additive manufacturing process"],
         "cpc": ["G05B19/4185"],
         "description": "Automated, data-driven manufacturing systems.",
     },
     "autonomous_vehicles": {
         "display_name": "Autonomous Vehicles",
-        "search": ["autonomous vehicle", "self-driving"],
+        "search": ["autonomous vehicle", "self-driving car"],
         "cpc": ["B60W60/00", "G01C21/00"],
+        "pin_topics": ["T11099"],
         "description": "Vehicles operating without human intervention.",
     },
     "space_technologies": {
         "display_name": "Space Technologies",
-        "search": ["spacecraft", "satellite technology", "space propulsion"],
+        "search": ["spacecraft", "satellite"],
         "cpc": ["B64G1/00"],
         "description": "Technologies for spaceflight and orbital systems.",
     },
     "advanced_semiconductors": {
         "display_name": "Advanced Semiconductors",
-        "search": ["semiconductor device", "integrated circuit"],
+        "search": ["semiconductor", "integrated circuit", "lithography"],
         "cpc": ["H01L21/00", "H01L29/00"],
+        "pin_topics": ["T10472", "T10099"],  # Semiconductor materials+devices; GaN devices
         "description": "Semiconductor materials, devices and fabrication.",
     },
     "biotechnology": {
         "display_name": "Biotechnology",
         "search": ["biotechnology"],
         "cpc": ["C12Q1/00", "C12P1/00"],
+        "pin_topics": ["T10120"],
         "description": "Technology based on living systems and organisms.",
     },
 }
@@ -254,9 +276,65 @@ def recall_check(topic_ids: list[str]) -> int:
     return found
 
 
+def fetch_topic(topic_id_short: str) -> CandidateTopic | None:
+    url = (
+        f"{API}/topics/{topic_id_short}"
+        f"?select=id,display_name,works_count,cited_by_count,subfield,field"
+        f"&mailto={MAILTO}"
+    )
+    try:
+        t = http_get_json(url)
+    except RuntimeError as e:
+        print(f"    !! pin fetch {topic_id_short} failed: {e}")
+        return None
+    return CandidateTopic(
+        topic_id=t["id"],
+        display_name=t["display_name"],
+        works_count=t.get("works_count", 0),
+        cited_by_count=t.get("cited_by_count", 0),
+        subfield=t.get("subfield", {}).get("display_name", ""),
+        field=t.get("field", {}).get("display_name", ""),
+        score_in_search=999.0,  # pinned = always ranked first
+    )
+
+
+def fetch_topic_baseline(topic_id_short: str) -> CandidateTopic | None:
+    """Pinned topic WITHOUT the 999 score — used for dedup only."""
+    url = (
+        f"{API}/topics/{topic_id_short}"
+        f"?select=id,display_name,works_count,cited_by_count,subfield,field"
+        f"&mailto={MAILTO}"
+    )
+    try:
+        t = http_get_json(url)
+    except RuntimeError:
+        return None
+    return CandidateTopic(
+        topic_id=t["id"],
+        display_name=t["display_name"],
+        works_count=t.get("works_count", 0),
+        cited_by_count=t.get("cited_by_count", 0),
+        subfield=t.get("subfield", {}).get("display_name", ""),
+        field=t.get("field", {}).get("display_name", ""),
+    )
+
+
 def validate_domain(slug: str, spec: dict) -> DomainValidation:
     v = DomainValidation(slug=slug, display_name=spec["display_name"])
     seen: dict[str, CandidateTopic] = {}
+    pinned: list[str] = list(spec.get("pin_topics", []))
+
+    # Pinned topics: verified IDs prepended live (each is fetched to record
+    # volume + prove the ID still resolves — pinned does not mean trusted).
+    for tid in pinned:
+        cand = fetch_topic(tid)
+        if cand:
+            if cand.works_count >= 500:
+                seen[cand.topic_id] = cand
+            else:
+                v.notes.append(f"pinned topic {tid} below volume floor; dropped")
+        time.sleep(0.15)
+
     for term in spec["search"]:
         print(f"    search: {term!r}")
         for cand in search_topics(term):
@@ -269,18 +347,26 @@ def validate_domain(slug: str, spec: dict) -> DomainValidation:
         v.notes.append("topic search returned nothing")
         return v
 
-    # Resolution rules: top-scoring candidates whose name overlaps the
-    # search terms; volume floor so we never scope to a near-empty topic.
+    # Resolution rules: top-scoring candidates, volume floor, and
+    # full-phrase containment — the display name must contain ALL words
+    # of a search term (single words suffice for single-word terms).
+    # Loose single-word overlap (prior pilot) admitted a broad physics
+    # topic sharing only the word "quantum"; this rule closes that gap.
     import re
 
-    def name_overlap(term: str, name: str) -> bool:
-        words = {w for w in re.split(r"[\s\-/]+", term.lower()) if len(w) > 2}
-        return bool(words & set(name.lower().split()))
+    def phrase_match(term: str, name: str) -> bool:
+        words = [w for w in re.split(r"[\s\-/]+", term.lower()) if len(w) > 2]
+        if not words:
+            return False
+        low = name.lower()
+        return all(w in low for w in words)
 
     for cand in cands:
         if cand.works_count < 500:
             continue
-        if any(name_overlap(term, cand.display_name) for term in spec["search"]):
+        if cand.topic_id.split("/")[-1] in pinned or any(
+            phrase_match(term, cand.display_name) for term in spec["search"]
+        ):
             v.resolved_topic_ids.append(cand.topic_id)
         if len(v.resolved_topic_ids) >= 3:
             break
