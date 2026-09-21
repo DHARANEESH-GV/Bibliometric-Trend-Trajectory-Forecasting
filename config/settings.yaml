@@ -19,6 +19,12 @@ sources:
     respect_rate_limit_remaining_header: true
     max_requests_per_run: 20000
     run_cooldown_s: 60                       # pause between domain fan-out batches
+    # 2026-09-21 EMPIRICAL: OpenAlex polite pool = 1000 credits/day/IP
+    # (x-ratelimit-limit, ~20h reset). Backfills MUST be laddered across
+    # days: 814 pages for a full domain >> 1000/day. Keep ≤800/day and
+    # always leave ≥100 credits headroom for probes + smoke dimensions.
+    daily_credit_budget: 800
+    daily_credit_headroom: 100
     ingest:
       # incremental-weekly on from_created_date + monthly full
       # reconciliation (locked §4.1-1); backfill = full 2000-2025
@@ -28,7 +34,7 @@ sources:
         reconciliation: "backfill semantics, monthly, re-walks full range"
       per_domain_record_cap: 500000          # exit dimension ∨ cursor==null
       raw_bytes_cap_per_domain: 2147483648   # 2 GiB; exit ∨ cap
-      polite_floor_s: 0.12                   # ≥ this between page requests
+      polite_floor_s: 0.5                    # credit-metered pacing (2026-09-21)
   patentsview:
     base_url: https://search.patentsview.org/api/v1
     api_key_env: PATENTSVIEW_API_KEY         # Phase 3.5 human interaction point #1

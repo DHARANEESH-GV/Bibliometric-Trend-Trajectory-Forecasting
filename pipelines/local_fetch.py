@@ -80,9 +80,14 @@ def main() -> int:
         raw_bytes_cap_per_domain=int(cfg["ingest"]["raw_bytes_cap_per_domain"]),
         max_pages_per_run=args.max_pages,
         max_records_per_run=args.max_records,
+        max_credits_per_run=int(cfg.get("daily_credit_budget", 0)) or None,
     )
+    # credit headroom: never spend the last N daily credits on bulk walk
+    headroom = int(cfg.get("daily_credit_headroom", 0) or 0)
+    if limits.max_credits_per_run is not None:
+        limits.max_credits_per_run = max(limits.max_credits_per_run - headroom, 1)
     polite_cfg = cfg.get("ingest", {})
-    client = OpenAlexClient(polite=PoliteSleeper(floor_s=float(polite_cfg.get("polite_floor_s", 0.12))))
+    client = OpenAlexClient(polite=PoliteSleeper(floor_s=float(polite_cfg.get("polite_floor_s", 0.5))))
     fetcher = DomainFetcher(client, limits)
 
     manifest = fetcher.fetch_domain(

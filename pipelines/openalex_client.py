@@ -43,8 +43,13 @@ SELECT_FIELDS = [
 
 @dataclass
 class PoliteSleeper:
-    """Enforces a time floor between requests, whatever latency does."""
-    floor_s: float = 0.12
+    """Enforces a time floor between requests, whatever latency does.
+
+    2026-09-21: fixed 0.12s floor raised to 0.5s default — OpenAlex's
+    polite pool is credit-metered (1000/day/IP); pacing spares the
+    budget and Retry-After handles the genuine throttle.
+    """
+    floor_s: float = 0.5
     _last: float = field(default=0.0, repr=False)
 
     def wait(self) -> None:
@@ -77,6 +82,9 @@ class RunLimits:
     raw_bytes_cap_per_domain: int = 2 * 1024 * 1024 * 1024
     max_pages_per_run: int | None = None     # smoke-test dimension
     max_records_per_run: int | None = None   # smoke-test dimension
+    # 2026-09-21 credit-metering: daily budget laddering (settings.yaml
+    # daily_credit_budget). None = legacy unmetered behavior.
+    max_credits_per_run: int | None = None
 
 
 @dataclass
@@ -309,6 +317,11 @@ class DomainFetcher:
                 break
             if self.limits.per_domain_record_cap is not None and manifest.records_fetched + manifest.records_capped >= self.limits.per_domain_record_cap:
                 manifest.exit_reason = "per_domain_record_cap"
+                break
+            if self.limits.max_credits_per_run is not None and manifest.requests_made >= self.limits.max_credits_per_run:
+                # credit-metered ladder (2026-09-21): stop with headroom,
+                # checkpoint holds every page — tomorrow resumes free
+                manifest.exit_reason = "daily_credit_budget"
                 break
             if not results and meta_next is None:
                 manifest.exit_reason = "no_results"
