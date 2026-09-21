@@ -224,22 +224,30 @@ class DomainFetcher:
 
         Network blips during a 2h+ laddered walk are routine; each
         re-entry costs zero refetched pages because the checkpoint
-        holds. Re-enters up to `transient_resumes` fresh run dirs on
-        transient failure, passing the final manifest upward.
+        holds. Rounds do NOT burn when a re-entry made progress: a
+        round is only consumed when a re-entry fails without fetching
+        a single page (e.g. DNS outage). Progress resets the budget.
         """
         kwargs.setdefault("transient_resumes", 2)
         resumes = kwargs.pop("transient_resumes")
+        no_progress_rounds = 0
+        prev_records = -1
         manifest = self.fetch_domain(*args, **kwargs)
         while (
             manifest.exit_reason == "transient_failure_after_checkpoint"
-            and resumes > 0
+            and no_progress_rounds <= resumes
         ):
-            resumes -= 1
+            made_progress = manifest.records_fetched > 0 or prev_records < 0
+            prev_records = manifest.records_fetched
+            if made_progress:
+                no_progress_rounds = 0      # progress resets the round budget
             print(
                 f"[{manifest.domain}] transient failure — auto-resuming "
-                f"(rounds left: {resumes})", flush=True,
+                f"(no-progress rounds: {no_progress_rounds}/{resumes})",
+                flush=True,
             )
-            time.sleep(min(10.0, 3.0 * (2 ** (2 - resumes))))
+            time.sleep(min(30.0, 5.0 * (2 ** no_progress_rounds)))
+            no_progress_rounds += 1
             manifest = self.fetch_domain(*args, **kwargs)
         return manifest
 
