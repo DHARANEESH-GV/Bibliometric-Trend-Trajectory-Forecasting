@@ -219,6 +219,30 @@ class DomainFetcher:
         self.client = client
         self.limits = limits or RunLimits()
 
+    def fetch_domain_resumable(self, *args, **kwargs) -> RunManifest:
+        """Fetch with transient-failure auto-resume (2026-09-21).
+
+        Network blips during a 2h+ laddered walk are routine; each
+        re-entry costs zero refetched pages because the checkpoint
+        holds. Re-enters up to `transient_resumes` fresh run dirs on
+        transient failure, passing the final manifest upward.
+        """
+        kwargs.setdefault("transient_resumes", 2)
+        resumes = kwargs.pop("transient_resumes")
+        manifest = self.fetch_domain(*args, **kwargs)
+        while (
+            manifest.exit_reason == "transient_failure_after_checkpoint"
+            and resumes > 0
+        ):
+            resumes -= 1
+            print(
+                f"[{manifest.domain}] transient failure — auto-resuming "
+                f"(rounds left: {resumes})", flush=True,
+            )
+            time.sleep(min(10.0, 3.0 * (2 ** (2 - resumes))))
+            manifest = self.fetch_domain(*args, **kwargs)
+        return manifest
+
     def fetch_domain(
         self,
         domain: str,
@@ -231,6 +255,7 @@ class DomainFetcher:
         run_id: str | None = None,
         strict_resume: bool = True,
         max_consecutive_retry_pages: int = 1,
+        transient_resumes: int = 2,
     ) -> RunManifest:
         now = datetime.now(timezone.utc)
         run_id = run_id or now.strftime("%Y%m%dT%H%M%SZ")
@@ -245,6 +270,7 @@ class DomainFetcher:
         raw_run_dir = raw_dir / domain / run_id
         page_no = 0
         consecutive_retry_pages = 0
+        resume_rounds = 0
 
         while True:
             try:
@@ -264,10 +290,15 @@ class DomainFetcher:
                     f"[{domain}] page {page_no} FAILED after retries: {e}",
                     file=sys.stderr, flush=True,
                 )
-                if consecutive_retry_pages > max_consecutive_retry_pages:
-                    manifest.exit_reason = "hard_failure_after_checkpoint"
-                    break
-                raise                              # checkpoint protects resume
+                # 2026-09-21: transient network drops (Errno 101,
+                # IncompleteRead) killed laddered walks mid-flight —
+                # each caused a full mode-change to the next run dir.
+                # Checkpoints make re-entry free, so on transient-looking
+                # failures (network/unreadable body): fail-loud this
+                # process, but the CLI re-enters up to transient_resumes
+                # times with a fresh run dir before giving up entirely.
+                manifest.exit_reason = "transient_failure_after_checkpoint"
+                break
             results = data.get("results", [])
             meta_next = (data.get("meta") or {}).get("next_cursor")
             manifest.requests_made += 1

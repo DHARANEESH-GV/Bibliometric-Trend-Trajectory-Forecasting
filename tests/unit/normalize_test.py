@@ -116,7 +116,7 @@ def make_work(openalex_id, year=None, pub_date=None, title="t", updated=None,
         "authorships": [
             {
                 "author": {"id": aid, "display_name": aname},
-                "author_position": i,
+                "author_position": ("first", "middle", "last")[min(i, 2)],
                 "institutions": [
                     {"id": iid, "display_name": iname, "country_code": cc}
                 ],
@@ -215,6 +215,11 @@ def test_fanout_row_shapes(tmp_path: Path):
     )
     n = normalize_record(rec, "somedom", "RUN4")
     assert len(n["work_authors"]) == 2
+    # REAL-DATA semantics: OpenAlex author_position is the string
+    # first|middle|last → ordinal int (2026-09-21 finding)
+    assert n["work_authors"][0]["author_position"] == 0
+    assert n["work_authors"][0]["author_position_raw"] == "first"
+    assert n["work_authors"][1]["author_position"] == 1
     assert len(n["work_institutions"]) == 2
     assert {r["country_code"] for r in n["work_institutions"]} == {"US", "DE"}
     assert len(n["work_topics"]) == 2

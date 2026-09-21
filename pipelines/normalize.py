@@ -37,6 +37,12 @@ import pyarrow.parquet as pq
 YEAR_MIN, YEAR_MAX = 2000, 2025
 DOI_PREFIX_RE = re.compile(r"^https?://(dx\.)?doi\.org/", re.IGNORECASE)
 
+# 2026-09-21 REAL-DATA finding: OpenAlex authorships carry author_position
+# as the STRING 'first'|'middle'|'last' — synthetic fixtures had assumed a
+# 0-based int. Map to ordinal for the int32 column; unknown values → 2
+# (middle-like) with the raw string preserved in author_position_raw.
+AUTHOR_POSITION_ORDINAL = {"first": 0, "middle": 1, "last": 2}
+
 WORKS_SCHEMA = pa.schema([
     ("openalex_id", pa.string()),
     ("doi", pa.string()),
@@ -58,6 +64,7 @@ WORK_AUTHORS_SCHEMA = pa.schema([
     ("openalex_id", pa.string()),
     ("author_id", pa.string()),
     ("author_position", pa.int32()),
+    ("author_position_raw", pa.string()),
     ("author_raw_name", pa.string()),
     ("domain_slug", pa.string()),
 ])
@@ -206,7 +213,8 @@ def normalize_record(rec: dict, domain_slug: str, run_id: str) -> dict:
             {
                 "openalex_id": openalex_id,
                 "author_id": (a.get("author") or {}).get("id"),
-                "author_position": a.get("author_position"),
+                "author_position": AUTHOR_POSITION_ORDINAL.get(a.get("author_position"), 1),
+                "author_position_raw": a.get("author_position"),
                 "author_raw_name": (a.get("author") or {}).get("display_name"),
                 "domain_slug": domain_slug,
             }

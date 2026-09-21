@@ -90,7 +90,7 @@ def main() -> int:
     client = OpenAlexClient(polite=PoliteSleeper(floor_s=float(polite_cfg.get("polite_floor_s", 0.5))))
     fetcher = DomainFetcher(client, limits)
 
-    manifest = fetcher.fetch_domain(
+    manifest = fetcher.fetch_domain_resumable(
         domain=args.domain,
         topic_ids=[t.split("/")[-1] for t in dom["openalex_topic_ids"]],
         raw_dir=Path(args.raw_dir),

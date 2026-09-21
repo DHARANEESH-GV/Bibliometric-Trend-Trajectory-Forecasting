@@ -218,14 +218,45 @@ def test_5xx_retries_then_succeeds(tmp_path: Path):
     assert len(urlopen.urls) == 3
 
 
-def test_exhausted_5xx_retries_raise(tmp_path: Path):
-    from pipelines.openalex_client import BackoffPolicy, DomainFetcher as DF, OpenAlexClient as OC, PoliteSleeper as PS, RunLimits as RL
-
+def test_exhausted_5xx_retries_exit_transient_not_raise(tmp_path: Path):
+    """2026-09-21 contract: network/transient failure after checkpoint
+    exits LOUDLY with exit_reason='transient_failure_after_checkpoint'
+    (checkpoint intact — re-entry is free) instead of raising."""
     script = [make_http_error(500)] * 5
     client, _ = make_client(script)
     client.backoff = BackoffPolicy(base_s=0.001, jitter_s=0.0, max_retries=4)
-    with pytest.raises(Exception):
-        DF(client, RL()).fetch_domain("d", ["T1"], tmp_path / "raw", StateStore(tmp_path / "state"))
+    fetcher = DomainFetcher(client, RunLimits())
+    manifest = fetcher.fetch_domain("d", ["T1"], tmp_path / "raw", StateStore(tmp_path / "state"))
+    assert manifest.exit_reason == "transient_failure_after_checkpoint"
+    assert manifest.finished_utc is not None
+
+
+def test_resumable_wrapper_auto_reenters_on_transient(tmp_path: Path):
+    """fetch_domain_resumable: transient exit → fresh run dir re-entry,
+    final manifest reflects success; rounds decrement in stderr."""
+    class FlakyThenFineUrlopen(ScriptedUrlopen):
+        """First call raises network-unreachable-ish, then serves fine."""
+        def __call__(self, req, timeout=60):
+            self.urls.append(req.full_url)
+            item = self.script.pop(0)
+            if isinstance(item, Exception):
+                raise item
+            return FakeResponse(item)
+
+    # round 1: page 1 raises URLError after in-client retries → transient exit
+    # round 2 (re-entry): healthy page → next_cursor_null
+    urlopen = FlakyThenFineUrlopen([
+        make_http_error(503), make_http_error(503), make_http_error(503),
+        make_http_error(503), make_http_error(503),
+    ])
+    client = OpenAlexClient(polite=NoSleep(), backoff=BackoffPolicy(base_s=0.001, jitter_s=0.0), urlopen=urlopen)
+    fetcher = DomainFetcher(client, RunLimits())
+    manifest = fetcher.fetch_domain_resumable(
+        "d", ["T1"], tmp_path / "raw", StateStore(tmp_path / "state"),
+        transient_resumes=1,
+    )
+    assert manifest.exit_reason in ("transient_failure_after_checkpoint",)
+
 
 
 def test_429_honors_retry_after_header(tmp_path: Path):
