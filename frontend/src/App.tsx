@@ -1,15 +1,170 @@
+import { useMemo, useState } from 'react'
+import { NavLink, useLocation } from 'react-router-dom'
+import { StoreProvider, useStore } from './lib/store'
+import { loadLeaderboard } from './lib/snapshots'
+import { useQuery } from './lib/useQuery'
+import { snapshotSentence } from './lib/format'
+import { MethodologyNote } from './components/MethodologyNote'
+import { SearchPalette, useCommandK, type SearchItem } from './components/SearchPalette'
+import { LeaderboardView } from './views/Leaderboard'
+
+const NAV = [
+  { to: '/', label: 'Leaderboard', end: true },
+  { to: '/trajectory', label: 'Trajectories' },
+  { to: '/bursts', label: 'Bursts' },
+  { to: '/matrix', label: 'Matrix' },
+  { to: '/about', label: 'About' },
+]
+
+function Shell() {
+  const { runId, generatedUtc, theme, toggleTheme } = useStore()
+  const { data } = useQuery(loadLeaderboard, [])
+  const [paletteOpen, setPaletteOpen] = useState(false)
+  useCommandK(setPaletteOpen)
+  const location = useLocation()
+
+  const items = useMemo<SearchItem[]>(
+    () =>
+      (data?.leaderboard ?? []).map((r) => ({
+        domain: r.domain,
+        display_name: r.display_name,
+        hint: `rank ${r.rank}`,
+      })),
+    [data],
+  )
+
+  const isDomain = location.pathname.startsWith('/domain/')
+
+  return (
+    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+      <a href="#main" className="visually-hidden">Skip to content</a>
+      <header
+        className="hairline-bottom"
+        style={{ position: 'sticky', top: 0, background: 'var(--surface-0)', zIndex: 40 }}
+      >
+        <div
+          className="container"
+          style={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            alignItems: 'center',
+            gap: 'var(--sp-5)',
+            paddingBlock: 'var(--sp-3)',
+          }}
+        >
+          <NavLink
+            to="/"
+            style={{
+              fontFamily: 'var(--font-display)',
+              fontWeight: 600,
+              color: 'var(--ink-0)',
+              textDecoration: 'none',
+              fontSize: 'var(--text-lg)',
+            }}
+          >
+            biblio-trend
+          </NavLink>
+          <nav aria-label="Primary">
+            <ul
+              style={{
+                display: 'flex',
+                flexWrap: 'wrap',
+                gap: 'var(--sp-4)',
+                listStyle: 'none',
+                margin: 0,
+                padding: 0,
+                fontSize: 'var(--text-sm)',
+              }}
+            >
+              {NAV.map((n) => (
+                <li key={n.to}>
+                  <NavLink
+                    to={n.to}
+                    end={n.end}
+                    style={({ isActive }) => ({
+                      color: isActive ? 'var(--ink-0)' : 'var(--ink-2)',
+                      textDecoration: 'none',
+                      borderBottom: isActive ? '2px solid var(--ink-0)' : '2px solid transparent',
+                      paddingBlock: 2,
+                    })}
+                  >
+                    {n.label}
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
+          </nav>
+          <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 'var(--sp-3)' }}>
+            <button
+              onClick={() => setPaletteOpen(true)}
+              aria-label="Search domains (Command K)"
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 'var(--sp-2)',
+                border: 'var(--hairline)',
+                borderRadius: 2,
+                padding: '4px 10px',
+                fontSize: 'var(--text-sm)',
+                color: 'var(--ink-2)',
+              }}
+            >
+              Search <kbd style={{ fontSize: 'var(--text-xs)' }}>⌘K</kbd>
+            </button>
+            <button
+              onClick={toggleTheme}
+              aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}
+              style={{
+                border: 'var(--hairline)',
+                borderRadius: 2,
+                padding: '4px 10px',
+                fontSize: 'var(--text-sm)',
+              }}
+            >
+              {theme === 'dark' ? '☾' : '☀'}
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <main id="main" className="container" style={{ flex: 1 }}>
+        {isDomain ? null : <LeaderboardView />}
+      </main>
+
+      <footer
+        className="hairline-top"
+        style={{ paddingBlock: 'var(--sp-5)', marginTop: 'var(--sp-7)' }}
+      >
+        <div className="container" style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--sp-4)' }}>
+          <MethodologyNote />
+          <p
+            className="num"
+            style={{
+              fontSize: 'var(--text-xs)',
+              color: 'var(--ink-3)',
+              width: '100%',
+            }}
+          >
+            {snapshotSentence(runId, generatedUtc)}
+            {data ? ` Data: OpenAlex works, 2000–2025.` : ''}
+          </p>
+        </div>
+      </footer>
+
+      <SearchPalette
+        items={items}
+        to={(domain) => `/domain/${domain}`}
+        open={paletteOpen}
+        onClose={() => setPaletteOpen(false)}
+      />
+    </div>
+  )
+}
+
 export function App() {
   return (
-    <div className="container">
-      <main>
-        <h1 style={{ fontSize: 'var(--text-2xl)', marginTop: 'var(--sp-8)' }}>
-          biblio-trend
-        </h1>
-        <p style={{ color: 'var(--ink-2)', marginTop: 'var(--sp-3)' }}>
-          A technology observatory. Views arrive in build order: Leaderboard,
-          Trajectory Explorer, Domain Drill-down, Bursts, Comparison Matrix.
-        </p>
-      </main>
-    </div>
+    <StoreProvider>
+      <Shell />
+    </StoreProvider>
   )
 }

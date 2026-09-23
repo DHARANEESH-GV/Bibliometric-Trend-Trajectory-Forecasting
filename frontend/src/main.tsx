@@ -7,6 +7,7 @@ import '@fontsource/inter-tight/600.css'
 import '@fontsource/jetbrains-mono/400.css'
 import './styles/tokens.css'
 import './styles/base.css'
+import './views/leaderboard.css'
 import { App } from './App'
 
 const router = createBrowserRouter([

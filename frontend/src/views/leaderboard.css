@@ -1,0 +1,37 @@
+/*
+ * Leaderboard responsive reflow (breakpoints 640/1024, §8).
+ * Desktop-first analytical; single-column on mobile with the
+ * decomposition panel after the rows.
+ */
+.leaderboard-grid {
+  grid-template-columns: minmax(0, 2fr) minmax(260px, 1fr) !important;
+}
+
+@media (max-width: 1024px) {
+  .leaderboard-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .leaderboard-grid aside {
+    position: static !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .leaderboard-header {
+    display: none !important;
+  }
+  .leaderboard-row {
+    grid-template-columns: 2rem minmax(0, 1fr) auto !important;
+    grid-template-rows: auto auto;
+    row-gap: var(--sp-2);
+  }
+  .leaderboard-row > :nth-child(3), /* stage pill */
+  .leaderboard-row > :nth-child(4), /* score */
+  .leaderboard-row > :nth-child(5), /* sparkline */
+  .leaderboard-row > :nth-child(6)  /* yoy */ {
+    grid-column: 2 / -1;
+  }
+  .leaderboard-row > :nth-child(5) {
+    display: none; /* sparklines drop on narrow screens; cards stay readable */
+  }
+}
