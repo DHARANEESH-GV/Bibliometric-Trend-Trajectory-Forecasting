@@ -280,8 +280,7 @@ export function DomainDrilldownView() {
           >
             {data.top_keywords.map((k, i) => (
               <li
-                key={k}
-                className="num"
+                key={k.name}
                 style={{
                   border: 'var(--hairline)',
                   borderRadius: 2,
@@ -291,7 +290,14 @@ export function DomainDrilldownView() {
                 }}
               >
                 <span style={{ color: 'var(--ink-3)', marginRight: 'var(--sp-2)' }}>{i + 1}</span>
-                {k}
+                {k.name}
+                <span
+                  className="num"
+                  style={{ color: 'var(--ink-3)', marginLeft: 'var(--sp-2)', fontSize: 'var(--text-xs)' }}
+                >
+                  {fmtInt(k.total)}
+                  {k.bursts.length > 0 ? `, ${k.bursts.length} burst${k.bursts.length === 1 ? '' : 's'}` : ''}
+                </span>
               </li>
             ))}
           </ul>

@@ -122,9 +122,25 @@ export interface DomainSnapshot {
   label: LifecycleLabel
   provenance_note: string | null
   sample_stats: Record<string, unknown> | null
-  /** May be empty ([] for quantum_computing) — a real empty state. */
-  top_keywords: string[]
+  /** Real on-disk shape: {name, total, bursts[]}, ranked by volume.
+   *  May be empty ([] for quantum_computing) — a real empty state. */
+  top_keywords: TopKeyword[]
   caveat: string | null
+}
+
+/** Keyword ranking row as persisted by the aggregate stage. */
+export interface TopKeyword {
+  name: string
+  /** Occurrences across the domain's corpus. */
+  total: number
+  /** Kleinberg bursts for this keyword, same shape as bursts.json feed. */
+  bursts: Array<{
+    start: number
+    end: number
+    duration: number
+    strength: number
+    years: number[]
+  }>
 }
 
 export interface RunsManifest {
