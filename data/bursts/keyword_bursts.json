@@ -1,0 +1,9153 @@
+{
+ "artificial_intelligence": {
+  "display_name": "Artificial Intelligence",
+  "keywords": {
+   "https://openalex.org/keywords/computer-science": {
+    "name": "Computer science",
+    "total": 487062,
+    "bursts": [
+     {
+      "start": 2011,
+      "end": 2025,
+      "duration": 15,
+      "strength": 0.6845,
+      "years": [
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     },
+     {
+      "start": 2001,
+      "end": 2001,
+      "duration": 1,
+      "strength": 0.0488,
+      "years": [
+       2001
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/artificial-intelligence": {
+    "name": "Artificial intelligence",
+    "total": 354431,
+    "bursts": [
+     {
+      "start": 2017,
+      "end": 2025,
+      "duration": 9,
+      "strength": 0.9133,
+      "years": [
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     },
+     {
+      "start": 2002,
+      "end": 2005,
+      "duration": 4,
+      "strength": 0.2289,
+      "years": [
+       2002,
+       2003,
+       2004,
+       2005
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/mathematics": {
+    "name": "Mathematics",
+    "total": 182675,
+    "bursts": [
+     {
+      "start": 2002,
+      "end": 2025,
+      "duration": 24,
+      "strength": 0.7266,
+      "years": [
+       2002,
+       2003,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/artificial-neural-network": {
+    "name": "Artificial neural network",
+    "total": 147324,
+    "bursts": [
+     {
+      "start": 2002,
+      "end": 2025,
+      "duration": 24,
+      "strength": 0.7623,
+      "years": [
+       2002,
+       2003,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/machine-learning": {
+    "name": "Machine learning",
+    "total": 140071,
+    "bursts": [
+     {
+      "start": 2002,
+      "end": 2025,
+      "duration": 24,
+      "strength": 1.3048,
+      "years": [
+       2002,
+       2003,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/medicine": {
+    "name": "Medicine",
+    "total": 118369,
+    "bursts": [
+     {
+      "start": 2011,
+      "end": 2025,
+      "duration": 15,
+      "strength": 2.3177,
+      "years": [
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/algorithm": {
+    "name": "Algorithm",
+    "total": 98709,
+    "bursts": [
+     {
+      "start": 2002,
+      "end": 2025,
+      "duration": 24,
+      "strength": 0.754,
+      "years": [
+       2002,
+       2003,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/engineering": {
+    "name": "Engineering",
+    "total": 83906,
+    "bursts": [
+     {
+      "start": 2018,
+      "end": 2025,
+      "duration": 8,
+      "strength": 0.9266,
+      "years": [
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     },
+     {
+      "start": 2002,
+      "end": 2002,
+      "duration": 1,
+      "strength": 0.8294,
+      "years": [
+       2002
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/pattern-recognition": {
+    "name": "Pattern recognition (psychology)",
+    "total": 79697,
+    "bursts": [
+     {
+      "start": 2002,
+      "end": 2025,
+      "duration": 24,
+      "strength": 0.9626,
+      "years": [
+       2002,
+       2003,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/psychology": {
+    "name": "Psychology",
+    "total": 73357,
+    "bursts": [
+     {
+      "start": 2017,
+      "end": 2025,
+      "duration": 9,
+      "strength": 1.5472,
+      "years": [
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/data-mining": {
+    "name": "Data mining",
+    "total": 71845,
+    "bursts": [
+     {
+      "start": 2002,
+      "end": 2025,
+      "duration": 24,
+      "strength": 1.252,
+      "years": [
+       2002,
+       2003,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/physics": {
+    "name": "Physics",
+    "total": 62816,
+    "bursts": [
+     {
+      "start": 2020,
+      "end": 2025,
+      "duration": 6,
+      "strength": 0.5486,
+      "years": [
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     },
+     {
+      "start": 2001,
+      "end": 2001,
+      "duration": 1,
+      "strength": 0.0488,
+      "years": [
+       2001
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/statistics": {
+    "name": "Statistics",
+    "total": 54293,
+    "bursts": [
+     {
+      "start": 2002,
+      "end": 2025,
+      "duration": 24,
+      "strength": 0.7934,
+      "years": [
+       2002,
+       2003,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/data-science": {
+    "name": "Data science",
+    "total": 41739,
+    "bursts": [
+     {
+      "start": 2011,
+      "end": 2025,
+      "duration": 15,
+      "strength": 2.4105,
+      "years": [
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/health-care": {
+    "name": "Health care",
+    "total": 37108,
+    "bursts": [
+     {
+      "start": 2014,
+      "end": 2025,
+      "duration": 12,
+      "strength": 3.1357,
+      "years": [
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   }
+  }
+ },
+ "generative_ai": {
+  "display_name": "Generative AI",
+  "keywords": {
+   "https://openalex.org/keywords/computer-science": {
+    "name": "Computer science",
+    "total": 62426,
+    "bursts": [
+     {
+      "start": 2010,
+      "end": 2025,
+      "duration": 16,
+      "strength": 2.6878,
+      "years": [
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/artificial-intelligence": {
+    "name": "Artificial intelligence",
+    "total": 57326,
+    "bursts": [
+     {
+      "start": 2011,
+      "end": 2025,
+      "duration": 15,
+      "strength": 2.7657,
+      "years": [
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/pattern-recognition": {
+    "name": "Pattern recognition (psychology)",
+    "total": 29669,
+    "bursts": [
+     {
+      "start": 2012,
+      "end": 2025,
+      "duration": 14,
+      "strength": 2.9089,
+      "years": [
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     },
+     {
+      "start": 2009,
+      "end": 2009,
+      "duration": 1,
+      "strength": 0.6977,
+      "years": [
+       2009
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/image": {
+    "name": "Image (mathematics)",
+    "total": 28898,
+    "bursts": [
+     {
+      "start": 2007,
+      "end": 2025,
+      "duration": 19,
+      "strength": 2.6974,
+      "years": [
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/computer-vision": {
+    "name": "Computer vision",
+    "total": 25745,
+    "bursts": [
+     {
+      "start": 2006,
+      "end": 2025,
+      "duration": 20,
+      "strength": 2.5822,
+      "years": [
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/mathematics": {
+    "name": "Mathematics",
+    "total": 21492,
+    "bursts": [
+     {
+      "start": 2009,
+      "end": 2025,
+      "duration": 17,
+      "strength": 2.262,
+      "years": [
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/machine-learning": {
+    "name": "Machine learning",
+    "total": 17634,
+    "bursts": [
+     {
+      "start": 2012,
+      "end": 2025,
+      "duration": 14,
+      "strength": 3.5713,
+      "years": [
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/generative-grammar": {
+    "name": "Generative grammar",
+    "total": 16189,
+    "bursts": [
+     {
+      "start": 2012,
+      "end": 2025,
+      "duration": 14,
+      "strength": 4.6476,
+      "years": [
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 25,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/deep-learning": {
+    "name": "Deep learning",
+    "total": 13472,
+    "bursts": [
+     {
+      "start": 2012,
+      "end": 2025,
+      "duration": 14,
+      "strength": 4.4541,
+      "years": [
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 25,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/algorithm": {
+    "name": "Algorithm",
+    "total": 11643,
+    "bursts": [
+     {
+      "start": 2006,
+      "end": 2025,
+      "duration": 20,
+      "strength": 2.3275,
+      "years": [
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/artificial-neural-network": {
+    "name": "Artificial neural network",
+    "total": 11493,
+    "bursts": [
+     {
+      "start": 2013,
+      "end": 2025,
+      "duration": 13,
+      "strength": 3.8101,
+      "years": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/feature": {
+    "name": "Feature (linguistics)",
+    "total": 9541,
+    "bursts": [
+     {
+      "start": 2014,
+      "end": 2025,
+      "duration": 12,
+      "strength": 3.3043,
+      "years": [
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/adversarial-system": {
+    "name": "Adversarial system",
+    "total": 7897,
+    "bursts": [
+     {
+      "start": 2016,
+      "end": 2025,
+      "duration": 10,
+      "strength": 5.0597,
+      "years": [
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 14,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/generative-model": {
+    "name": "Generative model",
+    "total": 7384,
+    "bursts": [
+     {
+      "start": 2014,
+      "end": 2025,
+      "duration": 12,
+      "strength": 3.8341,
+      "years": [
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 25,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/face": {
+    "name": "Face (sociological concept)",
+    "total": 7282,
+    "bursts": [
+     {
+      "start": 2014,
+      "end": 2025,
+      "duration": 12,
+      "strength": 3.1312,
+      "years": [
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   }
+  }
+ },
+ "ai_agents": {
+  "display_name": "AI Agents",
+  "keywords": {
+   "https://openalex.org/keywords/computer-science": {
+    "name": "Computer science",
+    "total": 173558,
+    "bursts": [
+     {
+      "start": 2002,
+      "end": 2025,
+      "duration": 24,
+      "strength": 1.0707,
+      "years": [
+       2002,
+       2003,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/artificial-intelligence": {
+    "name": "Artificial intelligence",
+    "total": 112172,
+    "bursts": [
+     {
+      "start": 2002,
+      "end": 2025,
+      "duration": 24,
+      "strength": 1.2869,
+      "years": [
+       2002,
+       2003,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/mathematics": {
+    "name": "Mathematics",
+    "total": 69371,
+    "bursts": [
+     {
+      "start": 2004,
+      "end": 2025,
+      "duration": 22,
+      "strength": 1.4672,
+      "years": [
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     },
+     {
+      "start": 2001,
+      "end": 2001,
+      "duration": 1,
+      "strength": 0.0488,
+      "years": [
+       2001
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/engineering": {
+    "name": "Engineering",
+    "total": 55153,
+    "bursts": [
+     {
+      "start": 2002,
+      "end": 2025,
+      "duration": 24,
+      "strength": 1.3796,
+      "years": [
+       2002,
+       2003,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/control": {
+    "name": "Control (management)",
+    "total": 51139,
+    "bursts": [
+     {
+      "start": 2004,
+      "end": 2025,
+      "duration": 22,
+      "strength": 1.84,
+      "years": [
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     },
+     {
+      "start": 2001,
+      "end": 2001,
+      "duration": 1,
+      "strength": 0.0488,
+      "years": [
+       2001
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/control-theory": {
+    "name": "Control theory (sociology)",
+    "total": 46196,
+    "bursts": [
+     {
+      "start": 2006,
+      "end": 2025,
+      "duration": 20,
+      "strength": 2.3783,
+      "years": [
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/distributed-computing": {
+    "name": "Distributed computing",
+    "total": 33129,
+    "bursts": [
+     {
+      "start": 2002,
+      "end": 2025,
+      "duration": 24,
+      "strength": 1.473,
+      "years": [
+       2002,
+       2003,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/multi-agent-system": {
+    "name": "Multi-agent system",
+    "total": 28879,
+    "bursts": [
+     {
+      "start": 2002,
+      "end": 2025,
+      "duration": 24,
+      "strength": 1.4699,
+      "years": [
+       2002,
+       2003,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/algorithm": {
+    "name": "Algorithm",
+    "total": 28503,
+    "bursts": [
+     {
+      "start": 2004,
+      "end": 2025,
+      "duration": 22,
+      "strength": 1.9525,
+      "years": [
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/mathematical-optimization": {
+    "name": "Mathematical optimization",
+    "total": 26794,
+    "bursts": [
+     {
+      "start": 2006,
+      "end": 2025,
+      "duration": 20,
+      "strength": 2.1508,
+      "years": [
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/robot": {
+    "name": "Robot",
+    "total": 22848,
+    "bursts": [
+     {
+      "start": 2002,
+      "end": 2025,
+      "duration": 24,
+      "strength": 2.0397,
+      "years": [
+       2002,
+       2003,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/computer-network": {
+    "name": "Computer network",
+    "total": 22038,
+    "bursts": [
+     {
+      "start": 2002,
+      "end": 2025,
+      "duration": 24,
+      "strength": 2.1352,
+      "years": [
+       2002,
+       2003,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/programming-language": {
+    "name": "Programming language",
+    "total": 21664,
+    "bursts": [
+     {
+      "start": 2000,
+      "end": 2025,
+      "duration": 26,
+      "strength": 23.7989,
+      "years": [
+       2000,
+       2001,
+       2002,
+       2003,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/nonlinear-system": {
+    "name": "Nonlinear system",
+    "total": 19833,
+    "bursts": [
+     {
+      "start": 2006,
+      "end": 2025,
+      "duration": 20,
+      "strength": 2.3127,
+      "years": [
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/physics": {
+    "name": "Physics",
+    "total": 17847,
+    "bursts": [
+     {
+      "start": 2005,
+      "end": 2025,
+      "duration": 21,
+      "strength": 1.8199,
+      "years": [
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   }
+  }
+ },
+ "quantum_error_correction": {
+  "display_name": "Quantum Error Correction",
+  "keywords": {
+   "https://openalex.org/keywords/quantum": {
+    "name": "Quantum",
+    "total": 124117,
+    "bursts": [
+     {
+      "start": 2005,
+      "end": 2025,
+      "duration": 21,
+      "strength": 1.2112,
+      "years": [
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/physics": {
+    "name": "Physics",
+    "total": 116601,
+    "bursts": [
+     {
+      "start": 2005,
+      "end": 2025,
+      "duration": 21,
+      "strength": 1.0624,
+      "years": [
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/computer-science": {
+    "name": "Computer science",
+    "total": 111104,
+    "bursts": [
+     {
+      "start": 2005,
+      "end": 2025,
+      "duration": 21,
+      "strength": 1.1671,
+      "years": [
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/quantum-mechanics": {
+    "name": "Quantum mechanics",
+    "total": 107706,
+    "bursts": [
+     {
+      "start": 2005,
+      "end": 2025,
+      "duration": 21,
+      "strength": 1.0441,
+      "years": [
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/mathematics": {
+    "name": "Mathematics",
+    "total": 73359,
+    "bursts": [
+     {
+      "start": 2006,
+      "end": 2025,
+      "duration": 20,
+      "strength": 0.9878,
+      "years": [
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/algorithm": {
+    "name": "Algorithm",
+    "total": 48993,
+    "bursts": [
+     {
+      "start": 2006,
+      "end": 2025,
+      "duration": 20,
+      "strength": 1.0139,
+      "years": [
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/quantum-computer": {
+    "name": "Quantum computer",
+    "total": 46999,
+    "bursts": [
+     {
+      "start": 2012,
+      "end": 2025,
+      "duration": 14,
+      "strength": 1.3682,
+      "years": [
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/qubit": {
+    "name": "Qubit",
+    "total": 33525,
+    "bursts": [
+     {
+      "start": 2004,
+      "end": 2025,
+      "duration": 22,
+      "strength": 1.3542,
+      "years": [
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/quantum-entanglement": {
+    "name": "Quantum entanglement",
+    "total": 32030,
+    "bursts": [
+     {
+      "start": 2005,
+      "end": 2025,
+      "duration": 21,
+      "strength": 0.9604,
+      "years": [
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/theoretical-computer-science": {
+    "name": "Theoretical computer science",
+    "total": 28486,
+    "bursts": [
+     {
+      "start": 2005,
+      "end": 2025,
+      "duration": 21,
+      "strength": 1.2448,
+      "years": [
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/statistical-physics": {
+    "name": "Statistical physics",
+    "total": 26031,
+    "bursts": [
+     {
+      "start": 2005,
+      "end": 2025,
+      "duration": 21,
+      "strength": 1.1295,
+      "years": [
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/quantum-information": {
+    "name": "Quantum information",
+    "total": 20147,
+    "bursts": [
+     {
+      "start": 2005,
+      "end": 2025,
+      "duration": 21,
+      "strength": 0.9194,
+      "years": [
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/artificial-intelligence": {
+    "name": "Artificial intelligence",
+    "total": 18415,
+    "bursts": [
+     {
+      "start": 2006,
+      "end": 2025,
+      "duration": 20,
+      "strength": 1.5494,
+      "years": [
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/quantum-algorithm": {
+    "name": "Quantum algorithm",
+    "total": 18409,
+    "bursts": [
+     {
+      "start": 2012,
+      "end": 2025,
+      "duration": 14,
+      "strength": 1.3416,
+      "years": [
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/combinatorics": {
+    "name": "Combinatorics",
+    "total": 15258,
+    "bursts": [
+     {
+      "start": 2006,
+      "end": 2025,
+      "duration": 20,
+      "strength": 0.9481,
+      "years": [
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   }
+  }
+ },
+ "solid_state_batteries": {
+  "display_name": "Solid-State Batteries",
+  "keywords": {
+   "https://openalex.org/keywords/materials-science": {
+    "name": "Materials science",
+    "total": 196663,
+    "bursts": [
+     {
+      "start": 2010,
+      "end": 2025,
+      "duration": 16,
+      "strength": 1.9481,
+      "years": [
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/chemistry": {
+    "name": "Chemistry",
+    "total": 187925,
+    "bursts": [
+     {
+      "start": 2010,
+      "end": 2025,
+      "duration": 16,
+      "strength": 1.8128,
+      "years": [
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/electrode": {
+    "name": "Electrode",
+    "total": 151079,
+    "bursts": [
+     {
+      "start": 2010,
+      "end": 2025,
+      "duration": 16,
+      "strength": 2.0777,
+      "years": [
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/chemical-engineering": {
+    "name": "Chemical engineering",
+    "total": 135057,
+    "bursts": [
+     {
+      "start": 2010,
+      "end": 2025,
+      "duration": 16,
+      "strength": 2.075,
+      "years": [
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/physical-chemistry": {
+    "name": "Physical chemistry",
+    "total": 97978,
+    "bursts": [
+     {
+      "start": 2010,
+      "end": 2025,
+      "duration": 16,
+      "strength": 1.7026,
+      "years": [
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/composite-material": {
+    "name": "Composite material",
+    "total": 97036,
+    "bursts": [
+     {
+      "start": 2010,
+      "end": 2025,
+      "duration": 16,
+      "strength": 1.878,
+      "years": [
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/lithium": {
+    "name": "Lithium (medication)",
+    "total": 96286,
+    "bursts": [
+     {
+      "start": 2010,
+      "end": 2025,
+      "duration": 16,
+      "strength": 1.9184,
+      "years": [
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/organic-chemistry": {
+    "name": "Organic chemistry",
+    "total": 94297,
+    "bursts": [
+     {
+      "start": 2010,
+      "end": 2025,
+      "duration": 16,
+      "strength": 1.7192,
+      "years": [
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/electrolyte": {
+    "name": "Electrolyte",
+    "total": 91876,
+    "bursts": [
+     {
+      "start": 2011,
+      "end": 2025,
+      "duration": 15,
+      "strength": 1.9137,
+      "years": [
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/electrochemistry": {
+    "name": "Electrochemistry",
+    "total": 86191,
+    "bursts": [
+     {
+      "start": 2004,
+      "end": 2025,
+      "duration": 22,
+      "strength": 2.085,
+      "years": [
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/nanotechnology": {
+    "name": "Nanotechnology",
+    "total": 84615,
+    "bursts": [
+     {
+      "start": 2010,
+      "end": 2025,
+      "duration": 16,
+      "strength": 2.6202,
+      "years": [
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/metallurgy": {
+    "name": "Metallurgy",
+    "total": 69322,
+    "bursts": [
+     {
+      "start": 2011,
+      "end": 2025,
+      "duration": 15,
+      "strength": 2.3006,
+      "years": [
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/ion": {
+    "name": "Ion",
+    "total": 66022,
+    "bursts": [
+     {
+      "start": 2010,
+      "end": 2025,
+      "duration": 16,
+      "strength": 1.895,
+      "years": [
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/inorganic-chemistry": {
+    "name": "Inorganic chemistry",
+    "total": 64718,
+    "bursts": [
+     {
+      "start": 2010,
+      "end": 2025,
+      "duration": 16,
+      "strength": 1.7195,
+      "years": [
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/anode": {
+    "name": "Anode",
+    "total": 57026,
+    "bursts": [
+     {
+      "start": 2011,
+      "end": 2025,
+      "duration": 15,
+      "strength": 2.8579,
+      "years": [
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   }
+  }
+ },
+ "clean_hydrogen": {
+  "display_name": "Clean Hydrogen",
+  "keywords": {
+   "https://openalex.org/keywords/chemistry": {
+    "name": "Chemistry",
+    "total": 292651,
+    "bursts": [
+     {
+      "start": 2008,
+      "end": 2025,
+      "duration": 18,
+      "strength": 2.2987,
+      "years": [
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/materials-science": {
+    "name": "Materials science",
+    "total": 275286,
+    "bursts": [
+     {
+      "start": 2009,
+      "end": 2025,
+      "duration": 17,
+      "strength": 2.3243,
+      "years": [
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/catalysis": {
+    "name": "Catalysis",
+    "total": 222720,
+    "bursts": [
+     {
+      "start": 2009,
+      "end": 2025,
+      "duration": 17,
+      "strength": 2.3773,
+      "years": [
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/organic-chemistry": {
+    "name": "Organic chemistry",
+    "total": 213193,
+    "bursts": [
+     {
+      "start": 2008,
+      "end": 2025,
+      "duration": 18,
+      "strength": 2.2469,
+      "years": [
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/chemical-engineering": {
+    "name": "Chemical engineering",
+    "total": 196688,
+    "bursts": [
+     {
+      "start": 2008,
+      "end": 2025,
+      "duration": 18,
+      "strength": 2.3996,
+      "years": [
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/photocatalysis": {
+    "name": "Photocatalysis",
+    "total": 185309,
+    "bursts": [
+     {
+      "start": 2008,
+      "end": 2025,
+      "duration": 18,
+      "strength": 2.3387,
+      "years": [
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/nanotechnology": {
+    "name": "Nanotechnology",
+    "total": 180511,
+    "bursts": [
+     {
+      "start": 2008,
+      "end": 2025,
+      "duration": 18,
+      "strength": 2.5564,
+      "years": [
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/optoelectronics": {
+    "name": "Optoelectronics",
+    "total": 126868,
+    "bursts": [
+     {
+      "start": 2008,
+      "end": 2025,
+      "duration": 18,
+      "strength": 2.6437,
+      "years": [
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/composite-material": {
+    "name": "Composite material",
+    "total": 86359,
+    "bursts": [
+     {
+      "start": 2006,
+      "end": 2025,
+      "duration": 20,
+      "strength": 2.5187,
+      "years": [
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/photochemistry": {
+    "name": "Photochemistry",
+    "total": 80660,
+    "bursts": [
+     {
+      "start": 2009,
+      "end": 2025,
+      "duration": 17,
+      "strength": 2.164,
+      "years": [
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/inorganic-chemistry": {
+    "name": "Inorganic chemistry",
+    "total": 67696,
+    "bursts": [
+     {
+      "start": 2007,
+      "end": 2025,
+      "duration": 19,
+      "strength": 1.9496,
+      "years": [
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/metallurgy": {
+    "name": "Metallurgy",
+    "total": 58689,
+    "bursts": [
+     {
+      "start": 2006,
+      "end": 2025,
+      "duration": 20,
+      "strength": 2.4274,
+      "years": [
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/electrode": {
+    "name": "Electrode",
+    "total": 57352,
+    "bursts": [
+     {
+      "start": 2009,
+      "end": 2025,
+      "duration": 17,
+      "strength": 2.4267,
+      "years": [
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/physical-chemistry": {
+    "name": "Physical chemistry",
+    "total": 54090,
+    "bursts": [
+     {
+      "start": 2009,
+      "end": 2025,
+      "duration": 17,
+      "strength": 2.1516,
+      "years": [
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/degradation": {
+    "name": "Degradation (telecommunications)",
+    "total": 50797,
+    "bursts": [
+     {
+      "start": 2010,
+      "end": 2025,
+      "duration": 16,
+      "strength": 2.6081,
+      "years": [
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   }
+  }
+ },
+ "carbon_capture": {
+  "display_name": "Carbon Capture",
+  "keywords": {
+   "https://openalex.org/keywords/chemistry": {
+    "name": "Chemistry",
+    "total": 102733,
+    "bursts": [
+     {
+      "start": 2003,
+      "end": 2025,
+      "duration": 23,
+      "strength": 1.3876,
+      "years": [
+       2003,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/materials-science": {
+    "name": "Materials science",
+    "total": 61708,
+    "bursts": [
+     {
+      "start": 2003,
+      "end": 2025,
+      "duration": 23,
+      "strength": 1.5976,
+      "years": [
+       2003,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/environmental-science": {
+    "name": "Environmental science",
+    "total": 60805,
+    "bursts": [
+     {
+      "start": 2008,
+      "end": 2025,
+      "duration": 18,
+      "strength": 1.4117,
+      "years": [
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/engineering": {
+    "name": "Engineering",
+    "total": 58869,
+    "bursts": [
+     {
+      "start": 2009,
+      "end": 2025,
+      "duration": 17,
+      "strength": 1.4426,
+      "years": [
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/organic-chemistry": {
+    "name": "Organic chemistry",
+    "total": 56037,
+    "bursts": [
+     {
+      "start": 2002,
+      "end": 2025,
+      "duration": 24,
+      "strength": 1.3833,
+      "years": [
+       2002,
+       2003,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/geology": {
+    "name": "Geology",
+    "total": 51251,
+    "bursts": [
+     {
+      "start": 2008,
+      "end": 2025,
+      "duration": 18,
+      "strength": 1.2018,
+      "years": [
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/chemical-engineering": {
+    "name": "Chemical engineering",
+    "total": 39141,
+    "bursts": [
+     {
+      "start": 2005,
+      "end": 2025,
+      "duration": 21,
+      "strength": 1.6309,
+      "years": [
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/computer-science": {
+    "name": "Computer science",
+    "total": 32850,
+    "bursts": [
+     {
+      "start": 2009,
+      "end": 2025,
+      "duration": 17,
+      "strength": 1.1702,
+      "years": [
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/waste-management": {
+    "name": "Waste management",
+    "total": 32158,
+    "bursts": [
+     {
+      "start": 2008,
+      "end": 2025,
+      "duration": 18,
+      "strength": 1.4121,
+      "years": [
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/thermodynamics": {
+    "name": "Thermodynamics",
+    "total": 30590,
+    "bursts": [
+     {
+      "start": 2002,
+      "end": 2025,
+      "duration": 24,
+      "strength": 1.1637,
+      "years": [
+       2002,
+       2003,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/physics": {
+    "name": "Physics",
+    "total": 27976,
+    "bursts": [
+     {
+      "start": 2003,
+      "end": 2025,
+      "duration": 23,
+      "strength": 1.1477,
+      "years": [
+       2003,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/adsorption": {
+    "name": "Adsorption",
+    "total": 27832,
+    "bursts": [
+     {
+      "start": 2005,
+      "end": 2025,
+      "duration": 21,
+      "strength": 1.4588,
+      "years": [
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/carbon-dioxide": {
+    "name": "Carbon dioxide",
+    "total": 27226,
+    "bursts": [
+     {
+      "start": 2008,
+      "end": 2025,
+      "duration": 18,
+      "strength": 1.1843,
+      "years": [
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/composite-material": {
+    "name": "Composite material",
+    "total": 24800,
+    "bursts": [
+     {
+      "start": 2003,
+      "end": 2025,
+      "duration": 23,
+      "strength": 1.674,
+      "years": [
+       2003,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/petroleum-engineering": {
+    "name": "Petroleum engineering",
+    "total": 22443,
+    "bursts": [
+     {
+      "start": 2003,
+      "end": 2025,
+      "duration": 23,
+      "strength": 1.8707,
+      "years": [
+       2003,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   }
+  }
+ },
+ "synthetic_biology": {
+  "display_name": "Synthetic Biology",
+  "keywords": {
+   "https://openalex.org/keywords/biology": {
+    "name": "Biology",
+    "total": 138039,
+    "bursts": [
+     {
+      "start": 2011,
+      "end": 2025,
+      "duration": 15,
+      "strength": 0.6462,
+      "years": [
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/chemistry": {
+    "name": "Chemistry",
+    "total": 133101,
+    "bursts": [
+     {
+      "start": 2000,
+      "end": 2025,
+      "duration": 26,
+      "strength": 25.6144,
+      "years": [
+       2000,
+       2001,
+       2002,
+       2003,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/biochemistry": {
+    "name": "Biochemistry",
+    "total": 104883,
+    "bursts": [
+     {
+      "start": 2011,
+      "end": 2025,
+      "duration": 15,
+      "strength": 0.5752,
+      "years": [
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/computer-science": {
+    "name": "Computer science",
+    "total": 51655,
+    "bursts": [],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/gene": {
+    "name": "Gene",
+    "total": 50695,
+    "bursts": [
+     {
+      "start": 2000,
+      "end": 2025,
+      "duration": 26,
+      "strength": 24.6491,
+      "years": [
+       2000,
+       2001,
+       2002,
+       2003,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/enzyme": {
+    "name": "Enzyme",
+    "total": 50362,
+    "bursts": [],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/food-science": {
+    "name": "Food science",
+    "total": 49242,
+    "bursts": [
+     {
+      "start": 2000,
+      "end": 2025,
+      "duration": 26,
+      "strength": 24.62,
+      "years": [
+       2000,
+       2001,
+       2002,
+       2003,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/organic-chemistry": {
+    "name": "Organic chemistry",
+    "total": 48343,
+    "bursts": [
+     {
+      "start": 2000,
+      "end": 2025,
+      "duration": 26,
+      "strength": 24.6016,
+      "years": [
+       2000,
+       2001,
+       2002,
+       2003,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/engineering": {
+    "name": "Engineering",
+    "total": 43407,
+    "bursts": [
+     {
+      "start": 2000,
+      "end": 2025,
+      "duration": 26,
+      "strength": 24.4939,
+      "years": [
+       2000,
+       2001,
+       2002,
+       2003,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/fermentation": {
+    "name": "Fermentation",
+    "total": 41209,
+    "bursts": [
+     {
+      "start": 2000,
+      "end": 2025,
+      "duration": 26,
+      "strength": 24.4419,
+      "years": [
+       2000,
+       2001,
+       2002,
+       2003,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/computational-biology": {
+    "name": "Computational biology",
+    "total": 37785,
+    "bursts": [
+     {
+      "start": 2002,
+      "end": 2025,
+      "duration": 24,
+      "strength": 1.485,
+      "years": [
+       2002,
+       2003,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/genetics": {
+    "name": "Genetics",
+    "total": 37672,
+    "bursts": [],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/bacteria": {
+    "name": "Bacteria",
+    "total": 31258,
+    "bursts": [
+     {
+      "start": 2012,
+      "end": 2025,
+      "duration": 14,
+      "strength": 0.5416,
+      "years": [
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/biotechnology": {
+    "name": "Biotechnology",
+    "total": 28663,
+    "bursts": [
+     {
+      "start": 2000,
+      "end": 2025,
+      "duration": 26,
+      "strength": 24.0789,
+      "years": [
+       2000,
+       2001,
+       2002,
+       2003,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/biochemical-engineering": {
+    "name": "Biochemical engineering",
+    "total": 23656,
+    "bursts": [
+     {
+      "start": 2004,
+      "end": 2025,
+      "duration": 22,
+      "strength": 1.5231,
+      "years": [
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   }
+  }
+ },
+ "brain_computer_interfaces": {
+  "display_name": "Brain-Computer Interfaces",
+  "keywords": {
+   "https://openalex.org/keywords/computer-science": {
+    "name": "Computer science",
+    "total": 184574,
+    "bursts": [
+     {
+      "start": 2005,
+      "end": 2025,
+      "duration": 21,
+      "strength": 1.6033,
+      "years": [
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/psychology": {
+    "name": "Psychology",
+    "total": 170700,
+    "bursts": [
+     {
+      "start": 2004,
+      "end": 2025,
+      "duration": 22,
+      "strength": 1.2964,
+      "years": [
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/neuroscience": {
+    "name": "Neuroscience",
+    "total": 144647,
+    "bursts": [
+     {
+      "start": 2006,
+      "end": 2025,
+      "duration": 20,
+      "strength": 1.2032,
+      "years": [
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/artificial-intelligence": {
+    "name": "Artificial intelligence",
+    "total": 125332,
+    "bursts": [
+     {
+      "start": 2006,
+      "end": 2025,
+      "duration": 20,
+      "strength": 1.6596,
+      "years": [
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/electroencephalography": {
+    "name": "Electroencephalography",
+    "total": 113754,
+    "bursts": [
+     {
+      "start": 2005,
+      "end": 2025,
+      "duration": 21,
+      "strength": 1.5676,
+      "years": [
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/medicine": {
+    "name": "Medicine",
+    "total": 106374,
+    "bursts": [
+     {
+      "start": 2002,
+      "end": 2025,
+      "duration": 24,
+      "strength": 1.1105,
+      "years": [
+       2002,
+       2003,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/pattern-recognition": {
+    "name": "Pattern recognition (psychology)",
+    "total": 69486,
+    "bursts": [
+     {
+      "start": 2006,
+      "end": 2025,
+      "duration": 20,
+      "strength": 1.8148,
+      "years": [
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/speech-recognition": {
+    "name": "Speech recognition",
+    "total": 41620,
+    "bursts": [
+     {
+      "start": 2007,
+      "end": 2025,
+      "duration": 19,
+      "strength": 1.589,
+      "years": [
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/cognitive-psychology": {
+    "name": "Cognitive psychology",
+    "total": 40204,
+    "bursts": [
+     {
+      "start": 2005,
+      "end": 2025,
+      "duration": 21,
+      "strength": 1.1145,
+      "years": [
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/cognition": {
+    "name": "Cognition",
+    "total": 36051,
+    "bursts": [
+     {
+      "start": 2005,
+      "end": 2025,
+      "duration": 21,
+      "strength": 1.3688,
+      "years": [
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/mathematics": {
+    "name": "Mathematics",
+    "total": 34971,
+    "bursts": [
+     {
+      "start": 2002,
+      "end": 2025,
+      "duration": 24,
+      "strength": 1.5298,
+      "years": [
+       2002,
+       2003,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/audiology": {
+    "name": "Audiology",
+    "total": 34348,
+    "bursts": [
+     {
+      "start": 2000,
+      "end": 2025,
+      "duration": 26,
+      "strength": 24.2598,
+      "years": [
+       2000,
+       2001,
+       2002,
+       2003,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/physics": {
+    "name": "Physics",
+    "total": 33643,
+    "bursts": [
+     {
+      "start": 2002,
+      "end": 2025,
+      "duration": 24,
+      "strength": 1.0428,
+      "years": [
+       2002,
+       2003,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/brain\u2013computer-interface": {
+    "name": "Brain\u2013computer interface",
+    "total": 31683,
+    "bursts": [
+     {
+      "start": 2005,
+      "end": 2025,
+      "duration": 21,
+      "strength": 2.7143,
+      "years": [
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/engineering": {
+    "name": "Engineering",
+    "total": 29920,
+    "bursts": [
+     {
+      "start": 2002,
+      "end": 2025,
+      "duration": 24,
+      "strength": 1.943,
+      "years": [
+       2002,
+       2003,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   }
+  }
+ },
+ "cybersecurity": {
+  "display_name": "Cybersecurity",
+  "keywords": {
+   "https://openalex.org/keywords/computer-science": {
+    "name": "Computer science",
+    "total": 417287,
+    "bursts": [
+     {
+      "start": 2004,
+      "end": 2025,
+      "duration": 22,
+      "strength": 1.7379,
+      "years": [
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/computer-security": {
+    "name": "Computer security",
+    "total": 248350,
+    "bursts": [
+     {
+      "start": 2004,
+      "end": 2025,
+      "duration": 22,
+      "strength": 1.7939,
+      "years": [
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/artificial-intelligence": {
+    "name": "Artificial intelligence",
+    "total": 137467,
+    "bursts": [
+     {
+      "start": 2006,
+      "end": 2025,
+      "duration": 20,
+      "strength": 2.1313,
+      "years": [
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/computer-network": {
+    "name": "Computer network",
+    "total": 87699,
+    "bursts": [
+     {
+      "start": 2004,
+      "end": 2025,
+      "duration": 22,
+      "strength": 1.6385,
+      "years": [
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/operating-system": {
+    "name": "Operating system",
+    "total": 86618,
+    "bursts": [
+     {
+      "start": 2003,
+      "end": 2025,
+      "duration": 23,
+      "strength": 1.9246,
+      "years": [
+       2003,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/world-wide-web": {
+    "name": "World Wide Web",
+    "total": 85858,
+    "bursts": [
+     {
+      "start": 2004,
+      "end": 2025,
+      "duration": 22,
+      "strength": 1.7144,
+      "years": [
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/the-internet": {
+    "name": "The Internet",
+    "total": 79418,
+    "bursts": [
+     {
+      "start": 2005,
+      "end": 2025,
+      "duration": 21,
+      "strength": 1.5032,
+      "years": [
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/data-mining": {
+    "name": "Data mining",
+    "total": 76611,
+    "bursts": [
+     {
+      "start": 2005,
+      "end": 2025,
+      "duration": 21,
+      "strength": 2.1383,
+      "years": [
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/machine-learning": {
+    "name": "Machine learning",
+    "total": 60524,
+    "bursts": [
+     {
+      "start": 2007,
+      "end": 2025,
+      "duration": 19,
+      "strength": 2.5515,
+      "years": [
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/engineering": {
+    "name": "Engineering",
+    "total": 56572,
+    "bursts": [
+     {
+      "start": 2005,
+      "end": 2025,
+      "duration": 21,
+      "strength": 1.619,
+      "years": [
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/business": {
+    "name": "Business",
+    "total": 56052,
+    "bursts": [
+     {
+      "start": 2003,
+      "end": 2025,
+      "duration": 23,
+      "strength": 1.3224,
+      "years": [
+       2003,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/political-science": {
+    "name": "Political science",
+    "total": 51618,
+    "bursts": [
+     {
+      "start": 2001,
+      "end": 2025,
+      "duration": 25,
+      "strength": 1.4165,
+      "years": [
+       2001,
+       2002,
+       2003,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/intrusion-detection-system": {
+    "name": "Intrusion detection system",
+    "total": 50621,
+    "bursts": [
+     {
+      "start": 2006,
+      "end": 2025,
+      "duration": 20,
+      "strength": 1.3547,
+      "years": [
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/internet-privacy": {
+    "name": "Internet privacy",
+    "total": 45744,
+    "bursts": [
+     {
+      "start": 2002,
+      "end": 2025,
+      "duration": 24,
+      "strength": 1.7014,
+      "years": [
+       2002,
+       2003,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/mathematics": {
+    "name": "Mathematics",
+    "total": 38516,
+    "bursts": [
+     {
+      "start": 2004,
+      "end": 2025,
+      "duration": 22,
+      "strength": 1.7069,
+      "years": [
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   }
+  }
+ },
+ "blockchain": {
+  "display_name": "Blockchain",
+  "keywords": {
+   "https://openalex.org/keywords/computer-science": {
+    "name": "Computer science",
+    "total": 263570,
+    "bursts": [
+     {
+      "start": 2010,
+      "end": 2025,
+      "duration": 16,
+      "strength": 3.2909,
+      "years": [
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/business": {
+    "name": "Business",
+    "total": 126129,
+    "bursts": [
+     {
+      "start": 2010,
+      "end": 2025,
+      "duration": 16,
+      "strength": 3.3902,
+      "years": [
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/computer-security": {
+    "name": "Computer security",
+    "total": 122063,
+    "bursts": [
+     {
+      "start": 2012,
+      "end": 2025,
+      "duration": 14,
+      "strength": 3.6171,
+      "years": [
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/humanities": {
+    "name": "Humanities",
+    "total": 95766,
+    "bursts": [
+     {
+      "start": 2008,
+      "end": 2025,
+      "duration": 18,
+      "strength": 2.9898,
+      "years": [
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/art": {
+    "name": "Art",
+    "total": 86759,
+    "bursts": [
+     {
+      "start": 2009,
+      "end": 2025,
+      "duration": 17,
+      "strength": 2.8791,
+      "years": [
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/blockchain": {
+    "name": "Blockchain",
+    "total": 71808,
+    "bursts": [
+     {
+      "start": 2016,
+      "end": 2025,
+      "duration": 10,
+      "strength": 5.9709,
+      "years": [
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/physics": {
+    "name": "Physics",
+    "total": 53513,
+    "bursts": [
+     {
+      "start": 2008,
+      "end": 2025,
+      "duration": 18,
+      "strength": 2.8053,
+      "years": [
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/engineering": {
+    "name": "Engineering",
+    "total": 51997,
+    "bursts": [
+     {
+      "start": 2012,
+      "end": 2025,
+      "duration": 14,
+      "strength": 3.2709,
+      "years": [
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/operating-system": {
+    "name": "Operating system",
+    "total": 48238,
+    "bursts": [
+     {
+      "start": 2010,
+      "end": 2025,
+      "duration": 16,
+      "strength": 3.3344,
+      "years": [
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/world-wide-web": {
+    "name": "World Wide Web",
+    "total": 47829,
+    "bursts": [
+     {
+      "start": 2011,
+      "end": 2025,
+      "duration": 15,
+      "strength": 3.04,
+      "years": [
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/political-science": {
+    "name": "Political science",
+    "total": 46716,
+    "bursts": [
+     {
+      "start": 2011,
+      "end": 2025,
+      "duration": 15,
+      "strength": 3.2007,
+      "years": [
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/psychology": {
+    "name": "Psychology",
+    "total": 40687,
+    "bursts": [
+     {
+      "start": 2009,
+      "end": 2025,
+      "duration": 17,
+      "strength": 3.4956,
+      "years": [
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/economics": {
+    "name": "Economics",
+    "total": 37842,
+    "bursts": [
+     {
+      "start": 2012,
+      "end": 2025,
+      "duration": 14,
+      "strength": 3.3377,
+      "years": [
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/mathematics": {
+    "name": "Mathematics",
+    "total": 37608,
+    "bursts": [
+     {
+      "start": 2011,
+      "end": 2025,
+      "duration": 15,
+      "strength": 2.7632,
+      "years": [
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/artificial-intelligence": {
+    "name": "Artificial intelligence",
+    "total": 33063,
+    "bursts": [
+     {
+      "start": 2011,
+      "end": 2025,
+      "duration": 15,
+      "strength": 3.5033,
+      "years": [
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   }
+  }
+ },
+ "internet_of_things": {
+  "display_name": "Internet of Things",
+  "keywords": {
+   "https://openalex.org/keywords/computer-science": {
+    "name": "Computer science",
+    "total": 37976,
+    "bursts": [
+     {
+      "start": 2009,
+      "end": 2025,
+      "duration": 17,
+      "strength": 2.4679,
+      "years": [
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/engineering": {
+    "name": "Engineering",
+    "total": 12496,
+    "bursts": [
+     {
+      "start": 2004,
+      "end": 2025,
+      "duration": 22,
+      "strength": 2.9831,
+      "years": [
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/computer-security": {
+    "name": "Computer security",
+    "total": 11978,
+    "bursts": [
+     {
+      "start": 2013,
+      "end": 2025,
+      "duration": 13,
+      "strength": 4.144,
+      "years": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/internet-of-things": {
+    "name": "Internet of Things",
+    "total": 11286,
+    "bursts": [
+     {
+      "start": 2015,
+      "end": 2025,
+      "duration": 11,
+      "strength": 4.7542,
+      "years": [
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 20,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/artificial-intelligence": {
+    "name": "Artificial intelligence",
+    "total": 8193,
+    "bursts": [
+     {
+      "start": 2012,
+      "end": 2025,
+      "duration": 14,
+      "strength": 2.7294,
+      "years": [
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/world-wide-web": {
+    "name": "World Wide Web",
+    "total": 8074,
+    "bursts": [
+     {
+      "start": 2013,
+      "end": 2025,
+      "duration": 13,
+      "strength": 3.2722,
+      "years": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/the-internet": {
+    "name": "The Internet",
+    "total": 6635,
+    "bursts": [
+     {
+      "start": 2014,
+      "end": 2025,
+      "duration": 12,
+      "strength": 4.4408,
+      "years": [
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/telecommunications": {
+    "name": "Telecommunications",
+    "total": 6243,
+    "bursts": [
+     {
+      "start": 2004,
+      "end": 2025,
+      "duration": 22,
+      "strength": 2.7604,
+      "years": [
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/cloud-computing": {
+    "name": "Cloud computing",
+    "total": 6160,
+    "bursts": [
+     {
+      "start": 2014,
+      "end": 2025,
+      "duration": 12,
+      "strength": 3.4394,
+      "years": [
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 20,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/business": {
+    "name": "Business",
+    "total": 6009,
+    "bursts": [
+     {
+      "start": 2011,
+      "end": 2025,
+      "duration": 15,
+      "strength": 3.0033,
+      "years": [
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/operating-system": {
+    "name": "Operating system",
+    "total": 4650,
+    "bursts": [
+     {
+      "start": 2012,
+      "end": 2025,
+      "duration": 14,
+      "strength": 3.4515,
+      "years": [
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 25,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/computer-network": {
+    "name": "Computer network",
+    "total": 4645,
+    "bursts": [
+     {
+      "start": 2013,
+      "end": 2025,
+      "duration": 13,
+      "strength": 2.8924,
+      "years": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/data-science": {
+    "name": "Data science",
+    "total": 4507,
+    "bursts": [
+     {
+      "start": 2009,
+      "end": 2025,
+      "duration": 17,
+      "strength": 3.5577,
+      "years": [
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/internet-privacy": {
+    "name": "Internet privacy",
+    "total": 4211,
+    "bursts": [
+     {
+      "start": 2014,
+      "end": 2025,
+      "duration": 12,
+      "strength": 3.7925,
+      "years": [
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 21,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/electrical-engineering": {
+    "name": "Electrical engineering",
+    "total": 3857,
+    "bursts": [
+     {
+      "start": 2004,
+      "end": 2025,
+      "duration": 22,
+      "strength": 3.1108,
+      "years": [
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   }
+  }
+ },
+ "edge_computing": {
+  "display_name": "Edge Computing",
+  "keywords": {
+   "https://openalex.org/keywords/computer-science": {
+    "name": "Computer science",
+    "total": 212345,
+    "bursts": [
+     {
+      "start": 2010,
+      "end": 2025,
+      "duration": 16,
+      "strength": 3.0076,
+      "years": [
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/computer-network": {
+    "name": "Computer network",
+    "total": 82791,
+    "bursts": [
+     {
+      "start": 2011,
+      "end": 2025,
+      "duration": 15,
+      "strength": 3.1049,
+      "years": [
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/operating-system": {
+    "name": "Operating system",
+    "total": 79452,
+    "bursts": [
+     {
+      "start": 2010,
+      "end": 2025,
+      "duration": 16,
+      "strength": 3.3368,
+      "years": [
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/cloud-computing": {
+    "name": "Cloud computing",
+    "total": 77467,
+    "bursts": [
+     {
+      "start": 2010,
+      "end": 2025,
+      "duration": 16,
+      "strength": 4.8062,
+      "years": [
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/distributed-computing": {
+    "name": "Distributed computing",
+    "total": 74260,
+    "bursts": [
+     {
+      "start": 2011,
+      "end": 2025,
+      "duration": 15,
+      "strength": 3.3061,
+      "years": [
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/computer-security": {
+    "name": "Computer security",
+    "total": 68934,
+    "bursts": [
+     {
+      "start": 2011,
+      "end": 2025,
+      "duration": 15,
+      "strength": 3.434,
+      "years": [
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/internet-of-things": {
+    "name": "Internet of Things",
+    "total": 58333,
+    "bursts": [
+     {
+      "start": 2011,
+      "end": 2025,
+      "duration": 15,
+      "strength": 4.7494,
+      "years": [
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/engineering": {
+    "name": "Engineering",
+    "total": 51005,
+    "bursts": [
+     {
+      "start": 2010,
+      "end": 2025,
+      "duration": 16,
+      "strength": 3.1698,
+      "years": [
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/world-wide-web": {
+    "name": "World Wide Web",
+    "total": 50073,
+    "bursts": [
+     {
+      "start": 2010,
+      "end": 2025,
+      "duration": 16,
+      "strength": 2.871,
+      "years": [
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/artificial-intelligence": {
+    "name": "Artificial intelligence",
+    "total": 46316,
+    "bursts": [
+     {
+      "start": 2011,
+      "end": 2025,
+      "duration": 15,
+      "strength": 3.1184,
+      "years": [
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/telecommunications": {
+    "name": "Telecommunications",
+    "total": 43327,
+    "bursts": [
+     {
+      "start": 2010,
+      "end": 2025,
+      "duration": 16,
+      "strength": 2.795,
+      "years": [
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/the-internet": {
+    "name": "The Internet",
+    "total": 34527,
+    "bursts": [
+     {
+      "start": 2010,
+      "end": 2025,
+      "duration": 16,
+      "strength": 3.8217,
+      "years": [
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/embedded-system": {
+    "name": "Embedded system",
+    "total": 29916,
+    "bursts": [
+     {
+      "start": 2009,
+      "end": 2025,
+      "duration": 17,
+      "strength": 3.0694,
+      "years": [
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/business": {
+    "name": "Business",
+    "total": 27921,
+    "bursts": [
+     {
+      "start": 2010,
+      "end": 2025,
+      "duration": 16,
+      "strength": 2.8706,
+      "years": [
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/enhanced-data-rates-for-gsm-evolution": {
+    "name": "Enhanced Data Rates for GSM Evolution",
+    "total": 27273,
+    "bursts": [
+     {
+      "start": 2016,
+      "end": 2025,
+      "duration": 10,
+      "strength": 5.2495,
+      "years": [
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 24,
+    "method": "kleinberg_2state_viterbi"
+   }
+  }
+ },
+ "digital_twins": {
+  "display_name": "Digital Twins",
+  "keywords": {
+   "https://openalex.org/keywords/computer-science": {
+    "name": "Computer science",
+    "total": 90655,
+    "bursts": [
+     {
+      "start": 2011,
+      "end": 2025,
+      "duration": 15,
+      "strength": 2.7665,
+      "years": [
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/engineering": {
+    "name": "Engineering",
+    "total": 58651,
+    "bursts": [
+     {
+      "start": 2011,
+      "end": 2025,
+      "duration": 15,
+      "strength": 2.6431,
+      "years": [
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/business": {
+    "name": "Business",
+    "total": 47571,
+    "bursts": [
+     {
+      "start": 2013,
+      "end": 2025,
+      "duration": 13,
+      "strength": 2.7996,
+      "years": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/manufacturing-engineering": {
+    "name": "Manufacturing engineering",
+    "total": 22669,
+    "bursts": [
+     {
+      "start": 2010,
+      "end": 2025,
+      "duration": 16,
+      "strength": 2.3908,
+      "years": [
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/artificial-intelligence": {
+    "name": "Artificial intelligence",
+    "total": 21483,
+    "bursts": [
+     {
+      "start": 2013,
+      "end": 2025,
+      "duration": 13,
+      "strength": 2.839,
+      "years": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/process-management": {
+    "name": "Process management",
+    "total": 19918,
+    "bursts": [
+     {
+      "start": 2011,
+      "end": 2025,
+      "duration": 15,
+      "strength": 2.7665,
+      "years": [
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/knowledge-management": {
+    "name": "Knowledge management",
+    "total": 19874,
+    "bursts": [
+     {
+      "start": 2013,
+      "end": 2025,
+      "duration": 13,
+      "strength": 3.2554,
+      "years": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/marketing": {
+    "name": "Marketing",
+    "total": 19119,
+    "bursts": [
+     {
+      "start": 2011,
+      "end": 2025,
+      "duration": 15,
+      "strength": 3.0399,
+      "years": [
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/process": {
+    "name": "Process (computing)",
+    "total": 18049,
+    "bursts": [
+     {
+      "start": 2011,
+      "end": 2025,
+      "duration": 15,
+      "strength": 2.918,
+      "years": [
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/systems-engineering": {
+    "name": "Systems engineering",
+    "total": 13436,
+    "bursts": [
+     {
+      "start": 2010,
+      "end": 2025,
+      "duration": 16,
+      "strength": 2.5966,
+      "years": [
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/political-science": {
+    "name": "Political science",
+    "total": 12871,
+    "bursts": [
+     {
+      "start": 2013,
+      "end": 2025,
+      "duration": 13,
+      "strength": 3.4269,
+      "years": [
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/economics": {
+    "name": "Economics",
+    "total": 12493,
+    "bursts": [
+     {
+      "start": 2011,
+      "end": 2025,
+      "duration": 15,
+      "strength": 2.8841,
+      "years": [
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/world-wide-web": {
+    "name": "World Wide Web",
+    "total": 12423,
+    "bursts": [
+     {
+      "start": 2011,
+      "end": 2025,
+      "duration": 15,
+      "strength": 3.6255,
+      "years": [
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/production": {
+    "name": "Production (economics)",
+    "total": 12260,
+    "bursts": [
+     {
+      "start": 2010,
+      "end": 2025,
+      "duration": 16,
+      "strength": 2.9169,
+      "years": [
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/industry-4.0": {
+    "name": "Industry 4.0",
+    "total": 11514,
+    "bursts": [
+     {
+      "start": 2014,
+      "end": 2025,
+      "duration": 12,
+      "strength": 4.9237,
+      "years": [
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 25,
+    "method": "kleinberg_2state_viterbi"
+   }
+  }
+ },
+ "smart_manufacturing": {
+  "display_name": "Smart Manufacturing",
+  "keywords": {
+   "https://openalex.org/keywords/materials-science": {
+    "name": "Materials science",
+    "total": 99973,
+    "bursts": [
+     {
+      "start": 2010,
+      "end": 2025,
+      "duration": 16,
+      "strength": 1.8839,
+      "years": [
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/composite-material": {
+    "name": "Composite material",
+    "total": 70160,
+    "bursts": [
+     {
+      "start": 2009,
+      "end": 2025,
+      "duration": 17,
+      "strength": 1.9562,
+      "years": [
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/metallurgy": {
+    "name": "Metallurgy",
+    "total": 69019,
+    "bursts": [
+     {
+      "start": 2009,
+      "end": 2025,
+      "duration": 17,
+      "strength": 1.7813,
+      "years": [
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/microstructure": {
+    "name": "Microstructure",
+    "total": 45257,
+    "bursts": [
+     {
+      "start": 2010,
+      "end": 2025,
+      "duration": 16,
+      "strength": 2.1613,
+      "years": [
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/alloy": {
+    "name": "Alloy",
+    "total": 38070,
+    "bursts": [
+     {
+      "start": 2010,
+      "end": 2025,
+      "duration": 16,
+      "strength": 2.0665,
+      "years": [
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/engineering": {
+    "name": "Engineering",
+    "total": 35167,
+    "bursts": [
+     {
+      "start": 2010,
+      "end": 2025,
+      "duration": 16,
+      "strength": 2.077,
+      "years": [
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/optics": {
+    "name": "Optics",
+    "total": 32253,
+    "bursts": [
+     {
+      "start": 2009,
+      "end": 2025,
+      "duration": 17,
+      "strength": 1.5233,
+      "years": [
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     },
+     {
+      "start": 2005,
+      "end": 2005,
+      "duration": 1,
+      "strength": 0.0894,
+      "years": [
+       2005
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/laser": {
+    "name": "Laser",
+    "total": 29177,
+    "bursts": [
+     {
+      "start": 2006,
+      "end": 2025,
+      "duration": 20,
+      "strength": 1.4939,
+      "years": [
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/computer-science": {
+    "name": "Computer science",
+    "total": 29060,
+    "bursts": [
+     {
+      "start": 2010,
+      "end": 2025,
+      "duration": 16,
+      "strength": 2.1804,
+      "years": [
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/mechanical-engineering": {
+    "name": "Mechanical engineering",
+    "total": 24611,
+    "bursts": [
+     {
+      "start": 2010,
+      "end": 2025,
+      "duration": 16,
+      "strength": 2.0025,
+      "years": [
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/physics": {
+    "name": "Physics",
+    "total": 21586,
+    "bursts": [
+     {
+      "start": 2009,
+      "end": 2025,
+      "duration": 17,
+      "strength": 1.7461,
+      "years": [
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/process": {
+    "name": "Process (computing)",
+    "total": 15552,
+    "bursts": [
+     {
+      "start": 2010,
+      "end": 2025,
+      "duration": 16,
+      "strength": 2.2502,
+      "years": [
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/ultimate-tensile-strength": {
+    "name": "Ultimate tensile strength",
+    "total": 13643,
+    "bursts": [
+     {
+      "start": 2011,
+      "end": 2025,
+      "duration": 15,
+      "strength": 2.7465,
+      "years": [
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/selective-laser-melting": {
+    "name": "Selective laser melting",
+    "total": 12071,
+    "bursts": [
+     {
+      "start": 2011,
+      "end": 2025,
+      "duration": 15,
+      "strength": 3.0327,
+      "years": [
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/welding": {
+    "name": "Welding",
+    "total": 11802,
+    "bursts": [
+     {
+      "start": 2007,
+      "end": 2025,
+      "duration": 19,
+      "strength": 1.4156,
+      "years": [
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   }
+  }
+ },
+ "autonomous_vehicles": {
+  "display_name": "Autonomous Vehicles",
+  "keywords": {
+   "https://openalex.org/keywords/computer-science": {
+    "name": "Computer science",
+    "total": 102168,
+    "bursts": [
+     {
+      "start": 2006,
+      "end": 2025,
+      "duration": 20,
+      "strength": 1.8176,
+      "years": [
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/artificial-intelligence": {
+    "name": "Artificial intelligence",
+    "total": 65554,
+    "bursts": [
+     {
+      "start": 2008,
+      "end": 2025,
+      "duration": 18,
+      "strength": 1.7941,
+      "years": [
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/engineering": {
+    "name": "Engineering",
+    "total": 59716,
+    "bursts": [
+     {
+      "start": 2006,
+      "end": 2025,
+      "duration": 20,
+      "strength": 1.7198,
+      "years": [
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/computer-vision": {
+    "name": "Computer vision",
+    "total": 23496,
+    "bursts": [
+     {
+      "start": 2007,
+      "end": 2025,
+      "duration": 19,
+      "strength": 1.4999,
+      "years": [
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/transport-engineering": {
+    "name": "Transport engineering",
+    "total": 21512,
+    "bursts": [
+     {
+      "start": 2006,
+      "end": 2025,
+      "duration": 20,
+      "strength": 1.8361,
+      "years": [
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/computer-security": {
+    "name": "Computer security",
+    "total": 19000,
+    "bursts": [
+     {
+      "start": 2006,
+      "end": 2025,
+      "duration": 20,
+      "strength": 1.8884,
+      "years": [
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/simulation": {
+    "name": "Simulation",
+    "total": 18913,
+    "bursts": [
+     {
+      "start": 2008,
+      "end": 2025,
+      "duration": 18,
+      "strength": 1.5184,
+      "years": [
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/mathematics": {
+    "name": "Mathematics",
+    "total": 18526,
+    "bursts": [
+     {
+      "start": 2008,
+      "end": 2025,
+      "duration": 18,
+      "strength": 1.6863,
+      "years": [
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/real-time-computing": {
+    "name": "Real-time computing",
+    "total": 17234,
+    "bursts": [
+     {
+      "start": 2009,
+      "end": 2025,
+      "duration": 17,
+      "strength": 1.7537,
+      "years": [
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/automotive-engineering": {
+    "name": "Automotive engineering",
+    "total": 16435,
+    "bursts": [
+     {
+      "start": 2007,
+      "end": 2025,
+      "duration": 19,
+      "strength": 1.4395,
+      "years": [
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/control": {
+    "name": "Control (management)",
+    "total": 15641,
+    "bursts": [
+     {
+      "start": 2008,
+      "end": 2025,
+      "duration": 18,
+      "strength": 1.5907,
+      "years": [
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/trajectory": {
+    "name": "Trajectory",
+    "total": 12538,
+    "bursts": [
+     {
+      "start": 2011,
+      "end": 2025,
+      "duration": 15,
+      "strength": 2.7269,
+      "years": [
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/machine-learning": {
+    "name": "Machine learning",
+    "total": 11629,
+    "bursts": [
+     {
+      "start": 2010,
+      "end": 2025,
+      "duration": 16,
+      "strength": 2.9124,
+      "years": [
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/telecommunications": {
+    "name": "Telecommunications",
+    "total": 10892,
+    "bursts": [
+     {
+      "start": 2006,
+      "end": 2025,
+      "duration": 20,
+      "strength": 1.5315,
+      "years": [
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     },
+     {
+      "start": 2001,
+      "end": 2001,
+      "duration": 1,
+      "strength": 0.0488,
+      "years": [
+       2001
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/robot": {
+    "name": "Robot",
+    "total": 10143,
+    "bursts": [
+     {
+      "start": 2008,
+      "end": 2025,
+      "duration": 18,
+      "strength": 1.9451,
+      "years": [
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   }
+  }
+ },
+ "space_technologies": {
+  "display_name": "Space Technologies",
+  "keywords": {
+   "https://openalex.org/keywords/computer-science": {
+    "name": "Computer science",
+    "total": 161899,
+    "bursts": [
+     {
+      "start": 2011,
+      "end": 2025,
+      "duration": 15,
+      "strength": 0.4806,
+      "years": [
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/engineering": {
+    "name": "Engineering",
+    "total": 152747,
+    "bursts": [
+     {
+      "start": 2011,
+      "end": 2025,
+      "duration": 15,
+      "strength": 0.4819,
+      "years": [
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/physics": {
+    "name": "Physics",
+    "total": 132994,
+    "bursts": [
+     {
+      "start": 2024,
+      "end": 2025,
+      "duration": 2,
+      "strength": 0.2756,
+      "years": [
+       2024,
+       2025
+      ]
+     },
+     {
+      "start": 2017,
+      "end": 2017,
+      "duration": 1,
+      "strength": 0.166,
+      "years": [
+       2017
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/aerospace-engineering": {
+    "name": "Aerospace engineering",
+    "total": 78071,
+    "bursts": [
+     {
+      "start": 2023,
+      "end": 2025,
+      "duration": 3,
+      "strength": 0.3406,
+      "years": [
+       2023,
+       2024,
+       2025
+      ]
+     },
+     {
+      "start": 2018,
+      "end": 2018,
+      "duration": 1,
+      "strength": 0.2634,
+      "years": [
+       2018
+      ]
+     },
+     {
+      "start": 2012,
+      "end": 2012,
+      "duration": 1,
+      "strength": 0.1392,
+      "years": [
+       2012
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/environmental-science": {
+    "name": "Environmental science",
+    "total": 55070,
+    "bursts": [
+     {
+      "start": 2012,
+      "end": 2025,
+      "duration": 14,
+      "strength": 0.5311,
+      "years": [
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/telecommunications": {
+    "name": "Telecommunications",
+    "total": 53972,
+    "bursts": [
+     {
+      "start": 2002,
+      "end": 2025,
+      "duration": 24,
+      "strength": 1.0348,
+      "years": [
+       2002,
+       2003,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/materials-science": {
+    "name": "Materials science",
+    "total": 49668,
+    "bursts": [
+     {
+      "start": 2011,
+      "end": 2025,
+      "duration": 15,
+      "strength": 0.3469,
+      "years": [
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/mathematics": {
+    "name": "Mathematics",
+    "total": 48607,
+    "bursts": [
+     {
+      "start": 2002,
+      "end": 2025,
+      "duration": 24,
+      "strength": 0.8993,
+      "years": [
+       2002,
+       2003,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/geology": {
+    "name": "Geology",
+    "total": 47679,
+    "bursts": [
+     {
+      "start": 2011,
+      "end": 2025,
+      "duration": 15,
+      "strength": 0.3813,
+      "years": [
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/satellite": {
+    "name": "Satellite",
+    "total": 47618,
+    "bursts": [
+     {
+      "start": 2012,
+      "end": 2025,
+      "duration": 14,
+      "strength": 0.4602,
+      "years": [
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     },
+     {
+      "start": 2001,
+      "end": 2001,
+      "duration": 1,
+      "strength": 0.0488,
+      "years": [
+       2001
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/mechanics": {
+    "name": "Mechanics",
+    "total": 33244,
+    "bursts": [],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/chemistry": {
+    "name": "Chemistry",
+    "total": 31565,
+    "bursts": [
+     {
+      "start": 2010,
+      "end": 2025,
+      "duration": 16,
+      "strength": 0.5527,
+      "years": [
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/thermodynamics": {
+    "name": "Thermodynamics",
+    "total": 30928,
+    "bursts": [
+     {
+      "start": 2022,
+      "end": 2025,
+      "duration": 4,
+      "strength": 0.2813,
+      "years": [
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     },
+     {
+      "start": 2014,
+      "end": 2014,
+      "duration": 1,
+      "strength": 0.2475,
+      "years": [
+       2014
+      ]
+     },
+     {
+      "start": 2017,
+      "end": 2018,
+      "duration": 2,
+      "strength": 0.2285,
+      "years": [
+       2017,
+       2018
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/mechanical-engineering": {
+    "name": "Mechanical engineering",
+    "total": 30058,
+    "bursts": [],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/remote-sensing": {
+    "name": "Remote sensing",
+    "total": 28793,
+    "bursts": [
+     {
+      "start": 2012,
+      "end": 2025,
+      "duration": 14,
+      "strength": 0.2651,
+      "years": [
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     },
+     {
+      "start": 2009,
+      "end": 2009,
+      "duration": 1,
+      "strength": 0.0488,
+      "years": [
+       2009
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   }
+  }
+ },
+ "advanced_semiconductors": {
+  "display_name": "Advanced Semiconductors",
+  "keywords": {
+   "https://openalex.org/keywords/materials-science": {
+    "name": "Materials science",
+    "total": 494210,
+    "bursts": [],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/optoelectronics": {
+    "name": "Optoelectronics",
+    "total": 370562,
+    "bursts": [
+     {
+      "start": 2010,
+      "end": 2010,
+      "duration": 1,
+      "strength": 0.078,
+      "years": [
+       2010
+      ]
+     },
+     {
+      "start": 2001,
+      "end": 2001,
+      "duration": 1,
+      "strength": 0.0488,
+      "years": [
+       2001
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/physics": {
+    "name": "Physics",
+    "total": 300885,
+    "bursts": [],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/engineering": {
+    "name": "Engineering",
+    "total": 288243,
+    "bursts": [
+     {
+      "start": 2001,
+      "end": 2001,
+      "duration": 1,
+      "strength": 0.0488,
+      "years": [
+       2001
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/electrical-engineering": {
+    "name": "Electrical engineering",
+    "total": 279681,
+    "bursts": [
+     {
+      "start": 2001,
+      "end": 2001,
+      "duration": 1,
+      "strength": 0.0488,
+      "years": [
+       2001
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/nanotechnology": {
+    "name": "Nanotechnology",
+    "total": 241340,
+    "bursts": [],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/computer-science": {
+    "name": "Computer science",
+    "total": 232163,
+    "bursts": [
+     {
+      "start": 2001,
+      "end": 2001,
+      "duration": 1,
+      "strength": 0.0488,
+      "years": [
+       2001
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/chemistry": {
+    "name": "Chemistry",
+    "total": 198483,
+    "bursts": [],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/voltage": {
+    "name": "Voltage",
+    "total": 182779,
+    "bursts": [
+     {
+      "start": 2001,
+      "end": 2001,
+      "duration": 1,
+      "strength": 0.0488,
+      "years": [
+       2001
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/electronic-engineering": {
+    "name": "Electronic engineering",
+    "total": 171676,
+    "bursts": [
+     {
+      "start": 2001,
+      "end": 2001,
+      "duration": 1,
+      "strength": 0.0488,
+      "years": [
+       2001
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/transistor": {
+    "name": "Transistor",
+    "total": 135171,
+    "bursts": [
+     {
+      "start": 2001,
+      "end": 2001,
+      "duration": 1,
+      "strength": 0.0488,
+      "years": [
+       2001
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/composite-material": {
+    "name": "Composite material",
+    "total": 122572,
+    "bursts": [],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/layer": {
+    "name": "Layer (electronics)",
+    "total": 115437,
+    "bursts": [],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/optics": {
+    "name": "Optics",
+    "total": 113093,
+    "bursts": [],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/metallurgy": {
+    "name": "Metallurgy",
+    "total": 99373,
+    "bursts": [],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   }
+  }
+ },
+ "biotechnology": {
+  "display_name": "Biotechnology",
+  "keywords": {
+   "https://openalex.org/keywords/biology": {
+    "name": "Biology",
+    "total": 241684,
+    "bursts": [],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/chemistry": {
+    "name": "Chemistry",
+    "total": 151434,
+    "bursts": [],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/biochemistry": {
+    "name": "Biochemistry",
+    "total": 120879,
+    "bursts": [],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/gene": {
+    "name": "Gene",
+    "total": 107922,
+    "bursts": [],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/genetics": {
+    "name": "Genetics",
+    "total": 100838,
+    "bursts": [],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/computer-science": {
+    "name": "Computer science",
+    "total": 98994,
+    "bursts": [],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/bacteria": {
+    "name": "Bacteria",
+    "total": 78636,
+    "bursts": [],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/food-science": {
+    "name": "Food science",
+    "total": 77348,
+    "bursts": [
+     {
+      "start": 2000,
+      "end": 2025,
+      "duration": 26,
+      "strength": 25.0716,
+      "years": [
+       2000,
+       2001,
+       2002,
+       2003,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/business": {
+    "name": "Business",
+    "total": 68676,
+    "bursts": [],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/medicine": {
+    "name": "Medicine",
+    "total": 62425,
+    "bursts": [],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/microbiology": {
+    "name": "Microbiology",
+    "total": 57962,
+    "bursts": [],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/engineering": {
+    "name": "Engineering",
+    "total": 55974,
+    "bursts": [
+     {
+      "start": 2000,
+      "end": 2025,
+      "duration": 26,
+      "strength": 24.7482,
+      "years": [
+       2000,
+       2001,
+       2002,
+       2003,
+       2004,
+       2005,
+       2006,
+       2007,
+       2008,
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/political-science": {
+    "name": "Political science",
+    "total": 46413,
+    "bursts": [
+     {
+      "start": 2009,
+      "end": 2019,
+      "duration": 11,
+      "strength": 0.3981,
+      "years": [
+       2009,
+       2010,
+       2011,
+       2012,
+       2013,
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/escherichia-coli": {
+    "name": "Escherichia coli",
+    "total": 45923,
+    "bursts": [],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   },
+   "https://openalex.org/keywords/computational-biology": {
+    "name": "Computational biology",
+    "total": 39025,
+    "bursts": [
+     {
+      "start": 2014,
+      "end": 2025,
+      "duration": 12,
+      "strength": 0.4134,
+      "years": [
+       2014,
+       2015,
+       2016,
+       2017,
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ]
+     }
+    ],
+    "n_years": 26,
+    "method": "kleinberg_2state_viterbi"
+   }
+  }
+ }
+}

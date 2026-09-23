@@ -1,0 +1,572 @@
+{
+ "artificial_intelligence": {
+  "bursts": [
+   {
+    "start": 2018,
+    "end": 2025,
+    "duration": 8,
+    "strength": 1.1654,
+    "years": [
+     2018,
+     2019,
+     2020,
+     2021,
+     2022,
+     2023,
+     2024,
+     2025
+    ]
+   },
+   {
+    "start": 2001,
+    "end": 2001,
+    "duration": 1,
+    "strength": 0.0488,
+    "years": [
+     2001
+    ]
+   }
+  ],
+  "n_years": 26,
+  "method": "kleinberg_2state_viterbi"
+ },
+ "generative_ai": {
+  "bursts": [
+   {
+    "start": 2010,
+    "end": 2025,
+    "duration": 16,
+    "strength": 2.8554,
+    "years": [
+     2010,
+     2011,
+     2012,
+     2013,
+     2014,
+     2015,
+     2016,
+     2017,
+     2018,
+     2019,
+     2020,
+     2021,
+     2022,
+     2023,
+     2024,
+     2025
+    ]
+   }
+  ],
+  "n_years": 26,
+  "method": "kleinberg_2state_viterbi"
+ },
+ "ai_agents": {
+  "bursts": [
+   {
+    "start": 2005,
+    "end": 2025,
+    "duration": 21,
+    "strength": 0.7405,
+    "years": [
+     2005,
+     2006,
+     2007,
+     2008,
+     2009,
+     2010,
+     2011,
+     2012,
+     2013,
+     2014,
+     2015,
+     2016,
+     2017,
+     2018,
+     2019,
+     2020,
+     2021,
+     2022,
+     2023,
+     2024,
+     2025
+    ]
+   }
+  ],
+  "n_years": 26,
+  "method": "kleinberg_2state_viterbi"
+ },
+ "quantum_error_correction": {
+  "bursts": [
+   {
+    "start": 2006,
+    "end": 2025,
+    "duration": 20,
+    "strength": 1.1216,
+    "years": [
+     2006,
+     2007,
+     2008,
+     2009,
+     2010,
+     2011,
+     2012,
+     2013,
+     2014,
+     2015,
+     2016,
+     2017,
+     2018,
+     2019,
+     2020,
+     2021,
+     2022,
+     2023,
+     2024,
+     2025
+    ]
+   }
+  ],
+  "n_years": 26,
+  "method": "kleinberg_2state_viterbi"
+ },
+ "solid_state_batteries": {
+  "bursts": [
+   {
+    "start": 2010,
+    "end": 2025,
+    "duration": 16,
+    "strength": 1.8984,
+    "years": [
+     2010,
+     2011,
+     2012,
+     2013,
+     2014,
+     2015,
+     2016,
+     2017,
+     2018,
+     2019,
+     2020,
+     2021,
+     2022,
+     2023,
+     2024,
+     2025
+    ]
+   }
+  ],
+  "n_years": 26,
+  "method": "kleinberg_2state_viterbi"
+ },
+ "clean_hydrogen": {
+  "bursts": [
+   {
+    "start": 2008,
+    "end": 2025,
+    "duration": 18,
+    "strength": 2.321,
+    "years": [
+     2008,
+     2009,
+     2010,
+     2011,
+     2012,
+     2013,
+     2014,
+     2015,
+     2016,
+     2017,
+     2018,
+     2019,
+     2020,
+     2021,
+     2022,
+     2023,
+     2024,
+     2025
+    ]
+   }
+  ],
+  "n_years": 26,
+  "method": "kleinberg_2state_viterbi"
+ },
+ "carbon_capture": {
+  "bursts": [
+   {
+    "start": 2009,
+    "end": 2025,
+    "duration": 17,
+    "strength": 1.1925,
+    "years": [
+     2009,
+     2010,
+     2011,
+     2012,
+     2013,
+     2014,
+     2015,
+     2016,
+     2017,
+     2018,
+     2019,
+     2020,
+     2021,
+     2022,
+     2023,
+     2024,
+     2025
+    ]
+   }
+  ],
+  "n_years": 26,
+  "method": "kleinberg_2state_viterbi"
+ },
+ "synthetic_biology": {
+  "bursts": [
+   {
+    "start": 2010,
+    "end": 2025,
+    "duration": 16,
+    "strength": 0.6841,
+    "years": [
+     2010,
+     2011,
+     2012,
+     2013,
+     2014,
+     2015,
+     2016,
+     2017,
+     2018,
+     2019,
+     2020,
+     2021,
+     2022,
+     2023,
+     2024,
+     2025
+    ]
+   }
+  ],
+  "n_years": 26,
+  "method": "kleinberg_2state_viterbi"
+ },
+ "brain_computer_interfaces": {
+  "bursts": [
+   {
+    "start": 2005,
+    "end": 2025,
+    "duration": 21,
+    "strength": 1.3467,
+    "years": [
+     2005,
+     2006,
+     2007,
+     2008,
+     2009,
+     2010,
+     2011,
+     2012,
+     2013,
+     2014,
+     2015,
+     2016,
+     2017,
+     2018,
+     2019,
+     2020,
+     2021,
+     2022,
+     2023,
+     2024,
+     2025
+    ]
+   }
+  ],
+  "n_years": 26,
+  "method": "kleinberg_2state_viterbi"
+ },
+ "cybersecurity": {
+  "bursts": [
+   {
+    "start": 2005,
+    "end": 2025,
+    "duration": 21,
+    "strength": 1.6593,
+    "years": [
+     2005,
+     2006,
+     2007,
+     2008,
+     2009,
+     2010,
+     2011,
+     2012,
+     2013,
+     2014,
+     2015,
+     2016,
+     2017,
+     2018,
+     2019,
+     2020,
+     2021,
+     2022,
+     2023,
+     2024,
+     2025
+    ]
+   }
+  ],
+  "n_years": 26,
+  "method": "kleinberg_2state_viterbi"
+ },
+ "blockchain": {
+  "bursts": [
+   {
+    "start": 2010,
+    "end": 2025,
+    "duration": 16,
+    "strength": 3.1623,
+    "years": [
+     2010,
+     2011,
+     2012,
+     2013,
+     2014,
+     2015,
+     2016,
+     2017,
+     2018,
+     2019,
+     2020,
+     2021,
+     2022,
+     2023,
+     2024,
+     2025
+    ]
+   }
+  ],
+  "n_years": 26,
+  "method": "kleinberg_2state_viterbi"
+ },
+ "internet_of_things": {
+  "bursts": [
+   {
+    "start": 2012,
+    "end": 2025,
+    "duration": 14,
+    "strength": 2.6298,
+    "years": [
+     2012,
+     2013,
+     2014,
+     2015,
+     2016,
+     2017,
+     2018,
+     2019,
+     2020,
+     2021,
+     2022,
+     2023,
+     2024,
+     2025
+    ]
+   }
+  ],
+  "n_years": 26,
+  "method": "kleinberg_2state_viterbi"
+ },
+ "edge_computing": {
+  "bursts": [
+   {
+    "start": 2010,
+    "end": 2025,
+    "duration": 16,
+    "strength": 3.0618,
+    "years": [
+     2010,
+     2011,
+     2012,
+     2013,
+     2014,
+     2015,
+     2016,
+     2017,
+     2018,
+     2019,
+     2020,
+     2021,
+     2022,
+     2023,
+     2024,
+     2025
+    ]
+   }
+  ],
+  "n_years": 26,
+  "method": "kleinberg_2state_viterbi"
+ },
+ "digital_twins": {
+  "bursts": [
+   {
+    "start": 2013,
+    "end": 2025,
+    "duration": 13,
+    "strength": 2.8343,
+    "years": [
+     2013,
+     2014,
+     2015,
+     2016,
+     2017,
+     2018,
+     2019,
+     2020,
+     2021,
+     2022,
+     2023,
+     2024,
+     2025
+    ]
+   }
+  ],
+  "n_years": 26,
+  "method": "kleinberg_2state_viterbi"
+ },
+ "smart_manufacturing": {
+  "bursts": [
+   {
+    "start": 2010,
+    "end": 2025,
+    "duration": 16,
+    "strength": 1.9672,
+    "years": [
+     2010,
+     2011,
+     2012,
+     2013,
+     2014,
+     2015,
+     2016,
+     2017,
+     2018,
+     2019,
+     2020,
+     2021,
+     2022,
+     2023,
+     2024,
+     2025
+    ]
+   }
+  ],
+  "n_years": 26,
+  "method": "kleinberg_2state_viterbi"
+ },
+ "autonomous_vehicles": {
+  "bursts": [
+   {
+    "start": 2009,
+    "end": 2025,
+    "duration": 17,
+    "strength": 1.7852,
+    "years": [
+     2009,
+     2010,
+     2011,
+     2012,
+     2013,
+     2014,
+     2015,
+     2016,
+     2017,
+     2018,
+     2019,
+     2020,
+     2021,
+     2022,
+     2023,
+     2024,
+     2025
+    ]
+   }
+  ],
+  "n_years": 26,
+  "method": "kleinberg_2state_viterbi"
+ },
+ "space_technologies": {
+  "bursts": [
+   {
+    "start": 2013,
+    "end": 2025,
+    "duration": 13,
+    "strength": 0.4717,
+    "years": [
+     2013,
+     2014,
+     2015,
+     2016,
+     2017,
+     2018,
+     2019,
+     2020,
+     2021,
+     2022,
+     2023,
+     2024,
+     2025
+    ]
+   }
+  ],
+  "n_years": 26,
+  "method": "kleinberg_2state_viterbi"
+ },
+ "advanced_semiconductors": {
+  "bursts": [],
+  "n_years": 26,
+  "method": "kleinberg_2state_viterbi"
+ },
+ "biotechnology": {
+  "bursts": [],
+  "n_years": 26,
+  "method": "kleinberg_2state_viterbi"
+ },
+ "quantum_computing": {
+  "bursts": [
+   {
+    "start": 2006,
+    "end": 2025,
+    "duration": 20,
+    "strength": 1.1216,
+    "years": [
+     2006,
+     2007,
+     2008,
+     2009,
+     2010,
+     2011,
+     2012,
+     2013,
+     2014,
+     2015,
+     2016,
+     2017,
+     2018,
+     2019,
+     2020,
+     2021,
+     2022,
+     2023,
+     2024,
+     2025
+    ]
+   }
+  ],
+  "n_years": 26,
+  "method": "kleinberg_2state_viterbi"
+ }
+}
