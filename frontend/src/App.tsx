@@ -10,6 +10,7 @@ import { SearchPalette, useCommandK, type SearchItem } from './components/Search
 import { LeaderboardView } from './views/Leaderboard'
 import { DomainDrilldownView } from './views/DomainDrilldown'
 import { BurstsView } from './views/Bursts'
+import { MatrixView } from './views/Matrix'
 
 const NAV = [
   { to: '/', label: 'Leaderboard', end: true },
@@ -133,6 +134,7 @@ function Shell() {
           <Route path="/" element={<LeaderboardView />} />
           <Route path="/domain/:slug" element={<DomainDrilldownView />} />
           <Route path="/bursts" element={<BurstsView />} />
+          <Route path="/matrix" element={<MatrixView />} />
           <Route
             path="*"
             element={
