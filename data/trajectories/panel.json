@@ -1118,7 +1118,8 @@
    "count_verified": true,
    "years_contiguous": true,
    "quarterly_method": "equal_split_interpolation",
-   "live_drift_note": null
+   "live_drift_note": null,
+   "search_term_sensitivity": "2025 count 2.43x 2024 (only such jump in panel) \u2014 search-term virality suspected alongside real growth; keep but annotate."
   }
  },
  "ai_agents": {
@@ -2237,10 +2238,11 @@
   "total_works": 162781,
   "metadata": {
    "source": "tier_a source aggregate (group_by=publication_year)",
-   "count_verified": true,
+   "count_verified": false,
    "years_contiguous": true,
    "quarterly_method": "equal_split_interpolation",
-   "live_drift_note": null
+   "live_drift_note": null,
+   "known_limitation": "tier_a QEC series identical to quantum_computing (fetch used the same T10682 topic scope which subsumes QEC). Do not treat as independent. Leaderboard: alias/de-duplicate."
   }
  },
  "solid_state_batteries": {
