@@ -9,6 +9,7 @@ import { MethodologyNote } from './components/MethodologyNote'
 import { SearchPalette, useCommandK, type SearchItem } from './components/SearchPalette'
 import { LeaderboardView } from './views/Leaderboard'
 import { DomainDrilldownView } from './views/DomainDrilldown'
+import { BurstsView } from './views/Bursts'
 
 const NAV = [
   { to: '/', label: 'Leaderboard', end: true },
@@ -131,6 +132,7 @@ function Shell() {
         <Routes>
           <Route path="/" element={<LeaderboardView />} />
           <Route path="/domain/:slug" element={<DomainDrilldownView />} />
+          <Route path="/bursts" element={<BurstsView />} />
           <Route
             path="*"
             element={
