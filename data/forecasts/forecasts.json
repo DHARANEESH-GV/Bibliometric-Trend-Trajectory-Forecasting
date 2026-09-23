@@ -1,0 +1,629 @@
+{
+ "horizon": [
+  2026,
+  2027,
+  2028
+ ],
+ "gate": {
+  "hw_damped": {
+   "beats_naive_share": 0.8,
+   "gate_passed": true,
+   "wins": 16,
+   "series": 20
+  },
+  "drift": {
+   "beats_naive_share": 0.8,
+   "gate_passed": true,
+   "wins": 16,
+   "series": 20
+  },
+  "pooled": {
+   "beats_naive_share": 0.05,
+   "gate_passed": false,
+   "wins": 1,
+   "series": 20
+  }
+ },
+ "forecasts": {
+  "advanced_semiconductors": {
+   "model": "hw_damped",
+   "gate_failed": false,
+   "horizon": [
+    2026,
+    2027,
+    2028
+   ],
+   "forecast": [
+    24401,
+    24313,
+    24243
+   ],
+   "interval_68pct": {
+    "2026": [
+     21145,
+     27657
+    ],
+    "2027": [
+     21057,
+     27570
+    ],
+    "2028": [
+     20987,
+     27499
+    ]
+   },
+   "resid_sigma": 3256.41,
+   "train_through": 2025
+  },
+  "ai_agents": {
+   "model": "hw_damped",
+   "gate_failed": false,
+   "horizon": [
+    2026,
+    2027,
+    2028
+   ],
+   "forecast": [
+    13882,
+    14291,
+    14699
+   ],
+   "interval_68pct": {
+    "2026": [
+     11531,
+     16233
+    ],
+    "2027": [
+     11940,
+     16642
+    ],
+    "2028": [
+     12348,
+     17050
+    ]
+   },
+   "resid_sigma": 2350.92,
+   "train_through": 2025
+  },
+  "artificial_intelligence": {
+   "model": "hw_damped",
+   "gate_failed": false,
+   "horizon": [
+    2026,
+    2027,
+    2028
+   ],
+   "forecast": [
+    119732,
+    142493,
+    165139
+   ],
+   "interval_68pct": {
+    "2026": [
+     99401,
+     140063
+    ],
+    "2027": [
+     122162,
+     162823
+    ],
+    "2028": [
+     144808,
+     185470
+    ]
+   },
+   "resid_sigma": 20330.95,
+   "train_through": 2025
+  },
+  "autonomous_vehicles": {
+   "model": "hw_damped",
+   "gate_failed": false,
+   "horizon": [
+    2026,
+    2027,
+    2028
+   ],
+   "forecast": [
+    19222,
+    22540,
+    25841
+   ],
+   "interval_68pct": {
+    "2026": [
+     15054,
+     23391
+    ],
+    "2027": [
+     18371,
+     26708
+    ],
+    "2028": [
+     21672,
+     30009
+    ]
+   },
+   "resid_sigma": 4168.56,
+   "train_through": 2025
+  },
+  "biotechnology": {
+   "model": "hw_damped",
+   "gate_failed": false,
+   "horizon": [
+    2026,
+    2027,
+    2028
+   ],
+   "forecast": [
+    26158,
+    27955,
+    29393
+   ],
+   "interval_68pct": {
+    "2026": [
+     22595,
+     29722
+    ],
+    "2027": [
+     24392,
+     31519
+    ],
+    "2028": [
+     25830,
+     32957
+    ]
+   },
+   "resid_sigma": 3563.54,
+   "train_through": 2025
+  },
+  "blockchain": {
+   "model": "hw_damped",
+   "gate_failed": false,
+   "horizon": [
+    2026,
+    2027,
+    2028
+   ],
+   "forecast": [
+    44354,
+    43612,
+    42974
+   ],
+   "interval_68pct": {
+    "2026": [
+     26614,
+     62094
+    ],
+    "2027": [
+     25872,
+     61352
+    ],
+    "2028": [
+     25234,
+     60714
+    ]
+   },
+   "resid_sigma": 17740.03,
+   "train_through": 2025
+  },
+  "brain_computer_interfaces": {
+   "model": "hw_damped",
+   "gate_failed": false,
+   "horizon": [
+    2026,
+    2027,
+    2028
+   ],
+   "forecast": [
+    23084,
+    24185,
+    25280
+   ],
+   "interval_68pct": {
+    "2026": [
+     17166,
+     29003
+    ],
+    "2027": [
+     18267,
+     30104
+    ],
+    "2028": [
+     19362,
+     31199
+    ]
+   },
+   "resid_sigma": 5918.55,
+   "train_through": 2025
+  },
+  "carbon_capture": {
+   "model": "hw_damped",
+   "gate_failed": false,
+   "horizon": [
+    2026,
+    2027,
+    2028
+   ],
+   "forecast": [
+    19374,
+    22228,
+    25067
+   ],
+   "interval_68pct": {
+    "2026": [
+     15576,
+     23172
+    ],
+    "2027": [
+     18430,
+     26026
+    ],
+    "2028": [
+     21269,
+     28865
+    ]
+   },
+   "resid_sigma": 3797.96,
+   "train_through": 2025
+  },
+  "clean_hydrogen": {
+   "model": "hw_damped",
+   "gate_failed": false,
+   "horizon": [
+    2026,
+    2027,
+    2028
+   ],
+   "forecast": [
+    32284,
+    31579,
+    30996
+   ],
+   "interval_68pct": {
+    "2026": [
+     20992,
+     43575
+    ],
+    "2027": [
+     20288,
+     42871
+    ],
+    "2028": [
+     19704,
+     42287
+    ]
+   },
+   "resid_sigma": 11291.55,
+   "train_through": 2025
+  },
+  "cybersecurity": {
+   "model": "hw_damped",
+   "gate_failed": false,
+   "horizon": [
+    2026,
+    2027,
+    2028
+   ],
+   "forecast": [
+    59678,
+    68977,
+    78230
+   ],
+   "interval_68pct": {
+    "2026": [
+     47813,
+     71543
+    ],
+    "2027": [
+     57112,
+     80842
+    ],
+    "2028": [
+     66365,
+     90095
+    ]
+   },
+   "resid_sigma": 11865.08,
+   "train_through": 2025
+  },
+  "digital_twins": {
+   "model": "hw_damped",
+   "gate_failed": false,
+   "horizon": [
+    2026,
+    2027,
+    2028
+   ],
+   "forecast": [
+    35583,
+    44003,
+    52382
+   ],
+   "interval_68pct": {
+    "2026": [
+     28715,
+     42450
+    ],
+    "2027": [
+     37136,
+     50871
+    ],
+    "2028": [
+     45515,
+     59250
+    ]
+   },
+   "resid_sigma": 6867.44,
+   "train_through": 2025
+  },
+  "edge_computing": {
+   "model": "hw_damped",
+   "gate_failed": false,
+   "horizon": [
+    2026,
+    2027,
+    2028
+   ],
+   "forecast": [
+    25578,
+    26527,
+    27382
+   ],
+   "interval_68pct": {
+    "2026": [
+     16433,
+     34724
+    ],
+    "2027": [
+     17381,
+     35673
+    ],
+    "2028": [
+     18236,
+     36528
+    ]
+   },
+   "resid_sigma": 9145.92,
+   "train_through": 2025
+  },
+  "generative_ai": {
+   "model": "hw_damped",
+   "gate_failed": false,
+   "horizon": [
+    2026,
+    2027,
+    2028
+   ],
+   "forecast": [
+    18283,
+    20930,
+    23564
+   ],
+   "interval_68pct": {
+    "2026": [
+     13344,
+     23222
+    ],
+    "2027": [
+     15991,
+     25869
+    ],
+    "2028": [
+     18625,
+     28503
+    ]
+   },
+   "resid_sigma": 4938.72,
+   "train_through": 2025
+  },
+  "internet_of_things": {
+   "model": "hw_damped",
+   "gate_failed": false,
+   "horizon": [
+    2026,
+    2027,
+    2028
+   ],
+   "forecast": [
+    10638,
+    12110,
+    13574
+   ],
+   "interval_68pct": {
+    "2026": [
+     7841,
+     13434
+    ],
+    "2027": [
+     9314,
+     14906
+    ],
+    "2028": [
+     10778,
+     16370
+    ]
+   },
+   "resid_sigma": 2796.04,
+   "train_through": 2025
+  },
+  "quantum_computing": {
+   "model": "hw_damped",
+   "gate_failed": false,
+   "horizon": [
+    2026,
+    2027,
+    2028
+   ],
+   "forecast": [
+    21428,
+    24251,
+    27059
+   ],
+   "interval_68pct": {
+    "2026": [
+     17000,
+     25857
+    ],
+    "2027": [
+     19823,
+     28679
+    ],
+    "2028": [
+     22631,
+     31487
+    ]
+   },
+   "resid_sigma": 4428.12,
+   "train_through": 2025
+  },
+  "quantum_error_correction": {
+   "model": "hw_damped",
+   "gate_failed": false,
+   "horizon": [
+    2026,
+    2027,
+    2028
+   ],
+   "forecast": [
+    21428,
+    24251,
+    27059
+   ],
+   "interval_68pct": {
+    "2026": [
+     17000,
+     25857
+    ],
+    "2027": [
+     19823,
+     28679
+    ],
+    "2028": [
+     22631,
+     31487
+    ]
+   },
+   "resid_sigma": 4428.12,
+   "train_through": 2025
+  },
+  "smart_manufacturing": {
+   "model": "hw_damped",
+   "gate_failed": false,
+   "horizon": [
+    2026,
+    2027,
+    2028
+   ],
+   "forecast": [
+    19332,
+    21567,
+    23791
+   ],
+   "interval_68pct": {
+    "2026": [
+     14477,
+     24186
+    ],
+    "2027": [
+     16712,
+     26422
+    ],
+    "2028": [
+     18937,
+     28646
+    ]
+   },
+   "resid_sigma": 4854.81,
+   "train_through": 2025
+  },
+  "solid_state_batteries": {
+   "model": "hw_damped",
+   "gate_failed": false,
+   "horizon": [
+    2026,
+    2027,
+    2028
+   ],
+   "forecast": [
+    29068,
+    31433,
+    33787
+   ],
+   "interval_68pct": {
+    "2026": [
+     21257,
+     36880
+    ],
+    "2027": [
+     23622,
+     39245
+    ],
+    "2028": [
+     25975,
+     41598
+    ]
+   },
+   "resid_sigma": 7811.52,
+   "train_through": 2025
+  },
+  "space_technologies": {
+   "model": "hw_damped",
+   "gate_failed": false,
+   "horizon": [
+    2026,
+    2027,
+    2028
+   ],
+   "forecast": [
+    24640,
+    27364,
+    29965
+   ],
+   "interval_68pct": {
+    "2026": [
+     21300,
+     27980
+    ],
+    "2027": [
+     24025,
+     30704
+    ],
+    "2028": [
+     26625,
+     33305
+    ]
+   },
+   "resid_sigma": 3339.89,
+   "train_through": 2025
+  },
+  "synthetic_biology": {
+   "model": "hw_damped",
+   "gate_failed": false,
+   "horizon": [
+    2026,
+    2027,
+    2028
+   ],
+   "forecast": [
+    10055,
+    10284,
+    10476
+   ],
+   "interval_68pct": {
+    "2026": [
+     7488,
+     12622
+    ],
+    "2027": [
+     7717,
+     12852
+    ],
+    "2028": [
+     7909,
+     13044
+    ]
+   },
+   "resid_sigma": 2567.21,
+   "train_through": 2025
+  }
+ }
+}

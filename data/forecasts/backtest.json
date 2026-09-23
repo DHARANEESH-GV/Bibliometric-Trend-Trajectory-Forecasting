@@ -1,0 +1,551 @@
+{
+ "train_end": 2021,
+ "targets": [
+  2022,
+  2023,
+  2024,
+  2025
+ ],
+ "gate": {
+  "hw_damped": {
+   "beats_naive_share": 0.8,
+   "gate_passed": true,
+   "wins": 16,
+   "series": 20
+  },
+  "drift": {
+   "beats_naive_share": 0.8,
+   "gate_passed": true,
+   "wins": 16,
+   "series": 20
+  },
+  "pooled": {
+   "beats_naive_share": 0.05,
+   "gate_passed": false,
+   "wins": 1,
+   "series": 20
+  }
+ },
+ "per_series": {
+  "advanced_semiconductors": {
+   "naive": {
+    "mae": 1414,
+    "rmse": 1650.16,
+    "smape": 0.0587,
+    "directional": 0.5
+   },
+   "drift": {
+    "mae": 712.79,
+    "rmse": 770.69,
+    "smape": 0.0294,
+    "directional": 0.5
+   },
+   "hw_damped": {
+    "mae": 1576.93,
+    "rmse": 2069.15,
+    "smape": 0.0639,
+    "directional": 0.75
+   },
+   "pooled": {
+    "mae": 23235.29,
+    "rmse": 23246.87,
+    "smape": 1.8305,
+    "directional": 0.25
+   }
+  },
+  "ai_agents": {
+   "naive": {
+    "mae": 1959.75,
+    "rmse": 2820.75,
+    "smape": 0.1742,
+    "directional": 0.0
+   },
+   "drift": {
+    "mae": 1235.3,
+    "rmse": 2073.04,
+    "smape": 0.1017,
+    "directional": 0.75
+   },
+   "hw_damped": {
+    "mae": 1955.52,
+    "rmse": 2749.99,
+    "smape": 0.1741,
+    "directional": 0.0
+   },
+   "pooled": {
+    "mae": 10167.04,
+    "rmse": 10294.99,
+    "smape": 1.6574,
+    "directional": 0.0
+   }
+  },
+  "artificial_intelligence": {
+   "naive": {
+    "mae": 31217.25,
+    "rmse": 38998.74,
+    "smape": 0.5659,
+    "directional": 0.0
+   },
+   "drift": {
+    "mae": 28279.27,
+    "rmse": 35870.3,
+    "smape": 0.4916,
+    "directional": 0.5
+   },
+   "hw_damped": {
+    "mae": 23528.77,
+    "rmse": 30369.18,
+    "smape": 0.3833,
+    "directional": 0.5
+   },
+   "pooled": {
+    "mae": 62590.54,
+    "rmse": 66642.26,
+    "smape": 1.9344,
+    "directional": 0.0
+   }
+  },
+  "autonomous_vehicles": {
+   "naive": {
+    "mae": 3065,
+    "rmse": 3852.03,
+    "smape": 0.2653,
+    "directional": 0.0
+   },
+   "drift": {
+    "mae": 2030.6,
+    "rmse": 2775.67,
+    "smape": 0.163,
+    "directional": 0.5
+   },
+   "hw_damped": {
+    "mae": 1021.03,
+    "rmse": 1612.5,
+    "smape": 0.0754,
+    "directional": 1.0
+   },
+   "pooled": {
+    "mae": 11204.29,
+    "rmse": 11358.01,
+    "smape": 1.6864,
+    "directional": 0.0
+   }
+  },
+  "biotechnology": {
+   "naive": {
+    "mae": 1671.25,
+    "rmse": 1854.74,
+    "smape": 0.0786,
+    "directional": 1.0
+   },
+   "drift": {
+    "mae": 1865.56,
+    "rmse": 1990.14,
+    "smape": 0.0877,
+    "directional": 0.75
+   },
+   "hw_damped": {
+    "mae": 2070.12,
+    "rmse": 2451.38,
+    "smape": 0.0982,
+    "directional": 0.75
+   },
+   "pooled": {
+    "mae": 19895.04,
+    "rmse": 19941.43,
+    "smape": 1.8064,
+    "directional": 0.25
+   }
+  },
+  "blockchain": {
+   "naive": {
+    "mae": 4191,
+    "rmse": 5320.47,
+    "smape": 0.0923,
+    "directional": 0.25
+   },
+   "drift": {
+    "mae": 4269.83,
+    "rmse": 4559.42,
+    "smape": 0.0912,
+    "directional": 1.0
+   },
+   "hw_damped": {
+    "mae": 5725.43,
+    "rmse": 7446.81,
+    "smape": 0.1164,
+    "directional": 0.75
+   },
+   "pooled": {
+    "mae": 45160.29,
+    "rmse": 45292.84,
+    "smape": 1.9058,
+    "directional": 0.25
+   }
+  },
+  "brain_computer_interfaces": {
+   "naive": {
+    "mae": 2283.75,
+    "rmse": 2954.65,
+    "smape": 0.115,
+    "directional": 0.25
+   },
+   "drift": {
+    "mae": 997.08,
+    "rmse": 1266.43,
+    "smape": 0.0479,
+    "directional": 0.75
+   },
+   "hw_damped": {
+    "mae": 1015.5,
+    "rmse": 1152.96,
+    "smape": 0.0501,
+    "directional": 0.75
+   },
+   "pooled": {
+    "mae": 19166.04,
+    "rmse": 19220.06,
+    "smape": 1.8001,
+    "directional": 0.25
+   }
+  },
+  "carbon_capture": {
+   "naive": {
+    "mae": 3677.5,
+    "rmse": 4439.68,
+    "smape": 0.3054,
+    "directional": 0.0
+   },
+   "drift": {
+    "mae": 2977.98,
+    "rmse": 3695.6,
+    "smape": 0.2373,
+    "directional": 0.25
+   },
+   "hw_damped": {
+    "mae": 2972.45,
+    "rmse": 3666.26,
+    "smape": 0.237,
+    "directional": 0.25
+   },
+   "pooled": {
+    "mae": 12062.79,
+    "rmse": 12230.22,
+    "smape": 1.7052,
+    "directional": 0.0
+   }
+  },
+  "clean_hydrogen": {
+   "naive": {
+    "mae": 6841.25,
+    "rmse": 6956.16,
+    "smape": 0.2284,
+    "directional": 0.5
+   },
+   "drift": {
+    "mae": 3784.7,
+    "rmse": 4021.55,
+    "smape": 0.1209,
+    "directional": 0.75
+   },
+   "hw_damped": {
+    "mae": 2175.31,
+    "rmse": 2531.97,
+    "smape": 0.0661,
+    "directional": 0.75
+   },
+   "pooled": {
+    "mae": 32161.54,
+    "rmse": 32180.95,
+    "smape": 1.873,
+    "directional": 0.5
+   }
+  },
+  "cybersecurity": {
+   "naive": {
+    "mae": 9355,
+    "rmse": 12031.97,
+    "smape": 0.252,
+    "directional": 0.0
+   },
+   "drift": {
+    "mae": 6457.57,
+    "rmse": 8653.53,
+    "smape": 0.1631,
+    "directional": 0.5
+   },
+   "hw_damped": {
+    "mae": 6060.27,
+    "rmse": 8153.76,
+    "smape": 0.1518,
+    "directional": 0.5
+   },
+   "pooled": {
+    "mae": 37901.29,
+    "rmse": 38556.83,
+    "smape": 1.8952,
+    "directional": 0.0
+   }
+  },
+  "digital_twins": {
+   "naive": {
+    "mae": 7220.25,
+    "rmse": 9093.01,
+    "smape": 0.4399,
+    "directional": 0.0
+   },
+   "drift": {
+    "mae": 5920.37,
+    "rmse": 7730.51,
+    "smape": 0.3389,
+    "directional": 0.25
+   },
+   "hw_damped": {
+    "mae": 3252.53,
+    "rmse": 4853.86,
+    "smape": 0.1609,
+    "directional": 0.75
+   },
+   "pooled": {
+    "mae": 17251.54,
+    "rmse": 17976.51,
+    "smape": 1.7831,
+    "directional": 0.0
+   }
+  },
+  "edge_computing": {
+   "naive": {
+    "mae": 1364,
+    "rmse": 1730.05,
+    "smape": 0.0579,
+    "directional": 0.5
+   },
+   "drift": {
+    "mae": 2139.79,
+    "rmse": 2651.87,
+    "smape": 0.0881,
+    "directional": 0.75
+   },
+   "hw_damped": {
+    "mae": 5435.05,
+    "rmse": 5971.0,
+    "smape": 0.2047,
+    "directional": 0.75
+   },
+   "pooled": {
+    "mae": 22428.29,
+    "rmse": 22477.82,
+    "smape": 1.823,
+    "directional": 0.25
+   }
+  },
+  "generative_ai": {
+   "naive": {
+    "mae": 4593.75,
+    "rmse": 7161.29,
+    "smape": 0.3587,
+    "directional": 0.25
+   },
+   "drift": {
+    "mae": 3754.3,
+    "rmse": 6344.15,
+    "smape": 0.2673,
+    "directional": 1.0
+   },
+   "hw_damped": {
+    "mae": 3288.69,
+    "rmse": 4693.45,
+    "smape": 0.2366,
+    "directional": 0.75
+   },
+   "pooled": {
+    "mae": 11306.04,
+    "rmse": 12406.04,
+    "smape": 1.6686,
+    "directional": 0.25
+   }
+  },
+  "internet_of_things": {
+   "naive": {
+    "mae": 2655.75,
+    "rmse": 3714.59,
+    "smape": 0.3763,
+    "directional": 0.25
+   },
+   "drift": {
+    "mae": 2097.3,
+    "rmse": 3192.87,
+    "smape": 0.2738,
+    "directional": 0.5
+   },
+   "hw_damped": {
+    "mae": 1538.74,
+    "rmse": 2122.95,
+    "smape": 0.1875,
+    "directional": 0.75
+   },
+   "pooled": {
+    "mae": 6319.04,
+    "rmse": 6701.99,
+    "smape": 1.4886,
+    "directional": 0.25
+   }
+  },
+  "quantum_computing": {
+   "naive": {
+    "mae": 4335.25,
+    "rmse": 5459.28,
+    "smape": 0.3108,
+    "directional": 0.0
+   },
+   "drift": {
+    "mae": 3229.54,
+    "rmse": 4326.09,
+    "smape": 0.2172,
+    "directional": 0.25
+   },
+   "hw_damped": {
+    "mae": 1445.3,
+    "rmse": 1744.95,
+    "smape": 0.0893,
+    "directional": 1.0
+   },
+   "pooled": {
+    "mae": 13960.54,
+    "rmse": 14254.18,
+    "smape": 1.7385,
+    "directional": 0.0
+   }
+  },
+  "quantum_error_correction": {
+   "naive": {
+    "mae": 4335.25,
+    "rmse": 5459.28,
+    "smape": 0.3108,
+    "directional": 0.0
+   },
+   "drift": {
+    "mae": 3229.54,
+    "rmse": 4326.09,
+    "smape": 0.2172,
+    "directional": 0.25
+   },
+   "hw_damped": {
+    "mae": 1445.3,
+    "rmse": 1744.95,
+    "smape": 0.0893,
+    "directional": 1.0
+   },
+   "pooled": {
+    "mae": 13960.54,
+    "rmse": 14254.18,
+    "smape": 1.7385,
+    "directional": 0.0
+   }
+  },
+  "smart_manufacturing": {
+   "naive": {
+    "mae": 4100.75,
+    "rmse": 4634.45,
+    "smape": 0.328,
+    "directional": 0.0
+   },
+   "drift": {
+    "mae": 2986.82,
+    "rmse": 3420.49,
+    "smape": 0.2264,
+    "directional": 0.25
+   },
+   "hw_damped": {
+    "mae": 1099.74,
+    "rmse": 1397.54,
+    "smape": 0.0749,
+    "directional": 0.75
+   },
+   "pooled": {
+    "mae": 12961.04,
+    "rmse": 13068.25,
+    "smape": 1.7226,
+    "directional": 0.0
+   }
+  },
+  "solid_state_batteries": {
+   "naive": {
+    "mae": 6091.5,
+    "rmse": 6576.35,
+    "smape": 0.2938,
+    "directional": 0.0
+   },
+   "drift": {
+    "mae": 4175.19,
+    "rmse": 4484.21,
+    "smape": 0.1917,
+    "directional": 0.25
+   },
+   "hw_damped": {
+    "mae": 2402.03,
+    "rmse": 2578.94,
+    "smape": 0.1058,
+    "directional": 0.5
+   },
+   "pooled": {
+    "mae": 22237.79,
+    "rmse": 22326.71,
+    "smape": 1.8262,
+    "directional": 0.0
+   }
+  },
+  "space_technologies": {
+   "naive": {
+    "mae": 4288.5,
+    "rmse": 5648.83,
+    "smape": 0.2721,
+    "directional": 0.5
+   },
+   "drift": {
+    "mae": 3645.55,
+    "rmse": 4814.35,
+    "smape": 0.2238,
+    "directional": 0.25
+   },
+   "hw_damped": {
+    "mae": 3357.41,
+    "rmse": 4404.41,
+    "smape": 0.2038,
+    "directional": 0.25
+   },
+   "pooled": {
+    "mae": 15345.79,
+    "rmse": 15673.77,
+    "smape": 1.7612,
+    "directional": 0.25
+   }
+  },
+  "synthetic_biology": {
+   "naive": {
+    "mae": 692.25,
+    "rmse": 738.81,
+    "smape": 0.0714,
+    "directional": 0.5
+   },
+   "drift": {
+    "mae": 1485.35,
+    "rmse": 1527.81,
+    "smape": 0.1463,
+    "directional": 0.25
+   },
+   "hw_damped": {
+    "mae": 487.79,
+    "rmse": 510.11,
+    "smape": 0.051,
+    "directional": 0.5
+   },
+   "pooled": {
+    "mae": 8294.04,
+    "rmse": 8307.36,
+    "smape": 1.5877,
+    "directional": 0.75
+   }
+  }
+ }
+}
