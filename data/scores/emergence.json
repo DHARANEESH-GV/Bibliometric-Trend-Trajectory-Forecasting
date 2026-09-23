@@ -1,0 +1,308 @@
+{
+ "weights": {
+  "growth_recent": 0.3,
+  "acceleration": 0.2,
+  "keyword_burst": 0.2,
+  "volume_scaled": 0.15,
+  "momentum_intent": 0.15
+ },
+ "caps": {
+  "growth_recent": 1.0,
+  "acceleration": 0.5,
+  "keyword_burst": 0.6,
+  "volume_scaled": 1.0,
+  "momentum_intent": 1.0
+ },
+ "hysteresis": {
+  "emerge_in": 70.0,
+  "emerge_out": 55.0,
+  "plateau_growth": 0.05,
+  "plateau_exit": 0.12
+ },
+ "leaderboard": [
+  {
+   "score": 90.19,
+   "inputs": {
+    "growth_recent": 1.0,
+    "acceleration": 1.0,
+    "keyword_burst": 1.0,
+    "volume_scaled": 0.8463,
+    "momentum_intent": 0.5
+   },
+   "domain_slug": "generative_ai",
+   "display_name": "Generative AI",
+   "label": "Emerging",
+   "rank": 1,
+   "notes": [
+    "2025 count flagged: search-term sensitivity"
+   ]
+  },
+  {
+   "score": 88.44,
+   "inputs": {
+    "growth_recent": 0.9587,
+    "acceleration": 1.0,
+    "keyword_burst": 1.0,
+    "volume_scaled": 0.8121,
+    "momentum_intent": 0.5
+   },
+   "domain_slug": "internet_of_things",
+   "display_name": "Internet of Things",
+   "label": "Emerging",
+   "rank": 2
+  },
+  {
+   "score": 73.5,
+   "inputs": {
+    "growth_recent": 0.459,
+    "acceleration": 0.9407,
+    "keyword_burst": 1.0,
+    "volume_scaled": 0.8941,
+    "momentum_intent": 0.5
+   },
+   "domain_slug": "quantum_error_correction",
+   "display_name": "Quantum Error Correction",
+   "label": "Emerging",
+   "rank": 3,
+   "caveat": "twin-series of quantum_computing (do not rank independently)"
+  },
+  {
+   "score": 71.45,
+   "inputs": {
+    "growth_recent": 0.4072,
+    "acceleration": 0.9063,
+    "keyword_burst": 1.0,
+    "volume_scaled": 0.9071,
+    "momentum_intent": 0.5
+   },
+   "domain_slug": "ai_agents",
+   "display_name": "AI Agents",
+   "label": "Emerging",
+   "rank": 4
+  },
+  {
+   "score": 69.35,
+   "inputs": {
+    "growth_recent": 0.4606,
+    "acceleration": 0.7449,
+    "keyword_burst": 1.0,
+    "volume_scaled": 0.8757,
+    "momentum_intent": 0.5
+   },
+   "domain_slug": "digital_twins",
+   "display_name": "Digital Twins",
+   "label": "Accelerating",
+   "rank": 5
+  },
+  {
+   "score": 63.96,
+   "inputs": {
+    "growth_recent": 0.2131,
+    "acceleration": 0.813,
+    "keyword_burst": 1.0,
+    "volume_scaled": 0.9209,
+    "momentum_intent": 0.5
+   },
+   "domain_slug": "edge_computing",
+   "display_name": "Edge Computing",
+   "label": "Active",
+   "rank": 6
+  },
+  {
+   "score": 63.21,
+   "inputs": {
+    "growth_recent": 0.2927,
+    "acceleration": 0.6711,
+    "keyword_burst": 1.0,
+    "volume_scaled": 0.9002,
+    "momentum_intent": 0.5
+   },
+   "domain_slug": "carbon_capture",
+   "display_name": "Carbon Capture",
+   "label": "Accelerating",
+   "rank": 7
+  },
+  {
+   "score": 62.21,
+   "inputs": {
+    "growth_recent": 0.287,
+    "acceleration": 0.6526,
+    "keyword_burst": 1.0,
+    "volume_scaled": 0.87,
+    "momentum_intent": 0.5
+   },
+   "domain_slug": "autonomous_vehicles",
+   "display_name": "Autonomous Vehicles",
+   "label": "Accelerating",
+   "rank": 8
+  },
+  {
+   "score": 61.01,
+   "inputs": {
+    "growth_recent": 0.3419,
+    "acceleration": 0.4175,
+    "keyword_burst": 1.0,
+    "volume_scaled": 0.9938,
+    "momentum_intent": 0.5
+   },
+   "domain_slug": "artificial_intelligence",
+   "display_name": "Artificial Intelligence",
+   "label": "Accelerating",
+   "rank": 9
+  },
+  {
+   "score": 60.72,
+   "inputs": {
+    "growth_recent": 0.1786,
+    "acceleration": 0.6925,
+    "keyword_burst": 1.0,
+    "volume_scaled": 0.9343,
+    "momentum_intent": 0.5
+   },
+   "domain_slug": "brain_computer_interfaces",
+   "display_name": "Brain-Computer Interfaces",
+   "label": "Accelerating",
+   "rank": 10
+  },
+  {
+   "score": 59.85,
+   "inputs": {
+    "growth_recent": 0.2294,
+    "acceleration": 0.5434,
+    "keyword_burst": 1.0,
+    "volume_scaled": 0.9734,
+    "momentum_intent": 0.5
+   },
+   "domain_slug": "cybersecurity",
+   "display_name": "Cybersecurity",
+   "label": "Accelerating",
+   "rank": 11
+  },
+  {
+   "score": 59.78,
+   "inputs": {
+    "growth_recent": 0.0853,
+    "acceleration": 0.7637,
+    "keyword_burst": 1.0,
+    "volume_scaled": 0.9634,
+    "momentum_intent": 0.5
+   },
+   "domain_slug": "blockchain",
+   "display_name": "Blockchain",
+   "label": "Active",
+   "rank": 12
+  },
+  {
+   "score": 55.0,
+   "inputs": {
+    "growth_recent": 0.2263,
+    "acceleration": 0.4661,
+    "keyword_burst": 0.8667,
+    "volume_scaled": 0.9367,
+    "momentum_intent": 0.5
+   },
+   "domain_slug": "space_technologies",
+   "display_name": "Space Technologies",
+   "label": "Accelerating",
+   "rank": 13
+  },
+  {
+   "score": 54.65,
+   "inputs": {
+    "growth_recent": 0.1512,
+    "acceleration": 0.477,
+    "keyword_burst": 1.0,
+    "volume_scaled": 0.8715,
+    "momentum_intent": 0.5
+   },
+   "domain_slug": "smart_manufacturing",
+   "display_name": "Smart Manufacturing",
+   "label": "Accelerating",
+   "rank": 14
+  },
+  {
+   "score": 53.5,
+   "inputs": {
+    "growth_recent": 0.459,
+    "acceleration": 0.9407,
+    "keyword_burst": 0.0,
+    "volume_scaled": 0.8941,
+    "momentum_intent": 0.5
+   },
+   "domain_slug": "quantum_computing",
+   "display_name": "Quantum Computing",
+   "label": "Accelerating",
+   "rank": 15
+  },
+  {
+   "score": 53.43,
+   "inputs": {
+    "growth_recent": 0.095,
+    "acceleration": 0.4641,
+    "keyword_burst": 1.0,
+    "volume_scaled": 0.9201,
+    "momentum_intent": 0.5
+   },
+   "domain_slug": "solid_state_batteries",
+   "display_name": "Solid-State Batteries",
+   "label": "Active",
+   "rank": 16
+  },
+  {
+   "score": 51.31,
+   "inputs": {
+    "growth_recent": 0.0,
+    "acceleration": 0.4799,
+    "keyword_burst": 1.0,
+    "volume_scaled": 0.9475,
+    "momentum_intent": 0.5
+   },
+   "domain_slug": "clean_hydrogen",
+   "display_name": "Clean Hydrogen",
+   "label": "Watch",
+   "rank": 17
+  },
+  {
+   "score": 50.83,
+   "inputs": {
+    "growth_recent": 0.0701,
+    "acceleration": 0.5754,
+    "keyword_burst": 0.8,
+    "volume_scaled": 0.9146,
+    "momentum_intent": 0.5
+   },
+   "domain_slug": "synthetic_biology",
+   "display_name": "Synthetic Biology",
+   "label": "Active",
+   "rank": 18
+  },
+  {
+   "score": 42.6,
+   "inputs": {
+    "growth_recent": 0.1333,
+    "acceleration": 0.5531,
+    "keyword_burst": 0.2667,
+    "volume_scaled": 0.9802,
+    "momentum_intent": 0.5
+   },
+   "domain_slug": "biotechnology",
+   "display_name": "Biotechnology",
+   "label": "Accelerating",
+   "rank": 19
+  },
+  {
+   "score": 31.38,
+   "inputs": {
+    "growth_recent": 0.0048,
+    "acceleration": 0.4365,
+    "keyword_burst": 0.0,
+    "volume_scaled": 1.0,
+    "momentum_intent": 0.5
+   },
+   "domain_slug": "advanced_semiconductors",
+   "display_name": "Advanced Semiconductors",
+   "label": "Watch",
+   "rank": 20
+  }
+ ]
+}
