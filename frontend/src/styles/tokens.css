@@ -1,0 +1,115 @@
+/* ============================================================
+   biblio-trend design tokens — master plan §8
+   Dark-first editorial. Data is the hero; color is semantic.
+   Light mode via [data-theme='light'] token swap only.
+   ============================================================ */
+
+:root,
+[data-theme='dark'] {
+  /* Surfaces */
+  --surface-0: #0b0e14;
+  --surface-1: #11151c;
+  --surface-2: #171c25;
+
+  /* Ink */
+  --ink-0: #e8eaed;
+  --ink-1: color-mix(in srgb, var(--ink-0) 78%, transparent);
+  --ink-2: color-mix(in srgb, var(--ink-0) 55%, transparent);
+  --ink-3: color-mix(in srgb, var(--ink-0) 35%, transparent);
+
+  /* Hairlines */
+  --hairline: 1px solid color-mix(in srgb, var(--ink-0) 8%, transparent);
+  --hairline-strong: 1px solid color-mix(in srgb, var(--ink-0) 16%, transparent);
+
+  /* Accent (papers series, interactive states, links) */
+  --accent: #e8eaed;
+  --accent-ink: #0b0e14;
+  --link: #8ab4f8;
+
+  /* Stage labels — real taxonomy from snapshots (no Decline exists;
+     the spec's decline red is reserved, currently unused). */
+  --stage-emerging: #3ddc97;   /* green    */
+  --stage-accelerating: #4c9aff; /* blue   */
+  --stage-active: #f5b84c;     /* amber    */
+  --stage-watch: color-mix(in srgb, var(--ink-0) 55%, transparent); /* neutral ink */
+
+  /* Series */
+  --series-paper: var(--accent);
+  --series-forecast: var(--accent);
+  --forecast-band: color-mix(in srgb, var(--accent) 12%, transparent);
+  --forecast-band-stroke: color-mix(in srgb, var(--accent) 45%, transparent);
+
+  /* Chart grid lines */
+  --grid-minor: color-mix(in srgb, var(--ink-0) 5%, transparent);
+  --grid-major: color-mix(in srgb, var(--ink-0) 10%, transparent);
+  --crosshair: color-mix(in srgb, var(--ink-0) 30%, transparent);
+
+  /* Type */
+  --font-display: 'Inter Tight', 'Inter', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --text-xs: 0.75rem;    /* 12px — axis labels, footnotes */
+  --text-sm: 0.8125rem;  /* 13px — secondary, table detail */
+  --text-md: 0.9375rem;  /* 15px — body */
+  --text-lg: 1.125rem;   /* 18px — emphasized body */
+  --text-xl: 1.375rem;   /* 22px — section headers */
+  --text-2xl: 1.75rem;   /* 28px — page titles */
+
+  --leading-tight: 1.25;
+  --leading-body: 1.55;
+
+  /* Spacing (4px base) */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 24px;
+  --sp-6: 32px;
+  --sp-7: 48px;
+  --sp-8: 64px;
+
+  /* Motion */
+  --motion-draw: 600ms;
+  --motion-stagger: 80ms;
+  --motion-fast: 150ms;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Layout */
+  --content-max: 1280px;
+  --content-pad: var(--sp-6);
+}
+
+[data-theme='light'] {
+  --surface-0: #fafaf8;
+  --surface-1: #ffffff;
+  --surface-2: #f4f4f0;
+
+  --ink-0: #111418;
+  --ink-1: color-mix(in srgb, var(--ink-0) 78%, transparent);
+  --ink-2: color-mix(in srgb, var(--ink-0) 55%, transparent);
+  --ink-3: color-mix(in srgb, var(--ink-0) 35%, transparent);
+
+  --hairline: 1px solid color-mix(in srgb, var(--ink-0) 10%, transparent);
+  --hairline-strong: 1px solid color-mix(in srgb, var(--ink-0) 20%, transparent);
+
+  --accent: #111418;
+  --accent-ink: #fafaf8;
+  --link: #1a56b8;
+
+  /* Stage colors keep their hue but darken for AA contrast on light */
+  --stage-emerging: #1a7f4e;
+  --stage-accelerating: #1a56b8;
+  --stage-active: #9a6a10;
+
+  --series-forecast: var(--accent);
+  --forecast-band: color-mix(in srgb, var(--accent) 10%, transparent);
+  --forecast-band-stroke: color-mix(in srgb, var(--accent) 40%, transparent);
+
+  --grid-minor: color-mix(in srgb, var(--ink-0) 6%, transparent);
+  --grid-major: color-mix(in srgb, var(--ink-0) 12%, transparent);
+  --crosshair: color-mix(in srgb, var(--ink-0) 35%, transparent);
+}
+
+/* Numeric texture: tabular figures everywhere numbers are compared.
+   Applied via the .num utility class or inherited on metric/table styles. */
