@@ -1,0 +1,263 @@
+{
+ "_meta": {
+  "generated_utc": "2026-09-23T08:26:01.621768+00:00",
+  "run_id": "20260923T082601Z",
+  "lineage": {
+   "trajectories": "data/tier_a + panel.json (annual exact, quarterly derived)",
+   "scores": "stats/emergence.py (weights in data/scores/emergence.json)",
+   "forecasts": "stats/forecasts.py (gated; see backtest.json gate)",
+   "bursts": "stats/bursts.py (Kleinberg 2-state)",
+   "samples": "raw/samples (2k recent + 2k top-cited per domain)"
+  }
+ },
+ "display_name": "Biotechnology",
+ "annual": {
+  "2000": 13271,
+  "2001": 13080,
+  "2002": 14200,
+  "2003": 14014,
+  "2004": 15130,
+  "2005": 15846,
+  "2006": 16906,
+  "2007": 17440,
+  "2008": 18405,
+  "2009": 19868,
+  "2010": 20482,
+  "2011": 20535,
+  "2012": 22328,
+  "2013": 23373,
+  "2014": 23993,
+  "2015": 24448,
+  "2016": 24790,
+  "2017": 23981,
+  "2018": 22780,
+  "2019": 23308,
+  "2020": 23380,
+  "2021": 21432,
+  "2022": 19459,
+  "2023": 19533,
+  "2024": 21099,
+  "2025": 23912
+ },
+ "forecast": [
+  26158,
+  27955,
+  29393
+ ],
+ "model": "hw_damped",
+ "horizon": [
+  2026,
+  2027,
+  2028
+ ],
+ "interval_68pct": {
+  "2026": [
+   22595,
+   29722
+  ],
+  "2027": [
+   24392,
+   31519
+  ],
+  "2028": [
+   25830,
+   32957
+  ]
+ },
+ "score": 42.6,
+ "label": "Accelerating",
+ "provenance_note": "sampled domain: drill-down lists from recent+top-cited 4k sample",
+ "sample_stats": {
+  "recent": 2000,
+  "top_cited": 2000
+ },
+ "top_keywords": [
+  {
+   "name": "Food science",
+   "total": 77348,
+   "bursts": [
+    {
+     "start": 2000,
+     "end": 2025,
+     "duration": 26,
+     "strength": 25.0716,
+     "years": [
+      2000,
+      2001,
+      2002,
+      2003,
+      2004,
+      2005,
+      2006,
+      2007,
+      2008,
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Engineering",
+   "total": 55974,
+   "bursts": [
+    {
+     "start": 2000,
+     "end": 2025,
+     "duration": 26,
+     "strength": 24.7482,
+     "years": [
+      2000,
+      2001,
+      2002,
+      2003,
+      2004,
+      2005,
+      2006,
+      2007,
+      2008,
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Computational biology",
+   "total": 39025,
+   "bursts": [
+    {
+     "start": 2014,
+     "end": 2025,
+     "duration": 12,
+     "strength": 0.4134,
+     "years": [
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Political science",
+   "total": 46413,
+   "bursts": [
+    {
+     "start": 2009,
+     "end": 2019,
+     "duration": 11,
+     "strength": 0.3981,
+     "years": [
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Biology",
+   "total": 241684,
+   "bursts": []
+  },
+  {
+   "name": "Chemistry",
+   "total": 151434,
+   "bursts": []
+  },
+  {
+   "name": "Biochemistry",
+   "total": 120879,
+   "bursts": []
+  },
+  {
+   "name": "Gene",
+   "total": 107922,
+   "bursts": []
+  },
+  {
+   "name": "Genetics",
+   "total": 100838,
+   "bursts": []
+  },
+  {
+   "name": "Computer science",
+   "total": 98994,
+   "bursts": []
+  },
+  {
+   "name": "Bacteria",
+   "total": 78636,
+   "bursts": []
+  },
+  {
+   "name": "Business",
+   "total": 68676,
+   "bursts": []
+  },
+  {
+   "name": "Medicine",
+   "total": 62425,
+   "bursts": []
+  },
+  {
+   "name": "Microbiology",
+   "total": 57962,
+   "bursts": []
+  },
+  {
+   "name": "Escherichia coli",
+   "total": 45923,
+   "bursts": []
+  }
+ ],
+ "caveat": null
+}

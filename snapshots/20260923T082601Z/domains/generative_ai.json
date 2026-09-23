@@ -1,0 +1,515 @@
+{
+ "_meta": {
+  "generated_utc": "2026-09-23T08:26:01.627867+00:00",
+  "run_id": "20260923T082601Z",
+  "lineage": {
+   "trajectories": "data/tier_a + panel.json (annual exact, quarterly derived)",
+   "scores": "stats/emergence.py (weights in data/scores/emergence.json)",
+   "forecasts": "stats/forecasts.py (gated; see backtest.json gate)",
+   "bursts": "stats/bursts.py (Kleinberg 2-state)",
+   "samples": "raw/samples (2k recent + 2k top-cited per domain)"
+  }
+ },
+ "display_name": "Generative AI",
+ "annual": {
+  "2000": 101,
+  "2001": 118,
+  "2002": 212,
+  "2003": 236,
+  "2004": 248,
+  "2005": 305,
+  "2006": 368,
+  "2007": 418,
+  "2008": 415,
+  "2009": 552,
+  "2010": 608,
+  "2011": 631,
+  "2012": 751,
+  "2013": 821,
+  "2014": 972,
+  "2015": 1235,
+  "2016": 1534,
+  "2017": 2487,
+  "2018": 4046,
+  "2019": 5579,
+  "2020": 6552,
+  "2021": 7818,
+  "2022": 8027,
+  "2023": 10890,
+  "2024": 8972,
+  "2025": 21758
+ },
+ "forecast": [
+  18283,
+  20930,
+  23564
+ ],
+ "model": "hw_damped",
+ "horizon": [
+  2026,
+  2027,
+  2028
+ ],
+ "interval_68pct": {
+  "2026": [
+   13344,
+   23222
+  ],
+  "2027": [
+   15991,
+   25869
+  ],
+  "2028": [
+   18625,
+   28503
+  ]
+ },
+ "score": 90.19,
+ "label": "Emerging",
+ "provenance_note": "sampled domain: drill-down lists from recent+top-cited 4k sample",
+ "sample_stats": null,
+ "top_keywords": [
+  {
+   "name": "Adversarial system",
+   "total": 7897,
+   "bursts": [
+    {
+     "start": 2016,
+     "end": 2025,
+     "duration": 10,
+     "strength": 5.0597,
+     "years": [
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Generative grammar",
+   "total": 16189,
+   "bursts": [
+    {
+     "start": 2012,
+     "end": 2025,
+     "duration": 14,
+     "strength": 4.6476,
+     "years": [
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Deep learning",
+   "total": 13472,
+   "bursts": [
+    {
+     "start": 2012,
+     "end": 2025,
+     "duration": 14,
+     "strength": 4.4541,
+     "years": [
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Generative model",
+   "total": 7384,
+   "bursts": [
+    {
+     "start": 2014,
+     "end": 2025,
+     "duration": 12,
+     "strength": 3.8341,
+     "years": [
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Artificial neural network",
+   "total": 11493,
+   "bursts": [
+    {
+     "start": 2013,
+     "end": 2025,
+     "duration": 13,
+     "strength": 3.8101,
+     "years": [
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Machine learning",
+   "total": 17634,
+   "bursts": [
+    {
+     "start": 2012,
+     "end": 2025,
+     "duration": 14,
+     "strength": 3.5713,
+     "years": [
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Feature (linguistics)",
+   "total": 9541,
+   "bursts": [
+    {
+     "start": 2014,
+     "end": 2025,
+     "duration": 12,
+     "strength": 3.3043,
+     "years": [
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Face (sociological concept)",
+   "total": 7282,
+   "bursts": [
+    {
+     "start": 2014,
+     "end": 2025,
+     "duration": 12,
+     "strength": 3.1312,
+     "years": [
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Pattern recognition (psychology)",
+   "total": 29669,
+   "bursts": [
+    {
+     "start": 2012,
+     "end": 2025,
+     "duration": 14,
+     "strength": 2.9089,
+     "years": [
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    },
+    {
+     "start": 2009,
+     "end": 2009,
+     "duration": 1,
+     "strength": 0.6977,
+     "years": [
+      2009
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Artificial intelligence",
+   "total": 57326,
+   "bursts": [
+    {
+     "start": 2011,
+     "end": 2025,
+     "duration": 15,
+     "strength": 2.7657,
+     "years": [
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Image (mathematics)",
+   "total": 28898,
+   "bursts": [
+    {
+     "start": 2007,
+     "end": 2025,
+     "duration": 19,
+     "strength": 2.6974,
+     "years": [
+      2007,
+      2008,
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Computer science",
+   "total": 62426,
+   "bursts": [
+    {
+     "start": 2010,
+     "end": 2025,
+     "duration": 16,
+     "strength": 2.6878,
+     "years": [
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Computer vision",
+   "total": 25745,
+   "bursts": [
+    {
+     "start": 2006,
+     "end": 2025,
+     "duration": 20,
+     "strength": 2.5822,
+     "years": [
+      2006,
+      2007,
+      2008,
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Algorithm",
+   "total": 11643,
+   "bursts": [
+    {
+     "start": 2006,
+     "end": 2025,
+     "duration": 20,
+     "strength": 2.3275,
+     "years": [
+      2006,
+      2007,
+      2008,
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Mathematics",
+   "total": 21492,
+   "bursts": [
+    {
+     "start": 2009,
+     "end": 2025,
+     "duration": 17,
+     "strength": 2.262,
+     "years": [
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  }
+ ],
+ "caveat": null
+}

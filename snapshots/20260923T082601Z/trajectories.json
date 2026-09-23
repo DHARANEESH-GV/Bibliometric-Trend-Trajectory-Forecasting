@@ -1,0 +1,3255 @@
+{
+ "_meta": {
+  "generated_utc": "2026-09-23T08:26:01.600666+00:00",
+  "run_id": "20260923T082601Z",
+  "lineage": {
+   "trajectories": "data/tier_a + panel.json (annual exact, quarterly derived)",
+   "scores": "stats/emergence.py (weights in data/scores/emergence.json)",
+   "forecasts": "stats/forecasts.py (gated; see backtest.json gate)",
+   "bursts": "stats/bursts.py (Kleinberg 2-state)",
+   "samples": "raw/samples (2k recent + 2k top-cited per domain)"
+  }
+ },
+ "domains": [
+  {
+   "domain": "advanced_semiconductors",
+   "display_name": "Advanced Semiconductors",
+   "series": [
+    {
+     "year": 2000,
+     "works": 14536,
+     "forecast": null
+    },
+    {
+     "year": 2001,
+     "works": 15546,
+     "forecast": null
+    },
+    {
+     "year": 2002,
+     "works": 32656,
+     "forecast": null
+    },
+    {
+     "year": 2003,
+     "works": 25990,
+     "forecast": null
+    },
+    {
+     "year": 2004,
+     "works": 22635,
+     "forecast": null
+    },
+    {
+     "year": 2005,
+     "works": 26506,
+     "forecast": null
+    },
+    {
+     "year": 2006,
+     "works": 28731,
+     "forecast": null
+    },
+    {
+     "year": 2007,
+     "works": 28159,
+     "forecast": null
+    },
+    {
+     "year": 2008,
+     "works": 27482,
+     "forecast": null
+    },
+    {
+     "year": 2009,
+     "works": 27114,
+     "forecast": null
+    },
+    {
+     "year": 2010,
+     "works": 28259,
+     "forecast": null
+    },
+    {
+     "year": 2011,
+     "works": 29743,
+     "forecast": null
+    },
+    {
+     "year": 2012,
+     "works": 28330,
+     "forecast": null
+    },
+    {
+     "year": 2013,
+     "works": 29023,
+     "forecast": null
+    },
+    {
+     "year": 2014,
+     "works": 29482,
+     "forecast": null
+    },
+    {
+     "year": 2015,
+     "works": 28492,
+     "forecast": null
+    },
+    {
+     "year": 2016,
+     "works": 28466,
+     "forecast": null
+    },
+    {
+     "year": 2017,
+     "works": 26524,
+     "forecast": null
+    },
+    {
+     "year": 2018,
+     "works": 25903,
+     "forecast": null
+    },
+    {
+     "year": 2019,
+     "works": 25999,
+     "forecast": null
+    },
+    {
+     "year": 2020,
+     "works": 23770,
+     "forecast": null
+    },
+    {
+     "year": 2021,
+     "works": 23203,
+     "forecast": null
+    },
+    {
+     "year": 2022,
+     "works": 22651,
+     "forecast": null
+    },
+    {
+     "year": 2023,
+     "works": 23780,
+     "forecast": null
+    },
+    {
+     "year": 2024,
+     "works": 25405,
+     "forecast": null
+    },
+    {
+     "year": 2025,
+     "works": 25528,
+     "forecast": null
+    },
+    {
+     "year": 2026,
+     "works": null,
+     "forecast": 24401,
+     "lower": 21145,
+     "upper": 27657,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2027,
+     "works": null,
+     "forecast": 24313,
+     "lower": 21057,
+     "upper": 27570,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2028,
+     "works": null,
+     "forecast": 24243,
+     "lower": 20987,
+     "upper": 27499,
+     "model": "hw_damped"
+    }
+   ],
+   "train_through": 2025,
+   "model_gate": false
+  },
+  {
+   "domain": "ai_agents",
+   "display_name": "AI Agents",
+   "series": [
+    {
+     "year": 2000,
+     "works": 2520,
+     "forecast": null
+    },
+    {
+     "year": 2001,
+     "works": 2735,
+     "forecast": null
+    },
+    {
+     "year": 2002,
+     "works": 5035,
+     "forecast": null
+    },
+    {
+     "year": 2003,
+     "works": 4478,
+     "forecast": null
+    },
+    {
+     "year": 2004,
+     "works": 4969,
+     "forecast": null
+    },
+    {
+     "year": 2005,
+     "works": 5342,
+     "forecast": null
+    },
+    {
+     "year": 2006,
+     "works": 6064,
+     "forecast": null
+    },
+    {
+     "year": 2007,
+     "works": 6115,
+     "forecast": null
+    },
+    {
+     "year": 2008,
+     "works": 6525,
+     "forecast": null
+    },
+    {
+     "year": 2009,
+     "works": 6976,
+     "forecast": null
+    },
+    {
+     "year": 2010,
+     "works": 7065,
+     "forecast": null
+    },
+    {
+     "year": 2011,
+     "works": 7773,
+     "forecast": null
+    },
+    {
+     "year": 2012,
+     "works": 7821,
+     "forecast": null
+    },
+    {
+     "year": 2013,
+     "works": 7688,
+     "forecast": null
+    },
+    {
+     "year": 2014,
+     "works": 7926,
+     "forecast": null
+    },
+    {
+     "year": 2015,
+     "works": 7475,
+     "forecast": null
+    },
+    {
+     "year": 2016,
+     "works": 7738,
+     "forecast": null
+    },
+    {
+     "year": 2017,
+     "works": 7913,
+     "forecast": null
+    },
+    {
+     "year": 2018,
+     "works": 8622,
+     "forecast": null
+    },
+    {
+     "year": 2019,
+     "works": 9120,
+     "forecast": null
+    },
+    {
+     "year": 2020,
+     "works": 9264,
+     "forecast": null
+    },
+    {
+     "year": 2021,
+     "works": 9313,
+     "forecast": null
+    },
+    {
+     "year": 2022,
+     "works": 9468,
+     "forecast": null
+    },
+    {
+     "year": 2023,
+     "works": 10448,
+     "forecast": null
+    },
+    {
+     "year": 2024,
+     "works": 10458,
+     "forecast": null
+    },
+    {
+     "year": 2025,
+     "works": 14717,
+     "forecast": null
+    },
+    {
+     "year": 2026,
+     "works": null,
+     "forecast": 13882,
+     "lower": 11531,
+     "upper": 16233,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2027,
+     "works": null,
+     "forecast": 14291,
+     "lower": 11940,
+     "upper": 16642,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2028,
+     "works": null,
+     "forecast": 14699,
+     "lower": 12348,
+     "upper": 17050,
+     "model": "hw_damped"
+    }
+   ],
+   "train_through": 2025,
+   "model_gate": false
+  },
+  {
+   "domain": "artificial_intelligence",
+   "display_name": "Artificial Intelligence",
+   "series": [
+    {
+     "year": 2000,
+     "works": 7800,
+     "forecast": null
+    },
+    {
+     "year": 2001,
+     "works": 7367,
+     "forecast": null
+    },
+    {
+     "year": 2002,
+     "works": 19972,
+     "forecast": null
+    },
+    {
+     "year": 2003,
+     "works": 13156,
+     "forecast": null
+    },
+    {
+     "year": 2004,
+     "works": 10695,
+     "forecast": null
+    },
+    {
+     "year": 2005,
+     "works": 13448,
+     "forecast": null
+    },
+    {
+     "year": 2006,
+     "works": 14072,
+     "forecast": null
+    },
+    {
+     "year": 2007,
+     "works": 12727,
+     "forecast": null
+    },
+    {
+     "year": 2008,
+     "works": 12919,
+     "forecast": null
+    },
+    {
+     "year": 2009,
+     "works": 13890,
+     "forecast": null
+    },
+    {
+     "year": 2010,
+     "works": 14036,
+     "forecast": null
+    },
+    {
+     "year": 2011,
+     "works": 14783,
+     "forecast": null
+    },
+    {
+     "year": 2012,
+     "works": 14420,
+     "forecast": null
+    },
+    {
+     "year": 2013,
+     "works": 14526,
+     "forecast": null
+    },
+    {
+     "year": 2014,
+     "works": 15344,
+     "forecast": null
+    },
+    {
+     "year": 2015,
+     "works": 16080,
+     "forecast": null
+    },
+    {
+     "year": 2016,
+     "works": 17046,
+     "forecast": null
+    },
+    {
+     "year": 2017,
+     "works": 19242,
+     "forecast": null
+    },
+    {
+     "year": 2018,
+     "works": 23295,
+     "forecast": null
+    },
+    {
+     "year": 2019,
+     "works": 27338,
+     "forecast": null
+    },
+    {
+     "year": 2020,
+     "works": 30596,
+     "forecast": null
+    },
+    {
+     "year": 2021,
+     "works": 32479,
+     "forecast": null
+    },
+    {
+     "year": 2022,
+     "works": 34787,
+     "forecast": null
+    },
+    {
+     "year": 2023,
+     "works": 50737,
+     "forecast": null
+    },
+    {
+     "year": 2024,
+     "works": 72274,
+     "forecast": null
+    },
+    {
+     "year": 2025,
+     "works": 96987,
+     "forecast": null
+    },
+    {
+     "year": 2026,
+     "works": null,
+     "forecast": 119732,
+     "lower": 99401,
+     "upper": 140063,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2027,
+     "works": null,
+     "forecast": 142493,
+     "lower": 122162,
+     "upper": 162823,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2028,
+     "works": null,
+     "forecast": 165139,
+     "lower": 144808,
+     "upper": 185470,
+     "model": "hw_damped"
+    }
+   ],
+   "train_through": 2025,
+   "model_gate": false
+  },
+  {
+   "domain": "autonomous_vehicles",
+   "display_name": "Autonomous Vehicles",
+   "series": [
+    {
+     "year": 2000,
+     "works": 556,
+     "forecast": null
+    },
+    {
+     "year": 2001,
+     "works": 559,
+     "forecast": null
+    },
+    {
+     "year": 2002,
+     "works": 1025,
+     "forecast": null
+    },
+    {
+     "year": 2003,
+     "works": 855,
+     "forecast": null
+    },
+    {
+     "year": 2004,
+     "works": 945,
+     "forecast": null
+    },
+    {
+     "year": 2005,
+     "works": 1206,
+     "forecast": null
+    },
+    {
+     "year": 2006,
+     "works": 1392,
+     "forecast": null
+    },
+    {
+     "year": 2007,
+     "works": 1503,
+     "forecast": null
+    },
+    {
+     "year": 2008,
+     "works": 1556,
+     "forecast": null
+    },
+    {
+     "year": 2009,
+     "works": 1840,
+     "forecast": null
+    },
+    {
+     "year": 2010,
+     "works": 2004,
+     "forecast": null
+    },
+    {
+     "year": 2011,
+     "works": 2403,
+     "forecast": null
+    },
+    {
+     "year": 2012,
+     "works": 2660,
+     "forecast": null
+    },
+    {
+     "year": 2013,
+     "works": 2834,
+     "forecast": null
+    },
+    {
+     "year": 2014,
+     "works": 3135,
+     "forecast": null
+    },
+    {
+     "year": 2015,
+     "works": 3678,
+     "forecast": null
+    },
+    {
+     "year": 2016,
+     "works": 3844,
+     "forecast": null
+    },
+    {
+     "year": 2017,
+     "works": 4901,
+     "forecast": null
+    },
+    {
+     "year": 2018,
+     "works": 6139,
+     "forecast": null
+    },
+    {
+     "year": 2019,
+     "works": 7790,
+     "forecast": null
+    },
+    {
+     "year": 2020,
+     "works": 8347,
+     "forecast": null
+    },
+    {
+     "year": 2021,
+     "works": 9245,
+     "forecast": null
+    },
+    {
+     "year": 2022,
+     "works": 9814,
+     "forecast": null
+    },
+    {
+     "year": 2023,
+     "works": 10968,
+     "forecast": null
+    },
+    {
+     "year": 2024,
+     "works": 12443,
+     "forecast": null
+    },
+    {
+     "year": 2025,
+     "works": 16015,
+     "forecast": null
+    },
+    {
+     "year": 2026,
+     "works": null,
+     "forecast": 19222,
+     "lower": 15054,
+     "upper": 23391,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2027,
+     "works": null,
+     "forecast": 22540,
+     "lower": 18371,
+     "upper": 26708,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2028,
+     "works": null,
+     "forecast": 25841,
+     "lower": 21672,
+     "upper": 30009,
+     "model": "hw_damped"
+    }
+   ],
+   "train_through": 2025,
+   "model_gate": false
+  },
+  {
+   "domain": "biotechnology",
+   "display_name": "Biotechnology",
+   "series": [
+    {
+     "year": 2000,
+     "works": 13271,
+     "forecast": null
+    },
+    {
+     "year": 2001,
+     "works": 13080,
+     "forecast": null
+    },
+    {
+     "year": 2002,
+     "works": 14200,
+     "forecast": null
+    },
+    {
+     "year": 2003,
+     "works": 14014,
+     "forecast": null
+    },
+    {
+     "year": 2004,
+     "works": 15130,
+     "forecast": null
+    },
+    {
+     "year": 2005,
+     "works": 15846,
+     "forecast": null
+    },
+    {
+     "year": 2006,
+     "works": 16906,
+     "forecast": null
+    },
+    {
+     "year": 2007,
+     "works": 17440,
+     "forecast": null
+    },
+    {
+     "year": 2008,
+     "works": 18405,
+     "forecast": null
+    },
+    {
+     "year": 2009,
+     "works": 19868,
+     "forecast": null
+    },
+    {
+     "year": 2010,
+     "works": 20482,
+     "forecast": null
+    },
+    {
+     "year": 2011,
+     "works": 20535,
+     "forecast": null
+    },
+    {
+     "year": 2012,
+     "works": 22328,
+     "forecast": null
+    },
+    {
+     "year": 2013,
+     "works": 23373,
+     "forecast": null
+    },
+    {
+     "year": 2014,
+     "works": 23993,
+     "forecast": null
+    },
+    {
+     "year": 2015,
+     "works": 24448,
+     "forecast": null
+    },
+    {
+     "year": 2016,
+     "works": 24790,
+     "forecast": null
+    },
+    {
+     "year": 2017,
+     "works": 23981,
+     "forecast": null
+    },
+    {
+     "year": 2018,
+     "works": 22780,
+     "forecast": null
+    },
+    {
+     "year": 2019,
+     "works": 23308,
+     "forecast": null
+    },
+    {
+     "year": 2020,
+     "works": 23380,
+     "forecast": null
+    },
+    {
+     "year": 2021,
+     "works": 21432,
+     "forecast": null
+    },
+    {
+     "year": 2022,
+     "works": 19459,
+     "forecast": null
+    },
+    {
+     "year": 2023,
+     "works": 19533,
+     "forecast": null
+    },
+    {
+     "year": 2024,
+     "works": 21099,
+     "forecast": null
+    },
+    {
+     "year": 2025,
+     "works": 23912,
+     "forecast": null
+    },
+    {
+     "year": 2026,
+     "works": null,
+     "forecast": 26158,
+     "lower": 22595,
+     "upper": 29722,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2027,
+     "works": null,
+     "forecast": 27955,
+     "lower": 24392,
+     "upper": 31519,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2028,
+     "works": null,
+     "forecast": 29393,
+     "lower": 25830,
+     "upper": 32957,
+     "model": "hw_damped"
+    }
+   ],
+   "train_through": 2025,
+   "model_gate": false
+  },
+  {
+   "domain": "blockchain",
+   "display_name": "Blockchain",
+   "series": [
+    {
+     "year": 2000,
+     "works": 341,
+     "forecast": null
+    },
+    {
+     "year": 2001,
+     "works": 394,
+     "forecast": null
+    },
+    {
+     "year": 2002,
+     "works": 548,
+     "forecast": null
+    },
+    {
+     "year": 2003,
+     "works": 603,
+     "forecast": null
+    },
+    {
+     "year": 2004,
+     "works": 827,
+     "forecast": null
+    },
+    {
+     "year": 2005,
+     "works": 949,
+     "forecast": null
+    },
+    {
+     "year": 2006,
+     "works": 1197,
+     "forecast": null
+    },
+    {
+     "year": 2007,
+     "works": 1395,
+     "forecast": null
+    },
+    {
+     "year": 2008,
+     "works": 1891,
+     "forecast": null
+    },
+    {
+     "year": 2009,
+     "works": 2489,
+     "forecast": null
+    },
+    {
+     "year": 2010,
+     "works": 3460,
+     "forecast": null
+    },
+    {
+     "year": 2011,
+     "works": 4408,
+     "forecast": null
+    },
+    {
+     "year": 2012,
+     "works": 5701,
+     "forecast": null
+    },
+    {
+     "year": 2013,
+     "works": 7479,
+     "forecast": null
+    },
+    {
+     "year": 2014,
+     "works": 9170,
+     "forecast": null
+    },
+    {
+     "year": 2015,
+     "works": 11835,
+     "forecast": null
+    },
+    {
+     "year": 2016,
+     "works": 14187,
+     "forecast": null
+    },
+    {
+     "year": 2017,
+     "works": 19219,
+     "forecast": null
+    },
+    {
+     "year": 2018,
+     "works": 26565,
+     "forecast": null
+    },
+    {
+     "year": 2019,
+     "works": 34873,
+     "forecast": null
+    },
+    {
+     "year": 2020,
+     "works": 37927,
+     "forecast": null
+    },
+    {
+     "year": 2021,
+     "works": 42075,
+     "forecast": null
+    },
+    {
+     "year": 2022,
+     "works": 45750,
+     "forecast": null
+    },
+    {
+     "year": 2023,
+     "works": 51347,
+     "forecast": null
+    },
+    {
+     "year": 2024,
+     "works": 42185,
+     "forecast": null
+    },
+    {
+     "year": 2025,
+     "works": 45782,
+     "forecast": null
+    },
+    {
+     "year": 2026,
+     "works": null,
+     "forecast": 44354,
+     "lower": 26614,
+     "upper": 62094,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2027,
+     "works": null,
+     "forecast": 43612,
+     "lower": 25872,
+     "upper": 61352,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2028,
+     "works": null,
+     "forecast": 42974,
+     "lower": 25234,
+     "upper": 60714,
+     "model": "hw_damped"
+    }
+   ],
+   "train_through": 2025,
+   "model_gate": false
+  },
+  {
+   "domain": "brain_computer_interfaces",
+   "display_name": "Brain-Computer Interfaces",
+   "series": [
+    {
+     "year": 2000,
+     "works": 2630,
+     "forecast": null
+    },
+    {
+     "year": 2001,
+     "works": 2480,
+     "forecast": null
+    },
+    {
+     "year": 2002,
+     "works": 3803,
+     "forecast": null
+    },
+    {
+     "year": 2003,
+     "works": 3647,
+     "forecast": null
+    },
+    {
+     "year": 2004,
+     "works": 3719,
+     "forecast": null
+    },
+    {
+     "year": 2005,
+     "works": 4856,
+     "forecast": null
+    },
+    {
+     "year": 2006,
+     "works": 5284,
+     "forecast": null
+    },
+    {
+     "year": 2007,
+     "works": 5805,
+     "forecast": null
+    },
+    {
+     "year": 2008,
+     "works": 6520,
+     "forecast": null
+    },
+    {
+     "year": 2009,
+     "works": 7500,
+     "forecast": null
+    },
+    {
+     "year": 2010,
+     "works": 8192,
+     "forecast": null
+    },
+    {
+     "year": 2011,
+     "works": 8761,
+     "forecast": null
+    },
+    {
+     "year": 2012,
+     "works": 9142,
+     "forecast": null
+    },
+    {
+     "year": 2013,
+     "works": 10611,
+     "forecast": null
+    },
+    {
+     "year": 2014,
+     "works": 11099,
+     "forecast": null
+    },
+    {
+     "year": 2015,
+     "works": 11935,
+     "forecast": null
+    },
+    {
+     "year": 2016,
+     "works": 12164,
+     "forecast": null
+    },
+    {
+     "year": 2017,
+     "works": 13482,
+     "forecast": null
+    },
+    {
+     "year": 2018,
+     "works": 14782,
+     "forecast": null
+    },
+    {
+     "year": 2019,
+     "works": 16321,
+     "forecast": null
+    },
+    {
+     "year": 2020,
+     "works": 17353,
+     "forecast": null
+    },
+    {
+     "year": 2021,
+     "works": 17988,
+     "forecast": null
+    },
+    {
+     "year": 2022,
+     "works": 18085,
+     "forecast": null
+    },
+    {
+     "year": 2023,
+     "works": 20011,
+     "forecast": null
+    },
+    {
+     "year": 2024,
+     "works": 19733,
+     "forecast": null
+    },
+    {
+     "year": 2025,
+     "works": 23258,
+     "forecast": null
+    },
+    {
+     "year": 2026,
+     "works": null,
+     "forecast": 23084,
+     "lower": 17166,
+     "upper": 29003,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2027,
+     "works": null,
+     "forecast": 24185,
+     "lower": 18267,
+     "upper": 30104,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2028,
+     "works": null,
+     "forecast": 25280,
+     "lower": 19362,
+     "upper": 31199,
+     "model": "hw_damped"
+    }
+   ],
+   "train_through": 2025,
+   "model_gate": false
+  },
+  {
+   "domain": "carbon_capture",
+   "display_name": "Carbon Capture",
+   "series": [
+    {
+     "year": 2000,
+     "works": 3615,
+     "forecast": null
+    },
+    {
+     "year": 2001,
+     "works": 1637,
+     "forecast": null
+    },
+    {
+     "year": 2002,
+     "works": 1806,
+     "forecast": null
+    },
+    {
+     "year": 2003,
+     "works": 2269,
+     "forecast": null
+    },
+    {
+     "year": 2004,
+     "works": 2342,
+     "forecast": null
+    },
+    {
+     "year": 2005,
+     "works": 3100,
+     "forecast": null
+    },
+    {
+     "year": 2006,
+     "works": 2965,
+     "forecast": null
+    },
+    {
+     "year": 2007,
+     "works": 3184,
+     "forecast": null
+    },
+    {
+     "year": 2008,
+     "works": 3527,
+     "forecast": null
+    },
+    {
+     "year": 2009,
+     "works": 5053,
+     "forecast": null
+    },
+    {
+     "year": 2010,
+     "works": 5273,
+     "forecast": null
+    },
+    {
+     "year": 2011,
+     "works": 7035,
+     "forecast": null
+    },
+    {
+     "year": 2012,
+     "works": 6959,
+     "forecast": null
+    },
+    {
+     "year": 2013,
+     "works": 8008,
+     "forecast": null
+    },
+    {
+     "year": 2014,
+     "works": 8203,
+     "forecast": null
+    },
+    {
+     "year": 2015,
+     "works": 7588,
+     "forecast": null
+    },
+    {
+     "year": 2016,
+     "works": 7999,
+     "forecast": null
+    },
+    {
+     "year": 2017,
+     "works": 8380,
+     "forecast": null
+    },
+    {
+     "year": 2018,
+     "works": 7947,
+     "forecast": null
+    },
+    {
+     "year": 2019,
+     "works": 8760,
+     "forecast": null
+    },
+    {
+     "year": 2020,
+     "works": 8790,
+     "forecast": null
+    },
+    {
+     "year": 2021,
+     "works": 9491,
+     "forecast": null
+    },
+    {
+     "year": 2022,
+     "works": 10482,
+     "forecast": null
+    },
+    {
+     "year": 2023,
+     "works": 11813,
+     "forecast": null
+    },
+    {
+     "year": 2024,
+     "works": 13250,
+     "forecast": null
+    },
+    {
+     "year": 2025,
+     "works": 17129,
+     "forecast": null
+    },
+    {
+     "year": 2026,
+     "works": null,
+     "forecast": 19374,
+     "lower": 15576,
+     "upper": 23172,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2027,
+     "works": null,
+     "forecast": 22228,
+     "lower": 18430,
+     "upper": 26026,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2028,
+     "works": null,
+     "forecast": 25067,
+     "lower": 21269,
+     "upper": 28865,
+     "model": "hw_damped"
+    }
+   ],
+   "train_through": 2025,
+   "model_gate": false
+  },
+  {
+   "domain": "clean_hydrogen",
+   "display_name": "Clean Hydrogen",
+   "series": [
+    {
+     "year": 2000,
+     "works": 751,
+     "forecast": null
+    },
+    {
+     "year": 2001,
+     "works": 893,
+     "forecast": null
+    },
+    {
+     "year": 2002,
+     "works": 1082,
+     "forecast": null
+    },
+    {
+     "year": 2003,
+     "works": 1383,
+     "forecast": null
+    },
+    {
+     "year": 2004,
+     "works": 1743,
+     "forecast": null
+    },
+    {
+     "year": 2005,
+     "works": 2202,
+     "forecast": null
+    },
+    {
+     "year": 2006,
+     "works": 2638,
+     "forecast": null
+    },
+    {
+     "year": 2007,
+     "works": 3245,
+     "forecast": null
+    },
+    {
+     "year": 2008,
+     "works": 3604,
+     "forecast": null
+    },
+    {
+     "year": 2009,
+     "works": 4580,
+     "forecast": null
+    },
+    {
+     "year": 2010,
+     "works": 5700,
+     "forecast": null
+    },
+    {
+     "year": 2011,
+     "works": 7585,
+     "forecast": null
+    },
+    {
+     "year": 2012,
+     "works": 8696,
+     "forecast": null
+    },
+    {
+     "year": 2013,
+     "works": 10675,
+     "forecast": null
+    },
+    {
+     "year": 2014,
+     "works": 12286,
+     "forecast": null
+    },
+    {
+     "year": 2015,
+     "works": 13187,
+     "forecast": null
+    },
+    {
+     "year": 2016,
+     "works": 14459,
+     "forecast": null
+    },
+    {
+     "year": 2017,
+     "works": 15651,
+     "forecast": null
+    },
+    {
+     "year": 2018,
+     "works": 18495,
+     "forecast": null
+    },
+    {
+     "year": 2019,
+     "works": 20948,
+     "forecast": null
+    },
+    {
+     "year": 2020,
+     "works": 24042,
+     "forecast": null
+    },
+    {
+     "year": 2021,
+     "works": 26426,
+     "forecast": null
+    },
+    {
+     "year": 2022,
+     "works": 31269,
+     "forecast": null
+    },
+    {
+     "year": 2023,
+     "works": 34505,
+     "forecast": null
+    },
+    {
+     "year": 2024,
+     "works": 34161,
+     "forecast": null
+    },
+    {
+     "year": 2025,
+     "works": 33134,
+     "forecast": null
+    },
+    {
+     "year": 2026,
+     "works": null,
+     "forecast": 32284,
+     "lower": 20992,
+     "upper": 43575,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2027,
+     "works": null,
+     "forecast": 31579,
+     "lower": 20288,
+     "upper": 42871,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2028,
+     "works": null,
+     "forecast": 30996,
+     "lower": 19704,
+     "upper": 42287,
+     "model": "hw_damped"
+    }
+   ],
+   "train_through": 2025,
+   "model_gate": false
+  },
+  {
+   "domain": "cybersecurity",
+   "display_name": "Cybersecurity",
+   "series": [
+    {
+     "year": 2000,
+     "works": 2316,
+     "forecast": null
+    },
+    {
+     "year": 2001,
+     "works": 2552,
+     "forecast": null
+    },
+    {
+     "year": 2002,
+     "works": 4512,
+     "forecast": null
+    },
+    {
+     "year": 2003,
+     "works": 4901,
+     "forecast": null
+    },
+    {
+     "year": 2004,
+     "works": 6162,
+     "forecast": null
+    },
+    {
+     "year": 2005,
+     "works": 7542,
+     "forecast": null
+    },
+    {
+     "year": 2006,
+     "works": 8898,
+     "forecast": null
+    },
+    {
+     "year": 2007,
+     "works": 9655,
+     "forecast": null
+    },
+    {
+     "year": 2008,
+     "works": 10399,
+     "forecast": null
+    },
+    {
+     "year": 2009,
+     "works": 11894,
+     "forecast": null
+    },
+    {
+     "year": 2010,
+     "works": 12697,
+     "forecast": null
+    },
+    {
+     "year": 2011,
+     "works": 14024,
+     "forecast": null
+    },
+    {
+     "year": 2012,
+     "works": 15324,
+     "forecast": null
+    },
+    {
+     "year": 2013,
+     "works": 16403,
+     "forecast": null
+    },
+    {
+     "year": 2014,
+     "works": 17866,
+     "forecast": null
+    },
+    {
+     "year": 2015,
+     "works": 18855,
+     "forecast": null
+    },
+    {
+     "year": 2016,
+     "works": 19795,
+     "forecast": null
+    },
+    {
+     "year": 2017,
+     "works": 21633,
+     "forecast": null
+    },
+    {
+     "year": 2018,
+     "works": 24787,
+     "forecast": null
+    },
+    {
+     "year": 2019,
+     "works": 26888,
+     "forecast": null
+    },
+    {
+     "year": 2020,
+     "works": 28933,
+     "forecast": null
+    },
+    {
+     "year": 2021,
+     "works": 29652,
+     "forecast": null
+    },
+    {
+     "year": 2022,
+     "works": 30240,
+     "forecast": null
+    },
+    {
+     "year": 2023,
+     "works": 34517,
+     "forecast": null
+    },
+    {
+     "year": 2024,
+     "works": 40939,
+     "forecast": null
+    },
+    {
+     "year": 2025,
+     "works": 50332,
+     "forecast": null
+    },
+    {
+     "year": 2026,
+     "works": null,
+     "forecast": 59678,
+     "lower": 47813,
+     "upper": 71543,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2027,
+     "works": null,
+     "forecast": 68977,
+     "lower": 57112,
+     "upper": 80842,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2028,
+     "works": null,
+     "forecast": 78230,
+     "lower": 66365,
+     "upper": 90095,
+     "model": "hw_damped"
+    }
+   ],
+   "train_through": 2025,
+   "model_gate": false
+  },
+  {
+   "domain": "digital_twins",
+   "display_name": "Digital Twins",
+   "series": [
+    {
+     "year": 2000,
+     "works": 218,
+     "forecast": null
+    },
+    {
+     "year": 2001,
+     "works": 276,
+     "forecast": null
+    },
+    {
+     "year": 2002,
+     "works": 374,
+     "forecast": null
+    },
+    {
+     "year": 2003,
+     "works": 352,
+     "forecast": null
+    },
+    {
+     "year": 2004,
+     "works": 380,
+     "forecast": null
+    },
+    {
+     "year": 2005,
+     "works": 460,
+     "forecast": null
+    },
+    {
+     "year": 2006,
+     "works": 539,
+     "forecast": null
+    },
+    {
+     "year": 2007,
+     "works": 537,
+     "forecast": null
+    },
+    {
+     "year": 2008,
+     "works": 574,
+     "forecast": null
+    },
+    {
+     "year": 2009,
+     "works": 598,
+     "forecast": null
+    },
+    {
+     "year": 2010,
+     "works": 767,
+     "forecast": null
+    },
+    {
+     "year": 2011,
+     "works": 963,
+     "forecast": null
+    },
+    {
+     "year": 2012,
+     "works": 1014,
+     "forecast": null
+    },
+    {
+     "year": 2013,
+     "works": 1217,
+     "forecast": null
+    },
+    {
+     "year": 2014,
+     "works": 1569,
+     "forecast": null
+    },
+    {
+     "year": 2015,
+     "works": 2105,
+     "forecast": null
+    },
+    {
+     "year": 2016,
+     "works": 2864,
+     "forecast": null
+    },
+    {
+     "year": 2017,
+     "works": 4204,
+     "forecast": null
+    },
+    {
+     "year": 2018,
+     "works": 6053,
+     "forecast": null
+    },
+    {
+     "year": 2019,
+     "works": 7984,
+     "forecast": null
+    },
+    {
+     "year": 2020,
+     "works": 9451,
+     "forecast": null
+    },
+    {
+     "year": 2021,
+     "works": 11137,
+     "forecast": null
+    },
+    {
+     "year": 2022,
+     "works": 12404,
+     "forecast": null
+    },
+    {
+     "year": 2023,
+     "works": 15289,
+     "forecast": null
+    },
+    {
+     "year": 2024,
+     "works": 18587,
+     "forecast": null
+    },
+    {
+     "year": 2025,
+     "works": 27149,
+     "forecast": null
+    },
+    {
+     "year": 2026,
+     "works": null,
+     "forecast": 35583,
+     "lower": 28715,
+     "upper": 42450,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2027,
+     "works": null,
+     "forecast": 44003,
+     "lower": 37136,
+     "upper": 50871,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2028,
+     "works": null,
+     "forecast": 52382,
+     "lower": 45515,
+     "upper": 59250,
+     "model": "hw_damped"
+    }
+   ],
+   "train_through": 2025,
+   "model_gate": false
+  },
+  {
+   "domain": "edge_computing",
+   "display_name": "Edge Computing",
+   "series": [
+    {
+     "year": 2000,
+     "works": 183,
+     "forecast": null
+    },
+    {
+     "year": 2001,
+     "works": 202,
+     "forecast": null
+    },
+    {
+     "year": 2002,
+     "works": 349,
+     "forecast": null
+    },
+    {
+     "year": 2003,
+     "works": 377,
+     "forecast": null
+    },
+    {
+     "year": 2004,
+     "works": 490,
+     "forecast": null
+    },
+    {
+     "year": 2005,
+     "works": 674,
+     "forecast": null
+    },
+    {
+     "year": 2006,
+     "works": 864,
+     "forecast": null
+    },
+    {
+     "year": 2007,
+     "works": 998,
+     "forecast": null
+    },
+    {
+     "year": 2008,
+     "works": 1101,
+     "forecast": null
+    },
+    {
+     "year": 2009,
+     "works": 1385,
+     "forecast": null
+    },
+    {
+     "year": 2010,
+     "works": 2033,
+     "forecast": null
+    },
+    {
+     "year": 2011,
+     "works": 3045,
+     "forecast": null
+    },
+    {
+     "year": 2012,
+     "works": 4290,
+     "forecast": null
+    },
+    {
+     "year": 2013,
+     "works": 5604,
+     "forecast": null
+    },
+    {
+     "year": 2014,
+     "works": 6986,
+     "forecast": null
+    },
+    {
+     "year": 2015,
+     "works": 8551,
+     "forecast": null
+    },
+    {
+     "year": 2016,
+     "works": 10240,
+     "forecast": null
+    },
+    {
+     "year": 2017,
+     "works": 12648,
+     "forecast": null
+    },
+    {
+     "year": 2018,
+     "works": 16378,
+     "forecast": null
+    },
+    {
+     "year": 2019,
+     "works": 18992,
+     "forecast": null
+    },
+    {
+     "year": 2020,
+     "works": 20535,
+     "forecast": null
+    },
+    {
+     "year": 2021,
+     "works": 22962,
+     "forecast": null
+    },
+    {
+     "year": 2022,
+     "works": 23073,
+     "forecast": null
+    },
+    {
+     "year": 2023,
+     "works": 23752,
+     "forecast": null
+    },
+    {
+     "year": 2024,
+     "works": 21378,
+     "forecast": null
+    },
+    {
+     "year": 2025,
+     "works": 25933,
+     "forecast": null
+    },
+    {
+     "year": 2026,
+     "works": null,
+     "forecast": 25578,
+     "lower": 16433,
+     "upper": 34724,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2027,
+     "works": null,
+     "forecast": 26527,
+     "lower": 17381,
+     "upper": 35673,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2028,
+     "works": null,
+     "forecast": 27382,
+     "lower": 18236,
+     "upper": 36528,
+     "model": "hw_damped"
+    }
+   ],
+   "train_through": 2025,
+   "model_gate": false
+  },
+  {
+   "domain": "generative_ai",
+   "display_name": "Generative AI",
+   "series": [
+    {
+     "year": 2000,
+     "works": 101,
+     "forecast": null
+    },
+    {
+     "year": 2001,
+     "works": 118,
+     "forecast": null
+    },
+    {
+     "year": 2002,
+     "works": 212,
+     "forecast": null
+    },
+    {
+     "year": 2003,
+     "works": 236,
+     "forecast": null
+    },
+    {
+     "year": 2004,
+     "works": 248,
+     "forecast": null
+    },
+    {
+     "year": 2005,
+     "works": 305,
+     "forecast": null
+    },
+    {
+     "year": 2006,
+     "works": 368,
+     "forecast": null
+    },
+    {
+     "year": 2007,
+     "works": 418,
+     "forecast": null
+    },
+    {
+     "year": 2008,
+     "works": 415,
+     "forecast": null
+    },
+    {
+     "year": 2009,
+     "works": 552,
+     "forecast": null
+    },
+    {
+     "year": 2010,
+     "works": 608,
+     "forecast": null
+    },
+    {
+     "year": 2011,
+     "works": 631,
+     "forecast": null
+    },
+    {
+     "year": 2012,
+     "works": 751,
+     "forecast": null
+    },
+    {
+     "year": 2013,
+     "works": 821,
+     "forecast": null
+    },
+    {
+     "year": 2014,
+     "works": 972,
+     "forecast": null
+    },
+    {
+     "year": 2015,
+     "works": 1235,
+     "forecast": null
+    },
+    {
+     "year": 2016,
+     "works": 1534,
+     "forecast": null
+    },
+    {
+     "year": 2017,
+     "works": 2487,
+     "forecast": null
+    },
+    {
+     "year": 2018,
+     "works": 4046,
+     "forecast": null
+    },
+    {
+     "year": 2019,
+     "works": 5579,
+     "forecast": null
+    },
+    {
+     "year": 2020,
+     "works": 6552,
+     "forecast": null
+    },
+    {
+     "year": 2021,
+     "works": 7818,
+     "forecast": null
+    },
+    {
+     "year": 2022,
+     "works": 8027,
+     "forecast": null
+    },
+    {
+     "year": 2023,
+     "works": 10890,
+     "forecast": null
+    },
+    {
+     "year": 2024,
+     "works": 8972,
+     "forecast": null
+    },
+    {
+     "year": 2025,
+     "works": 21758,
+     "forecast": null
+    },
+    {
+     "year": 2026,
+     "works": null,
+     "forecast": 18283,
+     "lower": 13344,
+     "upper": 23222,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2027,
+     "works": null,
+     "forecast": 20930,
+     "lower": 15991,
+     "upper": 25869,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2028,
+     "works": null,
+     "forecast": 23564,
+     "lower": 18625,
+     "upper": 28503,
+     "model": "hw_damped"
+    }
+   ],
+   "train_through": 2025,
+   "model_gate": false
+  },
+  {
+   "domain": "internet_of_things",
+   "display_name": "Internet of Things",
+   "series": [
+    {
+     "year": 2000,
+     "works": 78,
+     "forecast": null
+    },
+    {
+     "year": 2001,
+     "works": 66,
+     "forecast": null
+    },
+    {
+     "year": 2002,
+     "works": 75,
+     "forecast": null
+    },
+    {
+     "year": 2003,
+     "works": 110,
+     "forecast": null
+    },
+    {
+     "year": 2004,
+     "works": 302,
+     "forecast": null
+    },
+    {
+     "year": 2005,
+     "works": 269,
+     "forecast": null
+    },
+    {
+     "year": 2006,
+     "works": 289,
+     "forecast": null
+    },
+    {
+     "year": 2007,
+     "works": 281,
+     "forecast": null
+    },
+    {
+     "year": 2008,
+     "works": 336,
+     "forecast": null
+    },
+    {
+     "year": 2009,
+     "works": 415,
+     "forecast": null
+    },
+    {
+     "year": 2010,
+     "works": 473,
+     "forecast": null
+    },
+    {
+     "year": 2011,
+     "works": 454,
+     "forecast": null
+    },
+    {
+     "year": 2012,
+     "works": 655,
+     "forecast": null
+    },
+    {
+     "year": 2013,
+     "works": 716,
+     "forecast": null
+    },
+    {
+     "year": 2014,
+     "works": 939,
+     "forecast": null
+    },
+    {
+     "year": 2015,
+     "works": 1137,
+     "forecast": null
+    },
+    {
+     "year": 2016,
+     "works": 1375,
+     "forecast": null
+    },
+    {
+     "year": 2017,
+     "works": 1900,
+     "forecast": null
+    },
+    {
+     "year": 2018,
+     "works": 2748,
+     "forecast": null
+    },
+    {
+     "year": 2019,
+     "works": 3231,
+     "forecast": null
+    },
+    {
+     "year": 2020,
+     "works": 3773,
+     "forecast": null
+    },
+    {
+     "year": 2021,
+     "works": 4769,
+     "forecast": null
+    },
+    {
+     "year": 2022,
+     "works": 6007,
+     "forecast": null
+    },
+    {
+     "year": 2023,
+     "works": 5693,
+     "forecast": null
+    },
+    {
+     "year": 2024,
+     "works": 6083,
+     "forecast": null
+    },
+    {
+     "year": 2025,
+     "works": 11916,
+     "forecast": null
+    },
+    {
+     "year": 2026,
+     "works": null,
+     "forecast": 10638,
+     "lower": 7841,
+     "upper": 13434,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2027,
+     "works": null,
+     "forecast": 12110,
+     "lower": 9314,
+     "upper": 14906,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2028,
+     "works": null,
+     "forecast": 13574,
+     "lower": 10778,
+     "upper": 16370,
+     "model": "hw_damped"
+    }
+   ],
+   "train_through": 2025,
+   "model_gate": false
+  },
+  {
+   "domain": "quantum_computing",
+   "display_name": "Quantum Computing",
+   "series": [
+    {
+     "year": 2000,
+     "works": 1443,
+     "forecast": null
+    },
+    {
+     "year": 2001,
+     "works": 1724,
+     "forecast": null
+    },
+    {
+     "year": 2002,
+     "works": 2448,
+     "forecast": null
+    },
+    {
+     "year": 2003,
+     "works": 2583,
+     "forecast": null
+    },
+    {
+     "year": 2004,
+     "works": 2802,
+     "forecast": null
+    },
+    {
+     "year": 2005,
+     "works": 3492,
+     "forecast": null
+    },
+    {
+     "year": 2006,
+     "works": 3755,
+     "forecast": null
+    },
+    {
+     "year": 2007,
+     "works": 3677,
+     "forecast": null
+    },
+    {
+     "year": 2008,
+     "works": 3940,
+     "forecast": null
+    },
+    {
+     "year": 2009,
+     "works": 3909,
+     "forecast": null
+    },
+    {
+     "year": 2010,
+     "works": 4032,
+     "forecast": null
+    },
+    {
+     "year": 2011,
+     "works": 4273,
+     "forecast": null
+    },
+    {
+     "year": 2012,
+     "works": 4618,
+     "forecast": null
+    },
+    {
+     "year": 2013,
+     "works": 4977,
+     "forecast": null
+    },
+    {
+     "year": 2014,
+     "works": 5218,
+     "forecast": null
+    },
+    {
+     "year": 2015,
+     "works": 5151,
+     "forecast": null
+    },
+    {
+     "year": 2016,
+     "works": 5418,
+     "forecast": null
+    },
+    {
+     "year": 2017,
+     "works": 5626,
+     "forecast": null
+    },
+    {
+     "year": 2018,
+     "works": 6306,
+     "forecast": null
+    },
+    {
+     "year": 2019,
+     "works": 7636,
+     "forecast": null
+    },
+    {
+     "year": 2020,
+     "works": 8757,
+     "forecast": null
+    },
+    {
+     "year": 2021,
+     "works": 10731,
+     "forecast": null
+    },
+    {
+     "year": 2022,
+     "works": 11719,
+     "forecast": null
+    },
+    {
+     "year": 2023,
+     "works": 13854,
+     "forecast": null
+    },
+    {
+     "year": 2024,
+     "works": 14108,
+     "forecast": null
+    },
+    {
+     "year": 2025,
+     "works": 20584,
+     "forecast": null
+    },
+    {
+     "year": 2026,
+     "works": null,
+     "forecast": 21428,
+     "lower": 17000,
+     "upper": 25857,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2027,
+     "works": null,
+     "forecast": 24251,
+     "lower": 19823,
+     "upper": 28679,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2028,
+     "works": null,
+     "forecast": 27059,
+     "lower": 22631,
+     "upper": 31487,
+     "model": "hw_damped"
+    }
+   ],
+   "train_through": 2025,
+   "model_gate": false
+  },
+  {
+   "domain": "quantum_error_correction",
+   "display_name": "Quantum Error Correction",
+   "series": [
+    {
+     "year": 2000,
+     "works": 1443,
+     "forecast": null
+    },
+    {
+     "year": 2001,
+     "works": 1724,
+     "forecast": null
+    },
+    {
+     "year": 2002,
+     "works": 2448,
+     "forecast": null
+    },
+    {
+     "year": 2003,
+     "works": 2583,
+     "forecast": null
+    },
+    {
+     "year": 2004,
+     "works": 2802,
+     "forecast": null
+    },
+    {
+     "year": 2005,
+     "works": 3492,
+     "forecast": null
+    },
+    {
+     "year": 2006,
+     "works": 3755,
+     "forecast": null
+    },
+    {
+     "year": 2007,
+     "works": 3677,
+     "forecast": null
+    },
+    {
+     "year": 2008,
+     "works": 3940,
+     "forecast": null
+    },
+    {
+     "year": 2009,
+     "works": 3909,
+     "forecast": null
+    },
+    {
+     "year": 2010,
+     "works": 4032,
+     "forecast": null
+    },
+    {
+     "year": 2011,
+     "works": 4273,
+     "forecast": null
+    },
+    {
+     "year": 2012,
+     "works": 4618,
+     "forecast": null
+    },
+    {
+     "year": 2013,
+     "works": 4977,
+     "forecast": null
+    },
+    {
+     "year": 2014,
+     "works": 5218,
+     "forecast": null
+    },
+    {
+     "year": 2015,
+     "works": 5151,
+     "forecast": null
+    },
+    {
+     "year": 2016,
+     "works": 5418,
+     "forecast": null
+    },
+    {
+     "year": 2017,
+     "works": 5626,
+     "forecast": null
+    },
+    {
+     "year": 2018,
+     "works": 6306,
+     "forecast": null
+    },
+    {
+     "year": 2019,
+     "works": 7636,
+     "forecast": null
+    },
+    {
+     "year": 2020,
+     "works": 8757,
+     "forecast": null
+    },
+    {
+     "year": 2021,
+     "works": 10731,
+     "forecast": null
+    },
+    {
+     "year": 2022,
+     "works": 11719,
+     "forecast": null
+    },
+    {
+     "year": 2023,
+     "works": 13854,
+     "forecast": null
+    },
+    {
+     "year": 2024,
+     "works": 14108,
+     "forecast": null
+    },
+    {
+     "year": 2025,
+     "works": 20584,
+     "forecast": null
+    },
+    {
+     "year": 2026,
+     "works": null,
+     "forecast": 21428,
+     "lower": 17000,
+     "upper": 25857,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2027,
+     "works": null,
+     "forecast": 24251,
+     "lower": 19823,
+     "upper": 28679,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2028,
+     "works": null,
+     "forecast": 27059,
+     "lower": 22631,
+     "upper": 31487,
+     "model": "hw_damped"
+    }
+   ],
+   "train_through": 2025,
+   "model_gate": false
+  },
+  {
+   "domain": "smart_manufacturing",
+   "display_name": "Smart Manufacturing",
+   "series": [
+    {
+     "year": 2000,
+     "works": 609,
+     "forecast": null
+    },
+    {
+     "year": 2001,
+     "works": 599,
+     "forecast": null
+    },
+    {
+     "year": 2002,
+     "works": 738,
+     "forecast": null
+    },
+    {
+     "year": 2003,
+     "works": 833,
+     "forecast": null
+    },
+    {
+     "year": 2004,
+     "works": 988,
+     "forecast": null
+    },
+    {
+     "year": 2005,
+     "works": 966,
+     "forecast": null
+    },
+    {
+     "year": 2006,
+     "works": 1156,
+     "forecast": null
+    },
+    {
+     "year": 2007,
+     "works": 1214,
+     "forecast": null
+    },
+    {
+     "year": 2008,
+     "works": 1235,
+     "forecast": null
+    },
+    {
+     "year": 2009,
+     "works": 1311,
+     "forecast": null
+    },
+    {
+     "year": 2010,
+     "works": 1618,
+     "forecast": null
+    },
+    {
+     "year": 2011,
+     "works": 1758,
+     "forecast": null
+    },
+    {
+     "year": 2012,
+     "works": 1865,
+     "forecast": null
+    },
+    {
+     "year": 2013,
+     "works": 2082,
+     "forecast": null
+    },
+    {
+     "year": 2014,
+     "works": 2524,
+     "forecast": null
+    },
+    {
+     "year": 2015,
+     "works": 2998,
+     "forecast": null
+    },
+    {
+     "year": 2016,
+     "works": 3932,
+     "forecast": null
+    },
+    {
+     "year": 2017,
+     "works": 4692,
+     "forecast": null
+    },
+    {
+     "year": 2018,
+     "works": 6433,
+     "forecast": null
+    },
+    {
+     "year": 2019,
+     "works": 7477,
+     "forecast": null
+    },
+    {
+     "year": 2020,
+     "works": 8784,
+     "forecast": null
+    },
+    {
+     "year": 2021,
+     "works": 9966,
+     "forecast": null
+    },
+    {
+     "year": 2022,
+     "works": 11516,
+     "forecast": null
+    },
+    {
+     "year": 2023,
+     "works": 12691,
+     "forecast": null
+    },
+    {
+     "year": 2024,
+     "works": 14903,
+     "forecast": null
+    },
+    {
+     "year": 2025,
+     "works": 17157,
+     "forecast": null
+    },
+    {
+     "year": 2026,
+     "works": null,
+     "forecast": 19332,
+     "lower": 14477,
+     "upper": 24186,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2027,
+     "works": null,
+     "forecast": 21567,
+     "lower": 16712,
+     "upper": 26422,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2028,
+     "works": null,
+     "forecast": 23791,
+     "lower": 18937,
+     "upper": 28646,
+     "model": "hw_damped"
+    }
+   ],
+   "train_through": 2025,
+   "model_gate": false
+  },
+  {
+   "domain": "solid_state_batteries",
+   "display_name": "Solid-State Batteries",
+   "series": [
+    {
+     "year": 2000,
+     "works": 1155,
+     "forecast": null
+    },
+    {
+     "year": 2001,
+     "works": 1299,
+     "forecast": null
+    },
+    {
+     "year": 2002,
+     "works": 1758,
+     "forecast": null
+    },
+    {
+     "year": 2003,
+     "works": 1731,
+     "forecast": null
+    },
+    {
+     "year": 2004,
+     "works": 1807,
+     "forecast": null
+    },
+    {
+     "year": 2005,
+     "works": 1952,
+     "forecast": null
+    },
+    {
+     "year": 2006,
+     "works": 2480,
+     "forecast": null
+    },
+    {
+     "year": 2007,
+     "works": 2376,
+     "forecast": null
+    },
+    {
+     "year": 2008,
+     "works": 2449,
+     "forecast": null
+    },
+    {
+     "year": 2009,
+     "works": 2745,
+     "forecast": null
+    },
+    {
+     "year": 2010,
+     "works": 3431,
+     "forecast": null
+    },
+    {
+     "year": 2011,
+     "works": 4005,
+     "forecast": null
+    },
+    {
+     "year": 2012,
+     "works": 5260,
+     "forecast": null
+    },
+    {
+     "year": 2013,
+     "works": 6545,
+     "forecast": null
+    },
+    {
+     "year": 2014,
+     "works": 8178,
+     "forecast": null
+    },
+    {
+     "year": 2015,
+     "works": 8679,
+     "forecast": null
+    },
+    {
+     "year": 2016,
+     "works": 10391,
+     "forecast": null
+    },
+    {
+     "year": 2017,
+     "works": 10668,
+     "forecast": null
+    },
+    {
+     "year": 2018,
+     "works": 12397,
+     "forecast": null
+    },
+    {
+     "year": 2019,
+     "works": 14470,
+     "forecast": null
+    },
+    {
+     "year": 2020,
+     "works": 16304,
+     "forecast": null
+    },
+    {
+     "year": 2021,
+     "works": 17252,
+     "forecast": null
+    },
+    {
+     "year": 2022,
+     "works": 20443,
+     "forecast": null
+    },
+    {
+     "year": 2023,
+     "works": 21646,
+     "forecast": null
+    },
+    {
+     "year": 2024,
+     "works": 24480,
+     "forecast": null
+    },
+    {
+     "year": 2025,
+     "works": 26805,
+     "forecast": null
+    },
+    {
+     "year": 2026,
+     "works": null,
+     "forecast": 29068,
+     "lower": 21257,
+     "upper": 36880,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2027,
+     "works": null,
+     "forecast": 31433,
+     "lower": 23622,
+     "upper": 39245,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2028,
+     "works": null,
+     "forecast": 33787,
+     "lower": 25975,
+     "upper": 41598,
+     "model": "hw_damped"
+    }
+   ],
+   "train_through": 2025,
+   "model_gate": false
+  },
+  {
+   "domain": "space_technologies",
+   "display_name": "Space Technologies",
+   "series": [
+    {
+     "year": 2000,
+     "works": 5413,
+     "forecast": null
+    },
+    {
+     "year": 2001,
+     "works": 5010,
+     "forecast": null
+    },
+    {
+     "year": 2002,
+     "works": 8618,
+     "forecast": null
+    },
+    {
+     "year": 2003,
+     "works": 7873,
+     "forecast": null
+    },
+    {
+     "year": 2004,
+     "works": 7696,
+     "forecast": null
+    },
+    {
+     "year": 2005,
+     "works": 8278,
+     "forecast": null
+    },
+    {
+     "year": 2006,
+     "works": 8828,
+     "forecast": null
+    },
+    {
+     "year": 2007,
+     "works": 8620,
+     "forecast": null
+    },
+    {
+     "year": 2008,
+     "works": 9174,
+     "forecast": null
+    },
+    {
+     "year": 2009,
+     "works": 9175,
+     "forecast": null
+    },
+    {
+     "year": 2010,
+     "works": 10040,
+     "forecast": null
+    },
+    {
+     "year": 2011,
+     "works": 10757,
+     "forecast": null
+    },
+    {
+     "year": 2012,
+     "works": 11310,
+     "forecast": null
+    },
+    {
+     "year": 2013,
+     "works": 11887,
+     "forecast": null
+    },
+    {
+     "year": 2014,
+     "works": 12110,
+     "forecast": null
+    },
+    {
+     "year": 2015,
+     "works": 13017,
+     "forecast": null
+    },
+    {
+     "year": 2016,
+     "works": 11814,
+     "forecast": null
+    },
+    {
+     "year": 2017,
+     "works": 11940,
+     "forecast": null
+    },
+    {
+     "year": 2018,
+     "works": 12900,
+     "forecast": null
+    },
+    {
+     "year": 2019,
+     "works": 13360,
+     "forecast": null
+    },
+    {
+     "year": 2020,
+     "works": 12571,
+     "forecast": null
+    },
+    {
+     "year": 2021,
+     "works": 12164,
+     "forecast": null
+    },
+    {
+     "year": 2022,
+     "works": 12162,
+     "forecast": null
+    },
+    {
+     "year": 2023,
+     "works": 14096,
+     "forecast": null
+    },
+    {
+     "year": 2024,
+     "works": 17764,
+     "forecast": null
+    },
+    {
+     "year": 2025,
+     "works": 21784,
+     "forecast": null
+    },
+    {
+     "year": 2026,
+     "works": null,
+     "forecast": 24640,
+     "lower": 21300,
+     "upper": 27980,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2027,
+     "works": null,
+     "forecast": 27364,
+     "lower": 24025,
+     "upper": 30704,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2028,
+     "works": null,
+     "forecast": 29965,
+     "lower": 26625,
+     "upper": 33305,
+     "model": "hw_damped"
+    }
+   ],
+   "train_through": 2025,
+   "model_gate": false
+  },
+  {
+   "domain": "synthetic_biology",
+   "display_name": "Synthetic Biology",
+   "series": [
+    {
+     "year": 2000,
+     "works": 3430,
+     "forecast": null
+    },
+    {
+     "year": 2001,
+     "works": 3478,
+     "forecast": null
+    },
+    {
+     "year": 2002,
+     "works": 3907,
+     "forecast": null
+    },
+    {
+     "year": 2003,
+     "works": 4196,
+     "forecast": null
+    },
+    {
+     "year": 2004,
+     "works": 4648,
+     "forecast": null
+    },
+    {
+     "year": 2005,
+     "works": 4822,
+     "forecast": null
+    },
+    {
+     "year": 2006,
+     "works": 5632,
+     "forecast": null
+    },
+    {
+     "year": 2007,
+     "works": 6289,
+     "forecast": null
+    },
+    {
+     "year": 2008,
+     "works": 6921,
+     "forecast": null
+    },
+    {
+     "year": 2009,
+     "works": 8029,
+     "forecast": null
+    },
+    {
+     "year": 2010,
+     "works": 8820,
+     "forecast": null
+    },
+    {
+     "year": 2011,
+     "works": 9222,
+     "forecast": null
+    },
+    {
+     "year": 2012,
+     "works": 9962,
+     "forecast": null
+    },
+    {
+     "year": 2013,
+     "works": 10685,
+     "forecast": null
+    },
+    {
+     "year": 2014,
+     "works": 10777,
+     "forecast": null
+    },
+    {
+     "year": 2015,
+     "works": 11326,
+     "forecast": null
+    },
+    {
+     "year": 2016,
+     "works": 11498,
+     "forecast": null
+    },
+    {
+     "year": 2017,
+     "works": 11281,
+     "forecast": null
+    },
+    {
+     "year": 2018,
+     "works": 10478,
+     "forecast": null
+    },
+    {
+     "year": 2019,
+     "works": 10405,
+     "forecast": null
+    },
+    {
+     "year": 2020,
+     "works": 10700,
+     "forecast": null
+    },
+    {
+     "year": 2021,
+     "works": 10092,
+     "forecast": null
+    },
+    {
+     "year": 2022,
+     "works": 9493,
+     "forecast": null
+    },
+    {
+     "year": 2023,
+     "works": 9187,
+     "forecast": null
+    },
+    {
+     "year": 2024,
+     "works": 9139,
+     "forecast": null
+    },
+    {
+     "year": 2025,
+     "works": 9780,
+     "forecast": null
+    },
+    {
+     "year": 2026,
+     "works": null,
+     "forecast": 10055,
+     "lower": 7488,
+     "upper": 12622,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2027,
+     "works": null,
+     "forecast": 10284,
+     "lower": 7717,
+     "upper": 12852,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2028,
+     "works": null,
+     "forecast": 10476,
+     "lower": 7909,
+     "upper": 13044,
+     "model": "hw_damped"
+    }
+   ],
+   "train_through": 2025,
+   "model_gate": false
+  }
+ ]
+}

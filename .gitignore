@@ -19,7 +19,9 @@ opencode.json.backup
 # Data products (regenerable, too large for git)
 raw/
 staged/
-snapshots/
+# dashboard snapshots: run dirs ARE tracked (small JSONs, the product)
+snapshots/*
+!snapshots/*/
 models/
 *.parquet
 *.jsonl

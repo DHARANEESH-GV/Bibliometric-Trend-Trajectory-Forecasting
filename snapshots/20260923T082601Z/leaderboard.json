@@ -1,0 +1,1097 @@
+{
+ "_meta": {
+  "generated_utc": "2026-09-23T08:26:01.597752+00:00",
+  "run_id": "20260923T082601Z",
+  "lineage": {
+   "trajectories": "data/tier_a + panel.json (annual exact, quarterly derived)",
+   "scores": "stats/emergence.py (weights in data/scores/emergence.json)",
+   "forecasts": "stats/forecasts.py (gated; see backtest.json gate)",
+   "bursts": "stats/bursts.py (Kleinberg 2-state)",
+   "samples": "raw/samples (2k recent + 2k top-cited per domain)"
+  }
+ },
+ "gate": {
+  "hw_damped": {
+   "beats_naive_share": 0.8,
+   "gate_passed": true,
+   "wins": 16,
+   "series": 20
+  },
+  "drift": {
+   "beats_naive_share": 0.8,
+   "gate_passed": true,
+   "wins": 16,
+   "series": 20
+  },
+  "pooled": {
+   "beats_naive_share": 0.05,
+   "gate_passed": false,
+   "wins": 1,
+   "series": 20
+  }
+ },
+ "leaderboard": [
+  {
+   "rank": 1,
+   "domain": "generative_ai",
+   "display_name": "Generative AI",
+   "label": "Emerging",
+   "emergence_score": 90.19,
+   "score_inputs": {
+    "growth_recent": 1.0,
+    "acceleration": 1.0,
+    "keyword_burst": 1.0,
+    "volume_scaled": 0.8463,
+    "momentum_intent": 0.5
+   },
+   "yoy_delta": 1.4249,
+   "sparkline": [
+    1638,
+    1638,
+    1638,
+    1638,
+    1955,
+    1955,
+    1954,
+    1954,
+    2007,
+    2007,
+    2007,
+    2006,
+    2723,
+    2723,
+    2722,
+    2722,
+    2243,
+    2243,
+    2243,
+    2243,
+    5440,
+    5440,
+    5439,
+    5439
+   ],
+   "sparkline_years": [
+    2020,
+    2025
+   ],
+   "forecast_next3": [
+    18283,
+    20930,
+    23564
+   ],
+   "forecast_model": "hw_damped",
+   "caveat": null,
+   "notes": [
+    "2025 count flagged: search-term sensitivity"
+   ]
+  },
+  {
+   "rank": 2,
+   "domain": "internet_of_things",
+   "display_name": "Internet of Things",
+   "label": "Emerging",
+   "emergence_score": 88.44,
+   "score_inputs": {
+    "growth_recent": 0.9587,
+    "acceleration": 1.0,
+    "keyword_burst": 1.0,
+    "volume_scaled": 0.8121,
+    "momentum_intent": 0.5
+   },
+   "yoy_delta": 0.9587,
+   "sparkline": [
+    944,
+    943,
+    943,
+    943,
+    1193,
+    1192,
+    1192,
+    1192,
+    1502,
+    1502,
+    1502,
+    1501,
+    1424,
+    1423,
+    1423,
+    1423,
+    1521,
+    1521,
+    1521,
+    1520,
+    2979,
+    2979,
+    2979,
+    2979
+   ],
+   "sparkline_years": [
+    2020,
+    2025
+   ],
+   "forecast_next3": [
+    10638,
+    12110,
+    13574
+   ],
+   "forecast_model": "hw_damped",
+   "caveat": null,
+   "notes": []
+  },
+  {
+   "rank": 3,
+   "domain": "quantum_error_correction",
+   "display_name": "Quantum Error Correction",
+   "label": "Emerging",
+   "emergence_score": 73.5,
+   "score_inputs": {
+    "growth_recent": 0.459,
+    "acceleration": 0.9407,
+    "keyword_burst": 1.0,
+    "volume_scaled": 0.8941,
+    "momentum_intent": 0.5
+   },
+   "yoy_delta": 0.459,
+   "sparkline": [
+    2190,
+    2189,
+    2189,
+    2189,
+    2683,
+    2683,
+    2683,
+    2682,
+    2930,
+    2930,
+    2930,
+    2929,
+    3464,
+    3464,
+    3463,
+    3463,
+    3527,
+    3527,
+    3527,
+    3527,
+    5146,
+    5146,
+    5146,
+    5146
+   ],
+   "sparkline_years": [
+    2020,
+    2025
+   ],
+   "forecast_next3": [
+    21428,
+    24251,
+    27059
+   ],
+   "forecast_model": "hw_damped",
+   "caveat": "twin-series of quantum_computing (do not rank independently)",
+   "notes": []
+  },
+  {
+   "rank": 4,
+   "domain": "ai_agents",
+   "display_name": "AI Agents",
+   "label": "Emerging",
+   "emergence_score": 71.45,
+   "score_inputs": {
+    "growth_recent": 0.4072,
+    "acceleration": 0.9063,
+    "keyword_burst": 1.0,
+    "volume_scaled": 0.9071,
+    "momentum_intent": 0.5
+   },
+   "yoy_delta": 0.4072,
+   "sparkline": [
+    2316,
+    2316,
+    2316,
+    2316,
+    2329,
+    2328,
+    2328,
+    2328,
+    2367,
+    2367,
+    2367,
+    2367,
+    2612,
+    2612,
+    2612,
+    2612,
+    2615,
+    2615,
+    2614,
+    2614,
+    3680,
+    3679,
+    3679,
+    3679
+   ],
+   "sparkline_years": [
+    2020,
+    2025
+   ],
+   "forecast_next3": [
+    13882,
+    14291,
+    14699
+   ],
+   "forecast_model": "hw_damped",
+   "caveat": null,
+   "notes": []
+  },
+  {
+   "rank": 5,
+   "domain": "digital_twins",
+   "display_name": "Digital Twins",
+   "label": "Accelerating",
+   "emergence_score": 69.35,
+   "score_inputs": {
+    "growth_recent": 0.4606,
+    "acceleration": 0.7449,
+    "keyword_burst": 1.0,
+    "volume_scaled": 0.8757,
+    "momentum_intent": 0.5
+   },
+   "yoy_delta": 0.4606,
+   "sparkline": [
+    2363,
+    2363,
+    2363,
+    2362,
+    2785,
+    2784,
+    2784,
+    2784,
+    3101,
+    3101,
+    3101,
+    3101,
+    3823,
+    3822,
+    3822,
+    3822,
+    4647,
+    4647,
+    4647,
+    4646,
+    6788,
+    6787,
+    6787,
+    6787
+   ],
+   "sparkline_years": [
+    2020,
+    2025
+   ],
+   "forecast_next3": [
+    35583,
+    44003,
+    52382
+   ],
+   "forecast_model": "hw_damped",
+   "caveat": null,
+   "notes": []
+  },
+  {
+   "rank": 6,
+   "domain": "edge_computing",
+   "display_name": "Edge Computing",
+   "label": "Active",
+   "emergence_score": 63.96,
+   "score_inputs": {
+    "growth_recent": 0.2131,
+    "acceleration": 0.813,
+    "keyword_burst": 1.0,
+    "volume_scaled": 0.9209,
+    "momentum_intent": 0.5
+   },
+   "yoy_delta": 0.2131,
+   "sparkline": [
+    5134,
+    5134,
+    5134,
+    5133,
+    5741,
+    5741,
+    5740,
+    5740,
+    5769,
+    5768,
+    5768,
+    5768,
+    5938,
+    5938,
+    5938,
+    5938,
+    5345,
+    5345,
+    5344,
+    5344,
+    6484,
+    6483,
+    6483,
+    6483
+   ],
+   "sparkline_years": [
+    2020,
+    2025
+   ],
+   "forecast_next3": [
+    25578,
+    26527,
+    27382
+   ],
+   "forecast_model": "hw_damped",
+   "caveat": null,
+   "notes": []
+  },
+  {
+   "rank": 7,
+   "domain": "carbon_capture",
+   "display_name": "Carbon Capture",
+   "label": "Accelerating",
+   "emergence_score": 63.21,
+   "score_inputs": {
+    "growth_recent": 0.2927,
+    "acceleration": 0.6711,
+    "keyword_burst": 1.0,
+    "volume_scaled": 0.9002,
+    "momentum_intent": 0.5
+   },
+   "yoy_delta": 0.2927,
+   "sparkline": [
+    2198,
+    2198,
+    2197,
+    2197,
+    2373,
+    2373,
+    2373,
+    2372,
+    2621,
+    2621,
+    2620,
+    2620,
+    2954,
+    2953,
+    2953,
+    2953,
+    3313,
+    3313,
+    3312,
+    3312,
+    4283,
+    4282,
+    4282,
+    4282
+   ],
+   "sparkline_years": [
+    2020,
+    2025
+   ],
+   "forecast_next3": [
+    19374,
+    22228,
+    25067
+   ],
+   "forecast_model": "hw_damped",
+   "caveat": null,
+   "notes": []
+  },
+  {
+   "rank": 8,
+   "domain": "autonomous_vehicles",
+   "display_name": "Autonomous Vehicles",
+   "label": "Accelerating",
+   "emergence_score": 62.21,
+   "score_inputs": {
+    "growth_recent": 0.287,
+    "acceleration": 0.6526,
+    "keyword_burst": 1.0,
+    "volume_scaled": 0.87,
+    "momentum_intent": 0.5
+   },
+   "yoy_delta": 0.287,
+   "sparkline": [
+    2087,
+    2087,
+    2087,
+    2086,
+    2312,
+    2311,
+    2311,
+    2311,
+    2454,
+    2454,
+    2453,
+    2453,
+    2742,
+    2742,
+    2742,
+    2742,
+    3111,
+    3111,
+    3111,
+    3110,
+    4004,
+    4004,
+    4004,
+    4003
+   ],
+   "sparkline_years": [
+    2020,
+    2025
+   ],
+   "forecast_next3": [
+    19222,
+    22540,
+    25841
+   ],
+   "forecast_model": "hw_damped",
+   "caveat": null,
+   "notes": []
+  },
+  {
+   "rank": 9,
+   "domain": "artificial_intelligence",
+   "display_name": "Artificial Intelligence",
+   "label": "Accelerating",
+   "emergence_score": 61.01,
+   "score_inputs": {
+    "growth_recent": 0.3419,
+    "acceleration": 0.4175,
+    "keyword_burst": 1.0,
+    "volume_scaled": 0.9938,
+    "momentum_intent": 0.5
+   },
+   "yoy_delta": 0.3419,
+   "sparkline": [
+    7649,
+    7649,
+    7649,
+    7649,
+    8120,
+    8120,
+    8120,
+    8119,
+    8697,
+    8697,
+    8697,
+    8696,
+    12685,
+    12684,
+    12684,
+    12684,
+    18069,
+    18069,
+    18068,
+    18068,
+    24247,
+    24247,
+    24247,
+    24246
+   ],
+   "sparkline_years": [
+    2020,
+    2025
+   ],
+   "forecast_next3": [
+    119732,
+    142493,
+    165139
+   ],
+   "forecast_model": "hw_damped",
+   "caveat": null,
+   "notes": []
+  },
+  {
+   "rank": 10,
+   "domain": "brain_computer_interfaces",
+   "display_name": "Brain-Computer Interfaces",
+   "label": "Accelerating",
+   "emergence_score": 60.72,
+   "score_inputs": {
+    "growth_recent": 0.1786,
+    "acceleration": 0.6925,
+    "keyword_burst": 1.0,
+    "volume_scaled": 0.9343,
+    "momentum_intent": 0.5
+   },
+   "yoy_delta": 0.1786,
+   "sparkline": [
+    4339,
+    4338,
+    4338,
+    4338,
+    4497,
+    4497,
+    4497,
+    4497,
+    4522,
+    4521,
+    4521,
+    4521,
+    5003,
+    5003,
+    5003,
+    5002,
+    4934,
+    4933,
+    4933,
+    4933,
+    5815,
+    5815,
+    5814,
+    5814
+   ],
+   "sparkline_years": [
+    2020,
+    2025
+   ],
+   "forecast_next3": [
+    23084,
+    24185,
+    25280
+   ],
+   "forecast_model": "hw_damped",
+   "caveat": null,
+   "notes": []
+  },
+  {
+   "rank": 11,
+   "domain": "cybersecurity",
+   "display_name": "Cybersecurity",
+   "label": "Accelerating",
+   "emergence_score": 59.85,
+   "score_inputs": {
+    "growth_recent": 0.2294,
+    "acceleration": 0.5434,
+    "keyword_burst": 1.0,
+    "volume_scaled": 0.9734,
+    "momentum_intent": 0.5
+   },
+   "yoy_delta": 0.2294,
+   "sparkline": [
+    7234,
+    7233,
+    7233,
+    7233,
+    7413,
+    7413,
+    7413,
+    7413,
+    7560,
+    7560,
+    7560,
+    7560,
+    8630,
+    8629,
+    8629,
+    8629,
+    10235,
+    10235,
+    10235,
+    10234,
+    12583,
+    12583,
+    12583,
+    12583
+   ],
+   "sparkline_years": [
+    2020,
+    2025
+   ],
+   "forecast_next3": [
+    59678,
+    68977,
+    78230
+   ],
+   "forecast_model": "hw_damped",
+   "caveat": null,
+   "notes": []
+  },
+  {
+   "rank": 12,
+   "domain": "blockchain",
+   "display_name": "Blockchain",
+   "label": "Active",
+   "emergence_score": 59.78,
+   "score_inputs": {
+    "growth_recent": 0.0853,
+    "acceleration": 0.7637,
+    "keyword_burst": 1.0,
+    "volume_scaled": 0.9634,
+    "momentum_intent": 0.5
+   },
+   "yoy_delta": 0.0853,
+   "sparkline": [
+    9482,
+    9482,
+    9482,
+    9481,
+    10519,
+    10519,
+    10519,
+    10518,
+    11438,
+    11438,
+    11437,
+    11437,
+    12837,
+    12837,
+    12837,
+    12836,
+    10547,
+    10546,
+    10546,
+    10546,
+    11446,
+    11446,
+    11445,
+    11445
+   ],
+   "sparkline_years": [
+    2020,
+    2025
+   ],
+   "forecast_next3": [
+    44354,
+    43612,
+    42974
+   ],
+   "forecast_model": "hw_damped",
+   "caveat": null,
+   "notes": []
+  },
+  {
+   "rank": 13,
+   "domain": "space_technologies",
+   "display_name": "Space Technologies",
+   "label": "Accelerating",
+   "emergence_score": 55.0,
+   "score_inputs": {
+    "growth_recent": 0.2263,
+    "acceleration": 0.4661,
+    "keyword_burst": 0.8667,
+    "volume_scaled": 0.9367,
+    "momentum_intent": 0.5
+   },
+   "yoy_delta": 0.2263,
+   "sparkline": [
+    3143,
+    3143,
+    3143,
+    3142,
+    3041,
+    3041,
+    3041,
+    3041,
+    3041,
+    3041,
+    3040,
+    3040,
+    3524,
+    3524,
+    3524,
+    3524,
+    4441,
+    4441,
+    4441,
+    4441,
+    5446,
+    5446,
+    5446,
+    5446
+   ],
+   "sparkline_years": [
+    2020,
+    2025
+   ],
+   "forecast_next3": [
+    24640,
+    27364,
+    29965
+   ],
+   "forecast_model": "hw_damped",
+   "caveat": null,
+   "notes": []
+  },
+  {
+   "rank": 14,
+   "domain": "smart_manufacturing",
+   "display_name": "Smart Manufacturing",
+   "label": "Accelerating",
+   "emergence_score": 54.65,
+   "score_inputs": {
+    "growth_recent": 0.1512,
+    "acceleration": 0.477,
+    "keyword_burst": 1.0,
+    "volume_scaled": 0.8715,
+    "momentum_intent": 0.5
+   },
+   "yoy_delta": 0.1512,
+   "sparkline": [
+    2196,
+    2196,
+    2196,
+    2196,
+    2492,
+    2492,
+    2491,
+    2491,
+    2879,
+    2879,
+    2879,
+    2879,
+    3173,
+    3173,
+    3173,
+    3172,
+    3726,
+    3726,
+    3726,
+    3725,
+    4290,
+    4289,
+    4289,
+    4289
+   ],
+   "sparkline_years": [
+    2020,
+    2025
+   ],
+   "forecast_next3": [
+    19332,
+    21567,
+    23791
+   ],
+   "forecast_model": "hw_damped",
+   "caveat": null,
+   "notes": []
+  },
+  {
+   "rank": 15,
+   "domain": "quantum_computing",
+   "display_name": "Quantum Computing",
+   "label": "Accelerating",
+   "emergence_score": 53.5,
+   "score_inputs": {
+    "growth_recent": 0.459,
+    "acceleration": 0.9407,
+    "keyword_burst": 0.0,
+    "volume_scaled": 0.8941,
+    "momentum_intent": 0.5
+   },
+   "yoy_delta": 0.459,
+   "sparkline": [
+    2190,
+    2189,
+    2189,
+    2189,
+    2683,
+    2683,
+    2683,
+    2682,
+    2930,
+    2930,
+    2930,
+    2929,
+    3464,
+    3464,
+    3463,
+    3463,
+    3527,
+    3527,
+    3527,
+    3527,
+    5146,
+    5146,
+    5146,
+    5146
+   ],
+   "sparkline_years": [
+    2020,
+    2025
+   ],
+   "forecast_next3": [
+    21428,
+    24251,
+    27059
+   ],
+   "forecast_model": "hw_damped",
+   "caveat": null,
+   "notes": []
+  },
+  {
+   "rank": 16,
+   "domain": "solid_state_batteries",
+   "display_name": "Solid-State Batteries",
+   "label": "Active",
+   "emergence_score": 53.43,
+   "score_inputs": {
+    "growth_recent": 0.095,
+    "acceleration": 0.4641,
+    "keyword_burst": 1.0,
+    "volume_scaled": 0.9201,
+    "momentum_intent": 0.5
+   },
+   "yoy_delta": 0.095,
+   "sparkline": [
+    4076,
+    4076,
+    4076,
+    4076,
+    4313,
+    4313,
+    4313,
+    4313,
+    5111,
+    5111,
+    5111,
+    5110,
+    5412,
+    5412,
+    5411,
+    5411,
+    6120,
+    6120,
+    6120,
+    6120,
+    6702,
+    6701,
+    6701,
+    6701
+   ],
+   "sparkline_years": [
+    2020,
+    2025
+   ],
+   "forecast_next3": [
+    29068,
+    31433,
+    33787
+   ],
+   "forecast_model": "hw_damped",
+   "caveat": null,
+   "notes": []
+  },
+  {
+   "rank": 17,
+   "domain": "clean_hydrogen",
+   "display_name": "Clean Hydrogen",
+   "label": "Watch",
+   "emergence_score": 51.31,
+   "score_inputs": {
+    "growth_recent": 0.0,
+    "acceleration": 0.4799,
+    "keyword_burst": 1.0,
+    "volume_scaled": 0.9475,
+    "momentum_intent": 0.5
+   },
+   "yoy_delta": -0.0301,
+   "sparkline": [
+    6011,
+    6011,
+    6010,
+    6010,
+    6607,
+    6607,
+    6606,
+    6606,
+    7818,
+    7817,
+    7817,
+    7817,
+    8627,
+    8626,
+    8626,
+    8626,
+    8541,
+    8540,
+    8540,
+    8540,
+    8284,
+    8284,
+    8283,
+    8283
+   ],
+   "sparkline_years": [
+    2020,
+    2025
+   ],
+   "forecast_next3": [
+    32284,
+    31579,
+    30996
+   ],
+   "forecast_model": "hw_damped",
+   "caveat": null,
+   "notes": []
+  },
+  {
+   "rank": 18,
+   "domain": "synthetic_biology",
+   "display_name": "Synthetic Biology",
+   "label": "Active",
+   "emergence_score": 50.83,
+   "score_inputs": {
+    "growth_recent": 0.0701,
+    "acceleration": 0.5754,
+    "keyword_burst": 0.8,
+    "volume_scaled": 0.9146,
+    "momentum_intent": 0.5
+   },
+   "yoy_delta": 0.0701,
+   "sparkline": [
+    2675,
+    2675,
+    2675,
+    2675,
+    2523,
+    2523,
+    2523,
+    2523,
+    2374,
+    2373,
+    2373,
+    2373,
+    2297,
+    2297,
+    2297,
+    2296,
+    2285,
+    2285,
+    2285,
+    2284,
+    2445,
+    2445,
+    2445,
+    2445
+   ],
+   "sparkline_years": [
+    2020,
+    2025
+   ],
+   "forecast_next3": [
+    10055,
+    10284,
+    10476
+   ],
+   "forecast_model": "hw_damped",
+   "caveat": null,
+   "notes": []
+  },
+  {
+   "rank": 19,
+   "domain": "biotechnology",
+   "display_name": "Biotechnology",
+   "label": "Accelerating",
+   "emergence_score": 42.6,
+   "score_inputs": {
+    "growth_recent": 0.1333,
+    "acceleration": 0.5531,
+    "keyword_burst": 0.2667,
+    "volume_scaled": 0.9802,
+    "momentum_intent": 0.5
+   },
+   "yoy_delta": 0.1333,
+   "sparkline": [
+    5845,
+    5845,
+    5845,
+    5845,
+    5358,
+    5358,
+    5358,
+    5358,
+    4865,
+    4865,
+    4865,
+    4864,
+    4884,
+    4883,
+    4883,
+    4883,
+    5275,
+    5275,
+    5275,
+    5274,
+    5978,
+    5978,
+    5978,
+    5978
+   ],
+   "sparkline_years": [
+    2020,
+    2025
+   ],
+   "forecast_next3": [
+    26158,
+    27955,
+    29393
+   ],
+   "forecast_model": "hw_damped",
+   "caveat": null,
+   "notes": []
+  },
+  {
+   "rank": 20,
+   "domain": "advanced_semiconductors",
+   "display_name": "Advanced Semiconductors",
+   "label": "Watch",
+   "emergence_score": 31.38,
+   "score_inputs": {
+    "growth_recent": 0.0048,
+    "acceleration": 0.4365,
+    "keyword_burst": 0.0,
+    "volume_scaled": 1.0,
+    "momentum_intent": 0.5
+   },
+   "yoy_delta": 0.0048,
+   "sparkline": [
+    5943,
+    5943,
+    5942,
+    5942,
+    5801,
+    5801,
+    5801,
+    5800,
+    5663,
+    5663,
+    5663,
+    5662,
+    5945,
+    5945,
+    5945,
+    5945,
+    6352,
+    6351,
+    6351,
+    6351,
+    6382,
+    6382,
+    6382,
+    6382
+   ],
+   "sparkline_years": [
+    2020,
+    2025
+   ],
+   "forecast_next3": [
+    24401,
+    24313,
+    24243
+   ],
+   "forecast_model": "hw_damped",
+   "caveat": null,
+   "notes": []
+  }
+ ]
+}
