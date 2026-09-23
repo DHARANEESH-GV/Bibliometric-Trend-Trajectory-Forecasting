@@ -1,0 +1,11222 @@
+{
+ "artificial_intelligence": {
+  "display_name": "Artificial Intelligence",
+  "annual": {
+   "2000": 7800,
+   "2001": 7367,
+   "2002": 19972,
+   "2003": 13156,
+   "2004": 10695,
+   "2005": 13448,
+   "2006": 14072,
+   "2007": 12727,
+   "2008": 12919,
+   "2009": 13890,
+   "2010": 14036,
+   "2011": 14783,
+   "2012": 14420,
+   "2013": 14526,
+   "2014": 15344,
+   "2015": 16080,
+   "2016": 17046,
+   "2017": 19242,
+   "2018": 23295,
+   "2019": 27338,
+   "2020": 30596,
+   "2021": 32479,
+   "2022": 34787,
+   "2023": 50737,
+   "2024": 72274,
+   "2025": 96987
+  },
+  "quarterly": [
+   {
+    "quarter": "2000-Q1",
+    "papers": 1950,
+    "derived": true
+   },
+   {
+    "quarter": "2000-Q2",
+    "papers": 1950,
+    "derived": true
+   },
+   {
+    "quarter": "2000-Q3",
+    "papers": 1950,
+    "derived": true
+   },
+   {
+    "quarter": "2000-Q4",
+    "papers": 1950,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q1",
+    "papers": 1842,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q2",
+    "papers": 1842,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q3",
+    "papers": 1842,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q4",
+    "papers": 1841,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q1",
+    "papers": 4993,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q2",
+    "papers": 4993,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q3",
+    "papers": 4993,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q4",
+    "papers": 4993,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q1",
+    "papers": 3289,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q2",
+    "papers": 3289,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q3",
+    "papers": 3289,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q4",
+    "papers": 3289,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q1",
+    "papers": 2674,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q2",
+    "papers": 2674,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q3",
+    "papers": 2674,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q4",
+    "papers": 2673,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q1",
+    "papers": 3362,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q2",
+    "papers": 3362,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q3",
+    "papers": 3362,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q4",
+    "papers": 3362,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q1",
+    "papers": 3518,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q2",
+    "papers": 3518,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q3",
+    "papers": 3518,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q4",
+    "papers": 3518,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q1",
+    "papers": 3182,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q2",
+    "papers": 3182,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q3",
+    "papers": 3182,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q4",
+    "papers": 3181,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q1",
+    "papers": 3230,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q2",
+    "papers": 3230,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q3",
+    "papers": 3230,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q4",
+    "papers": 3229,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q1",
+    "papers": 3473,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q2",
+    "papers": 3473,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q3",
+    "papers": 3472,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q4",
+    "papers": 3472,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q1",
+    "papers": 3509,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q2",
+    "papers": 3509,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q3",
+    "papers": 3509,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q4",
+    "papers": 3509,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q1",
+    "papers": 3696,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q2",
+    "papers": 3696,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q3",
+    "papers": 3696,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q4",
+    "papers": 3695,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q1",
+    "papers": 3605,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q2",
+    "papers": 3605,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q3",
+    "papers": 3605,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q4",
+    "papers": 3605,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q1",
+    "papers": 3632,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q2",
+    "papers": 3632,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q3",
+    "papers": 3631,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q4",
+    "papers": 3631,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q1",
+    "papers": 3836,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q2",
+    "papers": 3836,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q3",
+    "papers": 3836,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q4",
+    "papers": 3836,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q1",
+    "papers": 4020,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q2",
+    "papers": 4020,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q3",
+    "papers": 4020,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q4",
+    "papers": 4020,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q1",
+    "papers": 4262,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q2",
+    "papers": 4262,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q3",
+    "papers": 4261,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q4",
+    "papers": 4261,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q1",
+    "papers": 4811,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q2",
+    "papers": 4811,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q3",
+    "papers": 4810,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q4",
+    "papers": 4810,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q1",
+    "papers": 5824,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q2",
+    "papers": 5824,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q3",
+    "papers": 5824,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q4",
+    "papers": 5823,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q1",
+    "papers": 6835,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q2",
+    "papers": 6835,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q3",
+    "papers": 6834,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q4",
+    "papers": 6834,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q1",
+    "papers": 7649,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q2",
+    "papers": 7649,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q3",
+    "papers": 7649,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q4",
+    "papers": 7649,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q1",
+    "papers": 8120,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q2",
+    "papers": 8120,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q3",
+    "papers": 8120,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q4",
+    "papers": 8119,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q1",
+    "papers": 8697,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q2",
+    "papers": 8697,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q3",
+    "papers": 8697,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q4",
+    "papers": 8696,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q1",
+    "papers": 12685,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q2",
+    "papers": 12684,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q3",
+    "papers": 12684,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q4",
+    "papers": 12684,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q1",
+    "papers": 18069,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q2",
+    "papers": 18069,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q3",
+    "papers": 18068,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q4",
+    "papers": 18068,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q1",
+    "papers": 24247,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q2",
+    "papers": 24247,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q3",
+    "papers": 24247,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q4",
+    "papers": 24246,
+    "derived": true
+   }
+  ],
+  "total_works": 620016,
+  "metadata": {
+   "source": "tier_a source aggregate (group_by=publication_year)",
+   "count_verified": true,
+   "years_contiguous": true,
+   "quarterly_method": "equal_split_interpolation",
+   "live_drift_note": null
+  }
+ },
+ "generative_ai": {
+  "display_name": "Generative AI",
+  "annual": {
+   "2000": 101,
+   "2001": 118,
+   "2002": 212,
+   "2003": 236,
+   "2004": 248,
+   "2005": 305,
+   "2006": 368,
+   "2007": 418,
+   "2008": 415,
+   "2009": 552,
+   "2010": 608,
+   "2011": 631,
+   "2012": 751,
+   "2013": 821,
+   "2014": 972,
+   "2015": 1235,
+   "2016": 1534,
+   "2017": 2487,
+   "2018": 4046,
+   "2019": 5579,
+   "2020": 6552,
+   "2021": 7818,
+   "2022": 8027,
+   "2023": 10890,
+   "2024": 8972,
+   "2025": 21758
+  },
+  "quarterly": [
+   {
+    "quarter": "2000-Q1",
+    "papers": 26,
+    "derived": true
+   },
+   {
+    "quarter": "2000-Q2",
+    "papers": 25,
+    "derived": true
+   },
+   {
+    "quarter": "2000-Q3",
+    "papers": 25,
+    "derived": true
+   },
+   {
+    "quarter": "2000-Q4",
+    "papers": 25,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q1",
+    "papers": 30,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q2",
+    "papers": 30,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q3",
+    "papers": 29,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q4",
+    "papers": 29,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q1",
+    "papers": 53,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q2",
+    "papers": 53,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q3",
+    "papers": 53,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q4",
+    "papers": 53,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q1",
+    "papers": 59,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q2",
+    "papers": 59,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q3",
+    "papers": 59,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q4",
+    "papers": 59,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q1",
+    "papers": 62,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q2",
+    "papers": 62,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q3",
+    "papers": 62,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q4",
+    "papers": 62,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q1",
+    "papers": 77,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q2",
+    "papers": 76,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q3",
+    "papers": 76,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q4",
+    "papers": 76,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q1",
+    "papers": 92,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q2",
+    "papers": 92,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q3",
+    "papers": 92,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q4",
+    "papers": 92,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q1",
+    "papers": 105,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q2",
+    "papers": 105,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q3",
+    "papers": 104,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q4",
+    "papers": 104,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q1",
+    "papers": 104,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q2",
+    "papers": 104,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q3",
+    "papers": 104,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q4",
+    "papers": 103,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q1",
+    "papers": 138,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q2",
+    "papers": 138,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q3",
+    "papers": 138,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q4",
+    "papers": 138,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q1",
+    "papers": 152,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q2",
+    "papers": 152,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q3",
+    "papers": 152,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q4",
+    "papers": 152,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q1",
+    "papers": 158,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q2",
+    "papers": 158,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q3",
+    "papers": 158,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q4",
+    "papers": 157,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q1",
+    "papers": 188,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q2",
+    "papers": 188,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q3",
+    "papers": 188,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q4",
+    "papers": 187,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q1",
+    "papers": 206,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q2",
+    "papers": 205,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q3",
+    "papers": 205,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q4",
+    "papers": 205,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q1",
+    "papers": 243,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q2",
+    "papers": 243,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q3",
+    "papers": 243,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q4",
+    "papers": 243,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q1",
+    "papers": 309,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q2",
+    "papers": 309,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q3",
+    "papers": 309,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q4",
+    "papers": 308,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q1",
+    "papers": 384,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q2",
+    "papers": 384,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q3",
+    "papers": 383,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q4",
+    "papers": 383,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q1",
+    "papers": 622,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q2",
+    "papers": 622,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q3",
+    "papers": 622,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q4",
+    "papers": 621,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q1",
+    "papers": 1012,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q2",
+    "papers": 1012,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q3",
+    "papers": 1011,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q4",
+    "papers": 1011,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q1",
+    "papers": 1395,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q2",
+    "papers": 1395,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q3",
+    "papers": 1395,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q4",
+    "papers": 1394,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q1",
+    "papers": 1638,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q2",
+    "papers": 1638,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q3",
+    "papers": 1638,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q4",
+    "papers": 1638,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q1",
+    "papers": 1955,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q2",
+    "papers": 1955,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q3",
+    "papers": 1954,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q4",
+    "papers": 1954,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q1",
+    "papers": 2007,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q2",
+    "papers": 2007,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q3",
+    "papers": 2007,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q4",
+    "papers": 2006,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q1",
+    "papers": 2723,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q2",
+    "papers": 2723,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q3",
+    "papers": 2722,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q4",
+    "papers": 2722,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q1",
+    "papers": 2243,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q2",
+    "papers": 2243,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q3",
+    "papers": 2243,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q4",
+    "papers": 2243,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q1",
+    "papers": 5440,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q2",
+    "papers": 5440,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q3",
+    "papers": 5439,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q4",
+    "papers": 5439,
+    "derived": true
+   }
+  ],
+  "total_works": 85654,
+  "metadata": {
+   "source": "tier_a source aggregate (group_by=publication_year)",
+   "count_verified": true,
+   "years_contiguous": true,
+   "quarterly_method": "equal_split_interpolation",
+   "live_drift_note": null
+  }
+ },
+ "ai_agents": {
+  "display_name": "AI Agents",
+  "annual": {
+   "2000": 2520,
+   "2001": 2735,
+   "2002": 5035,
+   "2003": 4478,
+   "2004": 4969,
+   "2005": 5342,
+   "2006": 6064,
+   "2007": 6115,
+   "2008": 6525,
+   "2009": 6976,
+   "2010": 7065,
+   "2011": 7773,
+   "2012": 7821,
+   "2013": 7688,
+   "2014": 7926,
+   "2015": 7475,
+   "2016": 7738,
+   "2017": 7913,
+   "2018": 8622,
+   "2019": 9120,
+   "2020": 9264,
+   "2021": 9313,
+   "2022": 9468,
+   "2023": 10448,
+   "2024": 10458,
+   "2025": 14717
+  },
+  "quarterly": [
+   {
+    "quarter": "2000-Q1",
+    "papers": 630,
+    "derived": true
+   },
+   {
+    "quarter": "2000-Q2",
+    "papers": 630,
+    "derived": true
+   },
+   {
+    "quarter": "2000-Q3",
+    "papers": 630,
+    "derived": true
+   },
+   {
+    "quarter": "2000-Q4",
+    "papers": 630,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q1",
+    "papers": 684,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q2",
+    "papers": 684,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q3",
+    "papers": 684,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q4",
+    "papers": 683,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q1",
+    "papers": 1259,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q2",
+    "papers": 1259,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q3",
+    "papers": 1259,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q4",
+    "papers": 1258,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q1",
+    "papers": 1120,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q2",
+    "papers": 1120,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q3",
+    "papers": 1119,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q4",
+    "papers": 1119,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q1",
+    "papers": 1243,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q2",
+    "papers": 1242,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q3",
+    "papers": 1242,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q4",
+    "papers": 1242,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q1",
+    "papers": 1336,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q2",
+    "papers": 1336,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q3",
+    "papers": 1335,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q4",
+    "papers": 1335,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q1",
+    "papers": 1516,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q2",
+    "papers": 1516,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q3",
+    "papers": 1516,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q4",
+    "papers": 1516,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q1",
+    "papers": 1529,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q2",
+    "papers": 1529,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q3",
+    "papers": 1529,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q4",
+    "papers": 1528,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q1",
+    "papers": 1632,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q2",
+    "papers": 1631,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q3",
+    "papers": 1631,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q4",
+    "papers": 1631,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q1",
+    "papers": 1744,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q2",
+    "papers": 1744,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q3",
+    "papers": 1744,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q4",
+    "papers": 1744,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q1",
+    "papers": 1767,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q2",
+    "papers": 1766,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q3",
+    "papers": 1766,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q4",
+    "papers": 1766,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q1",
+    "papers": 1944,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q2",
+    "papers": 1943,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q3",
+    "papers": 1943,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q4",
+    "papers": 1943,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q1",
+    "papers": 1956,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q2",
+    "papers": 1955,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q3",
+    "papers": 1955,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q4",
+    "papers": 1955,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q1",
+    "papers": 1922,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q2",
+    "papers": 1922,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q3",
+    "papers": 1922,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q4",
+    "papers": 1922,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q1",
+    "papers": 1982,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q2",
+    "papers": 1982,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q3",
+    "papers": 1981,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q4",
+    "papers": 1981,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q1",
+    "papers": 1869,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q2",
+    "papers": 1869,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q3",
+    "papers": 1869,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q4",
+    "papers": 1868,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q1",
+    "papers": 1935,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q2",
+    "papers": 1935,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q3",
+    "papers": 1934,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q4",
+    "papers": 1934,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q1",
+    "papers": 1979,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q2",
+    "papers": 1978,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q3",
+    "papers": 1978,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q4",
+    "papers": 1978,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q1",
+    "papers": 2156,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q2",
+    "papers": 2156,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q3",
+    "papers": 2155,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q4",
+    "papers": 2155,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q1",
+    "papers": 2280,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q2",
+    "papers": 2280,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q3",
+    "papers": 2280,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q4",
+    "papers": 2280,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q1",
+    "papers": 2316,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q2",
+    "papers": 2316,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q3",
+    "papers": 2316,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q4",
+    "papers": 2316,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q1",
+    "papers": 2329,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q2",
+    "papers": 2328,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q3",
+    "papers": 2328,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q4",
+    "papers": 2328,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q1",
+    "papers": 2367,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q2",
+    "papers": 2367,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q3",
+    "papers": 2367,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q4",
+    "papers": 2367,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q1",
+    "papers": 2612,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q2",
+    "papers": 2612,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q3",
+    "papers": 2612,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q4",
+    "papers": 2612,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q1",
+    "papers": 2615,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q2",
+    "papers": 2615,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q3",
+    "papers": 2614,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q4",
+    "papers": 2614,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q1",
+    "papers": 3680,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q2",
+    "papers": 3679,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q3",
+    "papers": 3679,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q4",
+    "papers": 3679,
+    "derived": true
+   }
+  ],
+  "total_works": 193568,
+  "metadata": {
+   "source": "tier_a source aggregate (group_by=publication_year)",
+   "count_verified": true,
+   "years_contiguous": true,
+   "quarterly_method": "equal_split_interpolation",
+   "live_drift_note": null
+  }
+ },
+ "quantum_error_correction": {
+  "display_name": "Quantum Error Correction",
+  "annual": {
+   "2000": 1443,
+   "2001": 1724,
+   "2002": 2448,
+   "2003": 2583,
+   "2004": 2802,
+   "2005": 3492,
+   "2006": 3755,
+   "2007": 3677,
+   "2008": 3940,
+   "2009": 3909,
+   "2010": 4032,
+   "2011": 4273,
+   "2012": 4618,
+   "2013": 4977,
+   "2014": 5218,
+   "2015": 5151,
+   "2016": 5418,
+   "2017": 5626,
+   "2018": 6306,
+   "2019": 7636,
+   "2020": 8757,
+   "2021": 10731,
+   "2022": 11719,
+   "2023": 13854,
+   "2024": 14108,
+   "2025": 20584
+  },
+  "quarterly": [
+   {
+    "quarter": "2000-Q1",
+    "papers": 361,
+    "derived": true
+   },
+   {
+    "quarter": "2000-Q2",
+    "papers": 361,
+    "derived": true
+   },
+   {
+    "quarter": "2000-Q3",
+    "papers": 361,
+    "derived": true
+   },
+   {
+    "quarter": "2000-Q4",
+    "papers": 360,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q1",
+    "papers": 431,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q2",
+    "papers": 431,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q3",
+    "papers": 431,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q4",
+    "papers": 431,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q1",
+    "papers": 612,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q2",
+    "papers": 612,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q3",
+    "papers": 612,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q4",
+    "papers": 612,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q1",
+    "papers": 646,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q2",
+    "papers": 646,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q3",
+    "papers": 646,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q4",
+    "papers": 645,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q1",
+    "papers": 701,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q2",
+    "papers": 701,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q3",
+    "papers": 700,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q4",
+    "papers": 700,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q1",
+    "papers": 873,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q2",
+    "papers": 873,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q3",
+    "papers": 873,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q4",
+    "papers": 873,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q1",
+    "papers": 939,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q2",
+    "papers": 939,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q3",
+    "papers": 939,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q4",
+    "papers": 938,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q1",
+    "papers": 920,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q2",
+    "papers": 919,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q3",
+    "papers": 919,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q4",
+    "papers": 919,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q1",
+    "papers": 985,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q2",
+    "papers": 985,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q3",
+    "papers": 985,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q4",
+    "papers": 985,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q1",
+    "papers": 978,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q2",
+    "papers": 977,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q3",
+    "papers": 977,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q4",
+    "papers": 977,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q1",
+    "papers": 1008,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q2",
+    "papers": 1008,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q3",
+    "papers": 1008,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q4",
+    "papers": 1008,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q1",
+    "papers": 1069,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q2",
+    "papers": 1068,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q3",
+    "papers": 1068,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q4",
+    "papers": 1068,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q1",
+    "papers": 1155,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q2",
+    "papers": 1155,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q3",
+    "papers": 1154,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q4",
+    "papers": 1154,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q1",
+    "papers": 1245,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q2",
+    "papers": 1244,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q3",
+    "papers": 1244,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q4",
+    "papers": 1244,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q1",
+    "papers": 1305,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q2",
+    "papers": 1305,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q3",
+    "papers": 1304,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q4",
+    "papers": 1304,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q1",
+    "papers": 1288,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q2",
+    "papers": 1288,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q3",
+    "papers": 1288,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q4",
+    "papers": 1287,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q1",
+    "papers": 1355,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q2",
+    "papers": 1355,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q3",
+    "papers": 1354,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q4",
+    "papers": 1354,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q1",
+    "papers": 1407,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q2",
+    "papers": 1407,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q3",
+    "papers": 1406,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q4",
+    "papers": 1406,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q1",
+    "papers": 1577,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q2",
+    "papers": 1577,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q3",
+    "papers": 1576,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q4",
+    "papers": 1576,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q1",
+    "papers": 1909,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q2",
+    "papers": 1909,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q3",
+    "papers": 1909,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q4",
+    "papers": 1909,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q1",
+    "papers": 2190,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q2",
+    "papers": 2189,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q3",
+    "papers": 2189,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q4",
+    "papers": 2189,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q1",
+    "papers": 2683,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q2",
+    "papers": 2683,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q3",
+    "papers": 2683,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q4",
+    "papers": 2682,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q1",
+    "papers": 2930,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q2",
+    "papers": 2930,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q3",
+    "papers": 2930,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q4",
+    "papers": 2929,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q1",
+    "papers": 3464,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q2",
+    "papers": 3464,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q3",
+    "papers": 3463,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q4",
+    "papers": 3463,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q1",
+    "papers": 3527,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q2",
+    "papers": 3527,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q3",
+    "papers": 3527,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q4",
+    "papers": 3527,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q1",
+    "papers": 5146,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q2",
+    "papers": 5146,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q3",
+    "papers": 5146,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q4",
+    "papers": 5146,
+    "derived": true
+   }
+  ],
+  "total_works": 162781,
+  "metadata": {
+   "source": "tier_a source aggregate (group_by=publication_year)",
+   "count_verified": true,
+   "years_contiguous": true,
+   "quarterly_method": "equal_split_interpolation",
+   "live_drift_note": null
+  }
+ },
+ "solid_state_batteries": {
+  "display_name": "Solid-State Batteries",
+  "annual": {
+   "2000": 1155,
+   "2001": 1299,
+   "2002": 1758,
+   "2003": 1731,
+   "2004": 1807,
+   "2005": 1952,
+   "2006": 2480,
+   "2007": 2376,
+   "2008": 2449,
+   "2009": 2745,
+   "2010": 3431,
+   "2011": 4005,
+   "2012": 5260,
+   "2013": 6545,
+   "2014": 8178,
+   "2015": 8679,
+   "2016": 10391,
+   "2017": 10668,
+   "2018": 12397,
+   "2019": 14470,
+   "2020": 16304,
+   "2021": 17252,
+   "2022": 20443,
+   "2023": 21646,
+   "2024": 24480,
+   "2025": 26805
+  },
+  "quarterly": [
+   {
+    "quarter": "2000-Q1",
+    "papers": 289,
+    "derived": true
+   },
+   {
+    "quarter": "2000-Q2",
+    "papers": 289,
+    "derived": true
+   },
+   {
+    "quarter": "2000-Q3",
+    "papers": 289,
+    "derived": true
+   },
+   {
+    "quarter": "2000-Q4",
+    "papers": 288,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q1",
+    "papers": 325,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q2",
+    "papers": 325,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q3",
+    "papers": 325,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q4",
+    "papers": 324,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q1",
+    "papers": 440,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q2",
+    "papers": 440,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q3",
+    "papers": 439,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q4",
+    "papers": 439,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q1",
+    "papers": 433,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q2",
+    "papers": 433,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q3",
+    "papers": 433,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q4",
+    "papers": 432,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q1",
+    "papers": 452,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q2",
+    "papers": 452,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q3",
+    "papers": 452,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q4",
+    "papers": 451,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q1",
+    "papers": 488,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q2",
+    "papers": 488,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q3",
+    "papers": 488,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q4",
+    "papers": 488,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q1",
+    "papers": 620,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q2",
+    "papers": 620,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q3",
+    "papers": 620,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q4",
+    "papers": 620,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q1",
+    "papers": 594,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q2",
+    "papers": 594,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q3",
+    "papers": 594,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q4",
+    "papers": 594,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q1",
+    "papers": 613,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q2",
+    "papers": 612,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q3",
+    "papers": 612,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q4",
+    "papers": 612,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q1",
+    "papers": 687,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q2",
+    "papers": 686,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q3",
+    "papers": 686,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q4",
+    "papers": 686,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q1",
+    "papers": 858,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q2",
+    "papers": 858,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q3",
+    "papers": 858,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q4",
+    "papers": 857,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q1",
+    "papers": 1002,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q2",
+    "papers": 1001,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q3",
+    "papers": 1001,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q4",
+    "papers": 1001,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q1",
+    "papers": 1315,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q2",
+    "papers": 1315,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q3",
+    "papers": 1315,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q4",
+    "papers": 1315,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q1",
+    "papers": 1637,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q2",
+    "papers": 1636,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q3",
+    "papers": 1636,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q4",
+    "papers": 1636,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q1",
+    "papers": 2045,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q2",
+    "papers": 2045,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q3",
+    "papers": 2044,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q4",
+    "papers": 2044,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q1",
+    "papers": 2170,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q2",
+    "papers": 2170,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q3",
+    "papers": 2170,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q4",
+    "papers": 2169,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q1",
+    "papers": 2598,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q2",
+    "papers": 2598,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q3",
+    "papers": 2598,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q4",
+    "papers": 2597,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q1",
+    "papers": 2667,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q2",
+    "papers": 2667,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q3",
+    "papers": 2667,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q4",
+    "papers": 2667,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q1",
+    "papers": 3100,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q2",
+    "papers": 3099,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q3",
+    "papers": 3099,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q4",
+    "papers": 3099,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q1",
+    "papers": 3618,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q2",
+    "papers": 3618,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q3",
+    "papers": 3617,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q4",
+    "papers": 3617,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q1",
+    "papers": 4076,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q2",
+    "papers": 4076,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q3",
+    "papers": 4076,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q4",
+    "papers": 4076,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q1",
+    "papers": 4313,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q2",
+    "papers": 4313,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q3",
+    "papers": 4313,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q4",
+    "papers": 4313,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q1",
+    "papers": 5111,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q2",
+    "papers": 5111,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q3",
+    "papers": 5111,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q4",
+    "papers": 5110,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q1",
+    "papers": 5412,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q2",
+    "papers": 5412,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q3",
+    "papers": 5411,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q4",
+    "papers": 5411,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q1",
+    "papers": 6120,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q2",
+    "papers": 6120,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q3",
+    "papers": 6120,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q4",
+    "papers": 6120,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q1",
+    "papers": 6702,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q2",
+    "papers": 6701,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q3",
+    "papers": 6701,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q4",
+    "papers": 6701,
+    "derived": true
+   }
+  ],
+  "total_works": 230706,
+  "metadata": {
+   "source": "tier_a source aggregate (group_by=publication_year)",
+   "count_verified": true,
+   "years_contiguous": true,
+   "quarterly_method": "equal_split_interpolation",
+   "live_drift_note": null
+  }
+ },
+ "clean_hydrogen": {
+  "display_name": "Clean Hydrogen",
+  "annual": {
+   "2000": 751,
+   "2001": 893,
+   "2002": 1082,
+   "2003": 1383,
+   "2004": 1743,
+   "2005": 2202,
+   "2006": 2638,
+   "2007": 3245,
+   "2008": 3604,
+   "2009": 4580,
+   "2010": 5700,
+   "2011": 7585,
+   "2012": 8696,
+   "2013": 10675,
+   "2014": 12286,
+   "2015": 13187,
+   "2016": 14459,
+   "2017": 15651,
+   "2018": 18495,
+   "2019": 20948,
+   "2020": 24042,
+   "2021": 26426,
+   "2022": 31269,
+   "2023": 34505,
+   "2024": 34161,
+   "2025": 33134
+  },
+  "quarterly": [
+   {
+    "quarter": "2000-Q1",
+    "papers": 188,
+    "derived": true
+   },
+   {
+    "quarter": "2000-Q2",
+    "papers": 188,
+    "derived": true
+   },
+   {
+    "quarter": "2000-Q3",
+    "papers": 188,
+    "derived": true
+   },
+   {
+    "quarter": "2000-Q4",
+    "papers": 187,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q1",
+    "papers": 224,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q2",
+    "papers": 223,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q3",
+    "papers": 223,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q4",
+    "papers": 223,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q1",
+    "papers": 271,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q2",
+    "papers": 271,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q3",
+    "papers": 270,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q4",
+    "papers": 270,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q1",
+    "papers": 346,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q2",
+    "papers": 346,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q3",
+    "papers": 346,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q4",
+    "papers": 345,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q1",
+    "papers": 436,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q2",
+    "papers": 436,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q3",
+    "papers": 436,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q4",
+    "papers": 435,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q1",
+    "papers": 551,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q2",
+    "papers": 551,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q3",
+    "papers": 550,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q4",
+    "papers": 550,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q1",
+    "papers": 660,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q2",
+    "papers": 660,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q3",
+    "papers": 659,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q4",
+    "papers": 659,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q1",
+    "papers": 812,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q2",
+    "papers": 811,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q3",
+    "papers": 811,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q4",
+    "papers": 811,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q1",
+    "papers": 901,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q2",
+    "papers": 901,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q3",
+    "papers": 901,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q4",
+    "papers": 901,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q1",
+    "papers": 1145,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q2",
+    "papers": 1145,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q3",
+    "papers": 1145,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q4",
+    "papers": 1145,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q1",
+    "papers": 1425,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q2",
+    "papers": 1425,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q3",
+    "papers": 1425,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q4",
+    "papers": 1425,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q1",
+    "papers": 1897,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q2",
+    "papers": 1896,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q3",
+    "papers": 1896,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q4",
+    "papers": 1896,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q1",
+    "papers": 2174,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q2",
+    "papers": 2174,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q3",
+    "papers": 2174,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q4",
+    "papers": 2174,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q1",
+    "papers": 2669,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q2",
+    "papers": 2669,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q3",
+    "papers": 2669,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q4",
+    "papers": 2668,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q1",
+    "papers": 3072,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q2",
+    "papers": 3072,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q3",
+    "papers": 3071,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q4",
+    "papers": 3071,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q1",
+    "papers": 3297,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q2",
+    "papers": 3297,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q3",
+    "papers": 3297,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q4",
+    "papers": 3296,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q1",
+    "papers": 3615,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q2",
+    "papers": 3615,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q3",
+    "papers": 3615,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q4",
+    "papers": 3614,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q1",
+    "papers": 3913,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q2",
+    "papers": 3913,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q3",
+    "papers": 3913,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q4",
+    "papers": 3912,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q1",
+    "papers": 4624,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q2",
+    "papers": 4624,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q3",
+    "papers": 4624,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q4",
+    "papers": 4623,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q1",
+    "papers": 5237,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q2",
+    "papers": 5237,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q3",
+    "papers": 5237,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q4",
+    "papers": 5237,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q1",
+    "papers": 6011,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q2",
+    "papers": 6011,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q3",
+    "papers": 6010,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q4",
+    "papers": 6010,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q1",
+    "papers": 6607,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q2",
+    "papers": 6607,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q3",
+    "papers": 6606,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q4",
+    "papers": 6606,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q1",
+    "papers": 7818,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q2",
+    "papers": 7817,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q3",
+    "papers": 7817,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q4",
+    "papers": 7817,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q1",
+    "papers": 8627,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q2",
+    "papers": 8626,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q3",
+    "papers": 8626,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q4",
+    "papers": 8626,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q1",
+    "papers": 8541,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q2",
+    "papers": 8540,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q3",
+    "papers": 8540,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q4",
+    "papers": 8540,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q1",
+    "papers": 8284,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q2",
+    "papers": 8284,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q3",
+    "papers": 8283,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q4",
+    "papers": 8283,
+    "derived": true
+   }
+  ],
+  "total_works": 333340,
+  "metadata": {
+   "source": "tier_a source aggregate (group_by=publication_year)",
+   "count_verified": true,
+   "years_contiguous": true,
+   "quarterly_method": "equal_split_interpolation",
+   "live_drift_note": null
+  }
+ },
+ "carbon_capture": {
+  "display_name": "Carbon Capture",
+  "annual": {
+   "2000": 3615,
+   "2001": 1637,
+   "2002": 1806,
+   "2003": 2269,
+   "2004": 2342,
+   "2005": 3100,
+   "2006": 2965,
+   "2007": 3184,
+   "2008": 3527,
+   "2009": 5053,
+   "2010": 5273,
+   "2011": 7035,
+   "2012": 6959,
+   "2013": 8008,
+   "2014": 8203,
+   "2015": 7588,
+   "2016": 7999,
+   "2017": 8380,
+   "2018": 7947,
+   "2019": 8760,
+   "2020": 8790,
+   "2021": 9491,
+   "2022": 10482,
+   "2023": 11813,
+   "2024": 13250,
+   "2025": 17129
+  },
+  "quarterly": [
+   {
+    "quarter": "2000-Q1",
+    "papers": 904,
+    "derived": true
+   },
+   {
+    "quarter": "2000-Q2",
+    "papers": 904,
+    "derived": true
+   },
+   {
+    "quarter": "2000-Q3",
+    "papers": 904,
+    "derived": true
+   },
+   {
+    "quarter": "2000-Q4",
+    "papers": 903,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q1",
+    "papers": 410,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q2",
+    "papers": 409,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q3",
+    "papers": 409,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q4",
+    "papers": 409,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q1",
+    "papers": 452,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q2",
+    "papers": 452,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q3",
+    "papers": 451,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q4",
+    "papers": 451,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q1",
+    "papers": 568,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q2",
+    "papers": 567,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q3",
+    "papers": 567,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q4",
+    "papers": 567,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q1",
+    "papers": 586,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q2",
+    "papers": 586,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q3",
+    "papers": 585,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q4",
+    "papers": 585,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q1",
+    "papers": 775,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q2",
+    "papers": 775,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q3",
+    "papers": 775,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q4",
+    "papers": 775,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q1",
+    "papers": 742,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q2",
+    "papers": 741,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q3",
+    "papers": 741,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q4",
+    "papers": 741,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q1",
+    "papers": 796,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q2",
+    "papers": 796,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q3",
+    "papers": 796,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q4",
+    "papers": 796,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q1",
+    "papers": 882,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q2",
+    "papers": 882,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q3",
+    "papers": 882,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q4",
+    "papers": 881,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q1",
+    "papers": 1264,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q2",
+    "papers": 1263,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q3",
+    "papers": 1263,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q4",
+    "papers": 1263,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q1",
+    "papers": 1319,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q2",
+    "papers": 1318,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q3",
+    "papers": 1318,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q4",
+    "papers": 1318,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q1",
+    "papers": 1759,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q2",
+    "papers": 1759,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q3",
+    "papers": 1759,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q4",
+    "papers": 1758,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q1",
+    "papers": 1740,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q2",
+    "papers": 1740,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q3",
+    "papers": 1740,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q4",
+    "papers": 1739,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q1",
+    "papers": 2002,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q2",
+    "papers": 2002,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q3",
+    "papers": 2002,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q4",
+    "papers": 2002,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q1",
+    "papers": 2051,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q2",
+    "papers": 2051,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q3",
+    "papers": 2051,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q4",
+    "papers": 2050,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q1",
+    "papers": 1897,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q2",
+    "papers": 1897,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q3",
+    "papers": 1897,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q4",
+    "papers": 1897,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q1",
+    "papers": 2000,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q2",
+    "papers": 2000,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q3",
+    "papers": 2000,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q4",
+    "papers": 1999,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q1",
+    "papers": 2095,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q2",
+    "papers": 2095,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q3",
+    "papers": 2095,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q4",
+    "papers": 2095,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q1",
+    "papers": 1987,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q2",
+    "papers": 1987,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q3",
+    "papers": 1987,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q4",
+    "papers": 1986,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q1",
+    "papers": 2190,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q2",
+    "papers": 2190,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q3",
+    "papers": 2190,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q4",
+    "papers": 2190,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q1",
+    "papers": 2198,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q2",
+    "papers": 2198,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q3",
+    "papers": 2197,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q4",
+    "papers": 2197,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q1",
+    "papers": 2373,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q2",
+    "papers": 2373,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q3",
+    "papers": 2373,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q4",
+    "papers": 2372,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q1",
+    "papers": 2621,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q2",
+    "papers": 2621,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q3",
+    "papers": 2620,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q4",
+    "papers": 2620,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q1",
+    "papers": 2954,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q2",
+    "papers": 2953,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q3",
+    "papers": 2953,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q4",
+    "papers": 2953,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q1",
+    "papers": 3313,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q2",
+    "papers": 3313,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q3",
+    "papers": 3312,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q4",
+    "papers": 3312,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q1",
+    "papers": 4283,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q2",
+    "papers": 4282,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q3",
+    "papers": 4282,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q4",
+    "papers": 4282,
+    "derived": true
+   }
+  ],
+  "total_works": 176605,
+  "metadata": {
+   "source": "tier_a source aggregate (group_by=publication_year)",
+   "count_verified": true,
+   "years_contiguous": true,
+   "quarterly_method": "equal_split_interpolation",
+   "live_drift_note": null
+  }
+ },
+ "synthetic_biology": {
+  "display_name": "Synthetic Biology",
+  "annual": {
+   "2000": 3430,
+   "2001": 3478,
+   "2002": 3907,
+   "2003": 4196,
+   "2004": 4648,
+   "2005": 4822,
+   "2006": 5632,
+   "2007": 6289,
+   "2008": 6921,
+   "2009": 8029,
+   "2010": 8820,
+   "2011": 9222,
+   "2012": 9962,
+   "2013": 10685,
+   "2014": 10777,
+   "2015": 11326,
+   "2016": 11498,
+   "2017": 11281,
+   "2018": 10478,
+   "2019": 10405,
+   "2020": 10700,
+   "2021": 10092,
+   "2022": 9493,
+   "2023": 9187,
+   "2024": 9139,
+   "2025": 9780
+  },
+  "quarterly": [
+   {
+    "quarter": "2000-Q1",
+    "papers": 858,
+    "derived": true
+   },
+   {
+    "quarter": "2000-Q2",
+    "papers": 858,
+    "derived": true
+   },
+   {
+    "quarter": "2000-Q3",
+    "papers": 857,
+    "derived": true
+   },
+   {
+    "quarter": "2000-Q4",
+    "papers": 857,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q1",
+    "papers": 870,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q2",
+    "papers": 870,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q3",
+    "papers": 869,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q4",
+    "papers": 869,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q1",
+    "papers": 977,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q2",
+    "papers": 977,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q3",
+    "papers": 977,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q4",
+    "papers": 976,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q1",
+    "papers": 1049,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q2",
+    "papers": 1049,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q3",
+    "papers": 1049,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q4",
+    "papers": 1049,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q1",
+    "papers": 1162,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q2",
+    "papers": 1162,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q3",
+    "papers": 1162,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q4",
+    "papers": 1162,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q1",
+    "papers": 1206,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q2",
+    "papers": 1206,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q3",
+    "papers": 1205,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q4",
+    "papers": 1205,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q1",
+    "papers": 1408,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q2",
+    "papers": 1408,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q3",
+    "papers": 1408,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q4",
+    "papers": 1408,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q1",
+    "papers": 1573,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q2",
+    "papers": 1572,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q3",
+    "papers": 1572,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q4",
+    "papers": 1572,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q1",
+    "papers": 1731,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q2",
+    "papers": 1730,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q3",
+    "papers": 1730,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q4",
+    "papers": 1730,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q1",
+    "papers": 2008,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q2",
+    "papers": 2007,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q3",
+    "papers": 2007,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q4",
+    "papers": 2007,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q1",
+    "papers": 2205,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q2",
+    "papers": 2205,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q3",
+    "papers": 2205,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q4",
+    "papers": 2205,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q1",
+    "papers": 2306,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q2",
+    "papers": 2306,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q3",
+    "papers": 2305,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q4",
+    "papers": 2305,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q1",
+    "papers": 2491,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q2",
+    "papers": 2491,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q3",
+    "papers": 2490,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q4",
+    "papers": 2490,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q1",
+    "papers": 2672,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q2",
+    "papers": 2671,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q3",
+    "papers": 2671,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q4",
+    "papers": 2671,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q1",
+    "papers": 2695,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q2",
+    "papers": 2694,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q3",
+    "papers": 2694,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q4",
+    "papers": 2694,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q1",
+    "papers": 2832,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q2",
+    "papers": 2832,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q3",
+    "papers": 2831,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q4",
+    "papers": 2831,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q1",
+    "papers": 2875,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q2",
+    "papers": 2875,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q3",
+    "papers": 2874,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q4",
+    "papers": 2874,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q1",
+    "papers": 2821,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q2",
+    "papers": 2820,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q3",
+    "papers": 2820,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q4",
+    "papers": 2820,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q1",
+    "papers": 2620,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q2",
+    "papers": 2620,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q3",
+    "papers": 2619,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q4",
+    "papers": 2619,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q1",
+    "papers": 2602,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q2",
+    "papers": 2601,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q3",
+    "papers": 2601,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q4",
+    "papers": 2601,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q1",
+    "papers": 2675,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q2",
+    "papers": 2675,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q3",
+    "papers": 2675,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q4",
+    "papers": 2675,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q1",
+    "papers": 2523,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q2",
+    "papers": 2523,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q3",
+    "papers": 2523,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q4",
+    "papers": 2523,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q1",
+    "papers": 2374,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q2",
+    "papers": 2373,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q3",
+    "papers": 2373,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q4",
+    "papers": 2373,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q1",
+    "papers": 2297,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q2",
+    "papers": 2297,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q3",
+    "papers": 2297,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q4",
+    "papers": 2296,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q1",
+    "papers": 2285,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q2",
+    "papers": 2285,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q3",
+    "papers": 2285,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q4",
+    "papers": 2284,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q1",
+    "papers": 2445,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q2",
+    "papers": 2445,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q3",
+    "papers": 2445,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q4",
+    "papers": 2445,
+    "derived": true
+   }
+  ],
+  "total_works": 214197,
+  "metadata": {
+   "source": "tier_a source aggregate (group_by=publication_year)",
+   "count_verified": true,
+   "years_contiguous": true,
+   "quarterly_method": "equal_split_interpolation",
+   "live_drift_note": null
+  }
+ },
+ "brain_computer_interfaces": {
+  "display_name": "Brain-Computer Interfaces",
+  "annual": {
+   "2000": 2630,
+   "2001": 2480,
+   "2002": 3803,
+   "2003": 3647,
+   "2004": 3719,
+   "2005": 4856,
+   "2006": 5284,
+   "2007": 5805,
+   "2008": 6520,
+   "2009": 7500,
+   "2010": 8192,
+   "2011": 8761,
+   "2012": 9142,
+   "2013": 10611,
+   "2014": 11099,
+   "2015": 11935,
+   "2016": 12164,
+   "2017": 13482,
+   "2018": 14782,
+   "2019": 16321,
+   "2020": 17353,
+   "2021": 17988,
+   "2022": 18085,
+   "2023": 20011,
+   "2024": 19733,
+   "2025": 23258
+  },
+  "quarterly": [
+   {
+    "quarter": "2000-Q1",
+    "papers": 658,
+    "derived": true
+   },
+   {
+    "quarter": "2000-Q2",
+    "papers": 658,
+    "derived": true
+   },
+   {
+    "quarter": "2000-Q3",
+    "papers": 657,
+    "derived": true
+   },
+   {
+    "quarter": "2000-Q4",
+    "papers": 657,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q1",
+    "papers": 620,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q2",
+    "papers": 620,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q3",
+    "papers": 620,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q4",
+    "papers": 620,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q1",
+    "papers": 951,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q2",
+    "papers": 951,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q3",
+    "papers": 951,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q4",
+    "papers": 950,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q1",
+    "papers": 912,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q2",
+    "papers": 912,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q3",
+    "papers": 912,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q4",
+    "papers": 911,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q1",
+    "papers": 930,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q2",
+    "papers": 930,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q3",
+    "papers": 930,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q4",
+    "papers": 929,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q1",
+    "papers": 1214,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q2",
+    "papers": 1214,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q3",
+    "papers": 1214,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q4",
+    "papers": 1214,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q1",
+    "papers": 1321,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q2",
+    "papers": 1321,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q3",
+    "papers": 1321,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q4",
+    "papers": 1321,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q1",
+    "papers": 1452,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q2",
+    "papers": 1451,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q3",
+    "papers": 1451,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q4",
+    "papers": 1451,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q1",
+    "papers": 1630,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q2",
+    "papers": 1630,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q3",
+    "papers": 1630,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q4",
+    "papers": 1630,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q1",
+    "papers": 1875,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q2",
+    "papers": 1875,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q3",
+    "papers": 1875,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q4",
+    "papers": 1875,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q1",
+    "papers": 2048,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q2",
+    "papers": 2048,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q3",
+    "papers": 2048,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q4",
+    "papers": 2048,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q1",
+    "papers": 2191,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q2",
+    "papers": 2190,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q3",
+    "papers": 2190,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q4",
+    "papers": 2190,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q1",
+    "papers": 2286,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q2",
+    "papers": 2286,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q3",
+    "papers": 2285,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q4",
+    "papers": 2285,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q1",
+    "papers": 2653,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q2",
+    "papers": 2653,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q3",
+    "papers": 2653,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q4",
+    "papers": 2652,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q1",
+    "papers": 2775,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q2",
+    "papers": 2775,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q3",
+    "papers": 2775,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q4",
+    "papers": 2774,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q1",
+    "papers": 2984,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q2",
+    "papers": 2984,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q3",
+    "papers": 2984,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q4",
+    "papers": 2983,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q1",
+    "papers": 3041,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q2",
+    "papers": 3041,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q3",
+    "papers": 3041,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q4",
+    "papers": 3041,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q1",
+    "papers": 3371,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q2",
+    "papers": 3371,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q3",
+    "papers": 3370,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q4",
+    "papers": 3370,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q1",
+    "papers": 3696,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q2",
+    "papers": 3696,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q3",
+    "papers": 3695,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q4",
+    "papers": 3695,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q1",
+    "papers": 4081,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q2",
+    "papers": 4080,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q3",
+    "papers": 4080,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q4",
+    "papers": 4080,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q1",
+    "papers": 4339,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q2",
+    "papers": 4338,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q3",
+    "papers": 4338,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q4",
+    "papers": 4338,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q1",
+    "papers": 4497,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q2",
+    "papers": 4497,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q3",
+    "papers": 4497,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q4",
+    "papers": 4497,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q1",
+    "papers": 4522,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q2",
+    "papers": 4521,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q3",
+    "papers": 4521,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q4",
+    "papers": 4521,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q1",
+    "papers": 5003,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q2",
+    "papers": 5003,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q3",
+    "papers": 5003,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q4",
+    "papers": 5002,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q1",
+    "papers": 4934,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q2",
+    "papers": 4933,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q3",
+    "papers": 4933,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q4",
+    "papers": 4933,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q1",
+    "papers": 5815,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q2",
+    "papers": 5815,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q3",
+    "papers": 5814,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q4",
+    "papers": 5814,
+    "derived": true
+   }
+  ],
+  "total_works": 279161,
+  "metadata": {
+   "source": "tier_a source aggregate (group_by=publication_year)",
+   "count_verified": true,
+   "years_contiguous": true,
+   "quarterly_method": "equal_split_interpolation",
+   "live_drift_note": null
+  }
+ },
+ "cybersecurity": {
+  "display_name": "Cybersecurity",
+  "annual": {
+   "2000": 2316,
+   "2001": 2552,
+   "2002": 4512,
+   "2003": 4901,
+   "2004": 6162,
+   "2005": 7542,
+   "2006": 8898,
+   "2007": 9655,
+   "2008": 10399,
+   "2009": 11894,
+   "2010": 12697,
+   "2011": 14024,
+   "2012": 15324,
+   "2013": 16403,
+   "2014": 17866,
+   "2015": 18855,
+   "2016": 19795,
+   "2017": 21633,
+   "2018": 24787,
+   "2019": 26888,
+   "2020": 28933,
+   "2021": 29652,
+   "2022": 30240,
+   "2023": 34517,
+   "2024": 40939,
+   "2025": 50332
+  },
+  "quarterly": [
+   {
+    "quarter": "2000-Q1",
+    "papers": 579,
+    "derived": true
+   },
+   {
+    "quarter": "2000-Q2",
+    "papers": 579,
+    "derived": true
+   },
+   {
+    "quarter": "2000-Q3",
+    "papers": 579,
+    "derived": true
+   },
+   {
+    "quarter": "2000-Q4",
+    "papers": 579,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q1",
+    "papers": 638,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q2",
+    "papers": 638,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q3",
+    "papers": 638,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q4",
+    "papers": 638,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q1",
+    "papers": 1128,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q2",
+    "papers": 1128,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q3",
+    "papers": 1128,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q4",
+    "papers": 1128,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q1",
+    "papers": 1226,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q2",
+    "papers": 1225,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q3",
+    "papers": 1225,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q4",
+    "papers": 1225,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q1",
+    "papers": 1541,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q2",
+    "papers": 1541,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q3",
+    "papers": 1540,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q4",
+    "papers": 1540,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q1",
+    "papers": 1886,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q2",
+    "papers": 1886,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q3",
+    "papers": 1885,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q4",
+    "papers": 1885,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q1",
+    "papers": 2225,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q2",
+    "papers": 2225,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q3",
+    "papers": 2224,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q4",
+    "papers": 2224,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q1",
+    "papers": 2414,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q2",
+    "papers": 2414,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q3",
+    "papers": 2414,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q4",
+    "papers": 2413,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q1",
+    "papers": 2600,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q2",
+    "papers": 2600,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q3",
+    "papers": 2600,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q4",
+    "papers": 2599,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q1",
+    "papers": 2974,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q2",
+    "papers": 2974,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q3",
+    "papers": 2973,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q4",
+    "papers": 2973,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q1",
+    "papers": 3175,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q2",
+    "papers": 3174,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q3",
+    "papers": 3174,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q4",
+    "papers": 3174,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q1",
+    "papers": 3506,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q2",
+    "papers": 3506,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q3",
+    "papers": 3506,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q4",
+    "papers": 3506,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q1",
+    "papers": 3831,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q2",
+    "papers": 3831,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q3",
+    "papers": 3831,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q4",
+    "papers": 3831,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q1",
+    "papers": 4101,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q2",
+    "papers": 4101,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q3",
+    "papers": 4101,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q4",
+    "papers": 4100,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q1",
+    "papers": 4467,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q2",
+    "papers": 4467,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q3",
+    "papers": 4466,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q4",
+    "papers": 4466,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q1",
+    "papers": 4714,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q2",
+    "papers": 4714,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q3",
+    "papers": 4714,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q4",
+    "papers": 4713,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q1",
+    "papers": 4949,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q2",
+    "papers": 4949,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q3",
+    "papers": 4949,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q4",
+    "papers": 4948,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q1",
+    "papers": 5409,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q2",
+    "papers": 5408,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q3",
+    "papers": 5408,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q4",
+    "papers": 5408,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q1",
+    "papers": 6197,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q2",
+    "papers": 6197,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q3",
+    "papers": 6197,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q4",
+    "papers": 6196,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q1",
+    "papers": 6722,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q2",
+    "papers": 6722,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q3",
+    "papers": 6722,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q4",
+    "papers": 6722,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q1",
+    "papers": 7234,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q2",
+    "papers": 7233,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q3",
+    "papers": 7233,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q4",
+    "papers": 7233,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q1",
+    "papers": 7413,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q2",
+    "papers": 7413,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q3",
+    "papers": 7413,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q4",
+    "papers": 7413,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q1",
+    "papers": 7560,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q2",
+    "papers": 7560,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q3",
+    "papers": 7560,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q4",
+    "papers": 7560,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q1",
+    "papers": 8630,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q2",
+    "papers": 8629,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q3",
+    "papers": 8629,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q4",
+    "papers": 8629,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q1",
+    "papers": 10235,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q2",
+    "papers": 10235,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q3",
+    "papers": 10235,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q4",
+    "papers": 10234,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q1",
+    "papers": 12583,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q2",
+    "papers": 12583,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q3",
+    "papers": 12583,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q4",
+    "papers": 12583,
+    "derived": true
+   }
+  ],
+  "total_works": 471716,
+  "metadata": {
+   "source": "tier_a source aggregate (group_by=publication_year)",
+   "count_verified": true,
+   "years_contiguous": true,
+   "quarterly_method": "equal_split_interpolation",
+   "live_drift_note": null
+  }
+ },
+ "blockchain": {
+  "display_name": "Blockchain",
+  "annual": {
+   "2000": 341,
+   "2001": 394,
+   "2002": 548,
+   "2003": 603,
+   "2004": 827,
+   "2005": 949,
+   "2006": 1197,
+   "2007": 1395,
+   "2008": 1891,
+   "2009": 2489,
+   "2010": 3460,
+   "2011": 4408,
+   "2012": 5701,
+   "2013": 7479,
+   "2014": 9170,
+   "2015": 11835,
+   "2016": 14187,
+   "2017": 19219,
+   "2018": 26565,
+   "2019": 34873,
+   "2020": 37927,
+   "2021": 42075,
+   "2022": 45750,
+   "2023": 51347,
+   "2024": 42185,
+   "2025": 45782
+  },
+  "quarterly": [
+   {
+    "quarter": "2000-Q1",
+    "papers": 86,
+    "derived": true
+   },
+   {
+    "quarter": "2000-Q2",
+    "papers": 85,
+    "derived": true
+   },
+   {
+    "quarter": "2000-Q3",
+    "papers": 85,
+    "derived": true
+   },
+   {
+    "quarter": "2000-Q4",
+    "papers": 85,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q1",
+    "papers": 99,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q2",
+    "papers": 99,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q3",
+    "papers": 98,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q4",
+    "papers": 98,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q1",
+    "papers": 137,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q2",
+    "papers": 137,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q3",
+    "papers": 137,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q4",
+    "papers": 137,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q1",
+    "papers": 151,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q2",
+    "papers": 151,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q3",
+    "papers": 151,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q4",
+    "papers": 150,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q1",
+    "papers": 207,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q2",
+    "papers": 207,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q3",
+    "papers": 207,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q4",
+    "papers": 206,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q1",
+    "papers": 238,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q2",
+    "papers": 237,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q3",
+    "papers": 237,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q4",
+    "papers": 237,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q1",
+    "papers": 300,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q2",
+    "papers": 299,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q3",
+    "papers": 299,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q4",
+    "papers": 299,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q1",
+    "papers": 349,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q2",
+    "papers": 349,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q3",
+    "papers": 349,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q4",
+    "papers": 348,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q1",
+    "papers": 473,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q2",
+    "papers": 473,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q3",
+    "papers": 473,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q4",
+    "papers": 472,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q1",
+    "papers": 623,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q2",
+    "papers": 622,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q3",
+    "papers": 622,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q4",
+    "papers": 622,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q1",
+    "papers": 865,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q2",
+    "papers": 865,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q3",
+    "papers": 865,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q4",
+    "papers": 865,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q1",
+    "papers": 1102,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q2",
+    "papers": 1102,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q3",
+    "papers": 1102,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q4",
+    "papers": 1102,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q1",
+    "papers": 1426,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q2",
+    "papers": 1425,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q3",
+    "papers": 1425,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q4",
+    "papers": 1425,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q1",
+    "papers": 1870,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q2",
+    "papers": 1870,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q3",
+    "papers": 1870,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q4",
+    "papers": 1869,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q1",
+    "papers": 2293,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q2",
+    "papers": 2293,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q3",
+    "papers": 2292,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q4",
+    "papers": 2292,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q1",
+    "papers": 2959,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q2",
+    "papers": 2959,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q3",
+    "papers": 2959,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q4",
+    "papers": 2958,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q1",
+    "papers": 3547,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q2",
+    "papers": 3547,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q3",
+    "papers": 3547,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q4",
+    "papers": 3546,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q1",
+    "papers": 4805,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q2",
+    "papers": 4805,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q3",
+    "papers": 4805,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q4",
+    "papers": 4804,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q1",
+    "papers": 6642,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q2",
+    "papers": 6641,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q3",
+    "papers": 6641,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q4",
+    "papers": 6641,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q1",
+    "papers": 8719,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q2",
+    "papers": 8718,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q3",
+    "papers": 8718,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q4",
+    "papers": 8718,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q1",
+    "papers": 9482,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q2",
+    "papers": 9482,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q3",
+    "papers": 9482,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q4",
+    "papers": 9481,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q1",
+    "papers": 10519,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q2",
+    "papers": 10519,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q3",
+    "papers": 10519,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q4",
+    "papers": 10518,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q1",
+    "papers": 11438,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q2",
+    "papers": 11438,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q3",
+    "papers": 11437,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q4",
+    "papers": 11437,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q1",
+    "papers": 12837,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q2",
+    "papers": 12837,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q3",
+    "papers": 12837,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q4",
+    "papers": 12836,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q1",
+    "papers": 10547,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q2",
+    "papers": 10546,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q3",
+    "papers": 10546,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q4",
+    "papers": 10546,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q1",
+    "papers": 11446,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q2",
+    "papers": 11446,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q3",
+    "papers": 11445,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q4",
+    "papers": 11445,
+    "derived": true
+   }
+  ],
+  "total_works": 412597,
+  "metadata": {
+   "source": "tier_a source aggregate (group_by=publication_year)",
+   "count_verified": true,
+   "years_contiguous": true,
+   "quarterly_method": "equal_split_interpolation",
+   "live_drift_note": null
+  }
+ },
+ "internet_of_things": {
+  "display_name": "Internet of Things",
+  "annual": {
+   "2000": 78,
+   "2001": 66,
+   "2002": 75,
+   "2003": 110,
+   "2004": 302,
+   "2005": 269,
+   "2006": 289,
+   "2007": 281,
+   "2008": 336,
+   "2009": 415,
+   "2010": 473,
+   "2011": 454,
+   "2012": 655,
+   "2013": 716,
+   "2014": 939,
+   "2015": 1137,
+   "2016": 1375,
+   "2017": 1900,
+   "2018": 2748,
+   "2019": 3231,
+   "2020": 3773,
+   "2021": 4769,
+   "2022": 6007,
+   "2023": 5693,
+   "2024": 6083,
+   "2025": 11916
+  },
+  "quarterly": [
+   {
+    "quarter": "2000-Q1",
+    "papers": 20,
+    "derived": true
+   },
+   {
+    "quarter": "2000-Q2",
+    "papers": 20,
+    "derived": true
+   },
+   {
+    "quarter": "2000-Q3",
+    "papers": 19,
+    "derived": true
+   },
+   {
+    "quarter": "2000-Q4",
+    "papers": 19,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q1",
+    "papers": 17,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q2",
+    "papers": 17,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q3",
+    "papers": 16,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q4",
+    "papers": 16,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q1",
+    "papers": 19,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q2",
+    "papers": 19,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q3",
+    "papers": 19,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q4",
+    "papers": 18,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q1",
+    "papers": 28,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q2",
+    "papers": 28,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q3",
+    "papers": 27,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q4",
+    "papers": 27,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q1",
+    "papers": 76,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q2",
+    "papers": 76,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q3",
+    "papers": 75,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q4",
+    "papers": 75,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q1",
+    "papers": 68,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q2",
+    "papers": 67,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q3",
+    "papers": 67,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q4",
+    "papers": 67,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q1",
+    "papers": 73,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q2",
+    "papers": 72,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q3",
+    "papers": 72,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q4",
+    "papers": 72,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q1",
+    "papers": 71,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q2",
+    "papers": 70,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q3",
+    "papers": 70,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q4",
+    "papers": 70,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q1",
+    "papers": 84,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q2",
+    "papers": 84,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q3",
+    "papers": 84,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q4",
+    "papers": 84,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q1",
+    "papers": 104,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q2",
+    "papers": 104,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q3",
+    "papers": 104,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q4",
+    "papers": 103,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q1",
+    "papers": 119,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q2",
+    "papers": 118,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q3",
+    "papers": 118,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q4",
+    "papers": 118,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q1",
+    "papers": 114,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q2",
+    "papers": 114,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q3",
+    "papers": 113,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q4",
+    "papers": 113,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q1",
+    "papers": 164,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q2",
+    "papers": 164,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q3",
+    "papers": 164,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q4",
+    "papers": 163,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q1",
+    "papers": 179,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q2",
+    "papers": 179,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q3",
+    "papers": 179,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q4",
+    "papers": 179,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q1",
+    "papers": 235,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q2",
+    "papers": 235,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q3",
+    "papers": 235,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q4",
+    "papers": 234,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q1",
+    "papers": 285,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q2",
+    "papers": 284,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q3",
+    "papers": 284,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q4",
+    "papers": 284,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q1",
+    "papers": 344,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q2",
+    "papers": 344,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q3",
+    "papers": 344,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q4",
+    "papers": 343,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q1",
+    "papers": 475,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q2",
+    "papers": 475,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q3",
+    "papers": 475,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q4",
+    "papers": 475,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q1",
+    "papers": 687,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q2",
+    "papers": 687,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q3",
+    "papers": 687,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q4",
+    "papers": 687,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q1",
+    "papers": 808,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q2",
+    "papers": 808,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q3",
+    "papers": 808,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q4",
+    "papers": 807,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q1",
+    "papers": 944,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q2",
+    "papers": 943,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q3",
+    "papers": 943,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q4",
+    "papers": 943,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q1",
+    "papers": 1193,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q2",
+    "papers": 1192,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q3",
+    "papers": 1192,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q4",
+    "papers": 1192,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q1",
+    "papers": 1502,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q2",
+    "papers": 1502,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q3",
+    "papers": 1502,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q4",
+    "papers": 1501,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q1",
+    "papers": 1424,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q2",
+    "papers": 1423,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q3",
+    "papers": 1423,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q4",
+    "papers": 1423,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q1",
+    "papers": 1521,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q2",
+    "papers": 1521,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q3",
+    "papers": 1521,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q4",
+    "papers": 1520,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q1",
+    "papers": 2979,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q2",
+    "papers": 2979,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q3",
+    "papers": 2979,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q4",
+    "papers": 2979,
+    "derived": true
+   }
+  ],
+  "total_works": 54090,
+  "metadata": {
+   "source": "tier_a source aggregate (group_by=publication_year)",
+   "count_verified": true,
+   "years_contiguous": true,
+   "quarterly_method": "equal_split_interpolation",
+   "live_drift_note": null
+  }
+ },
+ "edge_computing": {
+  "display_name": "Edge Computing",
+  "annual": {
+   "2000": 183,
+   "2001": 202,
+   "2002": 349,
+   "2003": 377,
+   "2004": 490,
+   "2005": 674,
+   "2006": 864,
+   "2007": 998,
+   "2008": 1101,
+   "2009": 1385,
+   "2010": 2033,
+   "2011": 3045,
+   "2012": 4290,
+   "2013": 5604,
+   "2014": 6986,
+   "2015": 8551,
+   "2016": 10240,
+   "2017": 12648,
+   "2018": 16378,
+   "2019": 18992,
+   "2020": 20535,
+   "2021": 22962,
+   "2022": 23073,
+   "2023": 23752,
+   "2024": 21378,
+   "2025": 25933
+  },
+  "quarterly": [
+   {
+    "quarter": "2000-Q1",
+    "papers": 46,
+    "derived": true
+   },
+   {
+    "quarter": "2000-Q2",
+    "papers": 46,
+    "derived": true
+   },
+   {
+    "quarter": "2000-Q3",
+    "papers": 46,
+    "derived": true
+   },
+   {
+    "quarter": "2000-Q4",
+    "papers": 45,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q1",
+    "papers": 51,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q2",
+    "papers": 51,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q3",
+    "papers": 50,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q4",
+    "papers": 50,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q1",
+    "papers": 88,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q2",
+    "papers": 87,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q3",
+    "papers": 87,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q4",
+    "papers": 87,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q1",
+    "papers": 95,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q2",
+    "papers": 94,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q3",
+    "papers": 94,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q4",
+    "papers": 94,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q1",
+    "papers": 123,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q2",
+    "papers": 123,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q3",
+    "papers": 122,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q4",
+    "papers": 122,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q1",
+    "papers": 169,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q2",
+    "papers": 169,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q3",
+    "papers": 168,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q4",
+    "papers": 168,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q1",
+    "papers": 216,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q2",
+    "papers": 216,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q3",
+    "papers": 216,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q4",
+    "papers": 216,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q1",
+    "papers": 250,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q2",
+    "papers": 250,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q3",
+    "papers": 249,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q4",
+    "papers": 249,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q1",
+    "papers": 276,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q2",
+    "papers": 275,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q3",
+    "papers": 275,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q4",
+    "papers": 275,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q1",
+    "papers": 347,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q2",
+    "papers": 346,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q3",
+    "papers": 346,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q4",
+    "papers": 346,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q1",
+    "papers": 509,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q2",
+    "papers": 508,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q3",
+    "papers": 508,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q4",
+    "papers": 508,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q1",
+    "papers": 762,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q2",
+    "papers": 761,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q3",
+    "papers": 761,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q4",
+    "papers": 761,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q1",
+    "papers": 1073,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q2",
+    "papers": 1073,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q3",
+    "papers": 1072,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q4",
+    "papers": 1072,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q1",
+    "papers": 1401,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q2",
+    "papers": 1401,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q3",
+    "papers": 1401,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q4",
+    "papers": 1401,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q1",
+    "papers": 1747,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q2",
+    "papers": 1747,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q3",
+    "papers": 1746,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q4",
+    "papers": 1746,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q1",
+    "papers": 2138,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q2",
+    "papers": 2138,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q3",
+    "papers": 2138,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q4",
+    "papers": 2137,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q1",
+    "papers": 2560,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q2",
+    "papers": 2560,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q3",
+    "papers": 2560,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q4",
+    "papers": 2560,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q1",
+    "papers": 3162,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q2",
+    "papers": 3162,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q3",
+    "papers": 3162,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q4",
+    "papers": 3162,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q1",
+    "papers": 4095,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q2",
+    "papers": 4095,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q3",
+    "papers": 4094,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q4",
+    "papers": 4094,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q1",
+    "papers": 4748,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q2",
+    "papers": 4748,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q3",
+    "papers": 4748,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q4",
+    "papers": 4748,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q1",
+    "papers": 5134,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q2",
+    "papers": 5134,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q3",
+    "papers": 5134,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q4",
+    "papers": 5133,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q1",
+    "papers": 5741,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q2",
+    "papers": 5741,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q3",
+    "papers": 5740,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q4",
+    "papers": 5740,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q1",
+    "papers": 5769,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q2",
+    "papers": 5768,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q3",
+    "papers": 5768,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q4",
+    "papers": 5768,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q1",
+    "papers": 5938,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q2",
+    "papers": 5938,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q3",
+    "papers": 5938,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q4",
+    "papers": 5938,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q1",
+    "papers": 5345,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q2",
+    "papers": 5345,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q3",
+    "papers": 5344,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q4",
+    "papers": 5344,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q1",
+    "papers": 6484,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q2",
+    "papers": 6483,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q3",
+    "papers": 6483,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q4",
+    "papers": 6483,
+    "derived": true
+   }
+  ],
+  "total_works": 233023,
+  "metadata": {
+   "source": "tier_a source aggregate (group_by=publication_year)",
+   "count_verified": true,
+   "years_contiguous": true,
+   "quarterly_method": "equal_split_interpolation",
+   "live_drift_note": null
+  }
+ },
+ "digital_twins": {
+  "display_name": "Digital Twins",
+  "annual": {
+   "2000": 218,
+   "2001": 276,
+   "2002": 374,
+   "2003": 352,
+   "2004": 380,
+   "2005": 460,
+   "2006": 539,
+   "2007": 537,
+   "2008": 574,
+   "2009": 598,
+   "2010": 767,
+   "2011": 963,
+   "2012": 1014,
+   "2013": 1217,
+   "2014": 1569,
+   "2015": 2105,
+   "2016": 2864,
+   "2017": 4204,
+   "2018": 6053,
+   "2019": 7984,
+   "2020": 9451,
+   "2021": 11137,
+   "2022": 12404,
+   "2023": 15289,
+   "2024": 18587,
+   "2025": 27149
+  },
+  "quarterly": [
+   {
+    "quarter": "2000-Q1",
+    "papers": 55,
+    "derived": true
+   },
+   {
+    "quarter": "2000-Q2",
+    "papers": 55,
+    "derived": true
+   },
+   {
+    "quarter": "2000-Q3",
+    "papers": 54,
+    "derived": true
+   },
+   {
+    "quarter": "2000-Q4",
+    "papers": 54,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q1",
+    "papers": 69,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q2",
+    "papers": 69,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q3",
+    "papers": 69,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q4",
+    "papers": 69,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q1",
+    "papers": 94,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q2",
+    "papers": 94,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q3",
+    "papers": 93,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q4",
+    "papers": 93,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q1",
+    "papers": 88,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q2",
+    "papers": 88,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q3",
+    "papers": 88,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q4",
+    "papers": 88,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q1",
+    "papers": 95,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q2",
+    "papers": 95,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q3",
+    "papers": 95,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q4",
+    "papers": 95,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q1",
+    "papers": 115,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q2",
+    "papers": 115,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q3",
+    "papers": 115,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q4",
+    "papers": 115,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q1",
+    "papers": 135,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q2",
+    "papers": 135,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q3",
+    "papers": 135,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q4",
+    "papers": 134,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q1",
+    "papers": 135,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q2",
+    "papers": 134,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q3",
+    "papers": 134,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q4",
+    "papers": 134,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q1",
+    "papers": 144,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q2",
+    "papers": 144,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q3",
+    "papers": 143,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q4",
+    "papers": 143,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q1",
+    "papers": 150,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q2",
+    "papers": 150,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q3",
+    "papers": 149,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q4",
+    "papers": 149,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q1",
+    "papers": 192,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q2",
+    "papers": 192,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q3",
+    "papers": 192,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q4",
+    "papers": 191,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q1",
+    "papers": 241,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q2",
+    "papers": 241,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q3",
+    "papers": 241,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q4",
+    "papers": 240,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q1",
+    "papers": 254,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q2",
+    "papers": 254,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q3",
+    "papers": 253,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q4",
+    "papers": 253,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q1",
+    "papers": 305,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q2",
+    "papers": 304,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q3",
+    "papers": 304,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q4",
+    "papers": 304,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q1",
+    "papers": 393,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q2",
+    "papers": 392,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q3",
+    "papers": 392,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q4",
+    "papers": 392,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q1",
+    "papers": 527,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q2",
+    "papers": 526,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q3",
+    "papers": 526,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q4",
+    "papers": 526,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q1",
+    "papers": 716,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q2",
+    "papers": 716,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q3",
+    "papers": 716,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q4",
+    "papers": 716,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q1",
+    "papers": 1051,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q2",
+    "papers": 1051,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q3",
+    "papers": 1051,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q4",
+    "papers": 1051,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q1",
+    "papers": 1514,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q2",
+    "papers": 1513,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q3",
+    "papers": 1513,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q4",
+    "papers": 1513,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q1",
+    "papers": 1996,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q2",
+    "papers": 1996,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q3",
+    "papers": 1996,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q4",
+    "papers": 1996,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q1",
+    "papers": 2363,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q2",
+    "papers": 2363,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q3",
+    "papers": 2363,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q4",
+    "papers": 2362,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q1",
+    "papers": 2785,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q2",
+    "papers": 2784,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q3",
+    "papers": 2784,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q4",
+    "papers": 2784,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q1",
+    "papers": 3101,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q2",
+    "papers": 3101,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q3",
+    "papers": 3101,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q4",
+    "papers": 3101,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q1",
+    "papers": 3823,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q2",
+    "papers": 3822,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q3",
+    "papers": 3822,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q4",
+    "papers": 3822,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q1",
+    "papers": 4647,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q2",
+    "papers": 4647,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q3",
+    "papers": 4647,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q4",
+    "papers": 4646,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q1",
+    "papers": 6788,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q2",
+    "papers": 6787,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q3",
+    "papers": 6787,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q4",
+    "papers": 6787,
+    "derived": true
+   }
+  ],
+  "total_works": 127065,
+  "metadata": {
+   "source": "tier_a source aggregate (group_by=publication_year)",
+   "count_verified": true,
+   "years_contiguous": true,
+   "quarterly_method": "equal_split_interpolation",
+   "live_drift_note": null
+  }
+ },
+ "smart_manufacturing": {
+  "display_name": "Smart Manufacturing",
+  "annual": {
+   "2000": 609,
+   "2001": 599,
+   "2002": 738,
+   "2003": 833,
+   "2004": 988,
+   "2005": 966,
+   "2006": 1156,
+   "2007": 1214,
+   "2008": 1235,
+   "2009": 1311,
+   "2010": 1618,
+   "2011": 1758,
+   "2012": 1865,
+   "2013": 2082,
+   "2014": 2524,
+   "2015": 2998,
+   "2016": 3932,
+   "2017": 4692,
+   "2018": 6433,
+   "2019": 7477,
+   "2020": 8784,
+   "2021": 9966,
+   "2022": 11516,
+   "2023": 12691,
+   "2024": 14903,
+   "2025": 17157
+  },
+  "quarterly": [
+   {
+    "quarter": "2000-Q1",
+    "papers": 153,
+    "derived": true
+   },
+   {
+    "quarter": "2000-Q2",
+    "papers": 152,
+    "derived": true
+   },
+   {
+    "quarter": "2000-Q3",
+    "papers": 152,
+    "derived": true
+   },
+   {
+    "quarter": "2000-Q4",
+    "papers": 152,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q1",
+    "papers": 150,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q2",
+    "papers": 150,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q3",
+    "papers": 150,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q4",
+    "papers": 149,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q1",
+    "papers": 185,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q2",
+    "papers": 185,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q3",
+    "papers": 184,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q4",
+    "papers": 184,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q1",
+    "papers": 209,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q2",
+    "papers": 208,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q3",
+    "papers": 208,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q4",
+    "papers": 208,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q1",
+    "papers": 247,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q2",
+    "papers": 247,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q3",
+    "papers": 247,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q4",
+    "papers": 247,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q1",
+    "papers": 242,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q2",
+    "papers": 242,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q3",
+    "papers": 241,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q4",
+    "papers": 241,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q1",
+    "papers": 289,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q2",
+    "papers": 289,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q3",
+    "papers": 289,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q4",
+    "papers": 289,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q1",
+    "papers": 304,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q2",
+    "papers": 304,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q3",
+    "papers": 303,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q4",
+    "papers": 303,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q1",
+    "papers": 309,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q2",
+    "papers": 309,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q3",
+    "papers": 309,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q4",
+    "papers": 308,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q1",
+    "papers": 328,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q2",
+    "papers": 328,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q3",
+    "papers": 328,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q4",
+    "papers": 327,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q1",
+    "papers": 405,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q2",
+    "papers": 405,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q3",
+    "papers": 404,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q4",
+    "papers": 404,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q1",
+    "papers": 440,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q2",
+    "papers": 440,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q3",
+    "papers": 439,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q4",
+    "papers": 439,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q1",
+    "papers": 467,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q2",
+    "papers": 466,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q3",
+    "papers": 466,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q4",
+    "papers": 466,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q1",
+    "papers": 521,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q2",
+    "papers": 521,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q3",
+    "papers": 520,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q4",
+    "papers": 520,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q1",
+    "papers": 631,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q2",
+    "papers": 631,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q3",
+    "papers": 631,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q4",
+    "papers": 631,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q1",
+    "papers": 750,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q2",
+    "papers": 750,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q3",
+    "papers": 749,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q4",
+    "papers": 749,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q1",
+    "papers": 983,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q2",
+    "papers": 983,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q3",
+    "papers": 983,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q4",
+    "papers": 983,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q1",
+    "papers": 1173,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q2",
+    "papers": 1173,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q3",
+    "papers": 1173,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q4",
+    "papers": 1173,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q1",
+    "papers": 1609,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q2",
+    "papers": 1608,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q3",
+    "papers": 1608,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q4",
+    "papers": 1608,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q1",
+    "papers": 1870,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q2",
+    "papers": 1869,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q3",
+    "papers": 1869,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q4",
+    "papers": 1869,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q1",
+    "papers": 2196,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q2",
+    "papers": 2196,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q3",
+    "papers": 2196,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q4",
+    "papers": 2196,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q1",
+    "papers": 2492,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q2",
+    "papers": 2492,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q3",
+    "papers": 2491,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q4",
+    "papers": 2491,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q1",
+    "papers": 2879,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q2",
+    "papers": 2879,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q3",
+    "papers": 2879,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q4",
+    "papers": 2879,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q1",
+    "papers": 3173,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q2",
+    "papers": 3173,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q3",
+    "papers": 3173,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q4",
+    "papers": 3172,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q1",
+    "papers": 3726,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q2",
+    "papers": 3726,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q3",
+    "papers": 3726,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q4",
+    "papers": 3725,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q1",
+    "papers": 4290,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q2",
+    "papers": 4289,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q3",
+    "papers": 4289,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q4",
+    "papers": 4289,
+    "derived": true
+   }
+  ],
+  "total_works": 120045,
+  "metadata": {
+   "source": "tier_a source aggregate (group_by=publication_year)",
+   "count_verified": true,
+   "years_contiguous": true,
+   "quarterly_method": "equal_split_interpolation",
+   "live_drift_note": null
+  }
+ },
+ "autonomous_vehicles": {
+  "display_name": "Autonomous Vehicles",
+  "annual": {
+   "2000": 556,
+   "2001": 559,
+   "2002": 1025,
+   "2003": 855,
+   "2004": 945,
+   "2005": 1206,
+   "2006": 1392,
+   "2007": 1503,
+   "2008": 1556,
+   "2009": 1840,
+   "2010": 2004,
+   "2011": 2403,
+   "2012": 2660,
+   "2013": 2834,
+   "2014": 3135,
+   "2015": 3678,
+   "2016": 3844,
+   "2017": 4901,
+   "2018": 6139,
+   "2019": 7790,
+   "2020": 8347,
+   "2021": 9245,
+   "2022": 9814,
+   "2023": 10968,
+   "2024": 12443,
+   "2025": 16015
+  },
+  "quarterly": [
+   {
+    "quarter": "2000-Q1",
+    "papers": 139,
+    "derived": true
+   },
+   {
+    "quarter": "2000-Q2",
+    "papers": 139,
+    "derived": true
+   },
+   {
+    "quarter": "2000-Q3",
+    "papers": 139,
+    "derived": true
+   },
+   {
+    "quarter": "2000-Q4",
+    "papers": 139,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q1",
+    "papers": 140,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q2",
+    "papers": 140,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q3",
+    "papers": 140,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q4",
+    "papers": 139,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q1",
+    "papers": 257,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q2",
+    "papers": 256,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q3",
+    "papers": 256,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q4",
+    "papers": 256,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q1",
+    "papers": 214,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q2",
+    "papers": 214,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q3",
+    "papers": 214,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q4",
+    "papers": 213,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q1",
+    "papers": 237,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q2",
+    "papers": 236,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q3",
+    "papers": 236,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q4",
+    "papers": 236,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q1",
+    "papers": 302,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q2",
+    "papers": 302,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q3",
+    "papers": 301,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q4",
+    "papers": 301,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q1",
+    "papers": 348,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q2",
+    "papers": 348,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q3",
+    "papers": 348,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q4",
+    "papers": 348,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q1",
+    "papers": 376,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q2",
+    "papers": 376,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q3",
+    "papers": 376,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q4",
+    "papers": 375,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q1",
+    "papers": 389,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q2",
+    "papers": 389,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q3",
+    "papers": 389,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q4",
+    "papers": 389,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q1",
+    "papers": 460,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q2",
+    "papers": 460,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q3",
+    "papers": 460,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q4",
+    "papers": 460,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q1",
+    "papers": 501,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q2",
+    "papers": 501,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q3",
+    "papers": 501,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q4",
+    "papers": 501,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q1",
+    "papers": 601,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q2",
+    "papers": 601,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q3",
+    "papers": 601,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q4",
+    "papers": 600,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q1",
+    "papers": 665,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q2",
+    "papers": 665,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q3",
+    "papers": 665,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q4",
+    "papers": 665,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q1",
+    "papers": 709,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q2",
+    "papers": 709,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q3",
+    "papers": 708,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q4",
+    "papers": 708,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q1",
+    "papers": 784,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q2",
+    "papers": 784,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q3",
+    "papers": 784,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q4",
+    "papers": 783,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q1",
+    "papers": 920,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q2",
+    "papers": 920,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q3",
+    "papers": 919,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q4",
+    "papers": 919,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q1",
+    "papers": 961,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q2",
+    "papers": 961,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q3",
+    "papers": 961,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q4",
+    "papers": 961,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q1",
+    "papers": 1226,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q2",
+    "papers": 1225,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q3",
+    "papers": 1225,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q4",
+    "papers": 1225,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q1",
+    "papers": 1535,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q2",
+    "papers": 1535,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q3",
+    "papers": 1535,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q4",
+    "papers": 1534,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q1",
+    "papers": 1948,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q2",
+    "papers": 1948,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q3",
+    "papers": 1947,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q4",
+    "papers": 1947,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q1",
+    "papers": 2087,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q2",
+    "papers": 2087,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q3",
+    "papers": 2087,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q4",
+    "papers": 2086,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q1",
+    "papers": 2312,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q2",
+    "papers": 2311,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q3",
+    "papers": 2311,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q4",
+    "papers": 2311,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q1",
+    "papers": 2454,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q2",
+    "papers": 2454,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q3",
+    "papers": 2453,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q4",
+    "papers": 2453,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q1",
+    "papers": 2742,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q2",
+    "papers": 2742,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q3",
+    "papers": 2742,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q4",
+    "papers": 2742,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q1",
+    "papers": 3111,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q2",
+    "papers": 3111,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q3",
+    "papers": 3111,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q4",
+    "papers": 3110,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q1",
+    "papers": 4004,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q2",
+    "papers": 4004,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q3",
+    "papers": 4004,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q4",
+    "papers": 4003,
+    "derived": true
+   }
+  ],
+  "total_works": 117657,
+  "metadata": {
+   "source": "tier_a source aggregate (group_by=publication_year)",
+   "count_verified": true,
+   "years_contiguous": true,
+   "quarterly_method": "equal_split_interpolation",
+   "live_drift_note": null
+  }
+ },
+ "space_technologies": {
+  "display_name": "Space Technologies",
+  "annual": {
+   "2000": 5413,
+   "2001": 5010,
+   "2002": 8618,
+   "2003": 7873,
+   "2004": 7696,
+   "2005": 8278,
+   "2006": 8828,
+   "2007": 8620,
+   "2008": 9174,
+   "2009": 9175,
+   "2010": 10040,
+   "2011": 10757,
+   "2012": 11310,
+   "2013": 11887,
+   "2014": 12110,
+   "2015": 13017,
+   "2016": 11814,
+   "2017": 11940,
+   "2018": 12900,
+   "2019": 13360,
+   "2020": 12571,
+   "2021": 12164,
+   "2022": 12162,
+   "2023": 14096,
+   "2024": 17764,
+   "2025": 21784
+  },
+  "quarterly": [
+   {
+    "quarter": "2000-Q1",
+    "papers": 1354,
+    "derived": true
+   },
+   {
+    "quarter": "2000-Q2",
+    "papers": 1353,
+    "derived": true
+   },
+   {
+    "quarter": "2000-Q3",
+    "papers": 1353,
+    "derived": true
+   },
+   {
+    "quarter": "2000-Q4",
+    "papers": 1353,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q1",
+    "papers": 1253,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q2",
+    "papers": 1253,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q3",
+    "papers": 1252,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q4",
+    "papers": 1252,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q1",
+    "papers": 2155,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q2",
+    "papers": 2155,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q3",
+    "papers": 2154,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q4",
+    "papers": 2154,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q1",
+    "papers": 1969,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q2",
+    "papers": 1968,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q3",
+    "papers": 1968,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q4",
+    "papers": 1968,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q1",
+    "papers": 1924,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q2",
+    "papers": 1924,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q3",
+    "papers": 1924,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q4",
+    "papers": 1924,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q1",
+    "papers": 2070,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q2",
+    "papers": 2070,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q3",
+    "papers": 2069,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q4",
+    "papers": 2069,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q1",
+    "papers": 2207,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q2",
+    "papers": 2207,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q3",
+    "papers": 2207,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q4",
+    "papers": 2207,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q1",
+    "papers": 2155,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q2",
+    "papers": 2155,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q3",
+    "papers": 2155,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q4",
+    "papers": 2155,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q1",
+    "papers": 2294,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q2",
+    "papers": 2294,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q3",
+    "papers": 2293,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q4",
+    "papers": 2293,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q1",
+    "papers": 2294,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q2",
+    "papers": 2294,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q3",
+    "papers": 2294,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q4",
+    "papers": 2293,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q1",
+    "papers": 2510,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q2",
+    "papers": 2510,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q3",
+    "papers": 2510,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q4",
+    "papers": 2510,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q1",
+    "papers": 2690,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q2",
+    "papers": 2689,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q3",
+    "papers": 2689,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q4",
+    "papers": 2689,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q1",
+    "papers": 2828,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q2",
+    "papers": 2828,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q3",
+    "papers": 2827,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q4",
+    "papers": 2827,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q1",
+    "papers": 2972,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q2",
+    "papers": 2972,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q3",
+    "papers": 2972,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q4",
+    "papers": 2971,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q1",
+    "papers": 3028,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q2",
+    "papers": 3028,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q3",
+    "papers": 3027,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q4",
+    "papers": 3027,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q1",
+    "papers": 3255,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q2",
+    "papers": 3254,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q3",
+    "papers": 3254,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q4",
+    "papers": 3254,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q1",
+    "papers": 2954,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q2",
+    "papers": 2954,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q3",
+    "papers": 2953,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q4",
+    "papers": 2953,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q1",
+    "papers": 2985,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q2",
+    "papers": 2985,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q3",
+    "papers": 2985,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q4",
+    "papers": 2985,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q1",
+    "papers": 3225,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q2",
+    "papers": 3225,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q3",
+    "papers": 3225,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q4",
+    "papers": 3225,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q1",
+    "papers": 3340,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q2",
+    "papers": 3340,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q3",
+    "papers": 3340,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q4",
+    "papers": 3340,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q1",
+    "papers": 3143,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q2",
+    "papers": 3143,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q3",
+    "papers": 3143,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q4",
+    "papers": 3142,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q1",
+    "papers": 3041,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q2",
+    "papers": 3041,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q3",
+    "papers": 3041,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q4",
+    "papers": 3041,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q1",
+    "papers": 3041,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q2",
+    "papers": 3041,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q3",
+    "papers": 3040,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q4",
+    "papers": 3040,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q1",
+    "papers": 3524,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q2",
+    "papers": 3524,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q3",
+    "papers": 3524,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q4",
+    "papers": 3524,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q1",
+    "papers": 4441,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q2",
+    "papers": 4441,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q3",
+    "papers": 4441,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q4",
+    "papers": 4441,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q1",
+    "papers": 5446,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q2",
+    "papers": 5446,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q3",
+    "papers": 5446,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q4",
+    "papers": 5446,
+    "derived": true
+   }
+  ],
+  "total_works": 288361,
+  "metadata": {
+   "source": "tier_a source aggregate (group_by=publication_year)",
+   "count_verified": true,
+   "years_contiguous": true,
+   "quarterly_method": "equal_split_interpolation",
+   "live_drift_note": null
+  }
+ },
+ "advanced_semiconductors": {
+  "display_name": "Advanced Semiconductors",
+  "annual": {
+   "2000": 14536,
+   "2001": 15546,
+   "2002": 32656,
+   "2003": 25990,
+   "2004": 22635,
+   "2005": 26506,
+   "2006": 28731,
+   "2007": 28159,
+   "2008": 27482,
+   "2009": 27114,
+   "2010": 28259,
+   "2011": 29743,
+   "2012": 28330,
+   "2013": 29023,
+   "2014": 29482,
+   "2015": 28492,
+   "2016": 28466,
+   "2017": 26524,
+   "2018": 25903,
+   "2019": 25999,
+   "2020": 23770,
+   "2021": 23203,
+   "2022": 22651,
+   "2023": 23780,
+   "2024": 25405,
+   "2025": 25528
+  },
+  "quarterly": [
+   {
+    "quarter": "2000-Q1",
+    "papers": 3634,
+    "derived": true
+   },
+   {
+    "quarter": "2000-Q2",
+    "papers": 3634,
+    "derived": true
+   },
+   {
+    "quarter": "2000-Q3",
+    "papers": 3634,
+    "derived": true
+   },
+   {
+    "quarter": "2000-Q4",
+    "papers": 3634,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q1",
+    "papers": 3887,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q2",
+    "papers": 3887,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q3",
+    "papers": 3886,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q4",
+    "papers": 3886,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q1",
+    "papers": 8164,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q2",
+    "papers": 8164,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q3",
+    "papers": 8164,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q4",
+    "papers": 8164,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q1",
+    "papers": 6498,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q2",
+    "papers": 6498,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q3",
+    "papers": 6497,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q4",
+    "papers": 6497,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q1",
+    "papers": 5659,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q2",
+    "papers": 5659,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q3",
+    "papers": 5659,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q4",
+    "papers": 5658,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q1",
+    "papers": 6627,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q2",
+    "papers": 6627,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q3",
+    "papers": 6626,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q4",
+    "papers": 6626,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q1",
+    "papers": 7183,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q2",
+    "papers": 7183,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q3",
+    "papers": 7183,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q4",
+    "papers": 7182,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q1",
+    "papers": 7040,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q2",
+    "papers": 7040,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q3",
+    "papers": 7040,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q4",
+    "papers": 7039,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q1",
+    "papers": 6871,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q2",
+    "papers": 6871,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q3",
+    "papers": 6870,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q4",
+    "papers": 6870,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q1",
+    "papers": 6779,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q2",
+    "papers": 6779,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q3",
+    "papers": 6778,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q4",
+    "papers": 6778,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q1",
+    "papers": 7065,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q2",
+    "papers": 7065,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q3",
+    "papers": 7065,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q4",
+    "papers": 7064,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q1",
+    "papers": 7436,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q2",
+    "papers": 7436,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q3",
+    "papers": 7436,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q4",
+    "papers": 7435,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q1",
+    "papers": 7083,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q2",
+    "papers": 7083,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q3",
+    "papers": 7082,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q4",
+    "papers": 7082,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q1",
+    "papers": 7256,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q2",
+    "papers": 7256,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q3",
+    "papers": 7256,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q4",
+    "papers": 7255,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q1",
+    "papers": 7371,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q2",
+    "papers": 7371,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q3",
+    "papers": 7370,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q4",
+    "papers": 7370,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q1",
+    "papers": 7123,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q2",
+    "papers": 7123,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q3",
+    "papers": 7123,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q4",
+    "papers": 7123,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q1",
+    "papers": 7117,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q2",
+    "papers": 7117,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q3",
+    "papers": 7116,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q4",
+    "papers": 7116,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q1",
+    "papers": 6631,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q2",
+    "papers": 6631,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q3",
+    "papers": 6631,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q4",
+    "papers": 6631,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q1",
+    "papers": 6476,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q2",
+    "papers": 6476,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q3",
+    "papers": 6476,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q4",
+    "papers": 6475,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q1",
+    "papers": 6500,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q2",
+    "papers": 6500,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q3",
+    "papers": 6500,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q4",
+    "papers": 6499,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q1",
+    "papers": 5943,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q2",
+    "papers": 5943,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q3",
+    "papers": 5942,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q4",
+    "papers": 5942,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q1",
+    "papers": 5801,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q2",
+    "papers": 5801,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q3",
+    "papers": 5801,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q4",
+    "papers": 5800,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q1",
+    "papers": 5663,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q2",
+    "papers": 5663,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q3",
+    "papers": 5663,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q4",
+    "papers": 5662,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q1",
+    "papers": 5945,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q2",
+    "papers": 5945,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q3",
+    "papers": 5945,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q4",
+    "papers": 5945,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q1",
+    "papers": 6352,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q2",
+    "papers": 6351,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q3",
+    "papers": 6351,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q4",
+    "papers": 6351,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q1",
+    "papers": 6382,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q2",
+    "papers": 6382,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q3",
+    "papers": 6382,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q4",
+    "papers": 6382,
+    "derived": true
+   }
+  ],
+  "total_works": 673913,
+  "metadata": {
+   "source": "tier_a source aggregate (group_by=publication_year)",
+   "count_verified": true,
+   "years_contiguous": true,
+   "quarterly_method": "equal_split_interpolation",
+   "live_drift_note": null
+  }
+ },
+ "biotechnology": {
+  "display_name": "Biotechnology",
+  "annual": {
+   "2000": 13271,
+   "2001": 13080,
+   "2002": 14200,
+   "2003": 14014,
+   "2004": 15130,
+   "2005": 15846,
+   "2006": 16906,
+   "2007": 17440,
+   "2008": 18405,
+   "2009": 19868,
+   "2010": 20482,
+   "2011": 20535,
+   "2012": 22328,
+   "2013": 23373,
+   "2014": 23993,
+   "2015": 24448,
+   "2016": 24790,
+   "2017": 23981,
+   "2018": 22780,
+   "2019": 23308,
+   "2020": 23380,
+   "2021": 21432,
+   "2022": 19459,
+   "2023": 19533,
+   "2024": 21099,
+   "2025": 23912
+  },
+  "quarterly": [
+   {
+    "quarter": "2000-Q1",
+    "papers": 3318,
+    "derived": true
+   },
+   {
+    "quarter": "2000-Q2",
+    "papers": 3318,
+    "derived": true
+   },
+   {
+    "quarter": "2000-Q3",
+    "papers": 3318,
+    "derived": true
+   },
+   {
+    "quarter": "2000-Q4",
+    "papers": 3317,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q1",
+    "papers": 3270,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q2",
+    "papers": 3270,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q3",
+    "papers": 3270,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q4",
+    "papers": 3270,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q1",
+    "papers": 3550,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q2",
+    "papers": 3550,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q3",
+    "papers": 3550,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q4",
+    "papers": 3550,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q1",
+    "papers": 3504,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q2",
+    "papers": 3504,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q3",
+    "papers": 3503,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q4",
+    "papers": 3503,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q1",
+    "papers": 3783,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q2",
+    "papers": 3783,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q3",
+    "papers": 3782,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q4",
+    "papers": 3782,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q1",
+    "papers": 3962,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q2",
+    "papers": 3962,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q3",
+    "papers": 3961,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q4",
+    "papers": 3961,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q1",
+    "papers": 4227,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q2",
+    "papers": 4227,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q3",
+    "papers": 4226,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q4",
+    "papers": 4226,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q1",
+    "papers": 4360,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q2",
+    "papers": 4360,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q3",
+    "papers": 4360,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q4",
+    "papers": 4360,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q1",
+    "papers": 4602,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q2",
+    "papers": 4601,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q3",
+    "papers": 4601,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q4",
+    "papers": 4601,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q1",
+    "papers": 4967,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q2",
+    "papers": 4967,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q3",
+    "papers": 4967,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q4",
+    "papers": 4967,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q1",
+    "papers": 5121,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q2",
+    "papers": 5121,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q3",
+    "papers": 5120,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q4",
+    "papers": 5120,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q1",
+    "papers": 5134,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q2",
+    "papers": 5134,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q3",
+    "papers": 5134,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q4",
+    "papers": 5133,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q1",
+    "papers": 5582,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q2",
+    "papers": 5582,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q3",
+    "papers": 5582,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q4",
+    "papers": 5582,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q1",
+    "papers": 5844,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q2",
+    "papers": 5843,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q3",
+    "papers": 5843,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q4",
+    "papers": 5843,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q1",
+    "papers": 5999,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q2",
+    "papers": 5998,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q3",
+    "papers": 5998,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q4",
+    "papers": 5998,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q1",
+    "papers": 6112,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q2",
+    "papers": 6112,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q3",
+    "papers": 6112,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q4",
+    "papers": 6112,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q1",
+    "papers": 6198,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q2",
+    "papers": 6198,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q3",
+    "papers": 6197,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q4",
+    "papers": 6197,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q1",
+    "papers": 5996,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q2",
+    "papers": 5995,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q3",
+    "papers": 5995,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q4",
+    "papers": 5995,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q1",
+    "papers": 5695,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q2",
+    "papers": 5695,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q3",
+    "papers": 5695,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q4",
+    "papers": 5695,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q1",
+    "papers": 5827,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q2",
+    "papers": 5827,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q3",
+    "papers": 5827,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q4",
+    "papers": 5827,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q1",
+    "papers": 5845,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q2",
+    "papers": 5845,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q3",
+    "papers": 5845,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q4",
+    "papers": 5845,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q1",
+    "papers": 5358,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q2",
+    "papers": 5358,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q3",
+    "papers": 5358,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q4",
+    "papers": 5358,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q1",
+    "papers": 4865,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q2",
+    "papers": 4865,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q3",
+    "papers": 4865,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q4",
+    "papers": 4864,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q1",
+    "papers": 4884,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q2",
+    "papers": 4883,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q3",
+    "papers": 4883,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q4",
+    "papers": 4883,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q1",
+    "papers": 5275,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q2",
+    "papers": 5275,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q3",
+    "papers": 5275,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q4",
+    "papers": 5274,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q1",
+    "papers": 5978,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q2",
+    "papers": 5978,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q3",
+    "papers": 5978,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q4",
+    "papers": 5978,
+    "derived": true
+   }
+  ],
+  "total_works": 516993,
+  "metadata": {
+   "source": "tier_a source aggregate (group_by=publication_year)",
+   "count_verified": true,
+   "years_contiguous": true,
+   "quarterly_method": "equal_split_interpolation",
+   "live_drift_note": null
+  }
+ },
+ "quantum_computing": {
+  "display_name": "Quantum Computing",
+  "annual": {
+   "2000": 1443,
+   "2001": 1724,
+   "2002": 2448,
+   "2003": 2583,
+   "2004": 2802,
+   "2005": 3492,
+   "2006": 3755,
+   "2007": 3677,
+   "2008": 3940,
+   "2009": 3909,
+   "2010": 4032,
+   "2011": 4273,
+   "2012": 4618,
+   "2013": 4977,
+   "2014": 5218,
+   "2015": 5151,
+   "2016": 5418,
+   "2017": 5626,
+   "2018": 6306,
+   "2019": 7636,
+   "2020": 8757,
+   "2021": 10731,
+   "2022": 11719,
+   "2023": 13854,
+   "2024": 14108,
+   "2025": 20584
+  },
+  "quarterly": [
+   {
+    "quarter": "2000-Q1",
+    "papers": 361,
+    "derived": true
+   },
+   {
+    "quarter": "2000-Q2",
+    "papers": 361,
+    "derived": true
+   },
+   {
+    "quarter": "2000-Q3",
+    "papers": 361,
+    "derived": true
+   },
+   {
+    "quarter": "2000-Q4",
+    "papers": 360,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q1",
+    "papers": 431,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q2",
+    "papers": 431,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q3",
+    "papers": 431,
+    "derived": true
+   },
+   {
+    "quarter": "2001-Q4",
+    "papers": 431,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q1",
+    "papers": 612,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q2",
+    "papers": 612,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q3",
+    "papers": 612,
+    "derived": true
+   },
+   {
+    "quarter": "2002-Q4",
+    "papers": 612,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q1",
+    "papers": 646,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q2",
+    "papers": 646,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q3",
+    "papers": 646,
+    "derived": true
+   },
+   {
+    "quarter": "2003-Q4",
+    "papers": 645,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q1",
+    "papers": 701,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q2",
+    "papers": 701,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q3",
+    "papers": 700,
+    "derived": true
+   },
+   {
+    "quarter": "2004-Q4",
+    "papers": 700,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q1",
+    "papers": 873,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q2",
+    "papers": 873,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q3",
+    "papers": 873,
+    "derived": true
+   },
+   {
+    "quarter": "2005-Q4",
+    "papers": 873,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q1",
+    "papers": 939,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q2",
+    "papers": 939,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q3",
+    "papers": 939,
+    "derived": true
+   },
+   {
+    "quarter": "2006-Q4",
+    "papers": 938,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q1",
+    "papers": 920,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q2",
+    "papers": 919,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q3",
+    "papers": 919,
+    "derived": true
+   },
+   {
+    "quarter": "2007-Q4",
+    "papers": 919,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q1",
+    "papers": 985,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q2",
+    "papers": 985,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q3",
+    "papers": 985,
+    "derived": true
+   },
+   {
+    "quarter": "2008-Q4",
+    "papers": 985,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q1",
+    "papers": 978,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q2",
+    "papers": 977,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q3",
+    "papers": 977,
+    "derived": true
+   },
+   {
+    "quarter": "2009-Q4",
+    "papers": 977,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q1",
+    "papers": 1008,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q2",
+    "papers": 1008,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q3",
+    "papers": 1008,
+    "derived": true
+   },
+   {
+    "quarter": "2010-Q4",
+    "papers": 1008,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q1",
+    "papers": 1069,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q2",
+    "papers": 1068,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q3",
+    "papers": 1068,
+    "derived": true
+   },
+   {
+    "quarter": "2011-Q4",
+    "papers": 1068,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q1",
+    "papers": 1155,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q2",
+    "papers": 1155,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q3",
+    "papers": 1154,
+    "derived": true
+   },
+   {
+    "quarter": "2012-Q4",
+    "papers": 1154,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q1",
+    "papers": 1245,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q2",
+    "papers": 1244,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q3",
+    "papers": 1244,
+    "derived": true
+   },
+   {
+    "quarter": "2013-Q4",
+    "papers": 1244,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q1",
+    "papers": 1305,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q2",
+    "papers": 1305,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q3",
+    "papers": 1304,
+    "derived": true
+   },
+   {
+    "quarter": "2014-Q4",
+    "papers": 1304,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q1",
+    "papers": 1288,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q2",
+    "papers": 1288,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q3",
+    "papers": 1288,
+    "derived": true
+   },
+   {
+    "quarter": "2015-Q4",
+    "papers": 1287,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q1",
+    "papers": 1355,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q2",
+    "papers": 1355,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q3",
+    "papers": 1354,
+    "derived": true
+   },
+   {
+    "quarter": "2016-Q4",
+    "papers": 1354,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q1",
+    "papers": 1407,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q2",
+    "papers": 1407,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q3",
+    "papers": 1406,
+    "derived": true
+   },
+   {
+    "quarter": "2017-Q4",
+    "papers": 1406,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q1",
+    "papers": 1577,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q2",
+    "papers": 1577,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q3",
+    "papers": 1576,
+    "derived": true
+   },
+   {
+    "quarter": "2018-Q4",
+    "papers": 1576,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q1",
+    "papers": 1909,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q2",
+    "papers": 1909,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q3",
+    "papers": 1909,
+    "derived": true
+   },
+   {
+    "quarter": "2019-Q4",
+    "papers": 1909,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q1",
+    "papers": 2190,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q2",
+    "papers": 2189,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q3",
+    "papers": 2189,
+    "derived": true
+   },
+   {
+    "quarter": "2020-Q4",
+    "papers": 2189,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q1",
+    "papers": 2683,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q2",
+    "papers": 2683,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q3",
+    "papers": 2683,
+    "derived": true
+   },
+   {
+    "quarter": "2021-Q4",
+    "papers": 2682,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q1",
+    "papers": 2930,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q2",
+    "papers": 2930,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q3",
+    "papers": 2930,
+    "derived": true
+   },
+   {
+    "quarter": "2022-Q4",
+    "papers": 2929,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q1",
+    "papers": 3464,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q2",
+    "papers": 3464,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q3",
+    "papers": 3463,
+    "derived": true
+   },
+   {
+    "quarter": "2023-Q4",
+    "papers": 3463,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q1",
+    "papers": 3527,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q2",
+    "papers": 3527,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q3",
+    "papers": 3527,
+    "derived": true
+   },
+   {
+    "quarter": "2024-Q4",
+    "papers": 3527,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q1",
+    "papers": 5146,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q2",
+    "papers": 5146,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q3",
+    "papers": 5146,
+    "derived": true
+   },
+   {
+    "quarter": "2025-Q4",
+    "papers": 5146,
+    "derived": true
+   }
+  ],
+  "total_works": 162781,
+  "metadata": {
+   "source": "full-corpus staged (814-page walk)",
+   "count_verified": false,
+   "years_contiguous": true,
+   "quarterly_method": "equal_split_interpolation",
+   "live_drift_note": "2025 differ by 1 work vs live corpus"
+  }
+ }
+}

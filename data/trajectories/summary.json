@@ -1,0 +1,167 @@
+{
+ "generated": "tier_a_aggregate",
+ "domains": 20,
+ "panel_total_works": 5474269,
+ "trajectory": [
+  {
+   "domain_slug": "advanced_semiconductors",
+   "display_name": "Advanced Semiconductors",
+   "total_works": 673913,
+   "peak_year": 2002,
+   "growth_last2": 0.0048,
+   "yoy_2025": 0.0048
+  },
+  {
+   "domain_slug": "artificial_intelligence",
+   "display_name": "Artificial Intelligence",
+   "total_works": 620016,
+   "peak_year": 2025,
+   "growth_last2": 0.3419,
+   "yoy_2025": 0.3419
+  },
+  {
+   "domain_slug": "biotechnology",
+   "display_name": "Biotechnology",
+   "total_works": 516993,
+   "peak_year": 2016,
+   "growth_last2": 0.1333,
+   "yoy_2025": 0.1333
+  },
+  {
+   "domain_slug": "cybersecurity",
+   "display_name": "Cybersecurity",
+   "total_works": 471716,
+   "peak_year": 2025,
+   "growth_last2": 0.2294,
+   "yoy_2025": 0.2294
+  },
+  {
+   "domain_slug": "blockchain",
+   "display_name": "Blockchain",
+   "total_works": 412597,
+   "peak_year": 2023,
+   "growth_last2": 0.0853,
+   "yoy_2025": 0.0853
+  },
+  {
+   "domain_slug": "clean_hydrogen",
+   "display_name": "Clean Hydrogen",
+   "total_works": 333340,
+   "peak_year": 2023,
+   "growth_last2": -0.0301,
+   "yoy_2025": -0.0301
+  },
+  {
+   "domain_slug": "space_technologies",
+   "display_name": "Space Technologies",
+   "total_works": 288361,
+   "peak_year": 2025,
+   "growth_last2": 0.2263,
+   "yoy_2025": 0.2263
+  },
+  {
+   "domain_slug": "brain_computer_interfaces",
+   "display_name": "Brain-Computer Interfaces",
+   "total_works": 279161,
+   "peak_year": 2025,
+   "growth_last2": 0.1786,
+   "yoy_2025": 0.1786
+  },
+  {
+   "domain_slug": "edge_computing",
+   "display_name": "Edge Computing",
+   "total_works": 233023,
+   "peak_year": 2025,
+   "growth_last2": 0.2131,
+   "yoy_2025": 0.2131
+  },
+  {
+   "domain_slug": "solid_state_batteries",
+   "display_name": "Solid-State Batteries",
+   "total_works": 230706,
+   "peak_year": 2025,
+   "growth_last2": 0.095,
+   "yoy_2025": 0.095
+  },
+  {
+   "domain_slug": "synthetic_biology",
+   "display_name": "Synthetic Biology",
+   "total_works": 214197,
+   "peak_year": 2016,
+   "growth_last2": 0.0701,
+   "yoy_2025": 0.0701
+  },
+  {
+   "domain_slug": "ai_agents",
+   "display_name": "AI Agents",
+   "total_works": 193568,
+   "peak_year": 2025,
+   "growth_last2": 0.4072,
+   "yoy_2025": 0.4072
+  },
+  {
+   "domain_slug": "carbon_capture",
+   "display_name": "Carbon Capture",
+   "total_works": 176605,
+   "peak_year": 2025,
+   "growth_last2": 0.2927,
+   "yoy_2025": 0.2927
+  },
+  {
+   "domain_slug": "quantum_error_correction",
+   "display_name": "Quantum Error Correction",
+   "total_works": 162781,
+   "peak_year": 2025,
+   "growth_last2": 0.459,
+   "yoy_2025": 0.459
+  },
+  {
+   "domain_slug": "quantum_computing",
+   "display_name": "Quantum Computing",
+   "total_works": 162781,
+   "peak_year": 2025,
+   "growth_last2": 0.459,
+   "yoy_2025": 0.459
+  },
+  {
+   "domain_slug": "digital_twins",
+   "display_name": "Digital Twins",
+   "total_works": 127065,
+   "peak_year": 2025,
+   "growth_last2": 0.4606,
+   "yoy_2025": 0.4606
+  },
+  {
+   "domain_slug": "smart_manufacturing",
+   "display_name": "Smart Manufacturing",
+   "total_works": 120045,
+   "peak_year": 2025,
+   "growth_last2": 0.1512,
+   "yoy_2025": 0.1512
+  },
+  {
+   "domain_slug": "autonomous_vehicles",
+   "display_name": "Autonomous Vehicles",
+   "total_works": 117657,
+   "peak_year": 2025,
+   "growth_last2": 0.287,
+   "yoy_2025": 0.287
+  },
+  {
+   "domain_slug": "generative_ai",
+   "display_name": "Generative AI",
+   "total_works": 85654,
+   "peak_year": 2025,
+   "growth_last2": 1.4249,
+   "yoy_2025": 1.4249
+  },
+  {
+   "domain_slug": "internet_of_things",
+   "display_name": "Internet of Things",
+   "total_works": 54090,
+   "peak_year": 2025,
+   "growth_last2": 0.9587,
+   "yoy_2025": 0.9587
+  }
+ ]
+}
