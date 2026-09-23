@@ -11,6 +11,8 @@ import { LeaderboardView } from './views/Leaderboard'
 import { DomainDrilldownView } from './views/DomainDrilldown'
 import { BurstsView } from './views/Bursts'
 import { MatrixView } from './views/Matrix'
+import { AboutView } from './views/About'
+import { ErrorBoundary } from './components/ErrorBoundary'
 
 const NAV = [
   { to: '/', label: 'Leaderboard', end: true },
@@ -130,11 +132,13 @@ function Shell() {
       </header>
 
       <main id="main" className="container" style={{ flex: 1 }}>
+        <ErrorBoundary>
         <Routes>
           <Route path="/" element={<LeaderboardView />} />
           <Route path="/domain/:slug" element={<DomainDrilldownView />} />
           <Route path="/bursts" element={<BurstsView />} />
           <Route path="/matrix" element={<MatrixView />} />
+          <Route path="/about" element={<AboutView />} />
           <Route
             path="*"
             element={
@@ -150,6 +154,7 @@ function Shell() {
             }
           />
         </Routes>
+        </ErrorBoundary>
       </main>
 
       <footer
