@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
-import { NavLink, useLocation } from 'react-router-dom'
+import { NavLink, Route, Routes } from 'react-router-dom'
+
 import { StoreProvider, useStore } from './lib/store'
 import { loadLeaderboard } from './lib/snapshots'
 import { useQuery } from './lib/useQuery'
@@ -7,6 +8,7 @@ import { snapshotSentence } from './lib/format'
 import { MethodologyNote } from './components/MethodologyNote'
 import { SearchPalette, useCommandK, type SearchItem } from './components/SearchPalette'
 import { LeaderboardView } from './views/Leaderboard'
+import { DomainDrilldownView } from './views/DomainDrilldown'
 
 const NAV = [
   { to: '/', label: 'Leaderboard', end: true },
@@ -21,7 +23,6 @@ function Shell() {
   const { data } = useQuery(loadLeaderboard, [])
   const [paletteOpen, setPaletteOpen] = useState(false)
   useCommandK(setPaletteOpen)
-  const location = useLocation()
 
   const items = useMemo<SearchItem[]>(
     () =>
@@ -33,7 +34,6 @@ function Shell() {
     [data],
   )
 
-  const isDomain = location.pathname.startsWith('/domain/')
 
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
@@ -128,7 +128,24 @@ function Shell() {
       </header>
 
       <main id="main" className="container" style={{ flex: 1 }}>
-        {isDomain ? null : <LeaderboardView />}
+        <Routes>
+          <Route path="/" element={<LeaderboardView />} />
+          <Route path="/domain/:slug" element={<DomainDrilldownView />} />
+          <Route
+            path="*"
+            element={
+              <div style={{ padding: 'var(--sp-7) 0' }}>
+                <h1 style={{ fontSize: 'var(--text-xl)' }}>Page not found</h1>
+                <p style={{ color: 'var(--ink-2)', marginTop: 'var(--sp-3)' }}>
+                  The address does not match any snapshot view.
+                </p>
+                <p style={{ marginTop: 'var(--sp-3)' }}>
+                  <NavLink to="/">Return to the leaderboard</NavLink>
+                </p>
+              </div>
+            }
+          />
+        </Routes>
       </main>
 
       <footer
