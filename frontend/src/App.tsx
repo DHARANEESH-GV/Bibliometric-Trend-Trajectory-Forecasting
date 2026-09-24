@@ -7,6 +7,7 @@ import { useQuery } from './lib/useQuery'
 import { snapshotSentence } from './lib/format'
 import { MethodologyNote } from './components/MethodologyNote'
 import { SearchPalette, useCommandK, type SearchItem } from './components/SearchPalette'
+import { OverviewView } from './views/Overview'
 import { LeaderboardView } from './views/Leaderboard'
 import { TrajectoryExplorerView } from './views/TrajectoryExplorer'
 import { DomainDrilldownView } from './views/DomainDrilldown'
@@ -16,7 +17,8 @@ import { AboutView } from './views/About'
 import { ErrorBoundary } from './components/ErrorBoundary'
 
 const NAV = [
-  { to: '/', label: 'Leaderboard', end: true },
+  { to: '/', label: 'Overview', end: true },
+  { to: '/leaderboard', label: 'Leaderboard' },
   { to: '/trajectory', label: 'Trajectories' },
   { to: '/bursts', label: 'Bursts' },
   { to: '/matrix', label: 'Matrix' },
@@ -67,7 +69,7 @@ function Shell() {
               fontSize: 'var(--text-lg)',
             }}
           >
-            biblio-trend
+            Biblio
           </NavLink>
           <nav aria-label="Primary">
             <ul
@@ -135,7 +137,8 @@ function Shell() {
       <main id="main" className="container" style={{ flex: 1 }}>
         <ErrorBoundary>
         <Routes>
-          <Route path="/" element={<LeaderboardView />} />
+          <Route path="/" element={<OverviewView />} />
+          <Route path="/leaderboard" element={<LeaderboardView />} />
           <Route path="/trajectory" element={<TrajectoryExplorerView />} />
           <Route path="/domain/:slug" element={<DomainDrilldownView />} />
           <Route path="/bursts" element={<BurstsView />} />
@@ -150,7 +153,7 @@ function Shell() {
                   The address does not match any snapshot view.
                 </p>
                 <p style={{ marginTop: 'var(--sp-3)' }}>
-                  <NavLink to="/">Return to the leaderboard</NavLink>
+                  <NavLink to="/leaderboard">Return to the leaderboard</NavLink>
                 </p>
               </div>
             }

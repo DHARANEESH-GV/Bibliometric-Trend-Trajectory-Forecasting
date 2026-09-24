@@ -45,6 +45,17 @@ export function TrajectoryExplorerView() {
     return domains.filter((d) => selected.includes(d.domain))
   }, [domains, selected])
 
+  const computedLead = !data
+    ? null
+    : (() => {
+        const row = selectedRows[0]
+        if (!row) return null
+        const last = [...row.series].reverse().find((p) => p.forecast != null)
+        return last && last.forecast != null
+          ? `For ${row.display_name}, the model lands ${last.forecast.toLocaleString('en-US')} works by ${last.year}.`
+          : null
+      })()
+
   const xYears = domains[0]?.series.map((p) => String(p.year)) ?? []
 
   const { ref } = useChart((t) => {
@@ -199,10 +210,8 @@ export function TrajectoryExplorerView() {
         <div>
           <h1 style={{ fontSize: 'var(--text-2xl)' }}>Trajectory explorer</h1>
           <p style={{ color: 'var(--ink-2)', marginTop: 'var(--sp-1)', fontSize: 'var(--text-sm)' }}>
-            Annual counts of published works, 2000–2025. Dashed tails are
-            backtested forecasts with shaded 68% intervals; a model ships
-            only when it beat the naive baseline in backtest. No patent
-            series exists yet.
+            Annual counts of published works, 2000–2025, with backtested
+            forecast tails. {computedLead}
           </p>
         </div>
         <div style={{ display: 'flex', gap: 'var(--sp-3)' }}>

@@ -18,6 +18,16 @@ import { ShimmerAxes } from '../components/ShimmerAxes'
 import { CopyLink } from '../components/CopyLink'
 import type { MatrixFile } from '../lib/types'
 
+
+function busiestRef(
+  totals: Array<{ domain: string; total: number }>,
+  labels: Map<string, string>,
+): { display: string; total: number } | null {
+  const t = totals[0]
+  if (!t) return null
+  return { display: labels.get(t.domain) ?? t.domain.replace(/_/g, ' '), total: t.total }
+}
+
 export function MatrixView() {
   const navigate = useNavigate()
   const { data, loading, error } = useQuery<MatrixFile>(loadMatrix, [])
@@ -62,6 +72,19 @@ export function MatrixView() {
       tail: tails[domain] ?? null,
     }))
   }, [data, leaderboard.data, years])
+
+  const busiestLine = useMemo(() => {
+    const cells = data?.cells ?? {}
+    const totals = Object.entries(cells)
+      .map(([domain, series]) => ({
+        domain,
+        total: (series as number[]).reduce((a, b) => a + b, 0),
+      }))
+      .sort((a, b) => b.total - a.total)
+    const top = busiestRef(totals, labels)
+    if (!top) return null
+    return `${top.display} carries the heaviest output — ${top.total.toLocaleString('en-US')} works since 2000.`
+  }, [data, labels])
 
   const xLabels = years.map(String)
 
@@ -187,10 +210,8 @@ export function MatrixView() {
         <div>
           <h1 style={{ fontSize: 'var(--text-2xl)' }}>Comparison matrix</h1>
           <p style={{ color: 'var(--ink-2)', marginTop: 'var(--sp-1)', fontSize: 'var(--text-sm)', maxWidth: '72ch' }}>
-            Works per year across all twenty domains. Darker cells mean more
-            published work, scaled to the panel maximum. The state of
-            technology at a glance; the trajectory explorer is where detail
-            lives.
+            Works per year across all twenty domains; darker cells mean more
+            published work. {busiestLine}
           </p>
         </div>
         <div style={{ display: 'flex', gap: 'var(--sp-3)' }}>

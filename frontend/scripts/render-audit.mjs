@@ -46,6 +46,7 @@ const report = (name, ok, detail = '') => {
 // --- Render pass: every route loads with content and no boundary ---
 const ROUTES = [
   '/',
+  '/leaderboard',
   '/trajectory',
   '/bursts',
   '/matrix',
@@ -67,7 +68,7 @@ for (const route of ROUTES) {
 }
 
 // --- Interaction 1: leaderboard pin ---
-await page.goto(BASE + '/', { waitUntil: 'networkidle' })
+await page.goto(BASE + '/leaderboard', { waitUntil: 'networkidle' })
 await sleep(600)
 const panelBefore = await page.textContent('aside h2').catch(() => null)
 const pinButtons = await page.$$('button[aria-label^="Pin "]')
@@ -83,7 +84,7 @@ if (pinButtons.length >= 2) {
 }
 
 // --- Interaction 2: CopyLink present on param views ---
-for (const route of ['/', '/trajectory', '/bursts', '/matrix']) {
+for (const route of ['/leaderboard', '/trajectory', '/bursts', '/matrix']) {
   await page.goto(BASE + route, { waitUntil: 'networkidle' })
   await sleep(400)
   const btn = await page.$('text=Copy link')
@@ -107,6 +108,27 @@ await page.goto(BASE + '/bursts?domain=biotechnology', { waitUntil: 'networkidle
 await sleep(700)
 const selectVal = await page.$eval('select', (el) => el.value).catch(() => null)
 report('bursts ?domain pre-filter', selectVal === 'biotechnology', `select: ${selectVal}`)
+
+// --- Landing: mast, count-up strip, marquee present & cycling ---
+await page.goto(BASE + '/', { waitUntil: 'networkidle' })
+await sleep(900)
+const mast = await page.textContent('h1').catch(() => '')
+report('landing mast headline', /Biblio watches/i.test(mast || ''), (mast || '').slice(0, 60))
+const stats = await page.$$eval('a.overview-stat', (as) => as.length).catch(() => 0)
+report('landing hero stats (4 links)', stats === 4, `stats: ${stats}`)
+const statVal = await page.$eval('a.overview-stat .num span', (el) => el.textContent || '').catch(() => '')
+report('landing count-up rolled to final', /\d/.test(statVal) && statVal !== '0', `first stat: ${statVal}`)
+const marqLink = await page.$('[role="marquee"] a')
+report('landing marquee renders cards', !!marqLink)
+// marquee movement: track x should change over ~1.2s (skipped under reduced motion)
+if (marqLink) {
+  const x1 = await page.$eval('[role="marquee"] > div', (el) => el.getBoundingClientRect().x)
+  await sleep(1200)
+  const x2 = await page.$eval('[role="marquee"] > div', (el) => el.getBoundingClientRect().x)
+  report('marquee is animating', Math.abs(x2 - x1) > 2, `dx: ${(x2 - x1).toFixed(1)}px`)
+}
+const teases = await page.$$eval('section[aria-label="From this run"] a', (as) => as.length).catch(() => 0)
+report('landing teases rendered', teases >= 3, `tease links: ${teases}`)
 
 console.log('---')
 console.log(`checks failed: ${failed}, collected problems: ${problems.length}`)

@@ -28,6 +28,14 @@ function ribbon(entry: BurstEntry): { year: number; active: boolean }[] {
 
 export function BurstsView() {
   const bursts = useQuery(loadBursts, [])
+
+  const computedLead = useMemo(() => {
+    const feedX = bursts.data?.feed ?? []
+    if (feedX.length === 0)
+      return 'Kleinberg burst detection marks stretches of years when a keyword appeared far more often in a domain\u2019s papers than its baseline rate.'
+    const oldest = feedX.reduce((a, b) => (b.duration > a.duration ? b : a))
+    return `${feedX.length} bursts detected this run. The oldest \u2014 \u201c${oldest.keyword}\u201d in ${oldest.domain.replace(/_/g, ' ')} \u2014 has burned for ${oldest.duration} straight years.`
+  }, [bursts.data])
   const leaderboard = useQuery(loadLeaderboard, [])
   const [sort, setSort] = useState<BurstSort>('strength')
   const [dir, setDir] = useState<'asc' | 'desc'>('desc')
@@ -109,10 +117,7 @@ export function BurstsView() {
         <div>
           <h1 style={{ fontSize: 'var(--text-2xl)' }}>Keyword bursts</h1>
           <p style={{ color: 'var(--ink-2)', marginTop: 'var(--sp-1)', fontSize: 'var(--text-sm)', maxWidth: '72ch' }}>
-            Kleinberg 2-state burst detection over keyword frequency series.
-            A burst marks a stretch of years when a keyword appeared far more
-            often in a domain's papers than its baseline rate, detected with
-            in-house Viterbi decoding.
+{computedLead}
           </p>
         </div>
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--sp-3)', alignItems: 'center' }}>

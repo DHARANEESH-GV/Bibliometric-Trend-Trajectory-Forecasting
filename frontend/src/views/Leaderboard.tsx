@@ -35,6 +35,15 @@ function sortRows(
 
 export function LeaderboardView() {
   const { data, loading, error } = useQuery(loadLeaderboard, [])
+
+  const computedLead = useMemo(() => {
+    const rowsX = data?.leaderboard ?? []
+    const lead = rowsX[0]
+    if (rowsX.length === 0 || !lead)
+      return 'Twenty technology domains scored on recent growth, citation acceleration, novelty, and keyword bursts.'
+    const pct = Math.round((lead.yoy_delta ?? 0) * 100)
+    return `${lead.display_name} holds first place this run, up ${pct}% on the year. Scores below blend recent growth, citation acceleration, novelty, and keyword bursts.`
+  }, [data])
   const [params] = useSearchParams()
   const [hovered, setHovered] = useState<string | null>(null)
   const [pinned, setPinned] = useState<string | null>(null)
@@ -94,9 +103,7 @@ export function LeaderboardView() {
         <div>
           <h1 style={{ fontSize: 'var(--text-2xl)' }}>Emergence leaderboard</h1>
           <p style={{ color: 'var(--ink-2)', marginTop: 'var(--sp-1)', fontSize: 'var(--text-sm)' }}>
-            Twenty technology domains scored on recent growth, citation
-            acceleration, novelty, and keyword bursts. Higher scores signal
-            fields that are heating up across papers.
+            {computedLead}
           </p>
         </div>
         <div style={{ display: 'flex', gap: 'var(--sp-3)', alignItems: 'center' }}>
