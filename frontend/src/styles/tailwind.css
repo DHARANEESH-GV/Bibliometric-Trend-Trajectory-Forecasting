@@ -2,10 +2,19 @@
    Tailwind v4 layer — enables shadcn-convention components
    (src/components/ui/**) to coexist with the house style.
 
-   Bridge design: shadcn semantic tokens resolve ONTO the app's
-   existing custom properties (tokens.css), so a pasted shadcn
-   component THEME-MATCHES automatically, including the app's
-   [data-theme] dark/light swap. No parallel color system.
+   HOW THIS WORKS (v4 semantics, learned the hard way):
+   @theme inlines resolved values into :root custom properties.
+   var() chains inside @theme resolve at :root scope ONCE — so
+   tokens scoped elsewhere (like the cover's --paper on
+   .cover-scope) DO NOT participate. The correct pattern is a
+   full literal palette here, swapped by [data-theme], mirroring
+   tokens.css but under shadcn's names.
+
+   TWO WORLDS, TWO TOKEN SETS:
+   - App views: --color-* follows [data-theme] (dark default).
+   - Cover (always paper): .cover-scope pins the light set, so a
+     dark-OS user still gets the cream card — the cover's world
+     is independent of the OS theme on purpose.
    ============================================================ */
 
 @import 'tailwindcss';
@@ -14,60 +23,125 @@
 @custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
 
 @theme {
-  /* ---- shadcn semantic colors -> house tokens ---- */
-  --color-background: var(--surface-0);
-  --color-foreground: var(--ink-0);
+  /* ---------- APP WORLD (dark default, matches tokens.css) ---------- */
+  --color-background: #0b0e14;
+  --color-foreground: #e8eaed;
 
-  --color-card: var(--paper, var(--surface-0));
-  --color-card-foreground: var(--ink, var(--ink-0));
+  --color-card: #11151c;
+  --color-card-foreground: #e8eaed;
 
-  --color-popover: var(--surface-0);
-  --color-popover-foreground: var(--ink-0);
+  --color-popover: #11151c;
+  --color-popover-foreground: #e8eaed;
 
-  --color-primary: var(--ink-0);
-  --color-primary-foreground: var(--paper, var(--surface-0));
+  --color-primary: #e8eaed;
+  --color-primary-foreground: #0b0e14;
 
-  --color-secondary: var(--surface-1);
-  --color-secondary-foreground: var(--ink-1);
+  --color-secondary: #11151c;
+  --color-secondary-foreground: #b9bdc4;
 
-  --color-muted: var(--surface-1);
-  --color-muted-foreground: var(--ink-soft, var(--ink-2));
+  --color-muted: #11151c;
+  --color-muted-foreground: #8b929c;
 
-  --color-accent: var(--stage-active, #f5b84c);
-  --color-accent-foreground: var(--ink, var(--ink-0));
+  --color-accent: #f5b84c;
+  --color-accent-foreground: #0b0e14;
 
-  --color-destructive: #b3441f;
-  --color-destructive-foreground: var(--paper, var(--surface-0));
+  --color-destructive: #f26d6d;
+  --color-destructive-foreground: #0b0e14;
 
-  --color-border: var(--rule, rgba(23, 21, 18, 0.28));
-  --color-input: var(--rule, rgba(23, 21, 18, 0.28));
-  --color-ring: var(--ink, var(--ink-0));
+  --color-border: rgba(232, 234, 237, 0.08);
+  --color-input: rgba(232, 234, 237, 0.08);
+  --color-ring: #e8eaed;
 
-  /* ---- fonts: cover world's serif + the app's existing stacks ---- */
   --font-serif: 'Fraunces', 'Georgia', serif;
-  --font-sans: var(--font-body);
-  --font-mono: var(--font-mono-code, 'JetBrains Mono', monospace);
+  --font-sans: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --radius: 0.5rem;
 }
 
-/* Outside @theme: plain --custom-va CSS vars shadcn classes sometimes
-   reference via var(); exposed at root for completeness. */
+/* ---------- APP WORLD light variant (data-theme='light') ---------- */
+[data-theme='light'] {
+  --color-background: #fafaf8;
+  --color-foreground: #111418;
+  --color-card: #ffffff;
+  --color-card-foreground: #111418;
+  --color-popover: #ffffff;
+  --color-popover-foreground: #111418;
+  --color-primary: #111418;
+  --color-primary-foreground: #fafaf8;
+  --color-secondary: #f4f4f0;
+  --color-secondary-foreground: #3c4149;
+  --color-muted: #f4f4f0;
+  --color-muted-foreground: #565c66;
+  --color-accent: #9a6a10;
+  --color-accent-foreground: #fafaf8;
+  --color-destructive: #b3441f;
+  --color-destructive-foreground: #fafaf8;
+  --color-border: rgba(17, 20, 24, 0.1);
+  --color-input: rgba(17, 20, 24, 0.1);
+  --color-ring: #111418;
+}
+
+/* ---------- COVER WORLD (always paper, even on dark-OS) ---------- */
+/* Pins the light palette inside the cover scope so shadcn tokens
+   used by hero-dithering-card resolve to Ink & Paper values there. */
+.cover-scope {
+  --color-background: #f4efe6;
+  --color-foreground: #171512;
+  --color-card: #faf7f0;
+  --color-card-foreground: #171512;
+  --color-popover: #f4efe6;
+  --color-popover-foreground: #171512;
+  --color-primary: #171512;
+  --color-primary-foreground: #f4efe6;
+  --color-secondary: #ebe4d6;
+  --color-secondary-foreground: #4c463c;
+  --color-muted: #ebe4d6;
+  --color-muted-foreground: #8a8271;
+  --color-accent: #f5b84c;
+  --color-accent-foreground: #171512;
+  --color-destructive: #b3441f;
+  --color-destructive-foreground: #f4efe6;
+  --color-border: rgba(23, 21, 18, 0.28);
+  --color-input: rgba(23, 21, 18, 0.28);
+  --color-ring: #171512;
+}
+
+/* Plain custom-property aliases for shadcn classes that use var(--x)
+   directly (rare, but some community components do). */
 :root {
-  --background: var(--surface-0);
-  --foreground: var(--ink-0);
-  --card: var(--paper, var(--surface-0));
-  --card-foreground: var(--ink, var(--ink-0));
-  --primary: var(--ink-0);
-  --primary-foreground: var(--paper, var(--surface-0));
-  --secondary: var(--surface-1);
-  --secondary-foreground: var(--ink-1);
-  --muted: var(--surface-1);
-  --muted-foreground: var(--ink-soft, var(--ink-2));
-  --accent: var(--stage-active, #f5b84c);
-  --accent-foreground: var(--ink, var(--ink-0));
-  --destructive: #b3441f;
-  --destructive-foreground: var(--paper, var(--surface-0));
-  --border: var(--rule, rgba(23, 21, 18, 0.28));
-  --input: var(--rule, rgba(23, 21, 18, 0.28));
-  --ring: var(--ink, var(--ink-0));
+  --background: #0b0e14;
+  --foreground: #e8eaed;
+  --card: #11151c;
+  --card-foreground: #e8eaed;
+  --primary: #e8eaed;
+  --primary-foreground: #0b0e14;
+  --muted: #11151c;
+  --muted-foreground: #8b929c;
+  --border: rgba(232, 234, 237, 0.08);
+  --ring: #e8eaed;
   --radius: 0.5rem;
+}
+[data-theme='light'] {
+  --background: #fafaf8;
+  --foreground: #111418;
+  --card: #ffffff;
+  --card-foreground: #111418;
+  --primary: #111418;
+  --primary-foreground: #fafaf8;
+  --muted: #f4f4f0;
+  --muted-foreground: #565c66;
+  --border: rgba(17, 20, 24, 0.1);
+  --ring: #111418;
+}
+.cover-scope {
+  --background: #f4efe6;
+  --foreground: #171512;
+  --card: #faf7f0;
+  --card-foreground: #171512;
+  --primary: #171512;
+  --primary-foreground: #f4efe6;
+  --muted-foreground: #8a8271;
+  --border: rgba(23, 21, 18, 0.28);
+  --ring: #171512;
 }

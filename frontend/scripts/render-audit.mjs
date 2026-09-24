@@ -129,6 +129,33 @@ if (card) {
   report('card CTA present', !!ctaBtn)
 }
 
+// Shader visibility + motion (page-level, works under any OS color scheme):
+await sleep(1200)
+const grab = async () => {
+  const png = await page.screenshot()
+  return page.evaluate(async (b64) => {
+    const i = new Image(); i.src = 'data:image/png;base64,' + b64; await i.decode()
+    const c = document.createElement('canvas'); c.width = i.width; c.height = i.height
+    const g = c.getContext('2d', { willReadFrequently: true })
+    g.drawImage(i, 0, 0)
+    return Array.from(g.getImageData(0, 0, i.width, i.height).data)
+  }, png.toString('base64'))
+}
+const sc1 = await page.screenshot()
+const d1 = await grab()
+await sleep(2500)
+const sc2 = await page.screenshot()
+const d2 = await grab()
+const byteDelta = Math.abs(sc2.length - sc1.length)
+let warm = 0, moved = 0
+for (let j = 0; j < d1.length; j += 4) {
+  if (d2[j] >= 205 && d2[j] > d2[j + 2] + 8) warm++
+  if (Math.abs(d1[j] - d2[j]) + Math.abs(d1[j+1] - d2[j+1]) + Math.abs(d1[j+2] - d2[j+2]) > 4) moved++
+}
+report('shader dithering visibly painting', warm > 300, `warm px: ${warm}`)
+report('shader animating between frames', moved > 1500 || byteDelta > 300, `moved px: ${moved}, png delta: ${byteDelta}`)
+
+
 // --- Cover: Ink & Paper world, computed plates, curtain entry ---
 await page.goto(BASE + '/', { waitUntil: 'networkidle' })
 await sleep(900)
