@@ -109,26 +109,41 @@ await sleep(700)
 const selectVal = await page.$eval('select', (el) => el.value).catch(() => null)
 report('bursts ?domain pre-filter', selectVal === 'biotechnology', `select: ${selectVal}`)
 
-// --- Landing: mast, count-up strip, marquee present & cycling ---
+// --- Cover: Ink & Paper world, computed plates, curtain entry ---
 await page.goto(BASE + '/', { waitUntil: 'networkidle' })
 await sleep(900)
-const mast = await page.textContent('h1').catch(() => '')
-report('landing mast headline', /Biblio watches/i.test(mast || ''), (mast || '').slice(0, 60))
-const stats = await page.$$eval('a.overview-stat', (as) => as.length).catch(() => 0)
-report('landing hero stats (4 links)', stats === 4, `stats: ${stats}`)
-const statVal = await page.$eval('a.overview-stat .num span', (el) => el.textContent || '').catch(() => '')
-report('landing count-up rolled to final', /\d/.test(statVal) && statVal !== '0', `first stat: ${statVal}`)
-const marqLink = await page.$('[role="marquee"] a')
-report('landing marquee renders cards', !!marqLink)
-// marquee movement: track x should change over ~1.2s (skipped under reduced motion)
-if (marqLink) {
-  const x1 = await page.$eval('[role="marquee"] > div', (el) => el.getBoundingClientRect().x)
-  await sleep(1200)
-  const x2 = await page.$eval('[role="marquee"] > div', (el) => el.getBoundingClientRect().x)
-  report('marquee is animating', Math.abs(x2 - x1) > 2, `dx: ${(x2 - x1).toFixed(1)}px`)
+const scope = await page.$('.cover-scope')
+report('cover renders its own world', !!scope)
+const bg = scope ? await scope.evaluate((el) => getComputedStyle(el).backgroundColor) : ''
+report('cover is paper (cream), not app dark', /244|245|f4/i.test(bg), `bg: ${bg}`)
+const title = await page.textContent('.cover-title').catch(() => '')
+report('cover hero title', /Twenty fields/i.test(title || ''), (title || '').slice(0, 40))
+const coverStats = await page.$$eval('.cover-stats .cover-stat', (as) => as.length).catch(() => 0)
+report('cover stat plates (4 links)', coverStats === 4, `plates: ${coverStats}`)
+const statFig = await page.$eval('.cover-stat .stat-figure', (el) => el.textContent || '').catch(() => '')
+report('cover count-up lands on real value', statFig.trim() === '20', `figure: ${statFig}`)
+const wireLinks = await page.$$eval('.cover-wire .wire-card', (as) => as.length).catch(() => 0)
+report('cover wire cards (2x for loop)', wireLinks === 40, `cards: ${wireLinks}`)
+const x1 = await page.$eval('.wire-track', (el) => el.getBoundingClientRect().x)
+await sleep(1200)
+const x2 = await page.$eval('.wire-track', (el) => el.getBoundingClientRect().x)
+report('wire is animating', Math.abs(x2 - x1) > 2, `dx: ${(x2 - x1).toFixed(1)}px`)
+const teases = await page.$$eval('.cover-teases .cover-tease', (ts) => ts.length).catch(() => 0)
+report('cover teases (i, ii, iii)', teases === 3, `teases: ${teases}`)
+const cta = await page.$('.enter-cta')
+report('cover has enter CTA', !!cta)
+const appHidden = await page.$('header[style*="sticky"]')
+report('app chrome hidden on cover', !appHidden)
+// curtain: click CTA -> lands on /leaderboard with app chrome
+if (cta) {
+  await Promise.all([
+    page.waitForURL('**/leaderboard', { timeout: 10000 }),
+    cta.click(),
+  ])
+  await sleep(700)
+  const lbTitle = await page.textContent('h1').catch(() => '')
+  report('curtain entry lands on leaderboard', /leaderboard/i.test(lbTitle || ''), lbTitle.slice(0, 40))
 }
-const teases = await page.$$eval('section[aria-label="From this run"] a', (as) => as.length).catch(() => 0)
-report('landing teases rendered', teases >= 3, `tease links: ${teases}`)
 
 console.log('---')
 console.log(`checks failed: ${failed}, collected problems: ${problems.length}`)

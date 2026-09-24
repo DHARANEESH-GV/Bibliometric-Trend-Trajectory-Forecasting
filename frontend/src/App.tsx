@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { NavLink, Route, Routes } from 'react-router-dom'
+import { NavLink, Route, Routes, useLocation } from 'react-router-dom'
 
 import { StoreProvider, useStore } from './lib/store'
 import { loadLeaderboard } from './lib/snapshots'
@@ -7,7 +7,7 @@ import { useQuery } from './lib/useQuery'
 import { snapshotSentence } from './lib/format'
 import { MethodologyNote } from './components/MethodologyNote'
 import { SearchPalette, useCommandK, type SearchItem } from './components/SearchPalette'
-import { OverviewView } from './views/Overview'
+import { CoverView } from './views/Cover'
 import { LeaderboardView } from './views/Leaderboard'
 import { TrajectoryExplorerView } from './views/TrajectoryExplorer'
 import { DomainDrilldownView } from './views/DomainDrilldown'
@@ -17,7 +17,6 @@ import { AboutView } from './views/About'
 import { ErrorBoundary } from './components/ErrorBoundary'
 
 const NAV = [
-  { to: '/', label: 'Overview', end: true },
   { to: '/leaderboard', label: 'Leaderboard' },
   { to: '/trajectory', label: 'Trajectories' },
   { to: '/bursts', label: 'Bursts' },
@@ -27,6 +26,8 @@ const NAV = [
 
 function Shell() {
   const { runId, generatedUtc, theme, toggleTheme } = useStore()
+  const location = useLocation()
+  const isCover = location.pathname === '/'
   const { data } = useQuery(loadLeaderboard, [])
   const [paletteOpen, setPaletteOpen] = useState(false)
   useCommandK(setPaletteOpen)
@@ -44,8 +45,8 @@ function Shell() {
 
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-      <a href="#main" className="visually-hidden">Skip to content</a>
-      <header
+      {!isCover && <a href="#main" className="visually-hidden">Skip to content</a>}
+      {!isCover && <header
         className="hairline-bottom"
         style={{ position: 'sticky', top: 0, background: 'var(--surface-0)', zIndex: 40 }}
       >
@@ -87,7 +88,7 @@ function Shell() {
                 <li key={n.to}>
                   <NavLink
                     to={n.to}
-                    end={n.end}
+                    end={n.to === '/leaderboard'}
                     style={({ isActive }) => ({
                       color: isActive ? 'var(--ink-0)' : 'var(--ink-2)',
                       textDecoration: 'none',
@@ -132,12 +133,22 @@ function Shell() {
             </button>
           </div>
         </div>
-      </header>
+      </header>}
 
+      {isCover ? (
+        <main id="main" style={{ flex: 1 }}>
+          <ErrorBoundary>
+            <Routes>
+              <Route path="/" element={<CoverView />} />
+            </Routes>
+          </ErrorBoundary>
+        </main>
+      ) : (
+        <>
       <main id="main" className="container" style={{ flex: 1 }}>
         <ErrorBoundary>
         <Routes>
-          <Route path="/" element={<OverviewView />} />
+          <Route path="/cover" element={<CoverView />} />
           <Route path="/leaderboard" element={<LeaderboardView />} />
           <Route path="/trajectory" element={<TrajectoryExplorerView />} />
           <Route path="/domain/:slug" element={<DomainDrilldownView />} />
@@ -188,6 +199,8 @@ function Shell() {
         open={paletteOpen}
         onClose={() => setPaletteOpen(false)}
       />
+        </>
+      )}
     </div>
   )
 }
