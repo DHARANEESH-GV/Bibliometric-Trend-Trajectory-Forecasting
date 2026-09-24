@@ -109,6 +109,26 @@ await sleep(700)
 const selectVal = await page.$eval('select', (el) => el.value).catch(() => null)
 report('bursts ?domain pre-filter', selectVal === 'biotechnology', `select: ${selectVal}`)
 
+// --- Hero dithering card (shadcn ui/ primitive on the cover) ---
+await page.goto(BASE + '/', { waitUntil: 'networkidle' })
+await sleep(1600) // allow lazy shader chunk
+const card = await page.$('section[aria-label="Biblio cover card"]')
+report('hero card mounts', !!card)
+if (card) {
+  const cardBg = await card.$eval('.bg-card', (el) => getComputedStyle(el).backgroundColor)
+  report('card token bridge resolves (bg-card = paper)', !/rgba\(0, 0, 0, 0\)/.test(cardBg), `bg: ${cardBg}`)
+  const cardBorder = await card.$eval('[class*="rounded-[48px]"]', (el) => getComputedStyle(el).borderTopColor)
+  report('card border token resolves (border-border)', !/rgba\(0, 0, 0, 0\)/.test(cardBorder), `border: ${cardBorder}`)
+  const headline = await card.$eval('h2', (el) => el.textContent || '')
+  report('card headline is Biblio voice', /Twenty fields/.test(headline), headline.slice(0, 34))
+  const kicker = (await card.$eval('.mb-8', (el) => el.textContent || '')).trim()
+  report('card kicker carries run id', /Issue \d+/.test(kicker), kicker.slice(0, 36))
+  const desc = await card.$eval('p.max-w-2xl', (el) => el.textContent || '')
+  report('card description computed (burst count)', /\d+ bursts, 20 fields/.test(desc), desc.slice(0, 60))
+  const ctaBtn = await card.$('button.group')
+  report('card CTA present', !!ctaBtn)
+}
+
 // --- Cover: Ink & Paper world, computed plates, curtain entry ---
 await page.goto(BASE + '/', { waitUntil: 'networkidle' })
 await sleep(900)
@@ -116,8 +136,8 @@ const scope = await page.$('.cover-scope')
 report('cover renders its own world', !!scope)
 const bg = scope ? await scope.evaluate((el) => getComputedStyle(el).backgroundColor) : ''
 report('cover is paper (cream), not app dark', /244|245|f4/i.test(bg), `bg: ${bg}`)
-const title = await page.textContent('.cover-title').catch(() => '')
-report('cover hero title', /Twenty fields/i.test(title || ''), (title || '').slice(0, 40))
+const title = await page.textContent('section[aria-label="Biblio cover card"] h2').catch(() => '')
+report('cover hero headline (card serif)', /Twenty fields/i.test(title || ''), (title || '').slice(0, 40))
 const coverStats = await page.$$eval('.cover-stats .cover-stat', (as) => as.length).catch(() => 0)
 report('cover stat plates (4 links)', coverStats === 4, `plates: ${coverStats}`)
 const statFig = await page.$eval('.cover-stat .stat-figure', (el) => el.textContent || '').catch(() => '')
@@ -130,8 +150,8 @@ const x2 = await page.$eval('.wire-track', (el) => el.getBoundingClientRect().x)
 report('wire is animating', Math.abs(x2 - x1) > 2, `dx: ${(x2 - x1).toFixed(1)}px`)
 const teases = await page.$$eval('.cover-teases .cover-tease', (ts) => ts.length).catch(() => 0)
 report('cover teases (i, ii, iii)', teases === 3, `teases: ${teases}`)
-const cta = await page.$('.enter-cta')
-report('cover has enter CTA', !!cta)
+const cta = await page.$('section[aria-label="Biblio cover card"] button.group')
+report('cover has enter CTA (card button)', !!cta)
 const appHidden = await page.$('header[style*="sticky"]')
 report('app chrome hidden on cover', !appHidden)
 // curtain: click CTA -> lands on /leaderboard with app chrome

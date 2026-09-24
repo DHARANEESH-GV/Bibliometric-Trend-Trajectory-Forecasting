@@ -13,17 +13,8 @@ import { useStore } from '../lib/store'
 import { gsap, useGSAP, prefersReducedMotion } from '../lib/gsap'
 import { setMotionChoice, onMotionChange } from '../lib/motion'
 import { useState, useEffect } from 'react'
+import { CTASection } from '@/components/ui/hero-dithering-card'
 import './cover.css'
-
-/** Line-mask reveal: wraps children in an overflow-hidden line with a
- *  span GSAP can slide up from below. */
-function Line({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
-  return (
-    <span className="reveal-line">
-      <span data-delay={delay}>{children}</span>
-    </span>
-  )
-}
 
 /** Count-up that lands exactly on `value` (honesty: never off by drift). */
 function CoverCount({ value, suffix = '' }: { value: number; suffix?: string }) {
@@ -88,12 +79,12 @@ export function CoverView() {
     () => {
       if (prefersReducedMotion()) return
       const ctx = gsap.context(() => {
-        // Mast lines rise, staggered
-        gsap.from('.reveal-line > span', {
-          yPercent: 115,
-          duration: 1.0,
-          ease: 'power4.out',
-          stagger: 0.09,
+        // Card rises on load (replaces the old hero line-reveal)
+        gsap.from('.cover-hero-card', {
+          y: 34,
+          autoAlpha: 0,
+          duration: 0.9,
+          ease: 'power3.out',
         })
         // Hairline rule draws itself
         gsap.from('.draw-rule', {
@@ -195,38 +186,29 @@ export function CoverView() {
           </span>
         </div>
 
-        {/* ---------------------- Hero: two-column spread ---------------------- */}
-        <section className="cover-hero">
-          <div>
-            <p className="cover-kicker">The state of technology, read honestly.</p>
-            <h1 className="cover-title">
-              <Line>Twenty fields,</Line>
-              <Line>
-                one <span className="accent">quiet</span>
-              </Line>
-              <Line>observatory.</Line>
-            </h1>
-            <svg
-              className="draw-rule"
-              style={{ marginTop: 'var(--sp-5)', width: 'min(28rem, 80%)', height: 2, display: 'block' }}
-              viewBox="0 0 400 2"
-              preserveAspectRatio="none"
-              aria-hidden
-            >
-              <line x1="0" y1="1" x2="400" y2="1" className="draw-rule-path" />
-            </svg>
-          </div>
-          <div className="cover-hero-side">
-            <p className="cover-dek" style={{ margin: 0 }}>
-              Biblio reads the papers so you don't have to — watching what is
-              rising, what is burning, and what the models honestly expect
-              next, across twenty corners of modern technology.
-            </p>
-            <button type="button" className="enter-cta" onClick={enter} style={{ alignSelf: 'flex-start' }}>
-              <span>Enter the observatory</span>
-              <span aria-hidden>→</span>
-            </button>
-          </div>
+        {/* --------------- Hero: dithering shader CTA card ---------------
+             Replaces the hand-rolled two-column hero. Props derive from
+             this run's snapshot (feed length is computed, never pasted). */}
+        <section
+          aria-label="Enter Biblio"
+          className="cover-hero-card"
+          style={{ paddingTop: 'var(--sp-5)' }}
+        >
+          <CTASection
+            kicker={`Issue ${runId ?? '…'}, fresh off the press`}
+            titleLines={['Twenty fields,', 'watched quietly.']}
+            description={
+              <>
+                {feed.length} bursts, {rows.length} fields, one quiet watch —
+                Biblio reads the papers so you don't have to, and never invents
+                a number it can't source.
+              </>
+            }
+            ctaLabel="Enter the observatory"
+            onCta={enter}
+            shaderColor="#f5b84c"
+            ariaLabel="Biblio cover card"
+          />
         </section>
 
         {!facts ? (
