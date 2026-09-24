@@ -135,6 +135,11 @@ export function CoverView() {
   )
 
   // ---------------- Curtain transition ----------------
+  // Sequence-fix: the previous version navigated AFTER the curtain had
+  // already lifted — you saw the cover again, then a hard cut. Now the
+  // swap happens while the screen is fully inked: cover -> black ink
+  // covers -> route changes underneath -> curtain lifts revealing the
+  // app already mounted. Strictly choreographed, no dead frame anywhere.
   const enter = () => {
     if (prefersReducedMotion()) {
       navigate('/leaderboard')
@@ -144,18 +149,24 @@ export function CoverView() {
     el.className = 'curtain'
     document.body.appendChild(el)
     gsap
-      .timeline({ onComplete: () => navigate('/leaderboard') })
-      .fromTo(el, { yPercent: 100 }, { yPercent: 0, duration: 0.55, ease: 'power3.in' })
+      .timeline()
+      .fromTo(
+        el,
+        { yPercent: 100 },
+        {
+          yPercent: 0,
+          duration: 0.5,
+          ease: 'power3.in',
+        },
+      )
+      // Screen is now fully inked: swap the world beneath the black.
+      .call(() => navigate('/leaderboard'))
       .to(el, {
         yPercent: -100,
-        duration: 0.7,
-        ease: 'power3.inOut',
-        delay: 0.08,
-        onStart: () => {
-          // navigate happens on complete; wipe reveals the next page
-        },
+        duration: 0.75,
+        ease: 'power4.inOut',
+        delay: 0.12, // hold a beat so the route mounts + paints under ink
       })
-      .set(el, { display: 'none' })
       .call(() => el.remove())
   }
 
@@ -178,25 +189,38 @@ export function CoverView() {
           </span>
         </div>
 
-        {/* --------------------------- Hero --------------------------- */}
+        {/* ---------------------- Hero: two-column spread ---------------------- */}
         <section className="cover-hero">
-          <p className="cover-kicker">The state of technology, read honestly.</p>
-          <h1 className="cover-title">
-            <Line>Twenty fields,</Line>
-            <Line>
-              one <span className="accent">quiet</span>
-            </Line>
-            <Line>observatory.</Line>
-          </h1>
-          <p className="cover-dek">
-            Biblio reads the papers so you don't have to — watching what is
-            rising, what is burning, and what the models honestly expect
-            next, across twenty corners of modern technology.
-          </p>
-          <button type="button" className="enter-cta" onClick={enter}>
-            <span>Enter the observatory</span>
-            <span aria-hidden>→</span>
-          </button>
+          <div>
+            <p className="cover-kicker">The state of technology, read honestly.</p>
+            <h1 className="cover-title">
+              <Line>Twenty fields,</Line>
+              <Line>
+                one <span className="accent">quiet</span>
+              </Line>
+              <Line>observatory.</Line>
+            </h1>
+            <svg
+              className="draw-rule"
+              style={{ marginTop: 'var(--sp-5)', width: 'min(28rem, 80%)', height: 2, display: 'block' }}
+              viewBox="0 0 400 2"
+              preserveAspectRatio="none"
+              aria-hidden
+            >
+              <line x1="0" y1="1" x2="400" y2="1" className="draw-rule-path" />
+            </svg>
+          </div>
+          <div className="cover-hero-side">
+            <p className="cover-dek" style={{ margin: 0 }}>
+              Biblio reads the papers so you don't have to — watching what is
+              rising, what is burning, and what the models honestly expect
+              next, across twenty corners of modern technology.
+            </p>
+            <button type="button" className="enter-cta" onClick={enter} style={{ alignSelf: 'flex-start' }}>
+              <span>Enter the observatory</span>
+              <span aria-hidden>→</span>
+            </button>
+          </div>
         </section>
 
         {!facts ? (

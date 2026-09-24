@@ -3,7 +3,7 @@
  * ScoreBar decomposition, YoY delta, sparkline, forecast peek. Sort/filter
  * lives in the URL. Hover focuses the score decomposition panel.
  */
-import { useMemo, useState } from 'react'
+import { useMemo, useRef, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { loadLeaderboard } from '../lib/snapshots'
 import { useQuery } from '../lib/useQuery'
@@ -15,6 +15,7 @@ import { ScoreBar } from '../components/ScoreBar'
 import { Metric } from '../components/Metric'
 import { ShimmerAxes } from '../components/ShimmerAxes'
 import { CaveatBanner } from '../components/CaveatBanner'
+import { gsap, useGSAP, prefersReducedMotion } from '../lib/gsap'
 import { ViewController, type LabelFilter, type SortDir, type SortKey } from '../components/ViewController'
 import { CopyLink } from '../components/CopyLink'
 
@@ -89,7 +90,8 @@ export function LeaderboardView() {
   const filteredEmpty = rows.length === 0
 
   return (
-    <div style={{ padding: 'var(--sp-5) 0' }}>
+    <LbShell>
+      <div style={{ padding: 'var(--sp-5) 0' }}>
       <header
         style={{
           display: 'flex',
@@ -317,5 +319,33 @@ export function LeaderboardView() {
         </div>
       )}
     </div>
+    </LbShell>
   )
+}
+
+/** LbShell — wraps the view, plays the arrival beat when mounted from a
+ *  curtain entry (cover -> observatory): header and rows rise in softly
+ *  with a stagger. Skipped entirely under reduced motion. */
+function LbShell({ children }: { children: React.ReactNode }) {
+  const ref = useRef<HTMLDivElement>(null)
+  useGSAP(
+    () => {
+      if (prefersReducedMotion()) return
+      const ctx = gsap.context(() => {
+        gsap.from('header', { y: 18, autoAlpha: 0, duration: 0.6, ease: 'power2.out' })
+        gsap.from('.leaderboard-row', {
+          y: 14,
+          autoAlpha: 0,
+          duration: 0.45,
+          ease: 'power2.out',
+          stagger: 0.045,
+          delay: 0.15,
+          clearProps: 'all',
+        })
+      }, ref)
+      return () => ctx.revert()
+    },
+    { scope: ref },
+  )
+  return <div ref={ref}>{children}</div>
 }
