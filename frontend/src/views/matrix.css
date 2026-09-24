@@ -1,0 +1,22 @@
+/*
+ * Matrix responsive behavior (§6 item: mobile fix).
+ * <768px: chart scrolls horizontally, row-tail labels stay sticky.
+ * The compact window default is handled in JSX via matchMedia; explicit
+ * ?window always beats the viewport default.
+ */
+.matrix-scroll {
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .matrix-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* ECharts canvas keeps its configured width; the container scrolls it.
+     Min width keeps 26 columns legible instead of crushed. */
+  .matrix-scroll > div {
+    min-width: 720px;
+  }
+}

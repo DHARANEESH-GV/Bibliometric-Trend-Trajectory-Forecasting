@@ -4,12 +4,13 @@
  * strength/duration/start; filterable by domain. No spike-ratio stat is
  * invented — strength + duration are the intensity signals that exist.
  */
-import { useMemo, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useEffect, useMemo, useState } from 'react'
+import { Link, useSearchParams } from 'react-router-dom'
 import { loadBursts, loadLeaderboard } from '../lib/snapshots'
 import { useQuery } from '../lib/useQuery'
 import { fmtInt } from '../lib/format'
 import { ShimmerAxes } from '../components/ShimmerAxes'
+import { CopyLink } from '../components/CopyLink'
 import type { BurstEntry } from '../lib/types'
 
 type BurstSort = 'strength' | 'duration' | 'start' | 'keyword'
@@ -30,7 +31,14 @@ export function BurstsView() {
   const leaderboard = useQuery(loadLeaderboard, [])
   const [sort, setSort] = useState<BurstSort>('strength')
   const [dir, setDir] = useState<'asc' | 'desc'>('desc')
+  const [search] = useSearchParams()
   const [domainFilter, setDomainFilter] = useState<string>('all')
+
+  // Deep-link support: /bursts?domain=slug pre-filters the feed.
+  useEffect(() => {
+    const d = search.get('domain')
+    if (d) setDomainFilter(d)
+  }, [search])
   const [limit, setLimit] = useState(60)
 
   const domainNames = useMemo(() => {
@@ -146,6 +154,7 @@ export function BurstsView() {
           >
             {dir === 'asc' ? '↑' : '↓'}
           </button>
+          <CopyLink />
         </div>
       </header>
 

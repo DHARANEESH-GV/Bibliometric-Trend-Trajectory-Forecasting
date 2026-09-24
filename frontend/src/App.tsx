@@ -8,6 +8,7 @@ import { snapshotSentence } from './lib/format'
 import { MethodologyNote } from './components/MethodologyNote'
 import { SearchPalette, useCommandK, type SearchItem } from './components/SearchPalette'
 import { LeaderboardView } from './views/Leaderboard'
+import { TrajectoryExplorerView } from './views/TrajectoryExplorer'
 import { DomainDrilldownView } from './views/DomainDrilldown'
 import { BurstsView } from './views/Bursts'
 import { MatrixView } from './views/Matrix'
@@ -135,6 +136,7 @@ function Shell() {
         <ErrorBoundary>
         <Routes>
           <Route path="/" element={<LeaderboardView />} />
+          <Route path="/trajectory" element={<TrajectoryExplorerView />} />
           <Route path="/domain/:slug" element={<DomainDrilldownView />} />
           <Route path="/bursts" element={<BurstsView />} />
           <Route path="/matrix" element={<MatrixView />} />

@@ -20,18 +20,25 @@
   .leaderboard-header {
     display: none !important;
   }
+  /* card layout: pin | name (row 1); stage+score, yoy (row 2);
+     stretched link + z-stacked cells remain from desktop */
   .leaderboard-row {
     grid-template-columns: 2rem minmax(0, 1fr) auto !important;
     grid-template-rows: auto auto;
     row-gap: var(--sp-2);
   }
-  .leaderboard-row > :nth-child(3), /* stage pill */
-  .leaderboard-row > :nth-child(4), /* score */
-  .leaderboard-row > :nth-child(5), /* sparkline */
-  .leaderboard-row > :nth-child(6)  /* yoy */ {
+  .leaderboard-row > :nth-child(3) { position: static !important; } /* stretched link */
+  .leaderboard-row > :nth-child(4), /* rank */
+  .leaderboard-row > :nth-child(5), /* domain */
+  .leaderboard-row > :nth-child(6), /* stage pill */
+  .leaderboard-row > :nth-child(7), /* score */
+  .leaderboard-row > :nth-child(8), /* sparkline */
+  .leaderboard-row > :nth-child(9)  /* yoy */ {
     grid-column: 2 / -1;
+    position: relative;
+    z-index: 2;
   }
-  .leaderboard-row > :nth-child(5) {
-    display: none; /* sparklines drop on narrow screens; cards stay readable */
+  .leaderboard-row > :nth-child(8) {
+    display: none; /* sparkline drops on narrow; cards stay readable */
   }
 }

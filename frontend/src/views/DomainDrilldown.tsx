@@ -147,7 +147,7 @@ export function DomainDrilldownView() {
         },
       ],
     } satisfies echarts.EChartsCoreOption
-  }, tokens.ink0)
+  }, tokens.ink0, [data, works, forecast, intervals])
 
   if (error) {
     return (
@@ -286,11 +286,16 @@ export function DomainDrilldownView() {
                   borderRadius: 2,
                   padding: '3px 10px',
                   fontSize: 'var(--text-sm)',
-                  color: 'var(--ink-1)',
                 }}
               >
                 <span style={{ color: 'var(--ink-3)', marginRight: 'var(--sp-2)' }}>{i + 1}</span>
-                {k.name}
+                <Link
+                  to={slug ? `/bursts?domain=${slug}` : '/bursts'}
+                  aria-label={`See ${k.name} in the burst feed`}
+                  style={{ color: 'var(--ink-1)', textDecoration: 'none' }}
+                >
+                  {k.name}
+                </Link>
                 <span
                   className="num"
                   style={{ color: 'var(--ink-3)', marginLeft: 'var(--sp-2)', fontSize: 'var(--text-xs)' }}

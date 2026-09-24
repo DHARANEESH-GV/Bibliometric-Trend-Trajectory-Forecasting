@@ -5,7 +5,7 @@
  * synced crosshair, inline forecast labels, caveats surfaced.
  */
 import { useMemo } from 'react'
-import { useSearchParams } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 import { loadTrajectories } from '../lib/snapshots'
 import { useQuery } from '../lib/useQuery'
 import { useTokens } from '../lib/useTokens'
@@ -13,6 +13,7 @@ import { useChart, echarts, axes, baseOption, tooltip } from '../charts/echarts'
 import { fmtInt, fmtModel } from '../lib/format'
 import { ShimmerAxes } from '../components/ShimmerAxes'
 import { CaveatBanner } from '../components/CaveatBanner'
+import { CopyLink } from '../components/CopyLink'
 import type { TrajectoriesFile } from '../lib/types'
 
 const COLOR_POOL = ['--ink-0', '--stage-accelerating', '--stage-emerging', '--stage-active', '--stage-watch']
@@ -70,6 +71,36 @@ export function TrajectoryExplorerView() {
         },
         ...(forecastPts.length > 0
           ? [
+              // 68% interval band, rendered as stacked translucent fill
+              // over a shared 'band-{i}' stack key. Lower carries no line
+              // and no fill of its own; upper fills down onto it.
+              {
+                type: 'line' as const,
+                name: `${row.display_name} band lower`,
+                stack: `band-${i}`,
+                data: [...bridge.map(() => null), ...forecastPts.map((p) => p.lower ?? null)],
+                lineStyle: { opacity: 0 },
+                symbol: 'none' as const,
+                areaStyle: { opacity: 0 },
+                silent: true,
+                tooltip: { show: false },
+              },
+              {
+                type: 'line' as const,
+                name: `${row.display_name} band width`,
+                stack: `band-${i}`,
+                data: [
+                  ...bridge.map(() => null),
+                  ...forecastPts.map((p) =>
+                    p.lower != null && p.upper != null ? p.upper - p.lower : null,
+                  ),
+                ],
+                lineStyle: { opacity: 0 },
+                symbol: 'none' as const,
+                areaStyle: { color: t.forecastBand },
+                silent: true,
+                tooltip: { show: false },
+              },
               {
                 type: 'line' as const,
                 name: `${row.display_name} (forecast)`,
@@ -82,15 +113,18 @@ export function TrajectoryExplorerView() {
                 itemStyle: { color },
                 showSymbol: true,
                 symbolSize: 3,
-                // Band labeled inline at band start (§8) via endLabel on
-                // the last point; markPoint kept minimal.
+                // Band labeled inline at band start (§8)
                 endLabel: {
                   show: true,
-                  formatter: `${fmtModel('hw_damped')} forecast`,
+                  formatter: `${fmtModel(forecastPts[forecastPts.length - 1]?.model ?? 'hw_damped')} forecast, 68% interval`,
                   color: t.ink2,
                   fontFamily: t.fontBody,
                   fontSize: 10,
                   distance: 8,
+                },
+                tooltip: {
+                  // surfaced by the shared axis tooltip; per-point value
+                  // comes from data since we keep default formatting
                 },
               },
             ]
@@ -112,7 +146,7 @@ export function TrajectoryExplorerView() {
       },
       series: series.flat(),
     } satisfies echarts.EChartsCoreOption
-  }, tokens.ink0)
+  }, tokens.ink0, [selectedRows, xYears, log])
 
   void setParams
 
@@ -166,10 +200,13 @@ export function TrajectoryExplorerView() {
           <h1 style={{ fontSize: 'var(--text-2xl)' }}>Trajectory explorer</h1>
           <p style={{ color: 'var(--ink-2)', marginTop: 'var(--sp-1)', fontSize: 'var(--text-sm)' }}>
             Annual counts of published works, 2000–2025. Dashed tails are
-            Holt-Winters damped forecasts. Solid counts are actual; no
-            patent series exists yet.
+            backtested forecasts with shaded 68% intervals; a model ships
+            only when it beat the naive baseline in backtest. No patent
+            series exists yet.
           </p>
         </div>
+        <div style={{ display: 'flex', gap: 'var(--sp-3)' }}>
+        <CopyLink />
         <button
           onClick={toggleLog}
           aria-pressed={log}
@@ -183,6 +220,7 @@ export function TrajectoryExplorerView() {
         >
           {log ? 'Log scale' : 'Linear scale'}
         </button>
+        </div>
       </header>
 
       <div
@@ -198,21 +236,48 @@ export function TrajectoryExplorerView() {
         {domains.map((d) => {
           const active = selected.length === 0 ? d === domains[0] : selected.includes(d.domain)
           return (
-            <button
+            <span
               key={d.domain}
-              onClick={() => toggleDomain(d.domain)}
-              aria-pressed={active}
               style={{
+                display: 'inline-flex',
+                alignItems: 'stretch',
                 border: 'var(--hairline)',
                 borderRadius: 2,
-                padding: '3px 10px',
-                fontSize: 'var(--text-sm)',
-                color: active ? 'var(--accent-ink)' : 'var(--ink-1)',
-                background: active ? 'var(--ink-0)' : 'transparent',
+                overflow: 'hidden',
               }}
             >
-              {d.display_name}
-            </button>
+              <button
+                onClick={() => toggleDomain(d.domain)}
+                aria-pressed={active}
+                style={{
+                  padding: '3px 10px',
+                  fontSize: 'var(--text-sm)',
+                  color: active ? 'var(--accent-ink)' : 'var(--ink-1)',
+                  background: active ? 'var(--ink-0)' : 'transparent',
+                }}
+              >
+                {d.display_name}
+              </button>
+              {active ? (
+                <Link
+                  to={`/domain/${d.domain}`}
+                  aria-label={`Open ${d.display_name} drill-down`}
+                  title="Open drill-down"
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    padding: '0 8px',
+                    fontSize: 'var(--text-xs)',
+                    color: active ? 'var(--accent-ink)' : 'var(--link)',
+                    background: active ? 'color-mix(in srgb, var(--ink-0) 85%, transparent)' : 'transparent',
+                    borderLeft: 'var(--hairline)',
+                    textDecoration: 'none',
+                  }}
+                >
+                  ↗
+                </Link>
+              ) : null}
+            </span>
           )
         })}
       </div>

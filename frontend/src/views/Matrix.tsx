@@ -6,24 +6,38 @@
  * + latest count. Single sequential scale in accent ink — no decorative
  * gradients, no pie-chart-style hue noise.
  */
-import { useMemo } from 'react'
-import { useSearchParams } from 'react-router-dom'
+import { useEffect, useMemo, useState } from 'react'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import { loadMatrix, loadLeaderboard } from '../lib/snapshots'
 import { useQuery } from '../lib/useQuery'
 import { useTokens } from '../lib/useTokens'
 import { useChart, echarts, axes, baseOption, tooltip } from '../charts/echarts'
-import { fmtInt } from '../lib/format'
+import { fmtInt, fmtScore } from '../lib/format'
+import { StagePill } from '../components/StagePill'
 import { ShimmerAxes } from '../components/ShimmerAxes'
+import { CopyLink } from '../components/CopyLink'
 import type { MatrixFile } from '../lib/types'
 
 export function MatrixView() {
+  const navigate = useNavigate()
   const { data, loading, error } = useQuery<MatrixFile>(loadMatrix, [])
   const leaderboard = useQuery(loadLeaderboard, [])
   const tokens = useTokens()
   const [params, setParams] = useSearchParams()
 
-  const window = params.get('window') === '8' ? 8 : 'full'
-  const recent = window === 8
+  // Explicit ?window always wins; on narrow viewports the compact
+  // last-8-years window is the default so 26 columns never squeeze.
+  const windowParam = params.get('window')
+  const [narrow, setNarrow] = useState(
+    () => typeof window !== 'undefined' && window.matchMedia('(max-width: 768px)').matches,
+  )
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 768px)')
+    const onChange = (e: MediaQueryListEvent) => setNarrow(e.matches)
+    mq.addEventListener('change', onChange)
+    return () => mq.removeEventListener('change', onChange)
+  }, [])
+  const recent = windowParam ? windowParam === '8' : narrow
 
   const years = useMemo(() => {
     const all = data?.years ?? []
@@ -36,20 +50,16 @@ export function MatrixView() {
     return m
   }, [leaderboard.data])
 
-  const stageByDomain = useMemo(() => {
-    const m = new Map<string, string>()
-    for (const r of leaderboard.data?.leaderboard ?? []) m.set(r.domain, r.label)
-    return m
-  }, [leaderboard.data])
-
   // cells aligned to the visible window, ordered by leaderboard rank
   const domainRows = useMemo(() => {
     const cells = data?.cells ?? {}
     const order = (leaderboard.data?.leaderboard ?? []).map((r) => r.domain)
     const extra = Object.keys(cells).filter((d) => !order.includes(d))
+    const tails = data?.tail ?? {}
     return [...order, ...extra].map((domain) => ({
       domain,
       counts: years.map((y) => cells[domain]?.[data?.years.indexOf(y) ?? -1] ?? 0),
+      tail: tails[domain] ?? null,
     }))
   }, [data, leaderboard.data, years])
 
@@ -137,7 +147,7 @@ export function MatrixView() {
         },
       ],
     } satisfies echarts.EChartsCoreOption
-  }, tokens.ink0)
+  }, tokens.ink0, [domainRows, years, recent])
 
   if (error) {
     return (
@@ -162,8 +172,6 @@ export function MatrixView() {
     setParams(next, { replace: true })
   }
 
-  void stageByDomain
-
   return (
     <div style={{ padding: 'var(--sp-5) 0' }}>
       <header
@@ -185,6 +193,8 @@ export function MatrixView() {
             lives.
           </p>
         </div>
+        <div style={{ display: 'flex', gap: 'var(--sp-3)' }}>
+        <CopyLink />
         <button
           onClick={toggleWindow}
           aria-pressed={recent}
@@ -198,14 +208,57 @@ export function MatrixView() {
         >
           {recent ? 'Last 8 years' : 'Full 2000–2025'}
         </button>
+        </div>
       </header>
 
-      <div ref={ref as unknown as React.Ref<HTMLDivElement>} style={{ height: 560 }} />
+      <div className="matrix-scroll">
+        <div ref={ref as unknown as React.Ref<HTMLDivElement>} style={{ height: 560 }} />
+      </div>
 
-      <p style={{ fontSize: 'var(--text-xs)', color: 'var(--ink-3)', marginTop: 'var(--sp-2)' }}>
+      {/* Row tails: stage + score per the spec's matrix row-tail, each row
+          navigates to its drill-down. Doubles as the chart's accessible
+          table equivalent. */}
+      <nav aria-label="Domains in this matrix">
+        <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexWrap: 'wrap', gap: 'var(--sp-2)' }}>
+          {domainRows.map((row) => (
+            <li key={row.domain}>
+              <a
+                href={`/domain/${row.domain}`}
+                onClick={(e) => {
+                  e.preventDefault()
+                  navigate(`/domain/${row.domain}`)
+                }}
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: 'var(--sp-2)',
+                  border: 'var(--hairline)',
+                  borderRadius: 2,
+                  padding: '3px 10px',
+                  fontSize: 'var(--text-sm)',
+                  color: 'var(--ink-1)',
+                  textDecoration: 'none',
+                }}
+              >
+                {labels.get(row.domain) ?? row.domain}
+                {row.tail ? (
+                  <>
+                    <StagePill label={row.tail.label} />
+                    <span className="num" style={{ color: 'var(--ink-2)' }}>
+                      {fmtScore(row.tail.score)}
+                    </span>
+                  </>
+                ) : null}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <p style={{ fontSize: 'var(--text-xs)', color: 'var(--ink-3)', marginTop: 'var(--sp-3)' }}>
         {recent
           ? 'Compact window shows inline counts; hover any cell for the exact value.'
-          : 'Hover any cell for the exact value. Stage labels per domain are on the leaderboard.'}
+          : 'Hover any cell for the exact value. Row tails carry each domain\'s stage and score; select one for the full picture.'}
         {' '}Counts are annual (no quarters exist in the contract of record).
       </p>
     </div>

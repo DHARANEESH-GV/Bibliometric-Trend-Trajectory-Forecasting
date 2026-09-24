@@ -61,11 +61,16 @@ export interface LeaderboardFile {
 }
 
 export interface TrajectoryPoint {
-  /** Annual year 2000–2025. No quarters exist — do not interpolate. */
+  /** Annual year 2000–2025 actuals; 2026–2028 forecast tail. */
   year: number
   works: number | null
   /** Set only on forecast horizon years (e.g. 2026–2028). */
   forecast: number | null
+  /** 68% interval bounds — present on every forecast point on disk. */
+  lower?: number
+  upper?: number
+  /** Model id per forecast point (e.g. hw_damped). */
+  model?: string
 }
 
 export interface TrajectoryDomain {
@@ -102,6 +107,8 @@ export interface MatrixFile {
   domains: string[]
   /** domain -> one cell per entry of `years`. */
   cells: Record<string, number[]>
+  /** Row tails per domain: lifecycle label + score at run time. */
+  tail: Record<string, { label: string; score: number }>
 }
 
 export interface Interval68 {

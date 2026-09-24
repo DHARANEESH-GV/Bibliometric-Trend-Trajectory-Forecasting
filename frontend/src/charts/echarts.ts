@@ -29,6 +29,12 @@ echarts.use([
   SVGRenderer,
 ])
 
+/** System motion preference, read once per option build. */
+function prefersReducedMotion(): boolean {
+  return typeof window !== 'undefined' &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches
+}
+
 export interface ThemeTokens {
   ink0: string
   ink1: string
@@ -76,8 +82,10 @@ function readTokens(): ThemeTokens {
 /** Shared craft-rule fragments every view composes. */
 export function baseOption(t: ThemeTokens) {
   return {
-    animationDuration: 600, // draw-in on load; silenced by reduced-motion CSS
-    animationDurationUpdate: 150,
+    // Draw-in motion with purpose (§8); fully silenced when the user
+    // prefers reduced motion (CSS rules cannot reach canvas/SVG JS anims).
+    animationDuration: prefersReducedMotion() ? 0 : 600,
+    animationDurationUpdate: prefersReducedMotion() ? 0 : 150,
     textStyle: {
       color: t.ink2,
       fontFamily: t.fontBody,
@@ -147,17 +155,19 @@ export function tooltip(t: ThemeTokens) {
   }
 }
 
-/** React wrapper: one instance per chart, theme-aware, resize-aware. */
+/** React wrapper: one instance per chart, theme-aware, resize-aware.
+ *  `deps` must include the data the chart plots: the chart div mounts
+ *  only after loading states clear, so init must re-run when data
+ *  arrives, not just when the theme flips. */
 export function useChart(
   buildOption: (tokens: ThemeTokens) => echarts.EChartsCoreOption,
   theme: string,
+  deps: unknown[] = [],
 ): { ref: React.RefObject<HTMLDivElement | null>; setOpts: (opts: echarts.EChartsCoreOption) => void } {
   const ref = useRef<HTMLDivElement | null>(null)
   const chartRef = useRef<echarts.ECharts | null>(null)
-  const themeRef = useRef(theme)
 
   useEffect(() => {
-    themeRef.current = theme
     if (!ref.current) return
     const chart = echarts.init(ref.current, undefined, { renderer: 'svg' })
     chartRef.current = chart
@@ -170,7 +180,7 @@ export function useChart(
       chartRef.current = null
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [theme])
+  }, [theme, ...deps])
 
   const setOpts = (opts: echarts.EChartsCoreOption) => {
     chartRef.current?.setOption(opts)

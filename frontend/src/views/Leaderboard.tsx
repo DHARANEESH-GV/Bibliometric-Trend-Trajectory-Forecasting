@@ -16,6 +16,7 @@ import { Metric } from '../components/Metric'
 import { ShimmerAxes } from '../components/ShimmerAxes'
 import { CaveatBanner } from '../components/CaveatBanner'
 import { ViewController, type LabelFilter, type SortDir, type SortKey } from '../components/ViewController'
+import { CopyLink } from '../components/CopyLink'
 
 function sortRows(
   rows: LeaderboardEntry[],
@@ -36,6 +37,7 @@ export function LeaderboardView() {
   const { data, loading, error } = useQuery(loadLeaderboard, [])
   const [params] = useSearchParams()
   const [hovered, setHovered] = useState<string | null>(null)
+  const [pinned, setPinned] = useState<string | null>(null)
 
   const sort = (params.get('sort') as SortKey) ?? 'rank'
   const dir = (params.get('dir') as SortDir) ?? 'asc'
@@ -50,9 +52,13 @@ export function LeaderboardView() {
     return ordered
   }, [data, sort, dir, labelFilter])
 
+  const focusedDomain = pinned ?? hovered
   const focused = useMemo(
-    () => data?.leaderboard.find((r) => r.domain === hovered) ?? rows[0] ?? null,
-    [data, hovered, rows],
+    () =>
+      (focusedDomain && data?.leaderboard.find((r) => r.domain === focusedDomain)) ||
+      rows[0] ||
+      null,
+    [data, focusedDomain, rows],
   )
 
   if (error) {
@@ -93,7 +99,10 @@ export function LeaderboardView() {
             fields that are heating up across papers.
           </p>
         </div>
-        <ViewController />
+        <div style={{ display: 'flex', gap: 'var(--sp-3)', alignItems: 'center' }}>
+          <ViewController />
+          <CopyLink />
+        </div>
       </header>
 
       {filteredEmpty ? (
@@ -117,7 +126,7 @@ export function LeaderboardView() {
               className="leaderboard-header hairline-bottom"
               style={{
                 display: 'grid',
-                gridTemplateColumns: '2.5rem minmax(0,1fr) 7rem 8.5rem 7rem 6rem',
+                gridTemplateColumns: '1.6rem 2.5rem minmax(0,1fr) 7rem 8.5rem 7rem 6rem',
                 gap: 'var(--sp-3)',
                 alignItems: 'center',
                 padding: '0 var(--sp-2) var(--sp-2)',
@@ -125,6 +134,7 @@ export function LeaderboardView() {
                 color: 'var(--ink-3)',
               }}
             >
+              <span aria-hidden />
               <span>RANK</span>
               <span>DOMAIN</span>
               <span>STAGE</span>
@@ -132,30 +142,76 @@ export function LeaderboardView() {
               <span>PAPERS 2020–2025</span>
               <span className="num">YoY</span>
             </div>
-            {rows.map((row, i) => (
-              <Link
+            {rows.map((row) => (
+              <div
                 key={row.domain}
-                to={`/domain/${row.domain}`}
                 role="row"
-                onMouseEnter={() => setHovered(row.domain)}
-                onFocus={() => setHovered(row.domain)}
-                onClick={(e) => e.stopPropagation()}
                 className="leaderboard-row hairline-bottom"
                 style={{
                   display: 'grid',
-                  gridTemplateColumns: '2.5rem minmax(0,1fr) 7rem 8.5rem 7rem 6rem',
+                  gridTemplateColumns: '1.6rem 2.5rem minmax(0,1fr) 7rem 8.5rem 7rem 6rem',
                   gap: 'var(--sp-3)',
                   alignItems: 'center',
                   padding: 'var(--sp-3) var(--sp-2)',
-                  textDecoration: 'none',
-                  color: 'inherit',
-                  background: hovered === row.domain ? 'var(--surface-1)' : 'transparent',
+                  position: 'relative',
+                  background:
+                    pinned === row.domain || hovered === row.domain
+                      ? 'var(--surface-1)'
+                      : 'transparent',
                   transition: 'background var(--motion-fast)',
-                  animationDelay: `${i * 40}ms`,
                 }}
+                onMouseEnter={() => setHovered(row.domain)}
+                onMouseLeave={() => setHovered(null)}
               >
-                <span className="num" style={{ color: 'var(--ink-2)' }}>{row.rank}</span>
-                <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                <button
+                  type="button"
+                  aria-pressed={pinned === row.domain}
+                  aria-label={
+                    pinned === row.domain
+                      ? `Unpin ${row.display_name}`
+                      : `Pin ${row.display_name} to the score panel`
+                  }
+                  title={pinned === row.domain ? 'Unpin' : 'Pin to panel'}
+                  onClick={() => setPinned((cur) => (cur === row.domain ? null : row.domain))}
+                  style={{
+                    width: 22,
+                    height: 22,
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    borderRadius: 2,
+                    fontSize: 'var(--text-xs)',
+                    color: pinned === row.domain ? 'var(--accent-ink)' : 'var(--ink-3)',
+                    background: pinned === row.domain ? 'var(--ink-0)' : 'transparent',
+                    border: 'var(--hairline)',
+                    position: 'relative',
+                    zIndex: 3,
+                  }}
+                >
+                  ⚿
+                </button>
+                <span
+                  aria-hidden
+                  style={{
+                    position: 'absolute',
+                    inset: 0,
+                    zIndex: 0,
+                  }}
+                />
+                <Link
+                  to={`/domain/${row.domain}`}
+                  aria-label={`Open ${row.display_name}`}
+                  style={{
+                    position: 'absolute',
+                    inset: 0,
+                    zIndex: 1,
+                    borderRadius: 2,
+                    outlineOffset: -2,
+                  }}
+                  onFocus={() => setHovered(row.domain)}
+                />
+                <span className="num" style={{ color: 'var(--ink-2)', position: 'relative', zIndex: 2, pointerEvents: 'none' }}>{row.rank}</span>
+                <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', position: 'relative', zIndex: 2, pointerEvents: 'none' }}>
                   {row.display_name}
                   {row.caveat ? (
                     <span
@@ -167,11 +223,11 @@ export function LeaderboardView() {
                     </span>
                   ) : null}
                 </span>
-                <span><StagePill label={row.label} /></span>
-                <span className="num" style={{ fontSize: 'var(--text-lg)', fontWeight: 500 }}>
+                <span style={{ position: 'relative', zIndex: 2, pointerEvents: 'none' }}><StagePill label={row.label} /></span>
+                <span className="num" style={{ fontSize: 'var(--text-lg)', fontWeight: 500, position: 'relative', zIndex: 2, pointerEvents: 'none' }}>
                   {fmtScore(row.emergence_score)}
                 </span>
-                <span>
+                <span style={{ position: 'relative', zIndex: 2, pointerEvents: 'none' }}>
                   <Sparkline
                     values={row.sparkline}
                     forecast={row.forecast_next3.length === row.sparkline.length ? undefined : undefined}
@@ -180,10 +236,10 @@ export function LeaderboardView() {
                     ariaLabel={`${row.display_name}, ${fmtInt(row.sparkline[0] ?? 0)} to ${fmtInt(row.sparkline[row.sparkline.length - 1] ?? 0)} papers`}
                   />
                 </span>
-                <span className="num" style={{ color: row.yoy_delta >= 0 ? 'var(--stage-emerging)' : 'var(--stage-active)' }}>
+                <span className="num" style={{ color: row.yoy_delta >= 0 ? 'var(--stage-emerging)' : 'var(--stage-active)', position: 'relative', zIndex: 2, pointerEvents: 'none' }}>
                   {fmtDelta(row.yoy_delta)}
                 </span>
-              </Link>
+              </div>
             ))}
           </div>
 

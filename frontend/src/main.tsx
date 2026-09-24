@@ -8,6 +8,7 @@ import '@fontsource/jetbrains-mono/400.css'
 import './styles/tokens.css'
 import './styles/base.css'
 import './views/leaderboard.css'
+import './views/matrix.css'
 import { App } from './App'
 
 const router = createBrowserRouter([
