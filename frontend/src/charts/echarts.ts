@@ -13,6 +13,7 @@ import {
   AxisPointerComponent,
   DatasetComponent,
   VisualMapComponent,
+  LegendComponent,
 } from 'echarts/components'
 import { SVGRenderer } from 'echarts/renderers'
 import { useEffect, useRef } from 'react'
@@ -26,6 +27,7 @@ echarts.use([
   AxisPointerComponent,
   DatasetComponent,
   VisualMapComponent,
+  LegendComponent,
   SVGRenderer,
 ])
 
