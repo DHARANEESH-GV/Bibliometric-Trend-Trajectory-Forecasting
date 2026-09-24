@@ -11,6 +11,8 @@ import { useQuery } from '../lib/useQuery'
 import { loadLeaderboard, loadBursts } from '../lib/snapshots'
 import { useStore } from '../lib/store'
 import { gsap, useGSAP, prefersReducedMotion } from '../lib/gsap'
+import { setMotionChoice, onMotionChange } from '../lib/motion'
+import { useState, useEffect } from 'react'
 import './cover.css'
 
 /** Line-mask reveal: wraps children in an overflow-hidden line with a
@@ -64,6 +66,8 @@ export function CoverView() {
   const navigate = useNavigate()
   const root = useRef<HTMLDivElement>(null)
   const track = useRef<HTMLDivElement>(null)
+  const [, setMotionTick] = useState(0)
+  useEffect(() => onMotionChange(() => setMotionTick((t) => t + 1)), [])
 
   const rows = lb?.leaderboard ?? []
   const feed = bursts?.feed ?? []
@@ -147,6 +151,8 @@ export function CoverView() {
     }
     const el = document.createElement('div')
     el.className = 'curtain'
+    el.innerHTML =
+      '<span style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:\'Fraunces\',serif;font-style:italic;font-size:1.6rem;color:#f4efe6">Biblio<span style=\'opacity:.55\'>.</span></span>'
     document.body.appendChild(el)
     gsap
       .timeline()
@@ -349,6 +355,26 @@ export function CoverView() {
         {/* ------------------------- Colophon ------------------------- */}
         <div className="cover-colophon">
           <span>Biblio — the public face of the biblio-trend observatory.</span>
+          <span>
+            {prefersReducedMotion() ? (
+              <>Motion is reduced by your system —{' '}
+                <button
+                  type="button"
+                  onClick={() => setMotionChoice('full')}
+                  className="cover-motion-link"
+                >
+                  enable the full show
+                </button></>
+            ) : (
+              <button
+                type="button"
+                onClick={() => setMotionChoice('reduced')}
+                className="cover-motion-link"
+              >
+                reduce motion
+              </button>
+            )}
+          </span>
           <span>Data: OpenAlex works, 2000–2025.</span>
         </div>
       </div>

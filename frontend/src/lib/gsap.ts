@@ -10,13 +10,11 @@ import { useGSAP } from '@gsap/react'
 
 gsap.registerPlugin(ScrollTrigger, useGSAP)
 
-/** True when the user asked for reduced motion; animations become no-ops
- *  and content renders fully visible instead. */
+/** True when motion should be silenced: the in-app Motion toggle (lib/motion)
+ *  wins over the OS setting. Single verdict for every animation site. */
+import { motionReduced } from './motion'
 export function prefersReducedMotion(): boolean {
-  return (
-    typeof window !== 'undefined' &&
-    window.matchMedia('(prefers-reduced-motion: reduce)').matches
-  )
+  return motionReduced()
 }
 
 export { gsap, ScrollTrigger, useGSAP }

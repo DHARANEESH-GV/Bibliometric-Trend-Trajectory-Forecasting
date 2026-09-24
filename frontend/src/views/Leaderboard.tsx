@@ -340,7 +340,9 @@ function LbShell({ children }: { children: React.ReactNode }) {
           ease: 'power2.out',
           stagger: 0.045,
           delay: 0.15,
-          clearProps: 'all',
+          // Targeted cleanup ONLY of the animation props — 'all' wiped the
+          // rows' inline grid styles and broke the leaderboard format.
+          clearProps: 'transform,opacity,visibility',
         })
       }, ref)
       return () => ctx.revert()

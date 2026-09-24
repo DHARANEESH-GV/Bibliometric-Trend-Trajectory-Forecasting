@@ -5,6 +5,7 @@ import { StoreProvider, useStore } from './lib/store'
 import { loadLeaderboard } from './lib/snapshots'
 import { useQuery } from './lib/useQuery'
 import { snapshotSentence } from './lib/format'
+import { useMotionReduced, setMotionChoice } from './lib/motion'
 import { MethodologyNote } from './components/MethodologyNote'
 import { SearchPalette, useCommandK, type SearchItem } from './components/SearchPalette'
 import { CoverView } from './views/Cover'
@@ -28,6 +29,7 @@ function Shell() {
   const { runId, generatedUtc, theme, toggleTheme } = useStore()
   const location = useLocation()
   const isCover = location.pathname === '/'
+  const motionReduced = useMotionReduced()
   const { data } = useQuery(loadLeaderboard, [])
   const [paletteOpen, setPaletteOpen] = useState(false)
   useCommandK(setPaletteOpen)
@@ -118,6 +120,20 @@ function Shell() {
               }}
             >
               Search <kbd style={{ fontSize: 'var(--text-xs)' }}>⌘K</kbd>
+            </button>
+            <button
+              onClick={() => setMotionChoice(motionReduced ? 'full' : 'reduced')}
+              aria-pressed={!motionReduced}
+              title={motionReduced ? 'Motion is reduced (OS or in-app). Click to enable full motion.' : 'Full motion is on. Click to reduce it.'}
+              style={{
+                border: 'var(--hairline)',
+                borderRadius: 2,
+                padding: '4px 10px',
+                fontSize: 'var(--text-sm)',
+                color: motionReduced ? 'var(--ink-3)' : 'var(--ink-1)',
+              }}
+            >
+              {motionReduced ? 'Motion off' : 'Motion on'}
             </button>
             <button
               onClick={toggleTheme}
