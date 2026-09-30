@@ -117,7 +117,7 @@ report('hero card mounts', !!card)
 if (card) {
   const cardBg = await card.$eval('.bg-card', (el) => getComputedStyle(el).backgroundColor)
   report('card token bridge resolves (bg-card = paper)', !/rgba\(0, 0, 0, 0\)/.test(cardBg), `bg: ${cardBg}`)
-  const cardBorder = await card.$eval('[class*="rounded-[48px]"]', (el) => getComputedStyle(el).borderTopColor)
+  const cardBorder = await card.$eval('[class*="rounded-[calc(2.75rem-0.375rem)]"]', (el) => getComputedStyle(el).borderTopColor)
   report('card border token resolves (border-border)', !/rgba\(0, 0, 0, 0\)/.test(cardBorder), `border: ${cardBorder}`)
   const headline = await card.$eval('h2', (el) => el.textContent || '')
   report('card headline is Biblio voice', /Twenty fields/.test(headline), headline.slice(0, 34))
@@ -127,6 +127,25 @@ if (card) {
   report('card description computed (burst count)', /\d+ bursts, 20 fields/.test(desc), desc.slice(0, 60))
   const ctaBtn = await card.$('button.group')
   report('card CTA present', !!ctaBtn)
+  // double-bezel: card div nests inside an outer shell with concentric radius
+  const bezel = await card.$eval('[class*="rounded-[calc(2.75rem-0.375rem)]"]', (el) => {
+    const outer = el.parentElement
+    return {
+      outerPad: getComputedStyle(outer).padding,
+      outerRing: getComputedStyle(outer).boxShadow !== 'none',
+      innerRadius: getComputedStyle(el).borderTopLeftRadius,
+    }
+  }).catch(() => null)
+  report('double-bezel architecture', !!bezel && bezel.outerPad.includes('6px') && bezel.innerRadius.includes('38'), bezel ? JSON.stringify(bezel) : 'missing')
+  // button-in-button: arrow in its own circle
+  const arrowWrap = await card.$('button.group span[class*="rounded-full"]')
+  report('button-in-button arrow wrapper', !!arrowWrap)
+  // bento teases: grid-template-areas with 2fr 1fr
+  const bento = await page.$$eval('.cover-teases', (els) => {
+    const g = getComputedStyle(els[0])
+    return { areas: g.gridTemplateAreas !== 'none', cols: g.gridTemplateColumns }
+  }).catch(() => null)
+  report('bento teases (asymmetric grid)', !!bento && bento.areas, bento ? bento.cols.slice(0, 30) : 'missing')
 }
 
 // Shader visibility + motion (page-level, works under any OS color scheme):

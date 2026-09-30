@@ -11,7 +11,8 @@
  * ring/scale micro-interactions.
  */
 import { ArrowRight } from '@phosphor-icons/react'
-import { useState, Suspense, lazy, type ReactNode } from 'react'
+import { useState, Suspense, lazy, useRef, type ReactNode } from 'react'
+import { gsap, useGSAP, prefersReducedMotion } from '../../lib/gsap'
 
 const Dithering = lazy(() =>
   import('@paper-design/shaders-react').then((mod) => ({ default: mod.Dithering })),
@@ -44,15 +45,47 @@ export function CTASection({
   ariaLabel,
 }: CTASectionProps) {
   const [isHovered, setIsHovered] = useState(false)
+  const rootRef = useRef<HTMLDivElement>(null)
+  const btnRef = useRef<HTMLButtonElement>(null)
+
+  // Magnetic hover: the CTA leans toward the cursor. Self-contained in the
+  // card, silenced by reduced motion. quickTo keeps it outside React render.
+  useGSAP(
+    () => {
+      const btn = btnRef.current
+      if (!btn || prefersReducedMotion()) return
+      const xTo = gsap.quickTo(btn, 'x', { duration: 0.4, ease: 'power3' })
+      const yTo = gsap.quickTo(btn, 'y', { duration: 0.4, ease: 'power3' })
+      const move = (e: MouseEvent) => {
+        const r = btn.getBoundingClientRect()
+        const dx = e.clientX - (r.left + r.width / 2)
+        const dy = e.clientY - (r.top + r.height / 2)
+        xTo(dx * 0.12)
+        yTo(dy * 0.18)
+      }
+      const reset = () => { xTo(0); yTo(0) }
+      const zone = rootRef.current
+      zone?.addEventListener('mousemove', move)
+      zone?.addEventListener('mouseleave', reset)
+      return () => {
+        zone?.removeEventListener('mousemove', move)
+        zone?.removeEventListener('mouseleave', reset)
+      }
+    },
+  )
 
   return (
     <section className="py-12 w-full flex justify-center items-center px-4 md:px-6" aria-label={ariaLabel}>
       <div
+        ref={rootRef}
         className="w-full max-w-7xl relative"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        <div className="relative overflow-hidden rounded-[48px] border border-border bg-card shadow-[0_10px_40px_-12px_rgba(23,21,18,0.18)] min-h-[600px] md:min-h-[600px] flex flex-col items-center justify-center duration-500">
+        {/* Outer shell: the aluminum tray the glass plate sits in */}
+        <div className="rounded-[2.75rem] p-1.5 bg-primary/5 ring-1 ring-black/5 dark:ring-white/10 shadow-[0_16px_48px_-16px_rgba(23,21,18,0.22)]">
+        {/* Inner core: concentric radius = outer - padding */}
+        <div className="relative overflow-hidden rounded-[calc(2.75rem-0.375rem)] border border-border bg-card min-h-[600px] md:min-h-[600px] flex flex-col items-center justify-center duration-500">
           <Suspense fallback={<div className="absolute inset-0 bg-muted/20" />}>
             <div className="absolute inset-0 z-0 pointer-events-none opacity-50 mix-blend-multiply">
               <Dithering
@@ -77,7 +110,7 @@ export function CTASection({
             </div>
 
             {/* Headline */}
-            <h2 className="font-serif text-5xl md:text-7xl lg:text-8xl font-medium tracking-tight text-foreground mb-8 leading-[1.05]">
+            <h2 className="font-serif text-5xl md:text-7xl lg:text-8xl font-medium tracking-tight text-foreground mb-8 leading-[1.05] [text-wrap:balance]">
               {titleLines[0]} <br />
               <span className="text-foreground/80">{titleLines[1]}</span>
             </h2>
@@ -89,13 +122,17 @@ export function CTASection({
 
             {/* Button */}
             <button
+              ref={btnRef}
               onClick={onCta}
               className="group relative inline-flex h-14 items-center justify-center gap-3 overflow-hidden rounded-full bg-primary px-12 text-base font-medium text-primary-foreground transition-all duration-300 hover:bg-primary/90 hover:scale-105 active:scale-95 hover:ring-4 hover:ring-primary/20"
             >
               <span className="relative z-10">{ctaLabel}</span>
-              <ArrowRight weight="light" className="h-5 w-5 relative z-10 transition-transform duration-300 group-hover:translate-x-1" />
+              <span className="relative z-10 flex h-8 w-8 items-center justify-center rounded-full bg-black/5 dark:bg-white/15 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-[1px] group-hover:scale-105">
+                <ArrowRight weight="light" className="h-4 w-4" />
+              </span>
             </button>
           </div>
+        </div>
         </div>
       </div>
     </section>
