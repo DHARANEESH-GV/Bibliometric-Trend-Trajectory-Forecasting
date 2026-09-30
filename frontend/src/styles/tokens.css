@@ -1,60 +1,61 @@
 /* ============================================================
-   biblio-trend design tokens — master plan §8
-   Dark-first editorial. Data is the hero; color is semantic.
-   Light mode via [data-theme='light'] token swap only.
+   biblio-trend design tokens — REBUILD (Ethereal Glass era)
+   Workbench: Soft-Structuralism dark-first, OLED blacks, white/10
+   hairlines, Geist. Single accent (amber). Cover world pins its own
+   palette via .cover-scope (see cover.css). No decorative gradients.
    ============================================================ */
 
 :root,
 [data-theme='dark'] {
-  /* Surfaces */
-  --surface-0: #0b0e14;
-  --surface-1: #11151c;
-  --surface-2: #171c25;
+  /* Surfaces: OLED-leaning ladder */
+  --surface-0: #050507;
+  --surface-1: #0b0c0f;
+  --surface-2: #121318;
 
-  /* Ink */
-  --ink-0: #e8eaed;
-  --ink-1: color-mix(in srgb, var(--ink-0) 78%, transparent);
-  --ink-2: color-mix(in srgb, var(--ink-0) 55%, transparent);
-  --ink-3: color-mix(in srgb, var(--ink-0) 35%, transparent);
+  /* Ink ladder — cool gray, ONE family */
+  --ink-0: #eceef1;
+  --ink-1: color-mix(in srgb, var(--ink-0) 80%, transparent);
+  --ink-2: color-mix(in srgb, var(--ink-0) 56%, transparent);
+  --ink-3: color-mix(in srgb, var(--ink-0) 36%, transparent);
 
-  /* Hairlines */
-  --hairline: 1px solid color-mix(in srgb, var(--ink-0) 8%, transparent);
-  --hairline-strong: 1px solid color-mix(in srgb, var(--ink-0) 16%, transparent);
+  /* Hairlines: white/10 family */
+  --hairline: 1px solid color-mix(in srgb, var(--ink-0) 10%, transparent);
+  --hairline-strong: 1px solid color-mix(in srgb, var(--ink-0) 18%, transparent);
 
-  /* Accent (papers series, interactive states, links) */
-  --accent: #e8eaed;
-  --accent-ink: #0b0e14;
-  --link: #8ab4f8;
+  /* Accent: amber, calibrated saturation (~75%) */
+  --accent: #f5b84c;
+  --accent-ink: #0a0a0a;
+  --link: #e8c883;
 
-  /* Stage labels — real taxonomy from snapshots (no Decline exists;
-     the spec's decline red is reserved, currently unused). */
-  --stage-emerging: #3ddc97;   /* green    */
-  --stage-accelerating: #4c9aff; /* blue   */
-  --stage-active: #f5b84c;     /* amber    */
-  --stage-watch: color-mix(in srgb, var(--ink-0) 55%, transparent); /* neutral ink */
+  /* Stage colors (data contract — taxonomy from snapshots) */
+  --stage-emerging: #4ade97;
+  --stage-accelerating: #64a8ff;
+  --stage-active: #f5b84c;
+  --stage-watch: color-mix(in srgb, var(--ink-0) 55%, transparent);
 
   /* Series */
   --series-paper: var(--accent);
   --series-forecast: var(--accent);
-  --forecast-band: color-mix(in srgb, var(--accent) 12%, transparent);
-  --forecast-band-stroke: color-mix(in srgb, var(--accent) 45%, transparent);
+  --forecast-band: color-mix(in srgb, var(--accent) 13%, transparent);
+  --forecast-band-stroke: color-mix(in srgb, var(--accent) 48%, transparent);
 
-  /* Chart grid lines */
-  --grid-minor: color-mix(in srgb, var(--ink-0) 5%, transparent);
-  --grid-major: color-mix(in srgb, var(--ink-0) 10%, transparent);
-  --crosshair: color-mix(in srgb, var(--ink-0) 30%, transparent);
+  /* Chart grids */
+  --grid-minor: color-mix(in srgb, var(--ink-0) 6%, transparent);
+  --grid-major: color-mix(in srgb, var(--ink-0) 12%, transparent);
+  --crosshair: color-mix(in srgb, var(--ink-0) 32%, transparent);
 
-  /* Type */
-  --font-display: 'Inter Tight', 'Inter', sans-serif;
-  --font-body: 'Inter', sans-serif;
+  /* Type: Geist for both display and body; mono for figures */
+  --font-display: 'Geist Variable', 'Inter', sans-serif;
+  --font-body: 'Geist Variable', 'Inter', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
+  --font-serif: 'Fraunces', 'Georgia', serif; /* display-serif accent */
 
-  --text-xs: 0.75rem;    /* 12px — axis labels, footnotes */
-  --text-sm: 0.8125rem;  /* 13px — secondary, table detail */
-  --text-md: 0.9375rem;  /* 15px — body */
-  --text-lg: 1.125rem;   /* 18px — emphasized body */
-  --text-xl: 1.375rem;   /* 22px — section headers */
-  --text-2xl: 1.75rem;   /* 28px — page titles */
+  --text-xs: 0.75rem;
+  --text-sm: 0.8125rem;
+  --text-md: 0.9375rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.375rem;
+  --text-2xl: 1.75rem;
 
   --leading-tight: 1.25;
   --leading-body: 1.55;
@@ -74,6 +75,17 @@
   --motion-stagger: 80ms;
   --motion-fast: 150ms;
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-physical: cubic-bezier(0.32, 0.72, 0, 1);
+
+  /* Elevation: tinted, hue-matched — never pure black */
+  --shadow-plate: 0 12px 40px -16px rgba(0, 0, 0, 0.55);
+  --shadow-raised: 0 24px 64px -24px rgba(0, 0, 0, 0.65);
+  --inner-highlight: inset 0 1px 1px rgba(255, 255, 255, 0.08);
+
+  /* Radii: containers 2rem, components concentric */
+  --radius-shell: 2rem;
+  --radius-core: calc(2rem - 0.375rem);
+  --radius-ui: 0.5rem;
 
   /* Layout */
   --content-max: 1280px;
@@ -81,35 +93,31 @@
 }
 
 [data-theme='light'] {
-  --surface-0: #fafaf8;
+  --surface-0: #f6f6f4;
   --surface-1: #ffffff;
-  --surface-2: #f4f4f0;
+  --surface-2: #eeeee9;
 
-  --ink-0: #111418;
+  --ink-0: #101216;
   --ink-1: color-mix(in srgb, var(--ink-0) 78%, transparent);
-  --ink-2: color-mix(in srgb, var(--ink-0) 55%, transparent);
-  --ink-3: color-mix(in srgb, var(--ink-0) 35%, transparent);
+  --ink-2: color-mix(in srgb, var(--ink-0) 54%, transparent);
+  --ink-3: color-mix(in srgb, var(--ink-0) 34%, transparent);
 
   --hairline: 1px solid color-mix(in srgb, var(--ink-0) 10%, transparent);
   --hairline-strong: 1px solid color-mix(in srgb, var(--ink-0) 20%, transparent);
 
-  --accent: #111418;
-  --accent-ink: #fafaf8;
-  --link: #1a56b8;
+  --accent: #b3791c;
+  --accent-ink: #f6f6f4;
+  --link: #8a6516;
 
-  /* Stage colors keep their hue but darken for AA contrast on light */
   --stage-emerging: #1a7f4e;
   --stage-accelerating: #1a56b8;
   --stage-active: #9a6a10;
 
-  --series-forecast: var(--accent);
-  --forecast-band: color-mix(in srgb, var(--accent) 10%, transparent);
-  --forecast-band-stroke: color-mix(in srgb, var(--accent) 40%, transparent);
-
   --grid-minor: color-mix(in srgb, var(--ink-0) 6%, transparent);
   --grid-major: color-mix(in srgb, var(--ink-0) 12%, transparent);
   --crosshair: color-mix(in srgb, var(--ink-0) 35%, transparent);
-}
 
-/* Numeric texture: tabular figures everywhere numbers are compared.
-   Applied via the .num utility class or inherited on metric/table styles. */
+  --shadow-plate: 0 10px 32px -14px rgba(16, 18, 22, 0.18);
+  --shadow-raised: 0 20px 48px -20px rgba(16, 18, 22, 0.22);
+  --inner-highlight: inset 0 1px 1px rgba(255, 255, 255, 0.6);
+}
