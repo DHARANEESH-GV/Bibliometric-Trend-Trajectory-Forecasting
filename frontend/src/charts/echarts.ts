@@ -31,10 +31,10 @@ echarts.use([
   SVGRenderer,
 ])
 
-/** System motion preference, read once per option build. */
+/** Motion verdict follows the user's explicit choice (lib/motion). */
+import { motionReduced } from '../lib/motion'
 function prefersReducedMotion(): boolean {
-  return typeof window !== 'undefined' &&
-    window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  return motionReduced()
 }
 
 export interface ThemeTokens {

@@ -311,18 +311,7 @@
   pointer-events: none;
 }
 
-/* Reduced motion: none of the above moves */
-@media (prefers-reduced-motion: reduce) {
-  .reveal-line > span {
-    transform: none !important;
-  }
-  .draw-rule {
-    stroke-dashoffset: 0 !important;
-  }
-  .wire-track {
-    transform: none !important;
-  }
-}
+/* Reduced motion: wire loop stops via JS verdict, not CSS */
 
 /* Stillness escape link (colophon) */
 .cover-motion-link {

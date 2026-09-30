@@ -86,14 +86,6 @@ export function CoverView() {
           duration: 0.9,
           ease: 'power3.out',
         })
-        // Hairline rule draws itself
-        gsap.from('.draw-rule', {
-          strokeDasharray: 1200,
-          strokeDashoffset: 1200,
-          duration: 1.4,
-          ease: 'power2.inOut',
-          delay: 0.5,
-        })
         // Scroll-entrances for plates below the fold
         gsap.utils.toArray<HTMLElement>('.cover-reveal').forEach((el) => {
           gsap.from(el, {

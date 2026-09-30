@@ -1,11 +1,13 @@
 /**
- * lib/motion.ts — user-controllable motion, layered over the OS setting.
+ * lib/motion.ts — user-controllable motion.
  *
- * Sources of truth, in priority order:
- *   1. Explicit in-app choice (localStorage 'bt-motion' = 'full' | 'reduced')
- *   2. OS prefers-reduced-motion
- *   Default: follow the OS. An in-app toggle writes an explicit override
- *   for people who want the full show on a quiet OS (or vice versa).
+ * Verdict: FULL MOTION by default. The only way motion is silenced is an
+ * explicit user choice (in-app Motion toggle) or accessibility tooling that
+ * sets the stored preference: localStorage 'bt-motion' = 'full' | 'reduced'.
+ * The OS prefers-reduced-motion signal is surfaced through the toggle's
+ * initial state but does NOT auto-mute the site — the show runs unless the
+ * user leans still. (Product decision: an invisible OS mute read as a
+ * broken, static site.)
  */
 
 const KEY = 'bt-motion'
@@ -33,15 +35,9 @@ export function setMotionChoice(choice: 'full' | 'reduced' | null): void {
 
 const KEY_VALUES = { full: 'full', reduced: 'reduced' } as const
 
-/** Effective reduced-motion verdict, combining OS + explicit override. */
+/** Effective verdict: reduced ONLY on explicit user choice. */
 export function motionReduced(): boolean {
-  const choice = getMotionChoice()
-  if (choice === 'full') return false
-  if (choice === 'reduced') return true
-  return (
-    typeof window !== 'undefined' &&
-    window.matchMedia('(prefers-reduced-motion: reduce)').matches
-  )
+  return getMotionChoice() === 'reduced'
 }
 
 /* Tiny pub-sub so a toggle click can re-render listeners (charts, hooks). */
@@ -60,15 +56,9 @@ import { useEffect, useState } from 'react'
 export function useMotionReduced(): boolean {
   const [reduced, setReduced] = useState(motionReduced)
   useEffect(() => {
-    const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
     const sync = () => setReduced(motionReduced())
     sync()
-    const off = onMotionChange(sync)
-    mq.addEventListener('change', sync)
-    return () => {
-      off()
-      mq.removeEventListener('change', sync)
-    }
+    return onMotionChange(sync)
   }, [])
   return reduced
 }
