@@ -87,7 +87,7 @@ export function BurstsView() {
   if (bursts.error) {
     return (
       <p style={{ color: 'var(--ink-2)', padding: 'var(--sp-6) 0' }}>
-        Live lookups unavailable — showing cached snapshots. ({bursts.error.message})
+        Live lookups unavailable. Showing cached snapshots. ({bursts.error.message})
       </p>
     )
   }
@@ -154,7 +154,7 @@ export function BurstsView() {
           </label>
           <button
             onClick={() => setDir((d) => (d === 'asc' ? 'desc' : 'asc'))}
-            aria-label={`Sort direction ${dir === 'asc' ? 'ascending' : 'descending'} — click to flip`}
+            aria-label={`Sort direction ${dir === 'asc' ? 'ascending' : 'descending'}, click to flip`}
             style={{ border: 'var(--hairline)', borderRadius: 2, padding: '4px 10px', fontSize: 'var(--text-sm)' }}
           >
             {dir === 'asc' ? '↑' : '↓'}
@@ -166,7 +166,7 @@ export function BurstsView() {
       {feedEmpty ? (
         <p style={{ color: 'var(--ink-2)', padding: 'var(--sp-7) 0' }}>
           This filter matches no bursts in the current snapshot. Try all
-          domains — no domain carries a zero count across the full series,
+          domains. No domain carries a zero count across the full series,
           but single keywords come and go.
         </p>
       ) : (
@@ -175,13 +175,16 @@ export function BurstsView() {
             {visible.map((b) => (
               <li
                 key={`${b.domain}-${b.keyword}-${b.start}`}
-                className="hairline-bottom"
+                onMouseEnter={(e) => { e.currentTarget.style.background = 'var(--surface-1)' }}
+                onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent' }}
+                className="hairline-bottom burst-row"
                 style={{
                   display: 'grid',
                   gridTemplateColumns: 'minmax(0,1.4fr) minmax(0,1fr) 5.5rem 6rem minmax(160px, 1.2fr)',
                   gap: 'var(--sp-4)',
                   alignItems: 'center',
                   padding: 'var(--sp-3) var(--sp-2)',
+                  transition: 'background var(--motion-fast)',
                 }}
               >
                 <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>

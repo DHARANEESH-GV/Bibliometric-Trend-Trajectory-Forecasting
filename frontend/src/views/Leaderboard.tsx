@@ -74,7 +74,7 @@ export function LeaderboardView() {
   if (error) {
     return (
       <p style={{ color: 'var(--ink-2)', padding: 'var(--sp-6) 0' }}>
-        Live lookups unavailable — showing cached snapshots. ({error.message})
+        Live lookups unavailable. Showing cached snapshots. ({error.message})
       </p>
     )
   }

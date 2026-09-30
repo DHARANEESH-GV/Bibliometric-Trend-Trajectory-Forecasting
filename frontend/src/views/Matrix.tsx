@@ -83,7 +83,7 @@ export function MatrixView() {
       .sort((a, b) => b.total - a.total)
     const top = busiestRef(totals, labels)
     if (!top) return null
-    return `${top.display} carries the heaviest output — ${top.total.toLocaleString('en-US')} works since 2000.`
+    return `${top.display} carries the heaviest output, ${top.total.toLocaleString('en-US')} works since 2000.`
   }, [data, labels])
 
   const xLabels = years.map(String)
@@ -175,7 +175,7 @@ export function MatrixView() {
   if (error) {
     return (
       <p style={{ color: 'var(--ink-2)', padding: 'var(--sp-6) 0' }}>
-        Live lookups unavailable — showing cached snapshots. ({error.message})
+        Live lookups unavailable. Showing cached snapshots. ({error.message})
       </p>
     )
   }
@@ -259,7 +259,10 @@ export function MatrixView() {
                   fontSize: 'var(--text-sm)',
                   color: 'var(--ink-1)',
                   textDecoration: 'none',
+                  transition: 'background var(--motion-fast) cubic-bezier(0.32, 0.72, 0, 1), color var(--motion-fast)',
                 }}
+                onMouseEnter={(e) => { e.currentTarget.style.background = 'var(--surface-1)'; e.currentTarget.style.color = 'var(--ink-0)' }}
+                onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'var(--ink-1)' }}
               >
                 {labels.get(row.domain) ?? row.domain}
                 {row.tail ? (

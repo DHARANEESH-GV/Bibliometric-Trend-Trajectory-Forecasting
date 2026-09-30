@@ -108,6 +108,7 @@ function Shell() {
             <button
               onClick={() => setPaletteOpen(true)}
               aria-label="Search domains (Command K)"
+              className="mono-toggle"
               style={{
                 display: 'flex',
                 alignItems: 'center',
@@ -125,6 +126,7 @@ function Shell() {
               onClick={() => setMotionChoice(motionReduced ? 'full' : 'reduced')}
               aria-pressed={!motionReduced}
               title={motionReduced ? 'Motion is reduced (OS or in-app). Click to enable full motion.' : 'Full motion is on. Click to reduce it.'}
+              className="mono-toggle"
               style={{
                 border: 'var(--hairline)',
                 borderRadius: 2,
@@ -138,14 +140,21 @@ function Shell() {
             <button
               onClick={toggleTheme}
               aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}
+              className="mono-toggle"
               style={{
                 border: 'var(--hairline)',
                 borderRadius: 2,
                 padding: '4px 10px',
-                fontSize: 'var(--text-sm)',
+                fontSize: 'var(--text-xs)',
+                fontFamily: 'var(--font-mono)',
+                letterSpacing: '0.04em',
+                transition: 'background var(--motion-fast), transform var(--motion-fast) cubic-bezier(0.32, 0.72, 0, 1)',
               }}
+              onMouseDown={(e) => { e.currentTarget.style.transform = 'scale(0.98)' }}
+              onMouseUp={(e) => { e.currentTarget.style.transform = 'scale(1)' }}
+              onMouseLeave={(e) => { e.currentTarget.style.transform = 'scale(1)' }}
             >
-              {theme === 'dark' ? '☾' : '☀'}
+              {theme === 'dark' ? 'Dark' : 'Light'}
             </button>
           </div>
         </div>

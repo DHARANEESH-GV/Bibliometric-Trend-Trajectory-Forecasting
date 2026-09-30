@@ -156,6 +156,18 @@ report('shader dithering visibly painting', warm > 300, `warm px: ${warm}`)
 report('shader animating between frames', moved > 1500 || byteDelta > 300, `moved px: ${moved}, png delta: ${byteDelta}`)
 
 
+// --- Compliance: copy bans, favicon, social meta ---
+await page.goto(BASE + '/', { waitUntil: 'networkidle' })
+await sleep(1000)
+const renderedText = await page.evaluate(() => document.body.textContent || '')
+report('zero em-dashes in rendered copy', !renderedText.includes('\u2014'), `em-dash count: ${(renderedText.match(/\u2014/g) || []).length}`)
+report('zero middle-dots in rendered copy', !renderedText.includes(' \u00b7 '), `mid-dot count: ${(renderedText.match(/ \u00b7 /g) || []).length}`)
+const html = await page.content()
+report('favicon wired', html.includes('rel="icon"'))
+report('og/twitter meta present', html.includes('og:title') && html.includes('twitter:card'), `og tags: ${(html.match(/og:/g) || []).length}`)
+const phosphor = await page.$('section[aria-label="Biblio cover card"] button.group svg')
+report('card icon svg rendering (phosphor)', !!phosphor)
+
 // --- Cover: Ink & Paper world, computed plates, curtain entry ---
 await page.goto(BASE + '/', { waitUntil: 'networkidle' })
 await sleep(900)

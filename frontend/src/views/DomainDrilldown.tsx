@@ -208,12 +208,12 @@ export function DomainDrilldownView() {
           margin: 'var(--sp-5) 0',
         }}
       >
-        <Metric label={`Works ${lastYear ?? ''}`} value={lastWorks != null ? fmtInt(lastWorks) : '—'} />
+        <Metric label={`Works ${lastYear ?? ''}`} value={lastWorks != null ? fmtInt(lastWorks) : 'No data'} />
         {yoy != null ? (
           <Metric label="Latest YoY" value={fmtDelta(yoy)} />
         ) : null}
         <Metric label="Emergence score" value={fmtScore(data.score)} />
-        <Metric label="Peak year" value={peakYear != null ? fmtInt(peakYear) : '—'} detail={peakIdx >= 0 ? `${fmtInt(works[peakIdx] ?? 0)} works` : undefined} />
+        <Metric label="Peak year" value={peakYear != null ? fmtInt(peakYear) : 'No data'} detail={peakIdx >= 0 ? `${fmtInt(works[peakIdx] ?? 0)} works` : undefined} />
         <Metric label="Forecast model" value={fmtModel(data.model)} detail={`horizon ${horizonYears[0]}–${horizonYears[horizonYears.length - 1]}`} />
       </div>
 

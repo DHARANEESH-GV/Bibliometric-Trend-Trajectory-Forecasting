@@ -122,3 +122,15 @@ a:hover {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Press feedback shared by header controls (redesign-skill state rules) */
+button.mono-toggle:active {
+  transform: scale(0.98);
+}
+button.mono-toggle {
+  opacity: 0.9;
+}
+button.mono-toggle:hover {
+  opacity: 1;
+  background: var(--surface-1);
+}

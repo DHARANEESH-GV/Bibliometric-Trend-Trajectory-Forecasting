@@ -10,7 +10,7 @@
  * rounded-[48px] card, ping-dot kicker, serif headline, and the button's
  * ring/scale micro-interactions.
  */
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight } from '@phosphor-icons/react'
 import { useState, Suspense, lazy, type ReactNode } from 'react'
 
 const Dithering = lazy(() =>
@@ -52,7 +52,7 @@ export function CTASection({
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        <div className="relative overflow-hidden rounded-[48px] border border-border bg-card shadow-sm min-h-[600px] md:min-h-[600px] flex flex-col items-center justify-center duration-500">
+        <div className="relative overflow-hidden rounded-[48px] border border-border bg-card shadow-[0_10px_40px_-12px_rgba(23,21,18,0.18)] min-h-[600px] md:min-h-[600px] flex flex-col items-center justify-center duration-500">
           <Suspense fallback={<div className="absolute inset-0 bg-muted/20" />}>
             <div className="absolute inset-0 z-0 pointer-events-none opacity-50 mix-blend-multiply">
               <Dithering
@@ -93,7 +93,7 @@ export function CTASection({
               className="group relative inline-flex h-14 items-center justify-center gap-3 overflow-hidden rounded-full bg-primary px-12 text-base font-medium text-primary-foreground transition-all duration-300 hover:bg-primary/90 hover:scale-105 active:scale-95 hover:ring-4 hover:ring-primary/20"
             >
               <span className="relative z-10">{ctaLabel}</span>
-              <ArrowRight className="h-5 w-5 relative z-10 transition-transform duration-300 group-hover:translate-x-1" />
+              <ArrowRight weight="light" className="h-5 w-5 relative z-10 transition-transform duration-300 group-hover:translate-x-1" />
             </button>
           </div>
         </div>

@@ -75,7 +75,7 @@ export function ViewController({ showSort = true }: ViewControllerProps) {
               padding: '4px 10px',
               fontSize: 'var(--text-sm)',
             }}
-            aria-label={`Sort direction ${dir === 'asc' ? 'ascending' : 'descending'} — click to flip`}
+            aria-label={`Sort direction ${dir === 'asc' ? 'ascending' : 'descending'}, click to flip`}
           >
             {dir === 'asc' ? '↑' : '↓'}
           </button>

@@ -54,7 +54,11 @@ export function CopyLink() {
         padding: '4px 10px',
         fontSize: 'var(--text-sm)',
         color: copied ? 'var(--stage-emerging)' : 'var(--ink-2)',
+        transition: 'color var(--motion-fast), transform var(--motion-fast) cubic-bezier(0.32, 0.72, 0, 1)',
       }}
+      onMouseDown={(e) => { e.currentTarget.style.transform = 'scale(0.98)' }}
+      onMouseUp={(e) => { e.currentTarget.style.transform = 'scale(1)' }}
+      onMouseLeave={(e) => { e.currentTarget.style.transform = 'scale(1)' }}
     >
       {copied ? 'Copied' : 'Copy link'}
     </button>

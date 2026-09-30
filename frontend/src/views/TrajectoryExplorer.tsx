@@ -164,7 +164,7 @@ export function TrajectoryExplorerView() {
   if (error) {
     return (
       <p style={{ color: 'var(--ink-2)', padding: 'var(--sp-6) 0' }}>
-        Live lookups unavailable — showing cached snapshots. ({error.message})
+        Live lookups unavailable. Showing cached snapshots. ({error.message})
       </p>
     )
   }
@@ -234,7 +234,7 @@ export function TrajectoryExplorerView() {
 
       <div
         role="group"
-        aria-label="Domain selection — up to five"
+        aria-label="Domain selection, up to five"
         style={{
           display: 'flex',
           flexWrap: 'wrap',
@@ -306,7 +306,7 @@ export function TrajectoryExplorerView() {
         <div style={{ marginTop: 'var(--sp-4)' }}>
           <CaveatBanner>
             Quantum error correction is measured by a twin-series of quantum
-            computing — do not rank the two independently.
+            computing, so do not rank the two independently.
           </CaveatBanner>
         </div>
       ) : null}

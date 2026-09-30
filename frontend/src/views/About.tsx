@@ -23,7 +23,7 @@ export function AboutView() {
         detects keyword bursts with Kleinberg's 2-state automaton, and
         publishes forecasts that have been backtested against a naive
         baseline. This site presents the snapshot products of that
-        pipeline; it is deliberately not an interactive query engine — the
+        pipeline. It is deliberately not an interactive query engine; the
         figures you see are the same artifacts the pipeline persisted.
       </p>
 
@@ -32,7 +32,7 @@ export function AboutView() {
         <p style={{ marginTop: 'var(--sp-3)', color: 'var(--ink-1)' }}>
           Each domain's emergence score blends recent growth, citation
           acceleration, novelty, keyword burst activity, and volume. The
-          blend weights are configurable priors — chosen, then
+          blend weights are configurable priors, chosen and then
           sensitivity-tested, not fitted. Stage labels describe current
           behavior: a domain is Emerging when activity is starting from a
           low base, Accelerating when it is compounding quickly, Active
@@ -49,7 +49,7 @@ export function AboutView() {
             baseline on a majority of backtest series
             {hw ? (
               <>
-                {' '}— the current run's Holt-Winters damped forecast won{' '}
+                {' '}The current run's Holt-Winters damped forecast won{' '}
                 <span className="num">
                   {fmtPct(hw.beats_naive_share, 0).replace('100%', 'all')}
                 </span>{' '}
@@ -59,7 +59,7 @@ export function AboutView() {
           </li>
           <li>
             Counts are annual, from OpenAlex works filtered by deterministic
-            topic-ID sets — not free-text search. Patent series arrive with
+            topic-ID sets, not free-text search. Patent series arrive with
             Phase 3.5.
           </li>
           <li>

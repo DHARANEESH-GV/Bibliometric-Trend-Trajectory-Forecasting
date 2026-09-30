@@ -177,7 +177,7 @@ export function CoverView() {
           <Link to="/cover" className="cover-brand">
             Biblio<em>.</em>
           </Link>
-          <span className="cover-issue">No. {runId ?? '—'}</span>
+          <span className="cover-issue">No. {runId ?? 'in press'}</span>
           <span
             className="cover-issue"
             style={{ marginLeft: 'auto' }}
@@ -199,7 +199,7 @@ export function CoverView() {
             titleLines={['Twenty fields,', 'watched quietly.']}
             description={
               <>
-                {feed.length} bursts, {rows.length} fields, one quiet watch —
+                {feed.length} bursts, {rows.length} fields, one quiet watch,
                 Biblio reads the papers so you don't have to, and never invents
                 a number it can't source.
               </>
@@ -241,7 +241,7 @@ export function CoverView() {
                 <span className="stat-figure">
                   <CoverCount value={(facts.riser.yoy_delta ?? 0) * 100} suffix="%" />
                 </span>
-                <span className="stat-label">rise at the top — {facts.riser.display_name}</span>
+                <span className="stat-label">rise at the top, {facts.riser.display_name} leading</span>
               </Link>
             </section>
 
@@ -278,7 +278,7 @@ export function CoverView() {
                   <span className="tease-no">iii.</span>
                   <p className="tease-body">
                     The {facts.gate.model.replace(/_/g, '-')} forecast cleared{' '}
-                    {facts.gate.wins} of {facts.gate.series} backtests — it earns
+                    {facts.gate.wins} of {facts.gate.series} backtests, so it earns
                     the bands it shows.
                   </p>
                   <p className="tease-foot">honesty, by design</p>
@@ -325,7 +325,7 @@ export function CoverView() {
               <h2>How to read this</h2>
               <p>
                 Every field carries a score built from recent growth, citation
-                acceleration, and bursts of language — higher means faster
+                acceleration, and bursts of language. Higher means faster
                 emergence, nothing more mystical than that. Bands around
                 forecasts are the model's honest uncertainty, not promises.
                 The <Link to="/about" onClick={(e) => { e.preventDefault(); enter() }}>methodology</Link> carries every caveat in full.
@@ -336,10 +336,10 @@ export function CoverView() {
 
         {/* ------------------------- Colophon ------------------------- */}
         <div className="cover-colophon">
-          <span>Biblio — the public face of the biblio-trend observatory.</span>
+          <span>Biblio, the public face of the biblio-trend observatory.</span>
           <span>
             {prefersReducedMotion() ? (
-              <>Motion is reduced by your system —{' '}
+              <>Motion is reduced by your system,{' '}
                 <button
                   type="button"
                   onClick={() => setMotionChoice('full')}
