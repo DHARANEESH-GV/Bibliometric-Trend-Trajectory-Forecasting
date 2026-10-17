@@ -2,8 +2,12 @@
  * SearchPalette — ⌘K palette over the 20 static domains. The only
  * "search API call needed" is none: domains come from the leaderboard
  * snapshot, no search index (master plan §8).
+ *
+ * Accessibility: focus is trapped inside the dialog, returned to the
+ * invoking control on close, and the active option is announced via
+ * aria-activedescendant (the input keeps DOM focus while arrows move).
  */
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState, type KeyboardEvent as ReactKeyboardEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 export interface SearchItem {
@@ -20,10 +24,13 @@ interface SearchPaletteProps {
   onClose: () => void
 }
 
+const optionId = (domain: string) => `sp-opt-${domain.replace(/[^a-z0-9_-]/gi, '-')}`
+
 export function SearchPalette({ items, to, open, onClose }: SearchPaletteProps) {
   const [q, setQ] = useState('')
   const [active, setActive] = useState(0)
   const inputRef = useRef<HTMLInputElement | null>(null)
+  const dialogRef = useRef<HTMLDivElement | null>(null)
   const navigate = useNavigate()
 
   const results = useMemo(() => {
@@ -36,11 +43,17 @@ export function SearchPalette({ items, to, open, onClose }: SearchPaletteProps) 
     )
   }, [q, items])
 
+  // Open: reset, focus the input, trap Tab within the dialog, and restore
+  // focus to whatever opened the palette when it closes.
   useEffect(() => {
-    if (open) {
-      setQ('')
-      setActive(0)
-      inputRef.current?.focus()
+    if (!open) return
+    const previous = document.activeElement as HTMLElement | null
+    setQ('')
+    setActive(0)
+    const raf = requestAnimationFrame(() => inputRef.current?.focus())
+    return () => {
+      cancelAnimationFrame(raf)
+      previous?.focus?.()
     }
   }, [open])
 
@@ -53,12 +66,55 @@ export function SearchPalette({ items, to, open, onClose }: SearchPaletteProps) 
     onClose()
   }
 
+  // Keep DOM focus on the input; arrows move the active descendant.
+  const onInputKeyDown = (e: ReactKeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Escape') {
+      e.preventDefault()
+      onClose()
+    } else if (e.key === 'ArrowDown') {
+      e.preventDefault()
+      setActive((a) => Math.min(a + 1, results.length - 1))
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault()
+      setActive((a) => Math.max(a - 1, 0))
+    } else if (e.key === 'Enter') {
+      e.preventDefault()
+      commit(active)
+    }
+  }
+
+  // Trap Tab inside the dialog. Options use roving focus (aria-activedescendant
+  // via the input), so the input is the only tabbable element; Tab simply
+  // stays on it rather than escaping to the page behind the overlay.
+  const onDialogKeyDown = (e: ReactKeyboardEvent<HTMLDivElement>) => {
+    if (e.key !== 'Tab') return
+    const root = dialogRef.current
+    if (!root) return
+    const focusables = Array.from(
+      root.querySelectorAll<HTMLElement>('input, button, [tabindex]'),
+    ).filter((el) => !el.hasAttribute('disabled') && el.tabIndex >= 0)
+    if (focusables.length === 0) return
+    const first = focusables[0]!
+    const last = focusables[focusables.length - 1]!
+    const current = document.activeElement
+    if (e.shiftKey && (current === first || !root.contains(current))) {
+      e.preventDefault()
+      last.focus()
+    } else if (!e.shiftKey && current === last) {
+      e.preventDefault()
+      first.focus()
+    }
+  }
+
+  const activeItem = results[active]
+
   return (
     <div
       role="dialog"
       aria-modal="true"
       aria-label="Search domains"
       onClick={onClose}
+      onKeyDown={onDialogKeyDown}
       style={{
         position: 'fixed',
         inset: 0,
@@ -67,16 +123,17 @@ export function SearchPalette({ items, to, open, onClose }: SearchPaletteProps) 
         justifyContent: 'center',
         alignItems: 'flex-start',
         paddingTop: '12vh',
-        zIndex: 50,
+        zIndex: 'var(--z-overlay)',
       }}
     >
       <div
+        ref={dialogRef}
         onClick={(e) => e.stopPropagation()}
         style={{
           width: 'min(560px, calc(100vw - 48px))',
           background: 'var(--surface-1)',
           border: 'var(--hairline-strong)',
-          borderRadius: 3,
+          borderRadius: 'var(--r-control)',
           overflow: 'hidden',
         }}
       >
@@ -87,18 +144,12 @@ export function SearchPalette({ items, to, open, onClose }: SearchPaletteProps) 
             setQ(e.target.value)
             setActive(0)
           }}
-          onKeyDown={(e) => {
-            if (e.key === 'Escape') onClose()
-            if (e.key === 'ArrowDown') {
-              e.preventDefault()
-              setActive((a) => Math.min(a + 1, results.length - 1))
-            }
-            if (e.key === 'ArrowUp') {
-              e.preventDefault()
-              setActive((a) => Math.max(a - 1, 0))
-            }
-            if (e.key === 'Enter') commit(active)
-          }}
+          onKeyDown={onInputKeyDown}
+          role="combobox"
+          aria-expanded="true"
+          aria-controls="search-palette-listbox"
+          aria-activedescendant={activeItem ? optionId(activeItem.domain) : undefined}
+          aria-autocomplete="list"
           placeholder="Jump to a domain…"
           aria-label="Search domains"
           style={{
@@ -111,17 +162,28 @@ export function SearchPalette({ items, to, open, onClose }: SearchPaletteProps) 
             outline: 'none',
           }}
         />
-        <ul role="listbox" style={{ listStyle: 'none', margin: 0, padding: 'var(--sp-2)', maxHeight: '50vh', overflowY: 'auto' }}>
+        <ul
+          id="search-palette-listbox"
+          role="listbox"
+          aria-label="Matching domains"
+          style={{ listStyle: 'none', margin: 0, padding: 'var(--sp-2)', maxHeight: '50vh', overflowY: 'auto' }}
+        >
           {results.length === 0 ? (
             <li style={{ padding: 'var(--sp-3) var(--sp-4)', color: 'var(--ink-2)' }}>
               No domain matches “{q}”.
             </li>
           ) : (
             results.map((item, i) => (
-              <li key={item.domain} role="option" aria-selected={i === active}>
+              <li
+                key={item.domain}
+                id={optionId(item.domain)}
+                role="option"
+                aria-selected={i === active}
+              >
                 <button
                   onClick={() => commit(i)}
                   onMouseEnter={() => setActive(i)}
+                  tabIndex={-1}
                   style={{
                     display: 'flex',
                     width: '100%',
@@ -130,7 +192,7 @@ export function SearchPalette({ items, to, open, onClose }: SearchPaletteProps) 
                     gap: 'var(--sp-4)',
                     padding: 'var(--sp-2) var(--sp-4)',
                     background: i === active ? 'var(--surface-2)' : 'transparent',
-                    borderRadius: 2,
+                    borderRadius: 'var(--r-control)',
                     textAlign: 'left',
                   }}
                 >

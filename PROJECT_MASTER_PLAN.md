@@ -12,7 +12,7 @@
 
 ## 1. One-liner
 
-A budget-free serverless AWS pipeline tracking **20 technology domains** across scientific papers (OpenAlex) and patents (PatentsView/USPTO), detecting which are emerging, growing, maturing, or declining, forecasting 1–3 years ahead with backtested models, and presenting results in an editorial-style React dashboard.
+A budget-free serverless AWS pipeline tracking **20 technology domains** across scientific papers (OpenAlex) and patents (USPTO ODP — PatentsView's replacement since 2026-03-20), detecting which are emerging, growing, maturing, or declining, forecasting 1–3 years ahead with backtested models, and presenting results in a React dashboard.
 
 The output is not just a dashboard — it's a **technology observatory**.
 
@@ -39,9 +39,6 @@ The output is not just a dashboard — it's a **technology observatory**.
 - DynamoDB **scalar-only** serving items — no large arrays, respect the 400KB item limit.
 - Step Functions for orchestration. **No S3-event-storm architectures.**
 - Immutable Parquet naming: `part-{run_id}`. Reserved concurrency = 4.
-
-### Product
-UI must feel editorial, academic, precise, data-first. Must not feel like a SaaS admin panel or AI dashboard slop. Banned: purple-gradient heroes, generic stat-card rows, glassmorphism, shadows everywhere, excessive border-radius, decorative color, pie charts, dual axes, spinners, unexplained forecasts.
 
 ---
 
@@ -74,7 +71,7 @@ UI must feel editorial, academic, precise, data-first. Must not feel like a SaaS
 | Ingestion cadence | **Incremental weekly on `from_created_date` + monthly full reconciliation** |
 | Year range | **2000–2025** |
 | Paper source | OpenAlex (topic IDs, not free-text search) |
-| Patent source | PatentsView / USPTO |
+| Patent source | USPTO Open Data Portal (PatentsView retired 2026-03-20) |
 | Processing engine | DuckDB in container-image Lambdas |
 | Staged storage | Parquet on S3, **partitioned by domain + year**, filename `part-{run_id}` |
 | Serving DB | DynamoDB, scalar-only |
@@ -83,7 +80,6 @@ UI must feel editorial, academic, precise, data-first. Must not feel like a SaaS
 | Forecasting | Holt-Winters damped, optional ARIMA, naive + drift baselines |
 | Burst detection | In-house Kleinberg 2-state Viterbi |
 | Score weights | Tunable priors in `config/score_weights.yaml` |
-| UI theme | Dark-first editorial |
 | Cost guardrails | $1 budget alert, lifecycle rules, reserved concurrency 4, teardown script |
 
 ### 4.1 Four conflicts between v2.3 and v3.0 — resolved
@@ -101,18 +97,20 @@ staged/works/domain={slug}/year={yyyy}/part-{run_id}.parquet
 ```
 This preserves pruning *and* prevents concurrent-write clobbering, which was the original reason for run-scoped naming.
 
-**4. UI copy → sentences, not middle-dot strings.**
+**4. UI copy → sentences, not middle-dot strings. — REVOKED 2026-10-07.**
 v3.0 reintroduced `Data through 2025-Q3 · refreshed weekly`, `Holt-Winters damped, trained 2010–2021 · 94% directional accuracy`, and `Emerging · 6 quarters`. Middle-dot-joined meta strings are a recognized generated-UI tell. Same information, written as sentences:
 - `Snapshot from Q3 2025, refreshed every Monday`
 - `Trained on 2000–2021 data; correctly called direction 94% of the time`
 - `Emerging, held 6 quarters`
+
+> This decision was revoked on 2026-10-07: all UI/design constraints were removed from the plan at the user's request ahead of a full UI redesign. UI copy is now unconstrained.
 
 ---
 
 ## 5. System flow
 
 ```
-OpenAlex API                          PatentsView / USPTO
+OpenAlex API                          USPTO ODP API (X-API-KEY)
      ↓                                        ↓
 Fetch Lambda                          Fetch Patents Lambda
      ↓                                        ↓
@@ -213,7 +211,7 @@ Domain scoping uses **OpenAlex `topics.id` sets**, not free-text search — dete
 | 3.5 | Patent ingestion + CPC↔domain concordance + paper-vs-patent trajectories |
 | 4 | Forecasting, emergence score, maturity labels, backtest, rank-stability |
 | 5 | Dashboard data contracts (snapshot JSON + API shapes) |
-| 6 | React SPA: 5 views |
+| 6 | React SPA |
 | 7 | SAM stack |
 | 8 | Deploy + verify + teardown |
 | 9 | Final report |
@@ -341,11 +339,21 @@ Analyses: publication trajectory · citation trajectory · top keywords · keywo
 
 ### Phase 3.5 — Patent ingestion
 
-**Human interaction point #1:** free PatentsView API key (~5 min signup). Stored in `.env` as `PATENTSVIEW_API_KEY`.
+**Human interaction point #1:** free USPTO Open Data Portal (ODP) API key.
+**Source migration (2026-03-20):** the legacy PatentsView API
+(`search.patentsview.org`) was retired into USPTO's ODP — the old host is
+NXDOMAIN and PatentsView keys are void. ODP key requires a USPTO.gov
+account **plus ID.me identity verification**; stored in `.env` as
+`USPTO_ODP_API_KEY`, sent as `X-API-KEY` to `https://api.uspto.gov`.
+Rate model: ~5M metadata calls/week, **one in-flight call per key**
+(concurrency with the same key is blocked), 429 → wait ≥5 s.
+**Field change:** ODP file-wrapper search returns bibliographic data only
+— **no `patent_abstract`**. That field is dropped from the schema; noted
+in §Limitations.
 
-Fields collected:
+Fields collected (ODP file-wrapper search — bibliographic only, no abstract):
 ```
-patent_id, patent_title, patent_abstract, patent_date,
+patent_id, patent_title, patent_date,
 patent_year, patent_quarter, assignee_organization,
 assignee_country, cpc_codes, domain_slug, run_id
 ```
@@ -398,6 +406,8 @@ score_weights:
 **Backtesting:** rolling-origin, expanding window. Train to 2021-Q4, target 2022-Q1…2024-Q4. Metrics: MAE, RMSE, sMAPE (over MAPE — near-zero denominators), directional accuracy.
 
 > **Honesty gate:** the model is reported only if it beats naive on **≥60% of series**. Otherwise **the persisted forecast IS the baseline forecast.** Results → `models/backtest_results.csv`, feeding the report's confidence claims.
+>
+> **Methodology footnotes bind to real output:** any methodology footnote shown in the UI must be generated from this Phase 4 backtest output — never placeholder copy.
 
 ---
 
@@ -449,110 +459,22 @@ Snapshots versioned by `run_id`. API read shapes documented alongside.
 
 ### Phase 6 — React dashboard
 
-Stack: React 18 · Vite · TypeScript · ECharts (`echarts-for-react`) · React Router · CSS custom properties. No heavy UI framework, no Redux — state is **URL search params + a ~30-line context store**.
+Stack: React 18 · Vite · TypeScript · ECharts · React Router · CSS custom properties. No heavy UI framework, no Redux — state is **URL search params + a ~30-line context store**.
 
 Hydration: bulk fetch of `snapshots/*.json` (single round-trip for page shell) + incremental API fetches for drill-down/search.
 
-**Build order:** design tokens + 6 core components (`StagePill`, `Metric`, `Sparkline`, `ScoreBar`, `ViewController`, `SearchPalette`) **before** views. All charts through one themed ECharts factory so styling lives in exactly one file.
+**UI structure and visual design are unconstrained** (constraints removed 2026-10-07 ahead of a full redesign). The only surviving requirements are functional: the frontend consumes the Phase 5 snapshot JSON contracts, and the methodology footnote under charts must bind to real Phase 4 backtest output — never placeholder copy.
 
 ---
 
-## 8. UI/UX specification
+## 8. UI/UX specification — REVOKED
 
-### Philosophy
-Reads like a research publication with live figures, not a SaaS settings screen. **Data is the hero. Color is semantic only. Hairline discipline. Motion with purpose. Academic rigor as visual texture.**
+**All UI/design constraints in this section were removed on 2026-10-07** at the user's request, ahead of a full UI redesign. The previous editorial-style specification (design tokens, 5-view IA, chart craft rules, motion rules, banned-pattern lists) no longer applies. UI structure and visual design are unconstrained.
 
-### Tokens
-```css
---surface-0-dark: #0B0E14;   --surface-0-light: #FAFAF8;
---surface-1-dark: #11151C;   --surface-1-light: #FFFFFF;
---ink-0-dark:     #E8EAED;   --ink-0-light:     #111418;
---ink-2: 60% opacity of primary ink;
---hairline: 1px solid color-mix(in srgb, var(--ink-0) 8%, transparent);
-
---font-display: "Inter Tight", sans-serif;   /* headings, 600 */
---font-body:    "Inter", sans-serif;          /* body, 400 */
---font-mono:    "JetBrains Mono", monospace;  /* metrics, IDs, axis ticks */
-
---stage-emerging: #3DDC97;   --stage-growth:  #4C9AFF;
---stage-maturity: #F5B84C;   --stage-decline: #F26D6D;
-
---series-paper: accent;      --series-patent: #C084FC;
---forecast-band: accent @ 12% fill, dashed stroke;
-```
-Dark is the designed default (data-viz context); light via token swap. Manual toggle + `prefers-color-scheme`. Inter self-hosted via `@fontsource/inter` — **no Google Fonts runtime dependency**.
-
-### Information architecture — 5 views
-```
-┌──────────────────────────────────────────────────────────────┐
-│ [name TBD]   Leaderboard  Trajectories  Bursts  Matrix  About│
-│                                          [☀/☽] [search ⌘K]   │
-├──────────────────────────────────────────────────────────────┤
-│ ① LEADERBOARD (landing)                                      │
-│   Left ⅔: rank, domain, 24q sparkline, emergence score,      │
-│     stage pill, YoY Δ, patent signal dot                     │
-│   Right ⅓: score decomposition — stacked bar of components   │
-│     for the hovered row                                      │
-│ ② TRAJECTORY EXPLORER                                        │
-│   Multi-select overlay, quarterly axis 2000–2028, actual     │
-│   (solid) + forecast band, patent toggle, stage-region       │
-│   bands, log/linear switch, synced hover crosshair           │
-│ ③ DOMAIN DRILL-DOWN                                          │
-│   Hero trajectory + forecast; top papers/authors/            │
-│   institutions/countries; keyword timeline; paper-vs-patent  │
-│   lag annotation; sparse-data label; methodology footnote    │
-│ ④ BURSTS                                                     │
-│   Feed: keyword, domain, strength, start quarter, duration,  │
-│   mini before/after frequency chart                          │
-│ ⑤ COMPARISON MATRIX                                          │
-│   Domains × years heatmap; cell = activity; row tail =       │
-│   stage label + score. The "state of technology" view        │
-└──────────────────────────────────────────────────────────────┘
-```
-
-Global: ⌘K search over the 20 domains (the only search API call needed — 20 rows, no search index) · URL-synced state (`/?view=trajectory&domains=quantum_computing,ai_agents&log=1`) so any chart is shareable.
-
-> **Open item:** the matrix was originally spec'd 20×8. With the 2000–2025 range that's 26 annual columns. Decide: recent-window view (last 8 years, deliberately distinct from the full trajectory charts) or full range?
-
-### Signature view — papers vs patents
-- Papers as a crisp line, patents as a stepped area
-- Curved annotation arrow connecting inflection points
-- Label: `Δt = 3.2 yr`
-- Prose annotation: `Patents followed papers by about 3.2 years in this domain.`
-
-Most bibliometric dashboards don't have this. It's the differentiator — give it the most design attention.
-
-### Chart craft rules
-- **No pie charts. No dual axes** (they hide scale lies). No decorative gradients. No chart junk.
-- Axis ticks in mono. Quarterly minor gridlines at low opacity, yearly major slightly higher.
-- Zero baseline always shown for count data.
-- Forecast band labeled **inline at the band start**, never legend-only.
-- Colorblind safety: series differ by dash pattern or marker shape, not color alone. WCAG AA against both surfaces.
-- Loading = the chart's real axes with a shimmering band placeholder. **Never spinners.**
-
-### Motion
-Allowed: chart draw-in on load (~600ms) · leaderboard number count-ups · hover crosshair tracking.
-Forbidden: decorative floating, parallax, excessive transitions, animated cards, pulsing badges.
-Respect `@media (prefers-reduced-motion: reduce)`.
-
-### System states
-| State | Treatment |
-|---|---|
-| First paint | Per-view skeleton, staggered 80ms |
-| Stale data | Footer: `Snapshot from Q3 2025, refreshed every Monday` |
-| API down | `Live lookups unavailable — showing cached snapshots.` |
-| Thin data | `Sparse coverage before 2014` — do not plot noise as if meaningful |
-| Mobile | Single-column reflow; leaderboard → cards; explorer → swipeable per-domain pages. Breakpoints 640/1024. Desktop-first analytical tool |
-
-### Non-sloppy details (mandatory)
-- `font-variant-numeric: tabular-nums lining-nums;` on scores, ranks, counts, axis values, tables, metrics
-- **Methodology footnote under every chart**, written as a sentence: `Trained on 2000–2021 data; correctly called direction 94% of the time.` **This must bind to real Phase 4 backtest output — never placeholder copy.**
-- **Stage pills show stability evidence:** `Emerging, held 6 quarters` — not bare `Emerging`
-
-> **Avoid during implementation** — defaults that creep in unprompted even when unspecified:
-> middle-dot meta strings (`A · B · C`) · ALL-CAPS eyebrow labels · arrow-suffixed button text (`View details →`) · identical rounded cards with soft grey shadows · accenting a single word in a headline.
->
-> To push past generic-editorial into something specific to *this* project, pull the subject matter into the type system — citation-style superscript numerals for chart footnotes, or journal-issue conventions for quarter labels (`Q1'10`) rather than generic axis ticks.
+Surviving requirements (functional, not aesthetic):
+- The frontend consumes the Phase 5 snapshot JSON contracts.
+- The methodology footnote under charts must bind to real Phase 4 backtest output — never placeholder copy.
+- Sparse-coverage data gets an explicit label instead of plots presented as meaningful.
 
 ---
 
@@ -613,7 +535,7 @@ GSI: as_of-only for "current panel" query.
 | Function | Memory | Container? | Responsibilities |
 |---|---|---|---|
 | `fetch_openalex` | 256 MB | no | Paginate, save JSONL.gz, persist cursor, write manifest |
-| `fetch_patents` | 256 MB | no | Query PatentsView, map CPC→domain, save batches |
+| `fetch_patents` | 256 MB | no | Query USPTO ODP (X-API-KEY, single-flight), map CPC→domain, save batches |
 | `normalize` | 1024 MB | **yes** | Clean, reconstruct abstracts, fan out entities, write Parquet |
 | `aggregate` | 1024 MB | **yes** | DuckDB over Parquet, quarterly trajectories, keyword metrics, top entities |
 | `score` | 1024 MB | **yes** | Forecast, bursts, emergence score, lifecycle, backtest |
@@ -696,9 +618,11 @@ CostCenter  = free-tier
 
 Only two.
 
-**1. PatentsView API key** — Phase 3.5. Free account, ~5 min. → `.env`:
+**1. USPTO ODP API key** — Phase 3.5. Requires a USPTO.gov account with
+ID.me identity verification (not a 5-minute form). The legacy PatentsView
+key/API was retired 2026-03-20. → `.env`:
 ```env
-PATENTSVIEW_API_KEY=your_key_here
+USPTO_ODP_API_KEY=your_key_here
 ```
 
 **2. AWS credentials** — Phase 7. Before deploying, the agent must show: expected cost summary · resource list · free-tier usage estimate · teardown instructions. **Deploy only after explicit approval.**
@@ -742,7 +666,7 @@ PATENTSVIEW_API_KEY=your_key_here
 - [ ] Paper + patent data collected, cleaned, deduped
 - [ ] Trajectories, bursts, networks, rankings generated
 - [ ] Forecasts generated, backtested, gated against naive baselines
-- [ ] Dashboard renders all 5 views from real data
+- [ ] Dashboard renders from real data
 - [ ] Tests pass (unit, data, backtest)
 - [ ] AWS resources documented; `sam delete` returns account to $0
 - [ ] Budget alert configured; no recurring compute active
@@ -771,7 +695,7 @@ Trend Prediction using Cloud-Based Big Data Pipelines
 Constraints:
 - $0 budget / free-tier-safe.
 - OpenAlex for papers (topic IDs, not free-text search).
-- PatentsView/USPTO for patents.
+- USPTO Open Data Portal for patents (PatentsView retired 2026-03-20).
 - AWS serverless; Step Functions Map for orchestration.
 - Container-image Lambdas for DuckDB/PyArrow/statsmodels.
 - Parquet on S3, partitioned domain + year, filename part-{run_id}.
@@ -786,7 +710,7 @@ Constraints:
   >=60% of series, otherwise persist the naive forecast.
 - Do not deploy to AWS until the user provides credentials and approves
   a cost summary.
-- Ask the user only for the PatentsView API key and AWS credentials.
+- Ask the user only for the USPTO ODP API key and AWS credentials.
 
 Phases: 0 scaffold, 1 OpenAlex ingestion, 2 preprocessing, 3
 bibliometrics, 3.5 patents, 4 forecasting/scoring/backtest, 5 data
@@ -808,6 +732,7 @@ Read PROJECT_MASTER_PLAN.md in /home/vampgvd/biblio-trend/ and execute
 Phase 0. Create the repository scaffold, Python 3.12 environment,
 requirements.txt, config/domains.yaml for 20 technology domains, README,
 and folder structure. Do not deploy AWS resources. Do not use paid
-services. Stop before Phase 3.5 and ask me for the PatentsView API key.
+services. Stop before Phase 3.5 and ask me for the USPTO ODP API key
+(PatentsView was retired 2026-03-20; ODP needs ID.me verification).
 Stop before Phase 7 and ask me for AWS credentials.
 ```

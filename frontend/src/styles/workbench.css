@@ -1,0 +1,2019 @@
+/* ============================================================
+   Workbench — Ethereal Glass surface for the analytical views.
+   Floating island nav, route-transition canvas, long-list perf
+   rules. Companion to cover.css (the landing world). All color comes
+   from tokens.css ([data-theme] aware); nothing here hardcodes a theme.
+
+   z-index scale (documented; no arbitrary values anywhere):
+     0    content
+     30   film grain overlay (over content, under chrome)
+     40   island nav
+     50   search overlay
+     100  cinema curtain (cover route swap)
+   ============================================================ */
+
+.island-wrap {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 40;
+  display: flex;
+  justify-content: center;
+  padding: 0.85rem var(--sp-4) 0;
+  pointer-events: none;
+}
+
+/* ---------------------------------------------------------------
+   Film grain (z-scale layer 30: over content, under the chrome).
+   Reasoning the earlier attempts missed:
+     - `soft-light`/`overlay` are provably ZERO on a black backdrop
+       (result = 2*base*blend, base=0), so neither can show on the OLED.
+     - `screen` cannot darken; it vanishes on a light backdrop.
+   So: grayscale noise (mean ~0.5) composited UNBLENDED at low opacity.
+   Against any background it both lightens and darkens by turns, which
+   reads as grain on OLED and on paper without a theme branch, and keeps
+   the mean shift small enough not to move text contrast.
+   Dropped entirely under reduced transparency.
+   --------------------------------------------------------------- */
+.ambience-grain {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  pointer-events: none;
+  opacity: 0.08;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* On paper the same unblended grain veils; keep it whisper-faint there. */
+[data-theme='light'] .ambience-grain {
+  opacity: 0.035;
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .ambience-grain {
+    display: none;
+  }
+}
+
+.island {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  max-width: min(100%, 980px);
+  padding: 0.35rem 0.45rem 0.35rem 1.1rem;
+  border-radius: 999px;
+  border: var(--hairline);
+  background: color-mix(in srgb, var(--surface-1) 72%, transparent);
+  backdrop-filter: blur(18px) saturate(1.2);
+  -webkit-backdrop-filter: blur(18px) saturate(1.2);
+  box-shadow: var(--shadow-float), var(--inner-highlight);
+}
+
+.island-brand {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--ink-0);
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  padding-right: var(--sp-2);
+  border-right: var(--hairline);
+}
+.island-brand em {
+  font-style: normal;
+  color: var(--accent);
+}
+.island-brand:hover {
+  text-decoration: none;
+}
+
+.island-nav ul {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.island-link {
+  display: inline-block;
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  font-size: var(--text-sm);
+  color: var(--ink-2);
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    color var(--motion-fast),
+    background var(--motion-fast) var(--ease-physical);
+}
+.island-link:hover {
+  color: var(--ink-0);
+  background: color-mix(in srgb, var(--ink-0) 8%, transparent);
+  text-decoration: none;
+}
+.island-link[aria-current='page'] {
+  color: var(--ink-0);
+  background: color-mix(in srgb, var(--ink-0) 12%, transparent);
+}
+
+.island-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  margin-left: var(--sp-2);
+  padding-left: var(--sp-2);
+  border-left: var(--hairline);
+}
+
+.island-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  border: var(--hairline);
+  border-radius: 999px;
+  padding: 0.35rem 0.7rem;
+  font-size: var(--text-sm);
+  color: var(--ink-1);
+  background: transparent;
+  transition:
+    color var(--motion-fast),
+    background var(--motion-fast),
+    transform var(--motion-fast) var(--ease-physical);
+}
+.island-btn:hover {
+  color: var(--ink-0);
+  background: color-mix(in srgb, var(--ink-0) 8%, transparent);
+}
+.island-btn:active {
+  transform: scale(0.96);
+}
+
+/* Workbench content clears the floating island AND the wire ticker */
+.workbench-main {
+  padding-top: 6.6rem;
+}
+
+/* ---------------------------------------------------------------
+   Spotlight border (ported from the cover, then reworked for depth).
+   Three layers that together read as light catching a raised panel,
+   rather than a painted outline:
+     .spotlight-ring::after  — a wide, soft pool of accent light on the
+                               surface, following the pointer
+     .spotlight-ring::before — a crisp 1px edge highlight tracing the
+                               same point, so the border appears lit
+     .spotlight-host:hover   — a 1px lift, so the glow has a physical
+                               reason to exist
+   All track --mx/--my set on the host. Fades in over 0.5s and lingers.
+   --------------------------------------------------------------- */
+.spotlight-host {
+  position: relative;
+  transition: transform 0.5s var(--ease-out);
+}
+.spotlight-host:hover {
+  transform: translateY(-1px);
+}
+.spotlight-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--r-panel);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s var(--ease-out);
+  z-index: 3;
+}
+.spotlight-ring::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    34rem circle at var(--mx, 50%) var(--my, 50%),
+    color-mix(in srgb, var(--accent) 22%, transparent),
+    transparent 52%
+  );
+}
+.spotlight-ring::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: radial-gradient(
+    20rem circle at var(--mx, 50%) var(--my, 50%),
+    color-mix(in srgb, var(--accent) 95%, transparent),
+    transparent 40%
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+}
+.spotlight-host:hover .spotlight-ring {
+  opacity: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+  .spotlight-host,
+  .spotlight-host:hover {
+    transition: none;
+    transform: none;
+  }
+}
+@media (prefers-reduced-transparency: reduce) {
+  .spotlight-ring {
+    display: none;
+  }
+}
+
+/* ---------------------------------------------------------------
+   Double-bezel panel (§4.A). Every workbench surface that carries
+   elevation uses the same two-layer build as the cover plate: an
+   outer shell (hairline + sliver of padding + shell radius) wrapping
+   an inner core (distinct surface + inset highlight + concentric
+   radius). Nothing draws a bespoke border/shadow inline any more.
+   --------------------------------------------------------------- */
+.panel {
+  background: color-mix(in srgb, var(--surface-1) 60%, transparent);
+  border: var(--hairline);
+  border-radius: var(--r-panel);
+  padding: var(--panel-pad);
+}
+.panel-core {
+  background: var(--surface-1);
+  border-radius: calc(var(--r-panel) - var(--panel-pad));
+  box-shadow: var(--inner-highlight);
+  padding: var(--sp-4);
+}
+/* A panel that should read as floating (aside, spotlight) picks the
+   raised rung on the shell instead of inventing a shadow. */
+.panel--float {
+  box-shadow: var(--shadow-plate);
+}
+/* A quieter panel for inline provenance / caveat bands. */
+.panel--sunk {
+  background: color-mix(in srgb, var(--surface-1) 40%, transparent);
+}
+.panel--sunk .panel-core {
+  background: color-mix(in srgb, var(--surface-2) 70%, transparent);
+  box-shadow: none;
+}
+
+/* ---------------------------------------------------------------
+   View header (§4.C). One display scale, one under-rule, one gap
+   before the content for every workbench view. The eyebrow is
+   rationed: at most 1 per 3 sections (taste-skill §9.F).
+   --------------------------------------------------------------- */
+.view-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  padding-bottom: var(--sp-4);
+  border-bottom: var(--hairline);
+  margin-bottom: var(--view-gap);
+}
+.view-header h1 {
+  font-family: var(--font-display);
+  font-size: var(--text-display);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: var(--leading-tight);
+  margin: 0;
+  text-wrap: balance;
+}
+.view-header-lead {
+  color: var(--ink-2);
+  font-size: var(--text-md);
+  line-height: var(--leading-body);
+  max-width: 68ch;
+  margin: 0;
+  text-wrap: pretty;
+}
+/* Fraunces italic accent word — one per H1, same ink, editorial voice. */
+.serif-accent {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  font-variation-settings: 'opsz' 72;
+}
+
+/* ---------------------------------------------------------------
+   SIGNAL/WIRE ghost layer. Editorial figures that carry no data —
+   aria-hidden, absolutely positioned, pointer-events none.
+   --------------------------------------------------------------- */
+.ghost-index {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--font-display);
+  font-size: var(--text-ghost-index);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--ghost-stroke);
+  pointer-events: none;
+  user-select: none;
+}
+.ghost-rank {
+  font-family: var(--font-display);
+  font-size: var(--text-ghost);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--ghost-fill);
+  pointer-events: none;
+  user-select: none;
+}
+.view-header-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-3);
+  margin-top: var(--sp-1);
+}
+.view-eyebrow {
+  align-self: flex-start;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+/* Ghost rank figure + real rank value share the cell; the ghost sits
+   behind as an editorial figure, the value stays legible on top. */
+.rank-cell {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+.rank-cell .ghost-rank {
+  position: absolute;
+  left: -0.35em;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 0;
+}
+.rank-cell-value {
+  position: relative;
+  z-index: 1;
+}
+
+/* Row / card hover micro-physics (§5.B): transform only, GPU-safe. */
+.row-lift {
+  transition: transform var(--motion-fast) var(--ease-physical);
+}
+.row-lift:hover {
+  transform: translateY(-1px);
+}
+@media (prefers-reduced-motion: reduce) {
+  .row-lift,
+  .row-lift:hover {
+    transition: none;
+    transform: none;
+  }
+}
+
+/* Surface hover (burst rows, matrix tails): background only, no inline
+   JS handlers rewriting style per event. */
+.hover-surface {
+  transition:
+    background var(--motion-fast) var(--ease-physical),
+    color var(--motion-fast);
+}
+.hover-surface:hover {
+  background: var(--surface-1);
+  color: var(--ink-0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .hover-surface {
+    transition: none;
+  }
+}
+
+/* Matrix row-tail highlighted from the chart (hover link, both directions). */
+.matrix-tail--hot {
+  background: var(--surface-1);
+  color: var(--ink-0);
+  border-color: var(--hairline-strong);
+}
+/* The chart itself is focusable for keyboard cell navigation. */
+.matrix-scroll > div:focus-visible {
+  outline: 2px solid var(--link);
+  outline-offset: 2px;
+}
+
+/* ScoreBar draw-on (§5, motivated: shows the blend assembling, once).
+   scaleX on each segment, transform-only, gated on reduced motion. */
+.score-seg {
+  transform-origin: left center;
+  animation: score-draw var(--motion-draw) var(--ease-out) both;
+}@keyframes score-draw {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .score-seg {
+    animation: none;
+  }
+}
+
+/* Metric craft: opt-in hairline rule + stage tick. */
+.metric {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  position: relative;
+}
+
+/* ScorePetal — polar rose companion to the ScoreBar. Petals scale out
+   from the hub, staggered; transform-only, gated on reduced motion. */
+.score-petal {
+  display: block;
+}
+.score-petal-leaf {
+  transform-origin: 90px 90px;
+  transform-box: view-box;
+  animation: petal-bloom var(--motion-draw) var(--ease-out) both;
+}
+@keyframes petal-bloom {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    opacity: 0.82;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .score-petal-leaf {
+    animation: none;
+  }
+}
+.domain-petal-wrap {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-5);
+  flex-wrap: wrap;
+}
+.metric--rule {
+  padding-top: var(--sp-3);
+  border-top: var(--hairline);
+  padding-left: 9px;
+}
+.metric-tick {
+  position: absolute;
+  left: 0;
+  top: var(--sp-3);
+  width: 3px;
+  height: 1.1rem;
+  border-radius: var(--r-control);
+  transform-origin: top center;
+  animation: metric-tick-draw var(--motion-draw) var(--ease-out) both;
+}
+@keyframes metric-tick-draw {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .metric-tick {
+    animation: none;
+  }
+}
+
+/* Segmented control (trajectory domain picker). One control-radius
+   grammar for the group and its segments, so the joints read as one
+   machined strip rather than free-floating chips. */
+.seg-control {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  margin: var(--sp-4) 0;
+}
+.seg {
+  display: inline-flex;
+  align-items: stretch;
+  border: var(--hairline);
+  border-radius: var(--r-control);
+  overflow: hidden;
+  transition: border-color var(--motion-fast);
+}
+.seg--on {
+  border-color: var(--hairline-strong);
+}
+.seg-btn {
+  padding: 4px 10px;
+  font-size: var(--text-sm);
+  color: var(--ink-1);
+  background: transparent;
+  transition:
+    color var(--motion-fast),
+    background var(--motion-fast);
+}
+.seg--on .seg-btn {
+  color: var(--accent-ink);
+  background: var(--ink-0);
+}
+.seg-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 8px;
+  font-size: var(--text-xs);
+  color: var(--link);
+  border-left: var(--hairline);
+  text-decoration: none;
+}
+.seg--on .seg-link {
+  color: var(--accent-ink);
+  background: color-mix(in srgb, var(--ink-0) 85%, transparent);
+}
+
+/* Burst feed: year-ribbon with a tiny start/end axis. */
+.ribbon-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.ribbon-axis {
+  display: flex;
+  justify-content: space-between;
+  font-size: 9px;
+  color: var(--ink-3);
+}
+
+/* Series table (trajectory "View as table"): the plotted numbers behind
+   the chart, reusing the forecast-row grammar. */
+.series-table {
+  max-width: 720px;
+  margin-top: var(--sp-5);
+  border-top: var(--hairline);
+  max-height: 420px;
+  overflow-y: auto;
+}
+
+/* Forecast values table under the domain chart — the numbers behind the
+   curve, including the 68% interval, for readers who want them exact. */
+.forecast-table {
+  max-width: 420px;
+  margin-top: var(--sp-5);
+  border-top: var(--hairline);
+}
+.forecast-row {
+  display: grid;
+  grid-template-columns: 5rem minmax(0, 1fr) minmax(0, 1.6fr);
+  gap: var(--sp-3);
+  padding: var(--sp-2) 0;
+  border-bottom: var(--hairline);
+  font-size: var(--text-sm);
+}
+.forecast-row--head {
+  color: var(--ink-3);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* ---------------------------------------------------------------
+   Leaderboard layout. The rank-row grid is ONE token shared by the
+   header and every row, so a column change cannot desync them (this
+   drifted once: the header and rows were edited separately).
+   --------------------------------------------------------------- */
+.leaderboard-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(260px, 1fr);
+  gap: var(--sp-6);
+  align-items: start;
+}
+.leaderboard-header,
+.leaderboard-row {
+  display: grid;
+  grid-template-columns: var(--grid-rank-row);
+  gap: var(--sp-3);
+  align-items: center;
+  padding-inline: var(--sp-2);
+}
+.leaderboard-header {
+  padding-block: 0 var(--sp-2);
+  font-size: var(--text-xs);
+  color: var(--ink-3);
+  /* Column labels survive the 20-row scroll (the aside is already sticky).
+     Offset clears the island AND the wire ticker beneath it. */
+  position: sticky;
+  top: 6.6rem;
+  z-index: 2;
+  background: var(--surface-0);
+}
+.leaderboard-row {
+  padding-block: var(--sp-3);
+  position: relative;
+  background: transparent;
+  transition: background var(--motion-fast);
+}
+.leaderboard-row:hover,
+.leaderboard-row[data-active='true'] {
+  background: var(--surface-1);
+}
+.leaderboard-row .cell {
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
+}
+.leaderboard-row .row-actions {
+  display: inline-flex;
+  gap: 2px;
+  position: relative;
+  z-index: 3;
+}
+.leaderboard-row .row-link {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: var(--r-control);
+  outline-offset: -2px;
+}
+.leaderboard-row .row-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.leaderboard-row .domain-cell {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.leaderboard-row .yoy-cell {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Score decomposition aside (sticky, spotlighted). Offset clears the
+   island + wire ticker so the pinned panel never slides under them. */
+.leaderboard-aside {
+  position: sticky;
+  top: 6.6rem;
+}
+.aside-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--sp-3);
+}
+.aside-head h2 {
+  font-size: var(--text-lg);
+  margin: 0;
+}
+.aside-metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-4);
+  margin: var(--sp-4) 0;
+}
+.aside-caption {
+  font-size: var(--text-xs);
+  color: var(--ink-2);
+  margin-bottom: var(--sp-2);
+}
+.aside-forecast {
+  margin-top: var(--sp-4);
+  padding-top: var(--sp-3);
+}
+.aside-forecast-values {
+  margin-top: var(--sp-1);
+}
+.aside-forecast-note {
+  color: var(--ink-3);
+  font-size: var(--text-xs);
+}
+.aside-caveat {
+  margin-top: var(--sp-3);
+}
+.aside-note {
+  font-size: var(--text-xs);
+  color: var(--ink-3);
+  margin-top: var(--sp-2);
+}
+.aside-open {
+  font-size: var(--text-xs);
+  margin-top: var(--sp-3);
+}
+
+/* Cross-view keyword lookup panel (inline, not a modal). */
+.keyword-lookup {
+  font: inherit;
+  font-weight: 500;
+  color: var(--ink-0);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--accent) 55%, transparent);
+  text-underline-offset: 3px;
+  transition: text-decoration-color var(--motion-fast);
+}
+.keyword-lookup:hover {
+  text-decoration-color: var(--accent);
+}
+.keyword-panel {
+  margin-top: var(--sp-5);
+}
+.keyword-panel-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  margin-bottom: var(--sp-3);
+}
+.keyword-panel-head h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--text-md);
+  font-weight: 500;
+}
+.keyword-panel-head em {
+  font-style: italic;
+  color: var(--accent);
+}
+.keyword-panel-empty {
+  color: var(--ink-2);
+  font-size: var(--text-sm);
+}
+.keyword-panel-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.keyword-panel-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  padding: var(--sp-2) 0;
+  border-bottom: var(--hairline);
+}
+.keyword-panel-row:last-child {
+  border-bottom: none;
+}
+.keyword-panel-domain {
+  color: var(--ink-0);
+  text-decoration: none;
+  font-size: var(--text-sm);
+}
+.keyword-panel-domain:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.keyword-panel-meta {
+  color: var(--ink-3);
+  font-size: var(--text-xs);
+  white-space: nowrap;
+}
+
+/* ---------------------------------------------------------------
+   Burst feed layout.
+   --------------------------------------------------------------- */
+.bursts-view {
+  padding: var(--sp-5) 0;
+}
+.bursts-controls label {
+  font-size: var(--text-sm);
+  color: var(--ink-2);
+}
+.bursts-search {
+  min-width: 180px;
+}
+.bursts-empty {
+  color: var(--ink-2);
+  padding: var(--sp-7) 0;
+  font-size: var(--text-sm);
+  max-width: 60ch;
+}
+.bursts-feed {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+/* Zebra-free density: an alternating tint replaces a hairline under every
+   row (60 hairlines read as a grid); the leaderboard keeps hairlines
+   because a ranking needs scan anchors. */
+.burst-row {
+  border-bottom: none;
+}
+.burst-row:nth-child(even) {
+  background: color-mix(in srgb, var(--surface-1) 45%, transparent);
+}
+.burst-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) 5.5rem 6rem minmax(160px, 1.2fr);
+  gap: var(--sp-4);
+  align-items: center;
+  padding: var(--sp-3) var(--sp-2);
+}
+.burst-row .burst-keyword {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 500;
+}
+.burst-row .burst-domain {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--ink-2);
+  font-size: var(--text-sm);
+}
+.burst-row .burst-domain a {
+  color: inherit;
+}
+.burst-row .burst-duration {
+  color: var(--ink-1);
+}
+.burst-row .burst-strength-bar {
+  display: inline-block;
+  height: 3px;
+  vertical-align: middle;
+  background: var(--stage-active);
+  margin-right: 6px;
+}
+/* Duration encodes into the bar's hue: short bursts run cool, sustained
+   ones run deep. The legend line above the feed explains the encoding. */
+.burst-row .burst-strength-bar--short {
+  background: var(--stage-accelerating);
+}
+.burst-row .burst-strength-bar--long {
+  background: var(--stage-emerging);
+}
+.bursts-legend {
+  font-size: var(--text-xs);
+  color: var(--ink-3);
+  margin-bottom: var(--sp-3);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  flex-wrap: wrap;
+}
+.bursts-legend-swatch {
+  display: inline-block;
+  width: 14px;
+  height: 3px;
+  border-radius: var(--r-control);
+  vertical-align: middle;
+}
+.bursts-more {
+  margin-top: var(--sp-5);
+  text-align: center;
+}
+.bursts-more button {
+  border: var(--hairline-strong);
+  border-radius: var(--r-control);
+  padding: 6px 18px;
+  font-size: var(--text-sm);
+}
+.bursts-end {
+  font-size: var(--text-xs);
+  color: var(--ink-3);
+  margin-top: var(--sp-4);
+}
+
+/* ---------------------------------------------------------------
+   Domain drill-down layout.
+   --------------------------------------------------------------- */
+.domain-view {
+  padding: var(--sp-5) 0;
+}
+.domain-view .shimmer-wrap {
+  padding: var(--sp-5) 0;
+}
+.domain-caveat {
+  margin-bottom: var(--sp-4);
+}
+.domain-metrics {
+  margin: var(--sp-5) 0;
+}
+.domain-metrics .panel-core {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: var(--sp-5);
+}
+.domain-chart {
+  height: 420px;
+}
+.domain-chart-note {
+  font-size: var(--text-xs);
+  color: var(--ink-3);
+  margin-top: var(--sp-2);
+}
+.domain-provenance {
+  margin-top: var(--sp-5);
+}
+.domain-section {
+  margin-top: var(--sp-6);
+}
+.domain-section h2 {
+  font-size: var(--text-xl);
+  margin: 0;
+}
+.domain-section-intro {
+  color: var(--ink-2);
+  font-size: var(--text-sm);
+  margin: var(--sp-2) 0 var(--sp-4);
+}
+.domain-scorebar {
+  max-width: 560px;
+}
+.domain-keywords {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  list-style: none;
+  padding: 0;
+  margin-top: var(--sp-3);
+}
+.domain-keyword {
+  border: var(--hairline);
+  border-radius: var(--r-control);
+  padding: 3px 10px;
+  font-size: var(--text-sm);
+}
+.domain-keyword-rank {
+  color: var(--ink-3);
+  margin-right: var(--sp-2);
+}
+.domain-keyword-link {
+  color: var(--ink-1);
+  text-decoration: none;
+}
+.domain-keyword-count {
+  color: var(--ink-3);
+  margin-left: var(--sp-2);
+  font-size: var(--text-xs);
+}
+.domain-empty {
+  color: var(--ink-2);
+  font-size: var(--text-sm);
+  margin-top: var(--sp-3);
+}
+.domain-unavailable {
+  color: var(--ink-2);
+  font-size: var(--text-sm);
+}
+
+/* ---------------------------------------------------------------
+   Leaderboard responsive reflow (breakpoints 640/1024). Desktop-first
+   analytical; single-column on mobile with the decomposition panel
+   after the rows. No !important: the base styles are classes now, so
+   these overrides win by source order.
+   --------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .leaderboard-grid {
+    grid-template-columns: 1fr;
+  }
+  .leaderboard-aside {
+    position: static;
+  }
+}
+
+@media (max-width: 640px) {
+  .leaderboard-header {
+    display: none;
+  }
+  /* card layout: actions | name (row 1); stage+score, yoy (row 2);
+     stretched link + z-stacked cells remain from desktop */
+  .leaderboard-header,
+  .leaderboard-row {
+    grid-template-columns: 2rem minmax(0, 1fr) auto;
+  }
+  .leaderboard-row {
+    grid-template-rows: auto auto;
+    row-gap: var(--sp-2);
+  }
+  .leaderboard-row > :nth-child(3) { position: static; } /* stretched link */
+  .leaderboard-row > :nth-child(4), /* rank */
+  .leaderboard-row > :nth-child(5), /* domain */
+  .leaderboard-row > :nth-child(6), /* stage pill */
+  .leaderboard-row > :nth-child(7), /* score */
+  .leaderboard-row > :nth-child(8), /* sparkline */
+  .leaderboard-row > :nth-child(9)  /* yoy */ {
+    grid-column: 2 / -1;
+    position: relative;
+    z-index: 2;
+  }
+  .leaderboard-row > :nth-child(8) {
+    display: none; /* sparkline drops on narrow; cards stay readable */
+  }
+}
+
+/* ---------------------------------------------------------------
+   Leaderboard additions: stage chips with counts, sortable headers,
+   score rail, compare strip, row icon buttons.
+   --------------------------------------------------------------- */
+.view-note {
+  font-size: var(--text-xs);
+  color: var(--ink-3);
+  border: var(--hairline);
+  border-radius: var(--r-pill);
+  padding: 2px 8px;
+}
+
+.stage-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.stage-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  border: var(--hairline);
+  border-radius: var(--r-pill);
+  padding: 3px 9px;
+  font-size: var(--text-xs);
+  color: var(--ink-2);
+  transition:
+    color var(--motion-fast),
+    background var(--motion-fast),
+    border-color var(--motion-fast);
+}
+.stage-chip:hover {
+  color: var(--ink-0);
+  background: color-mix(in srgb, var(--ink-0) 6%, transparent);
+}
+.stage-chip--on {
+  color: var(--ink-0);
+  border-color: var(--hairline-strong);
+  background: color-mix(in srgb, var(--ink-0) 10%, transparent);
+}
+.stage-chip-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--chip-token, var(--ink-3));
+}
+.stage-chip-count {
+  color: var(--ink-3);
+}
+
+.sort-header {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: inherit;
+  letter-spacing: inherit;
+  color: inherit;
+  text-transform: uppercase;
+  transition: color var(--motion-fast);
+}
+.sort-header:hover {
+  color: var(--ink-1);
+}
+.sort-header--on {
+  color: var(--ink-0);
+}
+.sort-caret {
+  font-size: 0.7em;
+  opacity: 0;
+  transition: opacity var(--motion-fast);
+}
+/* The bidirectional caret is noise on idle columns; it appears on
+   hover/focus, and the active column keeps its directional caret. */
+.sort-header:hover .sort-caret,
+.sort-header:focus-visible .sort-caret {
+  opacity: 0.6;
+}
+.sort-header--on .sort-caret {
+  opacity: 1;
+  color: var(--accent);
+}
+
+.score-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.score-value {
+  font-size: var(--text-lg);
+  font-weight: 500;
+}
+.score-rail {
+  height: 2px;
+  width: 100%;
+  max-width: 84px;
+  background: var(--grid-minor);
+  border-radius: var(--r-control);
+  overflow: hidden;
+}
+.score-rail-fill {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+}
+
+.row-icon-btn {
+  width: 24px;
+  height: 24px;
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--r-control);
+  font-size: var(--text-xs);
+  border: var(--hairline);
+  color: var(--ink-3);
+  background: transparent;
+  transition:
+    color var(--motion-fast),
+    background var(--motion-fast);
+}
+.row-icon-btn--on {
+  color: var(--accent-ink);
+  background: var(--ink-0);
+}
+.row-icon-btn--compare.row-icon-btn--on {
+  color: var(--accent-ink);
+  background: var(--accent);
+}
+
+.compare-strip {
+  margin-bottom: var(--view-gap);
+}
+.compare-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--sp-3);
+}
+.compare-grid {
+  display: grid;
+  grid-template-columns: minmax(6rem, 1fr) minmax(0, 1.4fr) minmax(0, 1.4fr);
+  gap: var(--sp-2) var(--sp-4);
+  align-items: baseline;
+}
+.compare-name {
+  font-family: var(--font-display);
+  font-size: var(--text-md);
+  font-weight: 500;
+}
+.compare-label {
+  font-size: var(--text-xs);
+  color: var(--ink-3);
+}
+.compare-val {
+  font-size: var(--text-md);
+}
+
+/* ---------------------------------------------------------------
+   Overview: small multiples of every domain, grouped by stage.
+   --------------------------------------------------------------- */
+.overview-stage {
+  margin-bottom: var(--sp-7);
+}
+.overview-stage-head {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  margin-bottom: var(--sp-4);
+  /* Headroom for the ghost index figure behind the title. */
+  min-height: 4.5rem;
+  padding-right: 7rem;
+}
+.overview-stage-head h2 {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+.overview-stage-count {
+  font-size: var(--text-xs);
+  color: var(--ink-3);
+}
+.stage-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.overview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: var(--sp-4);
+}
+.overview-cell {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  padding: var(--sp-4);
+  border: var(--hairline);
+  border-radius: var(--r-panel);
+  background: color-mix(in srgb, var(--surface-1) 60%, transparent);
+  text-decoration: none;
+  transition:
+    background var(--motion-fast) var(--ease-physical),
+    border-color var(--motion-fast),
+    transform var(--motion-fast) var(--ease-physical);
+}
+.overview-cell:hover {
+  background: var(--surface-1);
+  border-color: var(--hairline-strong);
+  transform: translateY(-1px);
+}
+.overview-cell-name {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--ink-0);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.overview-cell-name .stage-dot {
+  flex-shrink: 0;
+}
+.overview-cell-meta {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--sp-3);
+}
+.overview-cell-score {
+  font-size: var(--text-md);
+  font-weight: 500;
+  color: var(--ink-1);
+}
+@media (prefers-reduced-motion: reduce) {
+  .overview-cell,
+  .overview-cell:hover {
+    transition: none;
+    transform: none;
+  }
+}
+
+/* ---------------------------------------------------------------
+   Rank-one spotlight (leaderboard). Promotes the run's first-place
+   domain above the table (hierarchy, §5). Sits on the raised rung of
+   the panel ladder; grid collapses to one column on narrow viewports.
+   --------------------------------------------------------------- */
+.rank-one {
+  margin-bottom: var(--view-gap);
+}
+.rank-one .panel-core {
+  /* Faint accent wash so the run's headline result reads as distinct from
+     an ordinary row, without competing with the data it summarises. The
+     glow intensity is data-driven: --rank-glow is the emergence score
+     (0-1) set from TSX, so a hotter score casts a warmer pool. */
+  background:
+    radial-gradient(
+      120% 160% at 0% 0%,
+      color-mix(in srgb, var(--accent) calc(10% + var(--rank-glow, 0.5) * 14%), transparent),
+      transparent 60%
+    ),
+    var(--surface-1);
+}
+/* Stage edge bar: the rank-one plate's left edge carries the stage color
+   at 4px — the plate reads as "filed" under its lifecycle stage. */
+.rank-one-edge {
+  position: absolute;
+  left: 6px;
+  top: 14%;
+  bottom: 14%;
+  width: 4px;
+  border-radius: 999px;
+  background: var(--rank-stage, var(--accent));
+  opacity: 0.9;
+}
+/* Giant score numeral — the ranking's headline number as hero type. */
+.rank-one-score {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+.rank-one-score-value {
+  font-family: var(--font-display);
+  font-size: var(--text-hero);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+  color: var(--ink-0);
+}
+.rank-one-score-label {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.rank-one-core {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--sp-5);
+  padding-left: var(--sp-4);
+}
+.rank-one-head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  min-width: 0;
+}
+.rank-one-title {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  flex-wrap: wrap;
+}
+.rank-one-title h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+.rank-one-metrics {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-5);
+}
+.rank-one-spark {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.rank-one-spark-label {
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.rank-one-link {
+  font-size: var(--text-sm);
+  white-space: nowrap;
+}
+
+@media (max-width: 900px) {
+  .rank-one-core {
+    grid-template-columns: 1fr;
+    gap: var(--sp-4);
+  }
+  .rank-one-metrics {
+    flex-wrap: wrap;
+    gap: var(--sp-4);
+  }
+  .rank-one-score {
+    align-items: flex-start;
+  }
+  .rank-one-score-value {
+    font-size: clamp(3rem, 14vw, 4.5rem);
+  }
+}
+
+/* Route-transition canvas: GSAP animates this node on pathname change.
+   No permanent will-change — the tween is short and one-shot; promoting
+   the whole view for the app's lifetime is the exact layer-hoarding the
+   perf rules warn against. */
+.route-canvas {
+  min-height: 1px;
+}
+
+/* Long-list perf: defer layout + paint for off-screen burst rows
+   (up to 60+ rows). Intrinsic size keeps scroll height stable. */
+.burst-row {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 58px;
+}
+
+/* Suspense fallback while a lazy view chunk loads */
+.route-fallback {
+  padding: var(--sp-8) 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+.route-fallback-bar {
+  height: 0.9rem;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--surface-2), var(--surface-1), var(--surface-2));
+  background-size: 200% 100%;
+  animation: route-shimmer 1.4s linear infinite;
+}
+.route-fallback-bar.w-1 {
+  width: 38%;
+  height: 1.4rem;
+}
+.route-fallback-bar.w-2 {
+  width: 72%;
+}
+.route-fallback-bar.w-3 {
+  width: 55%;
+}
+@keyframes route-shimmer {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+/* Island collapse: keep a single glass row on narrow viewports; the nav
+   scrolls horizontally (44px touch target) instead of wrapping into a
+   tall pill that eats vertical space above every view. */
+@media (max-width: 760px) {
+  .island-wrap {
+    padding: 0.6rem var(--sp-2) 0;
+  }
+  .island {
+    flex-wrap: nowrap;
+    width: 100%;
+    max-width: 100%;
+    gap: var(--sp-2);
+    padding: 0.4rem 0.5rem 0.4rem 0.8rem;
+  }
+  .island-brand {
+    border-right: none;
+    flex-shrink: 0;
+  }
+  .island-nav {
+    flex: 1;
+    min-width: 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .island-nav::-webkit-scrollbar {
+    display: none;
+  }
+  .island-nav ul {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+  }
+  .island-link {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+  .island-controls {
+    flex-shrink: 0;
+    border-left: none;
+    margin-left: 0;
+    padding-left: 0;
+  }
+  .island-btn {
+    min-width: 44px;
+    min-height: 44px;
+    justify-content: center;
+  }
+  .workbench-main {
+    padding-top: 5.75rem;
+  }}
+
+/* Light world: the glass needs a touch more opacity to stay legible */
+[data-theme='light'] .island {
+  background: color-mix(in srgb, var(--surface-1) 84%, transparent);
+}
+
+/* Solid fallback when the user asks for less transparency */
+@media (prefers-reduced-transparency: reduce) {
+  .island {
+    background: var(--surface-1);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
+
+/* ============================================================
+   SIGNAL/WIRE chrome — wire ticker, year spine, progress hairline,
+   ink-wipe curtain, pointer light pool, reticle, status bar.
+   All color from tokens; z-index from the documented scale.
+   ============================================================ */
+
+/* ---- The Wire: fixed mono ticker under the island nav ---- */
+.wire-ticker {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 4.1rem;
+  z-index: 30;
+  pointer-events: none;
+  overflow: hidden;
+  border-block: var(--hairline);
+  background: color-mix(in srgb, var(--surface-0) 55%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+}
+.wire-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  animation: wire-scroll 60s linear infinite;
+}
+.wire-ticker:hover .wire-track {
+  animation-play-state: paused;
+}
+.wire-item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: 0.32rem var(--sp-4);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--ink-2);
+  white-space: nowrap;
+  pointer-events: auto;
+  text-decoration: none;
+  transition: color var(--motion-fast);
+}
+.wire-item:hover {
+  color: var(--ink-0);
+  text-decoration: none;
+}
+.wire-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+  flex-shrink: 0;
+}
+.wire-year {
+  color: var(--ink-3);
+}
+@keyframes wire-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wire-track {
+    animation: none;
+  }
+}
+@media (max-width: 760px) {
+  .wire-ticker {
+    display: none;
+  }
+}
+
+/* ---- Year Spine: fixed right-edge year ruler (Trajectory, Matrix) ---- */
+.year-spine {
+  position: fixed;
+  right: var(--sp-3);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 30;
+  height: min(62vh, 560px);
+  display: flex;
+  align-items: stretch;
+  pointer-events: none;
+  color: var(--spine-ink);
+}
+.year-spine-ruler {
+  position: relative;
+  width: 1px;
+  background: var(--spine-ink);
+}
+.year-spine-tick {
+  position: absolute;
+  left: 0;
+  width: 8px;
+  height: 1px;
+  background: var(--spine-ink);
+}
+.year-spine-tick--epoch {
+  width: 14px;
+  background: color-mix(in srgb, var(--ink-0) 55%, transparent);
+}
+.year-spine-label {
+  position: absolute;
+  left: 18px;
+  transform: translateY(-50%);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+.year-spine-label--epoch {
+  color: color-mix(in srgb, var(--ink-0) 55%, transparent);
+}
+.year-spine-playhead {
+  position: absolute;
+  left: -3px;
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: var(--accent);
+  transform: translateY(-50%);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 22%, transparent);
+}
+.year-spine-readout {
+  position: absolute;
+  left: 18px;
+  transform: translateY(-50%);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  color: var(--accent);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+@media (max-width: 1100px) {
+  .year-spine {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .year-spine-playhead {
+    transition: none;
+  }
+}
+
+/* ---- Scroll progress hairline: bottom edge, under all chrome ---- */
+.scroll-progress {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  z-index: 45;
+  pointer-events: none;
+  background: var(--accent);
+  transform-origin: left center;
+  transform: scaleX(0);
+}
+
+/* ---- Ink-wipe route curtain (extends the cover curtain language) ---- */
+.ink-wipe {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none;
+  background: var(--surface-0);
+  transform: scaleX(0);
+  transform-origin: right center;
+}
+.ink-wipe::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--glow-warm);
+  opacity: 0.5;
+}
+
+/* ---- Pointer light pool: fixed cursor-tracked ambient glow ---- */
+.light-pool {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: var(--glow-pool);
+  opacity: 0;
+  transition: opacity 700ms var(--ease-out);
+}
+.light-pool--on {
+  opacity: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+  .light-pool {
+    display: none;
+  }
+}
+
+/* ---- Instrument reticle cursor on workbench views ---- */
+.reticle {
+  position: fixed;
+  z-index: 45;
+  width: 26px;
+  height: 26px;
+  margin: -13px 0 0 -13px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 300ms var(--ease-out);
+}
+.reticle--on {
+  opacity: 1;
+}
+.reticle::before,
+.reticle::after {
+  content: '';
+  position: absolute;
+  background: var(--spine-ink);
+}
+.reticle::before {
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  transform: translateX(-0.5px);
+}
+.reticle::after {
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  transform: translateY(-0.5px);
+}
+@media (hover: none), (prefers-reduced-motion: reduce) {
+  .reticle {
+    display: none;
+  }
+}
+
+/* ---- Theme clip-wipe (View Transitions API): the new theme expands as a
+   circle from the toggle; the old theme crossfades underneath. The default
+   crossfade is suppressed so the clip-path owns the reveal. ---- */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+/* ---- Commodity-board status bar ---- */
+.status-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-2) var(--sp-4);
+  padding: var(--sp-2) 0;
+  border-bottom: var(--hairline);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--ink-3);
+  font-variant-numeric: tabular-nums;
+}
+.status-bar strong {
+  color: var(--ink-2);
+  font-weight: 500;
+}
+.status-bar .status-pass {
+  color: var(--stage-emerging);
+}
+.status-bar .status-fail {
+  color: var(--stage-active);
+}
+
+/* ---- Data-driven insight line ---- */
+.insight-line {
+  display: flex;
+  align-items: baseline;
+  gap: var(--sp-2);
+  font-size: var(--text-sm);
+  color: var(--ink-2);
+  padding: var(--sp-2) 0;
+}
+.insight-line::before {
+  content: '';
+  width: 18px;
+  height: 1px;
+  background: var(--accent);
+  transform: translateY(-4px);
+  flex-shrink: 0;
+}
+.insight-line strong {
+  color: var(--ink-0);
+  font-weight: 500;
+}
+
+/* ---- TimeLapse / BarRace shared chrome ---- */
+.timelapse-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  margin-bottom: var(--sp-4);
+}
+.timelapse-head h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.timelapse-year {
+  color: var(--accent);
+  margin-left: var(--sp-2);
+  font-size: var(--text-xl);
+}
+.timelapse-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  flex-wrap: wrap;
+}
+.timelapse-btn {
+  border: var(--hairline-strong);
+  border-radius: var(--r-control);
+  padding: 4px 12px;
+  font-size: var(--text-sm);
+  background: var(--surface-2);
+  color: var(--ink-0);
+  cursor: pointer;
+  transition: background var(--motion-fast) var(--ease-physical);
+}
+.timelapse-btn:hover {
+  background: color-mix(in srgb, var(--ink-0) 8%, transparent);
+}
+.timelapse-scrub {
+  accent-color: var(--accent);
+  min-width: 180px;
+}
+.timelapse-count {
+  font-size: var(--text-xs);
+  color: var(--ink-3);
+}
+
+/* ---- RankBumps ---- */
+.rank-bumps-head {
+  margin-bottom: var(--sp-4);
+}
+.rank-bumps-head h2 {
+  margin: 0 0 var(--sp-1);
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.rank-bumps-note {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--ink-2);
+  max-width: 68ch;
+}
+.rank-bumps-scroll {
+  overflow-x: auto;
+}
+.rank-bumps-line {
+  transition:
+    opacity var(--motion-fast) var(--ease-physical),
+    stroke-width var(--motion-fast) var(--ease-physical);
+}
+.rank-bumps-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-1) var(--sp-3);
+  margin-top: var(--sp-4);
+}
+.rank-bumps-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: 2px 8px;
+  border-radius: var(--r-control);
+  font-size: var(--text-xs);
+  color: var(--ink-2);
+  text-decoration: none;
+}
+.rank-bumps-link:hover {
+  text-decoration: none;
+}
+.rank-bumps-link-rank {
+  color: var(--ink-3);
+}
+.rank-bumps-foot {
+  margin: var(--sp-4) 0 0;
+  font-size: var(--text-xs);
+  color: var(--ink-3);
+}
+
+/* ---- Monumental footer: giant outlined wordmark closes every page ---- */
+.site-footer {
+  position: relative;
+  z-index: 1;
+  margin-top: var(--sp-8);
+  padding-block: var(--sp-7) var(--sp-6);
+  overflow: hidden;
+}
+.site-footer-wordmark {
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 14vw, 10rem);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 0.9;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--ghost-stroke);
+  user-select: none;
+  pointer-events: none;
+  margin-bottom: var(--sp-5);
+}
+.site-footer-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-4);
+}
+.site-footer-legal {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+  font-size: var(--text-xs);
+}
+.site-footer-legal a {
+  color: var(--ink-3);
+  text-decoration: none;
+  transition: color var(--motion-fast);
+}
+.site-footer-legal a:hover {
+  color: var(--ink-0);
+}
+.site-footer-top {
+  border: none;
+  background: none;
+  padding: 0;
+  font-size: var(--text-xs);
+  color: var(--ink-3);
+  cursor: pointer;
+  transition: color var(--motion-fast);
+}
+.site-footer-top:hover {
+  color: var(--accent);
+}
+.site-footer-meta {
+  margin: var(--sp-4) 0 0;
+  font-size: var(--text-xs);
+  color: var(--ink-3);
+  width: 100%;
+}
+
+/* ---- Catalog-card 404 ---- */
+.catalog-404 {
+  position: relative;
+  padding: var(--sp-8) 0;
+  max-width: 60ch;
+}
+.catalog-404-code {
+  display: block;
+  font-family: var(--font-display);
+  font-size: var(--text-ghost-index);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--ghost-stroke);
+  margin-bottom: var(--sp-3);
+  user-select: none;
+}
+.catalog-404-title {
+  font-family: var(--font-display);
+  font-size: var(--text-display);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: var(--leading-tight);
+  margin: 0;
+  text-wrap: balance;
+}
+.catalog-404-lead {
+  color: var(--ink-2);
+  font-size: var(--text-md);
+  line-height: var(--leading-body);
+  margin: var(--sp-3) 0 0;
+}
+.catalog-404-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-3);
+  margin-top: var(--sp-5);
+}
+.catalog-404-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  border: var(--hairline-strong);
+  border-radius: var(--r-control);
+  padding: 8px 16px;
+  font-size: var(--text-sm);
+  color: var(--ink-0);
+  background: var(--surface-2);
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background var(--motion-fast) var(--ease-physical),
+    transform var(--motion-fast) var(--ease-physical);
+}
+.catalog-404-cta:hover {
+  background: color-mix(in srgb, var(--ink-0) 8%, transparent);
+  text-decoration: none;
+}
+.catalog-404-cta:active {
+  transform: scale(0.98);
+}
+.catalog-404-cta--ghost {
+  background: transparent;
+}

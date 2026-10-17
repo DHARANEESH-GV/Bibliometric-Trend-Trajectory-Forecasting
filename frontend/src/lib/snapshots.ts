@@ -28,13 +28,32 @@ export function loadManifest(): Promise<RunsManifest> {
 
 const cache = new Map<string, Promise<unknown>>()
 
+/**
+ * Reads a snapshot response, failing loudly when the host's SPA fallback
+ * served index.html (text/html, 200) for a missing asset — otherwise
+ * `.json()` throws a bare "JSON.parse: unexpected character" that hides
+ * the real cause (generated snapshots never copied). Exported for tests.
+ */
+export async function readJsonResponse<T>(r: Response, path: string): Promise<T> {
+  if (!r.ok) throw new Error(`${path} unavailable (${r.status})`)
+  const ct = r.headers.get('content-type') ?? ''
+  if (!ct.includes('json')) {
+    throw new Error(
+      `Snapshot not found at ${path} (server returned ${ct || 'non-JSON'}). ` +
+        'Run `npm run dev`/`npm run build` so copy-snapshots.mjs populates public/snapshots.',
+    )
+  }
+  try {
+    return (await r.json()) as T
+  } catch {
+    throw new Error(`Snapshot at ${path} is not valid JSON.`)
+  }
+}
+
 function getJson<T>(path: string): Promise<T> {
   let p = cache.get(path)
   if (!p) {
-    p = fetch(path).then((r) => {
-      if (!r.ok) throw new Error(`${path} unavailable (${r.status})`)
-      return r.json() as Promise<T>
-    })
+    p = fetch(path).then((r) => readJsonResponse<T>(r, path))
     cache.set(path, p)
   }
   return p as Promise<T>

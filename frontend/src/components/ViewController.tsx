@@ -2,8 +2,12 @@
  * ViewController — URL-param-driven sort/filter controls for the
  * Leaderboard. All view state lives in the URL so any chart/table is
  * shareable (master plan §8).
+ *
+ * Stage is a chip row rather than a select: it shows the per-stage counts
+ * computed from the loaded snapshot, so the filter doubles as a legend.
  */
 import { useSearchParams } from 'react-router-dom'
+import { STAGE_TOKEN } from '../lib/types'
 
 export type SortKey = 'rank' | 'score' | 'yoy' | 'name'
 export type SortDir = 'asc' | 'desc'
@@ -15,9 +19,23 @@ const LABELS: LabelFilter[] = ['all', 'Emerging', 'Accelerating', 'Active', 'Wat
 interface ViewControllerProps {
   /** Extra filter surface for views that reuse this (e.g. domain filter). */
   showSort?: boolean
+  /** Per-stage counts from the loaded snapshot, keyed by label. */
+  stageCounts?: Record<string, number>
+  /** Total row count, for the "All" chip. */
+  total?: number
 }
 
-export function ViewController({ showSort = true }: ViewControllerProps) {
+export const SELECT_STYLE = {
+  font: 'inherit',
+  fontSize: 'var(--text-sm)',
+  color: 'var(--ink-0)',
+  background: 'var(--surface-1)',
+  border: 'var(--hairline)',
+  borderRadius: 'var(--r-control)',
+  padding: '4px 8px',
+} as const
+
+export function ViewController({ showSort = true, stageCounts, total }: ViewControllerProps) {
   const [params, setParams] = useSearchParams()
 
   const sort = (params.get('sort') as SortKey) ?? 'rank'
@@ -29,16 +47,6 @@ export function ViewController({ showSort = true }: ViewControllerProps) {
     next.set(key, value)
     setParams(next, { replace: true })
   }
-
-  const selectStyle = {
-    font: 'inherit',
-    fontSize: 'var(--text-sm)',
-    color: 'var(--ink-0)',
-    background: 'var(--surface-1)',
-    border: 'var(--hairline)',
-    borderRadius: 2,
-    padding: '4px 8px',
-  } as const
 
   return (
     <div
@@ -58,7 +66,7 @@ export function ViewController({ showSort = true }: ViewControllerProps) {
             <select
               value={sort}
               onChange={(e) => update('sort', e.target.value)}
-              style={selectStyle}
+              style={SELECT_STYLE}
             >
               {SORT_KEYS.map((k) => (
                 <option key={k} value={k}>
@@ -71,7 +79,7 @@ export function ViewController({ showSort = true }: ViewControllerProps) {
             onClick={() => update('dir', dir === 'asc' ? 'desc' : 'asc')}
             style={{
               border: 'var(--hairline)',
-              borderRadius: 2,
+              borderRadius: 'var(--r-control)',
               padding: '4px 10px',
               fontSize: 'var(--text-sm)',
             }}
@@ -81,20 +89,28 @@ export function ViewController({ showSort = true }: ViewControllerProps) {
           </button>
         </>
       ) : null}
-      <label style={{ fontSize: 'var(--text-sm)', color: 'var(--ink-2)' }}>
-        Stage{' '}
-        <select
-          value={label}
-          onChange={(e) => update('label', e.target.value)}
-          style={selectStyle}
-        >
-          {LABELS.map((l) => (
-            <option key={l} value={l}>
-              {l === 'all' ? 'All stages' : l}
-            </option>
-          ))}
-        </select>
-      </label>
+
+      <div className="stage-chips" role="group" aria-label="Filter by stage">
+        {LABELS.map((l) => {
+          const count = l === 'all' ? total : stageCounts?.[l] ?? 0
+          const token = l === 'all' ? undefined : STAGE_TOKEN[l]
+          const on = label === l
+          return (
+            <button
+              key={l}
+              type="button"
+              aria-pressed={on}
+              className={`stage-chip${on ? ' stage-chip--on' : ''}`}
+              onClick={() => update('label', l)}
+              style={token ? ({ '--chip-token': `var(${token})` } as React.CSSProperties) : undefined}
+            >
+              {token ? <span className="stage-chip-dot" aria-hidden /> : null}
+              <span>{l === 'all' ? 'All' : l}</span>
+              {typeof count === 'number' ? <span className="stage-chip-count num">{count}</span> : null}
+            </button>
+          )
+        })}
+      </div>
     </div>
   )
 }

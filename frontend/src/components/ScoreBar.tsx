@@ -28,7 +28,7 @@ export function ScoreBar({ inputs, labeled = true }: ScoreBarProps) {
         style={{
           display: 'flex',
           height: 6,
-          borderRadius: 1,
+          borderRadius: 'var(--r-control)',
           overflow: 'hidden',
           background: 'var(--surface-2)',
         }}
@@ -36,6 +36,7 @@ export function ScoreBar({ inputs, labeled = true }: ScoreBarProps) {
         {segments.map((seg) => (
           <div
             key={seg.label}
+            className="score-seg"
             style={{
               width: `${(seg.value / total) * 100}%`,
               background:

@@ -1,6 +1,6 @@
 # biblio-trend
 
-**Technology observatory:** a $0-budget serverless pipeline tracking 20 technology domains across scientific papers (OpenAlex) and patents (PatentsView/USPTO), classifying emerging/growing/maturing/declining trajectories, forecasting 1–3 years ahead with backtested classical models, and presenting results in an editorial-style React dashboard.
+**Technology observatory:** a $0-budget serverless pipeline tracking 20 technology domains across scientific papers (OpenAlex) and patents (USPTO Open Data Portal — PatentsView's replacement), classifying emerging/growing/maturing/declining trajectories, forecasting 1–3 years ahead with backtested classical models, and presenting results in a React dashboard.
 
 > Full methodology and locked decisions: [`PROJECT_MASTER_PLAN.md`](PROJECT_MASTER_PLAN.md) (v3.1)
 
@@ -12,7 +12,7 @@
 | 1 | OpenAlex paper ingestion | not started |
 | 2 | DuckDB preprocessing → 7 Parquet tables | not started |
 | 3 | Bibliometric analytics | not started |
-| 3.5 | Patent ingestion — *stop point: needs PatentsView key* | not started |
+| 3.5 | Patent ingestion — *stop point: needs USPTO ODP key (ID.me verification)* | not started |
 | 4 | Forecasting + emergence score + backtest | not started |
 | 5 | Dashboard data contracts | not started |
 | 6 | React dashboard | not started |
@@ -42,8 +42,9 @@ sql/ stats/ snapshots/ tests/ frontend/ reports/
 
 ## Data provenance
 
+- **Data map & dictionary:** [`DATA.md`](DATA.md) — where every artefact lives (`raw/` → `staged/` → `data/` → `snapshots/`), real Parquet schemas, the dashboard JSON contracts, reproduction commands, and known limitations. Start here if a reviewer asks "where is the data?".
 - **Papers:** OpenAlex works via `topics.id` filters — deterministic recall, no free-text search. All 20 topic-ID sets resolved and recall-checked live on 2026-09-19 (`reports/domain_validation.md`). Four domains carry documented taxonomy-scope notes (no dedicated OpenAlex topic exists: QEC, digital twins, solid-state batteries; AI anchored on "Neural Networks and Applications").
-- **Patents:** PatentsView API keyed by CPC classes per domain (Phase 3.5).
+- **Patents:** USPTO Open Data Portal API (PatentsView's replacement since 2026-03-20), keyed by CPC classes per domain (Phase 3.5).
 
 ## Honesty gates (by design)
 

@@ -10,7 +10,7 @@
  * rounded-[48px] card, ping-dot kicker, serif headline, and the button's
  * ring/scale micro-interactions.
  */
-import { ArrowRight } from '@phosphor-icons/react'
+import { ArrowRight } from '@phosphor-icons/react/dist/csr/ArrowRight'
 import { useState, Suspense, lazy, useRef, type ReactNode } from 'react'
 import { gsap, useGSAP, prefersReducedMotion } from '../../lib/gsap'
 
@@ -65,7 +65,8 @@ export function CTASection({
       }
       const reset = () => { xTo(0); yTo(0) }
       const zone = rootRef.current
-      zone?.addEventListener('mousemove', move)
+      // Passive: these only read pointer position and never preventDefault.
+      zone?.addEventListener('mousemove', move, { passive: true })
       zone?.addEventListener('mouseleave', reset)
       return () => {
         zone?.removeEventListener('mousemove', move)
@@ -102,10 +103,6 @@ export function CTASection({
 
           <div className="relative z-10 px-6 max-w-4xl mx-auto text-center flex flex-col items-center">
             <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-primary/10 bg-primary/5 px-4 py-1.5 text-sm font-medium text-primary backdrop-blur-sm">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
-              </span>
               {kicker}
             </div>
 

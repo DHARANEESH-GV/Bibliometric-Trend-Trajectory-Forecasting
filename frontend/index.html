@@ -3,11 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Biblio: a plain-language watch on how technology takes shape, from twenty research fields. A technology observatory: bibliometric trajectories, bursts, and backtested forecasts across 20 technology domains." />
+    <meta name="description" content="Rising, bursting and backtested forecast trends across 20 technology fields. A plain-language read on what research is doing next." />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta property="og:title" content="Biblio, watching how technology takes shape" />
     <meta property="og:description" content="A quiet, plain-language read on research across twenty fields: what is rising, what is burning, and what the models honestly expect next." />
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Biblio" />
     <meta property="og:image" content="/og-cover.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
@@ -15,7 +16,34 @@
     <meta name="twitter:title" content="Biblio, watching how technology takes shape" />
     <meta name="twitter:description" content="Twenty fields, one quiet observatory. Backtested, honest, plain-language." />
     <meta name="twitter:image" content="/og-cover.png" />
-    <title>Biblio — watching how technology takes shape</title>
+    <meta name="theme-color" content="#0a0a0f" />
+    <title>Biblio - watching how technology takes shape</title>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Biblio",
+        "alternateName": "Biblio, watching how technology takes shape",
+        "description": "A technology observatory: bibliometric trajectories, bursts, and backtested forecasts across 20 technology domains, read in plain language.",
+        "inLanguage": "en"
+      }
+    </script>
+    <script>
+      // Crawlers vary on resolving relative og:image; make it absolute for
+      // whichever host serves the page (tunnel now, CloudFront later).
+      // TODO: when the real domain is live, hardcode og:url + og:image to it.
+      (function () {
+        try {
+          var abs = new URL('/og-cover.png', window.location.origin).href
+          document
+            .querySelector('meta[property="og:image"]')
+            .setAttribute('content', abs)
+          document
+            .querySelector('meta[name="twitter:image"]')
+            .setAttribute('content', abs)
+        } catch (e) {}
+      })()
+    </script>
     <script>
       // Set theme before first paint to avoid flash.
       (function () {
@@ -30,6 +58,37 @@
   </head>
   <body>
     <div id="root"></div>
+    <!-- Pre-render fallback: crawlers and link-unfurlers that do not run JS
+         still get the landing's copy and headline numbers. Values mirror the
+         Cover view's snapshot-derived stats; refresh alongside the run. -->
+    <noscript>
+      <div style="max-width: 42rem; margin: 0 auto; padding: 3rem 1.5rem; font-family: Georgia, serif; color: #eceef1; background: #0a0a0f">
+        <h1>Twenty fields, one quiet observatory.</h1>
+        <p>
+          Biblio reads the papers so you don't have to: what is rising, what is
+          burning, and what the models expect next. A technology observatory
+          tracking 20 research domains across scientific papers (OpenAlex) and
+          patents (USPTO), with backtested forecasts and honest uncertainty
+          bands.
+        </p>
+        <h2>This run in numbers</h2>
+        <ul>
+          <li>20 fields under watch</li>
+          <li>Trajectory stages from emerging to declining</li>
+          <li>Language bursts detected per keyword</li>
+          <li>Forecasts backtested before they earn their bands</li>
+        </ul>
+        <h2>Inside</h2>
+        <ul>
+          <li><strong>Leaderboard</strong>, every field, ranked by emergence score</li>
+          <li><strong>Trajectory explorer</strong>, year-by-year publication curves</li>
+          <li><strong>Bursts</strong>, which keywords ignited, and how long they burn</li>
+          <li><strong>Matrix</strong>, all twenty fields, side by side</li>
+          <li><strong>Methodology</strong>, every caveat, in full</li>
+        </ul>
+        <p>Data: OpenAlex works, 2000-2025. JavaScript is disabled, so charts and live numbers are not shown, enable it to explore the observatory.</p>
+      </div>
+    </noscript>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

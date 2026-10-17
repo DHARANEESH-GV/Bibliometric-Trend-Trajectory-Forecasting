@@ -78,6 +78,10 @@ export function Sparkline({ values, width = 120, height = 32, forecast, ariaLabe
         fill="var(--accent)"
       />
       <title id={pathId}>{label}</title>
+      <desc>
+        {`Line chart of ${values.length} points from ${values[0]} to ${values[values.length - 1]}.`}
+        {forecast ? ` Forecast continues ${forecast.length} points to ${forecast[forecast.length - 1]}.` : ''}
+      </desc>
     </svg>
   )
 }

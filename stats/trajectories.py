@@ -93,26 +93,49 @@ class DomainTrajectory:
 
 def build_panel(tier_a_path: Path = TIER_A) -> list[DomainTrajectory]:
     tier = json.loads(tier_a_path.read_text())
+    # Preserve hand-maintained annotation keys (known_limitation,
+    # search_term_sensitivity, count_verified overrides...) across
+    # regeneration: builder-computed keys are refreshed, everything
+    # else present in the existing panel.json is carried forward.
+    # count_verified is computed as a default but a prior explicit
+    # value wins (e.g. quantum_computing's drift-documented false).
+    COMPUTED_KEYS = {"source", "years_contiguous",
+                     "quarterly_method", "live_drift_note"}
+    existing_meta: dict[str, dict] = {}
+    if OUT.exists():
+        prior = OUT / "panel.json"
+        if prior.exists():
+            try:
+                existing_meta = {
+                    slug: d.get("metadata", {})
+                    for slug, d in json.loads(prior.read_text()).items()
+                }
+            except (json.JSONDecodeError, AttributeError):
+                existing_meta = {}   # corrupt prior: regenerate clean
     panel = []
     for slug, d in tier.items():
         annual = {int(y): int(c) for y, c in d["by_year"].items()}
         # year keys verified contiguous 2000-2025 at calibration
         contig = sorted(annual) == list(range(YEAR_MIN, YEAR_MAX + 1))
+        metadata = {
+            "source": ("full-corpus staged (814-page walk)" if slug == "quantum_computing"
+                       else "tier_a source aggregate (group_by=publication_year)"),
+            "count_verified": (slug != "quantum_computing"),
+            "years_contiguous": contig,
+            "quarterly_method": "equal_split_interpolation",
+            "live_drift_note": ("2025 differ by 1 work vs live corpus"
+                                if slug == "quantum_computing" else None),
+        }
+        for key, val in existing_meta.get(slug, {}).items():
+            if key not in COMPUTED_KEYS and val is not None:
+                metadata[key] = val
         panel.append(DomainTrajectory(
             domain_slug=slug,
             display_name=d["display_name"],
             annual=annual,
             quarterly=derive_quarterly(annual),
             yoy=yoy_series(annual),
-            metadata={
-                "source": ("full-corpus staged (814-page walk)" if slug == "quantum_computing"
-                           else "tier_a source aggregate (group_by=publication_year)"),
-                "count_verified": (slug != "quantum_computing"),
-                "years_contiguous": contig,
-                "quarterly_method": "equal_split_interpolation",
-                "live_drift_note": ("2025 differ by 1 work vs live corpus"
-                                    if slug == "quantum_computing" else None),
-            },
+            metadata=metadata,
         ))
     return panel
 

@@ -35,10 +35,20 @@ sources:
       per_domain_record_cap: 500000          # exit dimension ∨ cursor==null
       raw_bytes_cap_per_domain: 2147483648   # 2 GiB; exit ∨ cap
       polite_floor_s: 0.5                    # credit-metered pacing (2026-09-21)
-  patentsview:
-    base_url: https://search.patentsview.org/api/v1
-    api_key_env: PATENTSVIEW_API_KEY         # Phase 3.5 human interaction point #1
-    requests_per_second: 10
+  uspto_odp:
+    # USPTO Open Data Portal — PatentsView's replacement since 2026-03-20
+    # (search.patentsview.org is NXDOMAIN; legacy Developer Hub decommissioned
+    # 2026-06-05). Key requires a USPTO.gov account + ID.me verification.
+    base_url: https://api.uspto.gov
+    search_path: /api/v1/patent/applications/search
+    api_key_env: USPTO_ODP_API_KEY          # Phase 3.5 human interaction point #1
+    api_key_header: X-API-KEY
+    # ODP rate model (data.uspto.gov/apis/api-rate-limits, checked 2026-10-17):
+    # ~5M metadata calls/week, but ONE in-flight call per key — concurrency
+    # with the same key is blocked. Serialize all requests.
+    requests_per_second: 1
+    single_flight: true
+    retry_429_min_wait_s: 5                 # USPTO: never auto-retry faster
 
 s3:
   raw_prefixes:

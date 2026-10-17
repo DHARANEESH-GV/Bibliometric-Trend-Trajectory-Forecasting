@@ -12,9 +12,8 @@
 
    TWO WORLDS, TWO TOKEN SETS:
    - App views: --color-* follows [data-theme] (dark default).
-   - Cover (always paper): .cover-scope pins the light set, so a
-     dark-OS user still gets the cream card — the cover's world
-     is independent of the OS theme on purpose.
+   - Cover (always OLED glass): .cover-scope pins the dark set, so the
+     dark shadcn card stays legible on the cover regardless of OS theme.
    ============================================================ */
 
 @import 'tailwindcss';
@@ -24,36 +23,36 @@
 
 @theme {
   /* ---------- APP WORLD (dark default, matches tokens.css) ---------- */
-  --color-background: #0b0e14;
-  --color-foreground: #e8eaed;
+  --color-background: #050507;
+  --color-foreground: #eceef1;
 
-  --color-card: #11151c;
-  --color-card-foreground: #e8eaed;
+  --color-card: #0b0c0f;
+  --color-card-foreground: #eceef1;
 
-  --color-popover: #11151c;
-  --color-popover-foreground: #e8eaed;
+  --color-popover: #0b0c0f;
+  --color-popover-foreground: #eceef1;
 
-  --color-primary: #e8eaed;
-  --color-primary-foreground: #0b0e14;
+  --color-primary: #eceef1;
+  --color-primary-foreground: #050507;
 
-  --color-secondary: #11151c;
-  --color-secondary-foreground: #b9bdc4;
+  --color-secondary: #121318;
+  --color-secondary-foreground: #a3a8b3;
 
-  --color-muted: #11151c;
-  --color-muted-foreground: #8b929c;
+  --color-muted: #121318;
+  --color-muted-foreground: #a3a8b3;
 
   --color-accent: #f5b84c;
-  --color-accent-foreground: #0b0e14;
+  --color-accent-foreground: #050507;
 
   --color-destructive: #f26d6d;
-  --color-destructive-foreground: #0b0e14;
+  --color-destructive-foreground: #050507;
 
-  --color-border: rgba(232, 234, 237, 0.08);
-  --color-input: rgba(232, 234, 237, 0.08);
-  --color-ring: #e8eaed;
+  --color-border: rgba(236, 238, 241, 0.1);
+  --color-input: rgba(236, 238, 241, 0.1);
+  --color-ring: #eceef1;
 
   --font-serif: 'Fraunces', 'Georgia', serif;
-  --font-sans: 'Inter', sans-serif;
+  --font-sans: 'Geist Variable', 'Inter', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 
   --radius: 0.5rem;
@@ -82,44 +81,46 @@
   --color-ring: #111418;
 }
 
-/* ---------- COVER WORLD (always paper, even on dark-OS) ---------- */
-/* Pins the light palette inside the cover scope so shadcn tokens
-   used by hero-dithering-card resolve to Ink & Paper values there. */
+/* ---------- COVER WORLD (Ethereal Glass, always dark) ---------- */
+/* The cover is its own OLED world regardless of OS theme. Pin the dark
+   token set here so shadcn tokens used by hero-dithering-card resolve to
+   glass values, not paper — this is what keeps the card legible on the
+   cover (an earlier paper pin left dark ink on the OLED background). */
 .cover-scope {
-  --color-background: #f4efe6;
-  --color-foreground: #171512;
-  --color-card: #faf7f0;
-  --color-card-foreground: #171512;
-  --color-popover: #f4efe6;
-  --color-popover-foreground: #171512;
-  --color-primary: #171512;
-  --color-primary-foreground: #f4efe6;
-  --color-secondary: #ebe4d6;
-  --color-secondary-foreground: #4c463c;
-  --color-muted: #ebe4d6;
-  --color-muted-foreground: #8a8271;
+  --color-background: #050507;
+  --color-foreground: #eceef1;
+  --color-card: #0a0a0e;
+  --color-card-foreground: #eceef1;
+  --color-popover: #0a0a0e;
+  --color-popover-foreground: #eceef1;
+  --color-primary: #eceef1;
+  --color-primary-foreground: #050507;
+  --color-secondary: #121318;
+  --color-secondary-foreground: #a3a8b3;
+  --color-muted: #121318;
+  --color-muted-foreground: #a3a8b3;
   --color-accent: #f5b84c;
-  --color-accent-foreground: #171512;
-  --color-destructive: #b3441f;
-  --color-destructive-foreground: #f4efe6;
-  --color-border: rgba(23, 21, 18, 0.28);
-  --color-input: rgba(23, 21, 18, 0.28);
-  --color-ring: #171512;
+  --color-accent-foreground: #050507;
+  --color-destructive: #f26d6d;
+  --color-destructive-foreground: #050507;
+  --color-border: rgba(236, 238, 241, 0.12);
+  --color-input: rgba(236, 238, 241, 0.12);
+  --color-ring: #eceef1;
 }
 
 /* Plain custom-property aliases for shadcn classes that use var(--x)
    directly (rare, but some community components do). */
 :root {
-  --background: #0b0e14;
-  --foreground: #e8eaed;
-  --card: #11151c;
-  --card-foreground: #e8eaed;
-  --primary: #e8eaed;
-  --primary-foreground: #0b0e14;
-  --muted: #11151c;
-  --muted-foreground: #8b929c;
-  --border: rgba(232, 234, 237, 0.08);
-  --ring: #e8eaed;
+  --background: #050507;
+  --foreground: #eceef1;
+  --card: #0b0c0f;
+  --card-foreground: #eceef1;
+  --primary: #eceef1;
+  --primary-foreground: #050507;
+  --muted: #121318;
+  --muted-foreground: #a3a8b3;
+  --border: rgba(236, 238, 241, 0.1);
+  --ring: #eceef1;
   --radius: 0.5rem;
 }
 [data-theme='light'] {
@@ -135,13 +136,13 @@
   --ring: #111418;
 }
 .cover-scope {
-  --background: #f4efe6;
-  --foreground: #171512;
-  --card: #faf7f0;
-  --card-foreground: #171512;
-  --primary: #171512;
-  --primary-foreground: #f4efe6;
-  --muted-foreground: #8a8271;
-  --border: rgba(23, 21, 18, 0.28);
-  --ring: #171512;
+  --background: #050507;
+  --foreground: #eceef1;
+  --card: #0a0a0e;
+  --card-foreground: #eceef1;
+  --primary: #eceef1;
+  --primary-foreground: #050507;
+  --muted-foreground: #a3a8b3;
+  --border: rgba(236, 238, 241, 0.12);
+  --ring: #eceef1;
 }

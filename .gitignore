@@ -28,6 +28,13 @@ models/
 *.jsonl.gz
 *.json.gz
 
+# Vendored / auxiliary projects (own repos or regenerable)
+biblio-video/
+backups/
+
+# Media assets that ARE part of the dashboard are tracked explicitly
+# (frontend/public/biblio-explainer.mp4 — referenced by Cover.tsx)
+
 # Build artifacts
 frontend/dist/
 frontend/.vite/

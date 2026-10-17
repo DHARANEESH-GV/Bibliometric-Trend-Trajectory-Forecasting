@@ -10,6 +10,8 @@ import { loadBursts, loadLeaderboard } from '../lib/snapshots'
 import { useQuery } from '../lib/useQuery'
 import { fmtInt } from '../lib/format'
 import { ShimmerAxes } from '../components/ShimmerAxes'
+import { ViewHeader } from '../components/ViewHeader'
+import { RevealShell } from '../components/RevealShell'
 import { CopyLink } from '../components/CopyLink'
 import type { BurstEntry } from '../lib/types'
 
@@ -41,13 +43,22 @@ export function BurstsView() {
   const [dir, setDir] = useState<'asc' | 'desc'>('desc')
   const [search] = useSearchParams()
   const [domainFilter, setDomainFilter] = useState<string>('all')
+  const [query, setQuery] = useState('')
 
-  // Deep-link support: /bursts?domain=slug pre-filters the feed.
+  // Deep-link support: /bursts?domain=slug pre-filters the feed, and
+  // ?q=keyword pre-fills the search box. ?keyword= opens the cross-view
+  // lookup panel for that term (shareable, no new route).
   useEffect(() => {
     const d = search.get('domain')
     if (d) setDomainFilter(d)
+    const q = search.get('q')
+    if (q) setQuery(q)
+    const k = search.get('keyword')
+    if (k) setOpenKeyword(k)
   }, [search])
   const [limit, setLimit] = useState(60)
+  // Cross-view keyword lookup: which domains burst on this term.
+  const [openKeyword, setOpenKeyword] = useState<string | null>(null)
 
   const domainNames = useMemo(() => {
     const m = new Map<string, string>()
@@ -59,8 +70,16 @@ export function BurstsView() {
 
   const sorted = useMemo(() => {
     const feed = bursts.data?.feed ?? []
+    const needle = query.trim().toLowerCase()
     let list =
       domainFilter === 'all' ? feed : feed.filter((b) => b.domain === domainFilter)
+    if (needle) {
+      list = list.filter(
+        (b) =>
+          b.keyword.toLowerCase().includes(needle) ||
+          (domainNames.get(b.domain) ?? b.domain).toLowerCase().includes(needle),
+      )
+    }
     const sign = dir === 'asc' ? 1 : -1
     const cmp: Record<BurstSort, (a: BurstEntry, b: BurstEntry) => number> = {
       strength: (a, b) => a.strength - b.strength,
@@ -70,7 +89,12 @@ export function BurstsView() {
     }
     list = [...list].sort((a, b) => sign * cmp[sort](a, b))
     return list
-  }, [bursts.data, sort, dir, domainFilter])
+  }, [bursts.data, sort, dir, domainFilter, query, domainNames])
+
+  const maxStrength = useMemo(
+    () => Math.max(...(bursts.data?.feed ?? []).map((b) => b.strength), 1),
+    [bursts.data],
+  )
 
   const visible = sorted.slice(0, limit)
 
@@ -80,7 +104,7 @@ export function BurstsView() {
     color: 'var(--ink-0)',
     background: 'var(--surface-1)',
     border: 'var(--hairline)',
-    borderRadius: 2,
+    borderRadius: 'var(--r-control)',
     padding: '4px 8px',
   } as const
 
@@ -103,25 +127,32 @@ export function BurstsView() {
   const feedEmpty = sorted.length === 0
 
   return (
-    <div style={{ padding: 'var(--sp-5) 0' }}>
-      <header
-        style={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          alignItems: 'baseline',
-          justifyContent: 'space-between',
-          gap: 'var(--sp-4)',
-          marginBottom: 'var(--sp-4)',
-        }}
+    <RevealShell rowSelector=".burst-row">
+      <div className="bursts-view">
+      <ViewHeader
+        title={
+          <>
+            Keyword <span className="serif-accent">bursts</span>
+          </>
+        }
+        lead={computedLead}
       >
-        <div>
-          <h1 style={{ fontSize: 'var(--text-2xl)' }}>Keyword bursts</h1>
-          <p style={{ color: 'var(--ink-2)', marginTop: 'var(--sp-1)', fontSize: 'var(--text-sm)', maxWidth: '72ch' }}>
-{computedLead}
-          </p>
-        </div>
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--sp-3)', alignItems: 'center' }}>
-          <label style={{ fontSize: 'var(--text-sm)', color: 'var(--ink-2)' }}>
+        <div className="bursts-controls" style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--sp-3)', alignItems: 'center' }}>
+          <label>
+            <span className="visually-hidden">Search keywords</span>
+            <input
+              type="search"
+              value={query}
+              onChange={(e) => {
+                setQuery(e.target.value)
+                setLimit(60)
+              }}
+              placeholder="Search keywords…"
+              className="bursts-search"
+              style={selectStyle}
+            />
+          </label>
+          <label>
             Domain{' '}
             <select
               value={domainFilter}
@@ -139,7 +170,7 @@ export function BurstsView() {
               ))}
             </select>
           </label>
-          <label style={{ fontSize: 'var(--text-sm)', color: 'var(--ink-2)' }}>
+          <label>
             Sort{' '}
             <select
               value={sort}
@@ -155,61 +186,87 @@ export function BurstsView() {
           <button
             onClick={() => setDir((d) => (d === 'asc' ? 'desc' : 'asc'))}
             aria-label={`Sort direction ${dir === 'asc' ? 'ascending' : 'descending'}, click to flip`}
-            style={{ border: 'var(--hairline)', borderRadius: 2, padding: '4px 10px', fontSize: 'var(--text-sm)' }}
+            style={{ border: 'var(--hairline)', borderRadius: 'var(--r-control)', padding: '4px 10px', fontSize: 'var(--text-sm)' }}
           >
             {dir === 'asc' ? '↑' : '↓'}
           </button>
           <CopyLink />
         </div>
-      </header>
+      </ViewHeader>
 
       {feedEmpty ? (
-        <p style={{ color: 'var(--ink-2)', padding: 'var(--sp-7) 0' }}>
-          This filter matches no bursts in the current snapshot. Try all
-          domains. No domain carries a zero count across the full series,
-          but single keywords come and go.
-        </p>
+        <div className="bursts-empty" role="status">
+          <svg
+            width={120}
+            height={36}
+            aria-hidden
+            style={{ display: 'block', marginBottom: 'var(--sp-3)' }}
+          >
+            <line x1={4} y1={30} x2={30} y2={26} stroke="var(--ink-3)" strokeWidth={1.25} strokeLinecap="round" />
+            <line x1={30} y1={26} x2={56} y2={28} stroke="var(--ink-3)" strokeWidth={1.25} strokeLinecap="round" />
+            <line x1={56} y1={28} x2={82} y2={22} stroke="var(--ink-3)" strokeWidth={1.25} strokeLinecap="round" />
+            <line x1={82} y1={22} x2={108} y2={24} stroke="var(--ink-3)" strokeWidth={1.25} strokeLinecap="round" strokeDasharray="3 3" />
+            <circle cx={82} cy={22} r={2.5} fill="var(--ink-3)" />
+          </svg>
+          <p style={{ margin: 0 }}>
+            This filter matches no bursts in the current snapshot. Try all
+            domains. No domain carries a zero count across the full series,
+            but single keywords come and go.
+          </p>
+        </div>
       ) : (
         <>
-          <ul role="list" style={{ listStyle: 'none', margin: 0, padding: 0 }}>
+          <p className="bursts-legend">
+            <span
+              aria-hidden
+              className="bursts-legend-swatch"
+              style={{ background: 'var(--stage-accelerating)' }}
+            />
+            short burst (3 yr or less)
+            <span
+              aria-hidden
+              className="bursts-legend-swatch"
+              style={{ background: 'var(--stage-active)', marginLeft: 'var(--sp-3)' }}
+            />
+            mid
+            <span
+              aria-hidden
+              className="bursts-legend-swatch"
+              style={{ background: 'var(--stage-emerging)', marginLeft: 'var(--sp-3)' }}
+            />
+            sustained (12 yr or more)
+          </p>
+          <ul role="list" className="bursts-feed">
             {visible.map((b) => (
               <li
                 key={`${b.domain}-${b.keyword}-${b.start}`}
-                onMouseEnter={(e) => { e.currentTarget.style.background = 'var(--surface-1)' }}
-                onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent' }}
-                className="hairline-bottom burst-row"
-                style={{
-                  display: 'grid',
-                  gridTemplateColumns: 'minmax(0,1.4fr) minmax(0,1fr) 5.5rem 6rem minmax(160px, 1.2fr)',
-                  gap: 'var(--sp-4)',
-                  alignItems: 'center',
-                  padding: 'var(--sp-3) var(--sp-2)',
-                  transition: 'background var(--motion-fast)',
-                }}
+                className="burst-row hover-surface"
               >
-                <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                  <strong style={{ fontWeight: 500 }}>{b.keyword}</strong>
+                <span className="burst-keyword">
+                  <button
+                    type="button"
+                    className="keyword-lookup"
+                    aria-expanded={openKeyword === b.keyword}
+                    aria-controls={openKeyword === b.keyword ? 'keyword-panel' : undefined}
+                    onClick={() => setOpenKeyword((cur) => (cur === b.keyword ? null : b.keyword))}
+                    title="Which domains burst on this term?"
+                  >
+                    {b.keyword}
+                  </button>
                 </span>
-                <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', color: 'var(--ink-2)', fontSize: 'var(--text-sm)' }}>
-                  <Link to={`/domain/${b.domain}`} style={{ color: 'inherit' }}>
+                <span className="burst-domain">
+                  <Link to={`/domain/${b.domain}`}>
                     {domainNames.get(b.domain) ?? b.domain}
                   </Link>
                 </span>
-                <span className="num" style={{ color: 'var(--ink-1)' }}>
+                <span className="num burst-duration">
                   {b.duration} yr
                 </span>
-                <span className="num" aria-label={`Burst strength ${b.strength.toFixed(1)}`}>
+                <span className="num" aria-label={`Burst strength ${b.strength.toFixed(1)}, duration ${b.duration} years`}>
                   <span
                     aria-hidden
-                    style={{
-                      display: 'inline-block',
-                      width: `${Math.min(100, (b.strength / 26) * 100)}%`,
-                      maxWidth: 70,
-                      height: 3,
-                      verticalAlign: 'middle',
-                      background: 'var(--stage-active)',
-                      marginRight: 6,
-                    }}
+                    className={`burst-strength-bar ${b.duration <= 3 ? 'burst-strength-bar--short' : b.duration >= 12 ? 'burst-strength-bar--long' : ''}`}
+                    style={{ width: `${Math.min(100, (b.strength / maxStrength) * 100)}%`, maxWidth: 70 }}
                   />
                   {b.strength.toFixed(1)}
                 </span>
@@ -217,56 +274,127 @@ export function BurstsView() {
               </li>
             ))}
           </ul>
+          {openKeyword ? (
+            <KeywordPanel
+              keyword={openKeyword}
+              feed={bursts.data?.feed ?? []}
+              domainNames={domainNames}
+              onClose={() => setOpenKeyword(null)}
+            />
+          ) : null}
           {visible.length < sorted.length ? (
-            <div style={{ marginTop: 'var(--sp-5)', textAlign: 'center' }}>
-              <button
-                onClick={() => setLimit((l) => l + 60)}
-                style={{
-                  border: 'var(--hairline-strong)',
-                  borderRadius: 2,
-                  padding: '6px 18px',
-                  fontSize: 'var(--text-sm)',
-                }}
-              >
+            <div className="bursts-more">
+              <button onClick={() => setLimit((l) => l + 60)}>
                 Show more ({fmtInt(sorted.length - visible.length)} remain)
               </button>
             </div>
           ) : (
-            <p className="num" style={{ fontSize: 'var(--text-xs)', color: 'var(--ink-3)', marginTop: 'var(--sp-4)' }}>
+            <p className="num bursts-end">
               End of feed. {fmtInt(sorted.length)} bursts
               {domainFilter !== 'all' ? ` for ${domainNames.get(domainFilter) ?? domainFilter}` : ''}.
             </p>
           )}
         </>
       )}
-    </div>
+      </div>
+    </RevealShell>
   )
 }
 
 function YearRibbon({ entry }: { entry: BurstEntry }) {
   const cells = ribbon(entry)
+  const first = cells[0]?.year
+  const last = cells[cells.length - 1]?.year
   return (
-    <span
-      role="img"
-      aria-label={`Active ${entry.start} through ${entry.end} (${entry.duration} years)`}
-      className="num"
-      style={{
-        display: 'flex',
-        gap: 1,
-        height: 12,
-        alignItems: 'stretch',
-      }}
-    >
-      {cells.map((c) => (
-        <span
-          key={c.year}
-          title={`${c.year}${c.active ? ' (burst)' : ''}`}
-          style={{
-            flex: 1,
-            background: c.active ? 'var(--stage-active)' : 'var(--surface-2)',
-          }}
-        />
-      ))}
+    <span className="ribbon-wrap">
+      <span
+        role="img"
+        aria-label={`Active ${entry.start} through ${entry.end} (${entry.duration} years)`}
+        className="num"
+        style={{
+          display: 'flex',
+          gap: 1,
+          height: 12,
+          alignItems: 'stretch',
+        }}
+      >
+        {cells.map((c) => (
+          <span
+            key={c.year}
+            title={`${c.year}${c.active ? ' (burst)' : ''}`}
+            style={{
+              flex: 1,
+              background: c.active ? 'var(--stage-active)' : 'var(--surface-2)',
+            }}
+          />
+        ))}
+      </span>
+      <span className="ribbon-axis num" aria-hidden>
+        <span>{first}</span>
+        <span>{last}</span>
+      </span>
     </span>
+  )
+}
+
+/**
+ * KeywordPanel — the cross-view lookup: which domains burst on this term.
+ * Inline (not a modal), so the feed stays in place. Every figure comes
+ * from the same feed rows; domains link to their drill-downs.
+ */
+function KeywordPanel({
+  keyword,
+  feed,
+  domainNames,
+  onClose,
+}: {
+  keyword: string
+  feed: BurstEntry[]
+  domainNames: Map<string, string>
+  onClose: () => void
+}) {
+  const matches = useMemo(
+    () =>
+      feed
+        .filter((b) => b.keyword.toLowerCase() === keyword.toLowerCase())
+        .sort((a, b) => b.strength - a.strength),
+    [feed, keyword],
+  )
+
+  return (
+    <section
+      id="keyword-panel"
+      className="panel keyword-panel"
+      aria-label={`Domains bursting on ${keyword}`}
+    >
+      <div className="panel-core">
+        <div className="keyword-panel-head">
+          <h3>
+            Domains bursting on <em>{keyword}</em>
+          </h3>
+          <button type="button" className="island-btn" onClick={onClose}>
+            Close
+          </button>
+        </div>
+        {matches.length === 0 ? (
+          <p className="keyword-panel-empty">
+            No burst on this term in the current snapshot.
+          </p>
+        ) : (
+          <ul className="keyword-panel-list">
+            {matches.map((m) => (
+              <li key={`${m.domain}-${m.start}`} className="keyword-panel-row">
+                <Link to={`/domain/${m.domain}`} className="keyword-panel-domain">
+                  {domainNames.get(m.domain) ?? m.domain}
+                </Link>
+                <span className="num keyword-panel-meta">
+                  {m.start}-{m.end}, {m.duration} yr, strength {m.strength.toFixed(1)}
+                </span>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+    </section>
   )
 }

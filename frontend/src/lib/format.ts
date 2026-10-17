@@ -66,3 +66,34 @@ export function snapshotSentence(runId: string | null, generatedUtc: string | nu
 export function labelSentence(label: string): string {
   return label
 }
+
+/** Direction of a series' shape: last point vs first. This is a within-run
+ *  trend read, explicitly NOT a rank change (a second run would be needed
+ *  for that). Returns 0 for a flat or too-short series. */
+export function seriesTrend(values: number[]): number {
+  if (values.length < 2) return 0
+  const first = values.find((v) => v > 0) ?? values[0] ?? 0
+  const last = values[values.length - 1] ?? 0
+  if (first <= 0) return last > 0 ? 1 : 0
+  const ratio = last / first
+  if (ratio > 1.05) return 1
+  if (ratio < 0.95) return -1
+  return 0
+}
+
+/** Relative age of a timestamp, e.g. "3 days ago". Null when unparseable. */
+export function relativeAge(iso: string | null, now: Date = new Date()): string | null {
+  if (!iso) return null
+  const then = new Date(iso)
+  if (Number.isNaN(then.getTime())) return null
+  const ms = now.getTime() - then.getTime()
+  const mins = Math.round(ms / 60000)
+  if (mins < 1) return 'just now'
+  if (mins < 60) return `${mins} minute${mins === 1 ? '' : 's'} ago`
+  const hours = Math.round(mins / 60)
+  if (hours < 24) return `${hours} hour${hours === 1 ? '' : 's'} ago`
+  const days = Math.round(hours / 24)
+  if (days < 30) return `${days} day${days === 1 ? '' : 's'} ago`
+  const months = Math.round(days / 30)
+  return `${months} month${months === 1 ? '' : 's'} ago`
+}

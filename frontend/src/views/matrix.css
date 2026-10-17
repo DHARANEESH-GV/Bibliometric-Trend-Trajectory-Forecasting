@@ -8,6 +8,31 @@
   width: 100%;
 }
 
+/* Sequential-scale legend: the same surface -> amber ramp the heatmap
+   cells use, with a hairline rail. Brighter = more works. */
+.matrix-legend {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  margin-top: var(--sp-3);
+}
+.matrix-legend-cap {
+  width: 128px;
+  height: 8px;
+  border-radius: var(--r-control);
+  border: var(--hairline);
+  background: linear-gradient(
+    90deg,
+    var(--surface-1) 0%,
+    var(--matrix-mid) 55%,
+    var(--matrix-high) 100%
+  );
+}
+.matrix-legend-end {
+  font-size: var(--text-xs);
+  color: var(--ink-3);
+}
+
 @media (max-width: 768px) {
   .matrix-scroll {
     overflow-x: auto;

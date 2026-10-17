@@ -5,17 +5,36 @@
 import { loadLeaderboard } from '../lib/snapshots'
 import { useQuery } from '../lib/useQuery'
 import { useStore } from '../lib/store'
+import { ViewHeader } from '../components/ViewHeader'
+import { RevealShell } from '../components/RevealShell'
 import { fmtInt, fmtPct, snapshotSentence } from '../lib/format'
 
 export function AboutView() {
   const { runId } = useStore()
-  const { data } = useQuery(loadLeaderboard, [])
+  const { data, error } = useQuery(loadLeaderboard, [])
 
   const hw = data?.gate.hw_damped
 
   return (
-    <div className="about" style={{ padding: 'var(--sp-5) 0', maxWidth: '72ch' }}>
-      <h1 style={{ fontSize: 'var(--text-2xl)' }}>About this observatory</h1>
+    <RevealShell>
+      <div className="about" style={{ padding: 'var(--sp-5) 0', maxWidth: '72ch' }}>
+      <ViewHeader
+        title={
+          <>
+            About this <span className="serif-accent">observatory</span>
+          </>
+        }
+      />
+
+      {error ? (
+        <div className="panel panel--sunk" style={{ marginTop: 'var(--sp-5)' }}>
+          <div className="panel-core" style={{ fontSize: 'var(--text-sm)', color: 'var(--ink-1)' }}>
+            Snapshot data did not load, so the gate figures below are omitted.
+            The methodology text is unaffected. Run <code>npm run build</code> to
+            regenerate the snapshots.
+          </div>
+        </div>
+      ) : null}
 
       <p style={{ marginTop: 'var(--sp-4)', color: 'var(--ink-1)' }}>
         biblio-trend tracks twenty technology domains across scientific
@@ -74,7 +93,7 @@ export function AboutView() {
         <h2 style={{ fontSize: 'var(--text-xl)' }}>Sources and method</h2>
         <p style={{ marginTop: 'var(--sp-3)', color: 'var(--ink-1)' }}>
           Papers via the OpenAlex API (topic-ID filtered, polite pool).
-          Trajectories aggregate works per year, 2000–2025. Burst strength
+          Trajectories aggregate works per year, 2000-2025. Burst strength
           comes from in-house Viterbi decoding of a 2-state automaton.
           Forecasts use Holt-Winters damped trend with 68% prediction
           intervals from residual variance. The master plan records every
@@ -109,7 +128,8 @@ export function AboutView() {
           </details>
         ) : null}
       </section>
-    </div>
+      </div>
+    </RevealShell>
   )
 }
 

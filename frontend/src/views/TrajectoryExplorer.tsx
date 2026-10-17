@@ -4,23 +4,29 @@
  * record (no quarters exist; none are interpolated). Log/linear switch,
  * synced crosshair, inline forecast labels, caveats surfaced.
  */
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { loadTrajectories } from '../lib/snapshots'
 import { useQuery } from '../lib/useQuery'
 import { useTokens } from '../lib/useTokens'
-import { useChart, echarts, axes, baseOption, tooltip } from '../charts/echarts'
+import { useChart, echarts, axes, baseOption, tooltip, cleanSeries } from '../charts/echarts'
 import { fmtInt, fmtModel } from '../lib/format'
 import { ShimmerAxes } from '../components/ShimmerAxes'
 import { CaveatBanner } from '../components/CaveatBanner'
+import { ViewHeader } from '../components/ViewHeader'
 import { CopyLink } from '../components/CopyLink'
+import { YearSpine } from '../components/YearSpine'
+import { RevealShell } from '../components/RevealShell'
 import type { TrajectoriesFile } from '../lib/types'
 
-const COLOR_POOL = ['--ink-0', '--stage-accelerating', '--stage-emerging', '--stage-active', '--stage-watch']
+const COLOR_POOL = ['cat1', 'cat2', 'cat3', 'cat4', 'cat5'] as const
 
 function colorFor(i: number, tokens: ReturnType<typeof useTokens>): string {
-  const name = COLOR_POOL[i % COLOR_POOL.length] ?? '--ink-0'
-  return (tokens as unknown as Record<string, string>)[name] ?? tokens.ink0
+  // Categorical tokens (theme-aware in tokens.css): five mutually
+  // distinguishable hues. Never --ink-0 — in dark mode that is near-white
+  // and five white lines cannot be told apart.
+  const name = COLOR_POOL[i % COLOR_POOL.length] ?? 'cat1'
+  return (tokens as unknown as Record<string, string>)[name] ?? tokens.cat1
 }
 
 function useParamList(key: string): string[] {
@@ -38,6 +44,10 @@ export function TrajectoryExplorerView() {
 
   const selected = useParamList('domains')
   const log = params.get('log') === '1'
+  // Data-table alternative (d3-viz accessibility): the plotted series as
+  // exact numbers, for readers who want them rather than the curve.
+  // Declared with the other hooks, before any early return.
+  const [tableOpen, setTableOpen] = useState(false)
 
   const domains = data?.domains ?? []
   const selectedRows = useMemo(() => {
@@ -62,6 +72,9 @@ export function TrajectoryExplorerView() {
     const series = selectedRows.map((row, i) => {
       const actual = row.series.filter((p) => p.works != null)
       const forecastPts = row.series.filter((p) => p.forecast != null)
+      // Data prep (d3-viz): drop null/NaN from the plotted values so a
+      // malformed snapshot cannot render a broken line.
+      const actualWorks = cleanSeries(actual.map((p) => p.works))
       const color = colorFor(i, t)
 
       // Bridge the actual line into the forecast tail so the band reads
@@ -74,11 +87,20 @@ export function TrajectoryExplorerView() {
         {
           type: 'line' as const,
           name: row.display_name,
-          data: actual.map((p) => p.works),
-          lineStyle: { width: 1.5, color },
+          data: actualWorks,
+          lineStyle: { width: 2.5, color },
           itemStyle: { color },
           showSymbol: false,
           emphasis: { focus: 'series' as const },
+          endLabel: {
+            show: true,
+            formatter: row.display_name,
+            color,
+            fontFamily: t.fontBody,
+            fontSize: 11,
+            fontWeight: 600 as const,
+            distance: 10,
+          },
         },
         ...(forecastPts.length > 0
           ? [
@@ -196,32 +218,29 @@ export function TrajectoryExplorerView() {
   const qcCaveat = domains.find((d) => d.domain === 'quantum_error_correction')
 
   return (
-    <div style={{ padding: 'var(--sp-5) 0' }}>
-      <header
-        style={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          alignItems: 'baseline',
-          justifyContent: 'space-between',
-          gap: 'var(--sp-4)',
-          marginBottom: 'var(--sp-4)',
-        }}
-      >
-        <div>
-          <h1 style={{ fontSize: 'var(--text-2xl)' }}>Trajectory explorer</h1>
-          <p style={{ color: 'var(--ink-2)', marginTop: 'var(--sp-1)', fontSize: 'var(--text-sm)' }}>
-            Annual counts of published works, 2000–2025, with backtested
+    <RevealShell>
+      <div style={{ padding: 'var(--sp-5) 0' }}>
+      <YearSpine />
+      <ViewHeader
+        title={
+          <>
+            Trajectory <span className="serif-accent">explorer</span>
+          </>
+        }
+        lead={
+          <>
+            Annual counts of published works, 2000-2025, with backtested
             forecast tails. {computedLead}
-          </p>
-        </div>
-        <div style={{ display: 'flex', gap: 'var(--sp-3)' }}>
+          </>
+        }
+      >
         <CopyLink />
         <button
           onClick={toggleLog}
           aria-pressed={log}
           style={{
             border: 'var(--hairline-strong)',
-            borderRadius: 2,
+            borderRadius: 'var(--r-control)',
             padding: '4px 12px',
             fontSize: 'var(--text-sm)',
             background: log ? 'var(--surface-2)' : 'transparent',
@@ -229,41 +248,52 @@ export function TrajectoryExplorerView() {
         >
           {log ? 'Log scale' : 'Linear scale'}
         </button>
-        </div>
-      </header>
+        <button
+          onClick={() => setTableOpen((o) => !o)}
+          aria-expanded={tableOpen}
+          aria-controls="trajectory-table"
+          style={{
+            border: 'var(--hairline-strong)',
+            borderRadius: 'var(--r-control)',
+            padding: '4px 12px',
+            fontSize: 'var(--text-sm)',
+            background: tableOpen ? 'var(--surface-2)' : 'transparent',
+          }}
+        >
+          {tableOpen ? 'Hide table' : 'View as table'}
+        </button>
+      </ViewHeader>
 
       <div
         role="group"
         aria-label="Domain selection, up to five"
-        style={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          gap: 'var(--sp-2)',
-          margin: 'var(--sp-4) 0',
-        }}
+        className="seg-control"
       >
         {domains.map((d) => {
           const active = selected.length === 0 ? d === domains[0] : selected.includes(d.domain)
+          // The chip carries its series color: chip → line identity at a
+          // glance, no hover needed.
+          const seriesIdx = selectedRows.findIndex((r) => r.domain === d.domain)
+          const chipColor = active && seriesIdx >= 0 ? colorFor(seriesIdx, tokens) : null
           return (
             <span
               key={d.domain}
-              style={{
-                display: 'inline-flex',
-                alignItems: 'stretch',
-                border: 'var(--hairline)',
-                borderRadius: 2,
-                overflow: 'hidden',
-              }}
+              className={`seg ${active ? 'seg--on' : ''}`}
+              style={
+                chipColor
+                  ? { borderColor: chipColor, boxShadow: `inset 0 0 0 1px ${chipColor}` }
+                  : undefined
+              }
             >
               <button
                 onClick={() => toggleDomain(d.domain)}
                 aria-pressed={active}
-                style={{
-                  padding: '3px 10px',
-                  fontSize: 'var(--text-sm)',
-                  color: active ? 'var(--accent-ink)' : 'var(--ink-1)',
-                  background: active ? 'var(--ink-0)' : 'transparent',
-                }}
+                className="seg-btn"
+                style={
+                  chipColor
+                    ? { color: chipColor, background: 'transparent', fontWeight: 600 }
+                    : undefined
+                }
               >
                 {d.display_name}
               </button>
@@ -272,16 +302,7 @@ export function TrajectoryExplorerView() {
                   to={`/domain/${d.domain}`}
                   aria-label={`Open ${d.display_name} drill-down`}
                   title="Open drill-down"
-                  style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    padding: '0 8px',
-                    fontSize: 'var(--text-xs)',
-                    color: active ? 'var(--accent-ink)' : 'var(--link)',
-                    background: active ? 'color-mix(in srgb, var(--ink-0) 85%, transparent)' : 'transparent',
-                    borderLeft: 'var(--hairline)',
-                    textDecoration: 'none',
-                  }}
+                  className="seg-link"
                 >
                   ↗
                 </Link>
@@ -293,10 +314,37 @@ export function TrajectoryExplorerView() {
 
       <div ref={ref as unknown as React.Ref<HTMLDivElement>} style={{ height: 460 }} />
 
+      {tableOpen ? (
+        <div className="series-table" id="trajectory-table" role="table" aria-label="Plotted series as numbers">
+          <div className="forecast-row forecast-row--head" role="row">
+            <span role="columnheader">Domain</span>
+            <span role="columnheader">Year</span>
+            <span role="columnheader" className="num">Works</span>
+            <span role="columnheader" className="num">Forecast</span>
+            <span role="columnheader" className="num">68% interval</span>
+          </div>
+          {selectedRows.map((row) =>
+            row.series
+              .filter((p) => p.works != null || p.forecast != null)
+              .map((pt) => (
+                <div className="forecast-row" role="row" key={`${row.domain}-${pt.year}`}>
+                  <span role="cell" style={{ color: 'var(--ink-2)' }}>{row.display_name}</span>
+                  <span className="num" role="cell">{pt.year}</span>
+                  <span className="num" role="cell">{pt.works != null ? fmtInt(pt.works) : ''}</span>
+                  <span className="num" role="cell">{pt.forecast != null ? fmtInt(pt.forecast) : ''}</span>
+                  <span className="num" role="cell" style={{ color: 'var(--ink-2)' }}>
+                    {pt.lower != null && pt.upper != null ? `${fmtInt(pt.lower)} to ${fmtInt(pt.upper)}` : ''}
+                  </span>
+                </div>
+              )),
+          )}
+        </div>
+      ) : null}
+
       <div style={{ marginTop: 'var(--sp-4)' }}>
         <p className="num" style={{ fontSize: 'var(--text-xs)', color: 'var(--ink-3)' }}>
           {selectedRows.length === 1 && selectedRows[0]
-            ? `Peak year ${fmtInt(Math.max(...selectedRows[0].series.filter((p) => p.works != null).map((p) => p.works as number)))}`
+            ? `Peak year ${fmtInt(Math.max(...cleanSeries(selectedRows[0].series.map((p) => p.works))))}`
             : `${selectedRows.length} domains overlaid, synced crosshair.`}
           {' '}Quarterly resolution arrives with Phase 5 data; counts are annual today.
         </p>
@@ -310,6 +358,7 @@ export function TrajectoryExplorerView() {
           </CaveatBanner>
         </div>
       ) : null}
-    </div>
+      </div>
+    </RevealShell>
   )
 }

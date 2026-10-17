@@ -1,38 +1,75 @@
-import { useMemo, useState } from 'react'
+import { Suspense, lazy, useEffect, useMemo, useState } from 'react'
 import { NavLink, Route, Routes, useLocation } from 'react-router-dom'
 
 import { StoreProvider, useStore } from './lib/store'
 import { loadLeaderboard } from './lib/snapshots'
 import { useQuery } from './lib/useQuery'
-import { snapshotSentence } from './lib/format'
-import { useMotionReduced, setMotionChoice } from './lib/motion'
+import { snapshotSentence, relativeAge } from './lib/format'
 import { MethodologyNote } from './components/MethodologyNote'
 import { SearchPalette, useCommandK, type SearchItem } from './components/SearchPalette'
+import { IslandNav } from './components/IslandNav'
+import { RouteTransition } from './components/RouteTransition'
+import { WorkbenchAmbience } from './components/WorkbenchAmbience'
+import { WorkbenchChrome } from './components/WorkbenchChrome'
+import { WireTicker } from './components/WireTicker'
 import { CoverView } from './views/Cover'
-import { LeaderboardView } from './views/Leaderboard'
-import { TrajectoryExplorerView } from './views/TrajectoryExplorer'
-import { DomainDrilldownView } from './views/DomainDrilldown'
-import { BurstsView } from './views/Bursts'
-import { MatrixView } from './views/Matrix'
-import { AboutView } from './views/About'
 import { ErrorBoundary } from './components/ErrorBoundary'
 
-const NAV = [
-  { to: '/leaderboard', label: 'Leaderboard' },
-  { to: '/trajectory', label: 'Trajectories' },
-  { to: '/bursts', label: 'Bursts' },
-  { to: '/matrix', label: 'Matrix' },
-  { to: '/about', label: 'About' },
-]
+// Workbench views are code-split: echarts + its chart modules land only in
+// the analytical chunks, never in the initial bundle (bundle rule 2.4).
+// Cover stays eager — it is the landing LCP surface.
+const LeaderboardView = lazy(() =>
+  import('./views/Leaderboard').then((m) => ({ default: m.LeaderboardView })),
+)
+const TrajectoryExplorerView = lazy(() =>
+  import('./views/TrajectoryExplorer').then((m) => ({ default: m.TrajectoryExplorerView })),
+)
+const DomainDrilldownView = lazy(() =>
+  import('./views/DomainDrilldown').then((m) => ({ default: m.DomainDrilldownView })),
+)
+const BurstsView = lazy(() =>
+  import('./views/Bursts').then((m) => ({ default: m.BurstsView })),
+)
+const MatrixView = lazy(() =>
+  import('./views/Matrix').then((m) => ({ default: m.MatrixView })),
+)
+const AboutView = lazy(() =>
+  import('./views/About').then((m) => ({ default: m.AboutView })),
+)
+const OverviewView = lazy(() =>
+  import('./views/Overview').then((m) => ({ default: m.OverviewView })),
+)
+
+function RouteFallback() {
+  return (
+    <div className="route-fallback" role="status" aria-live="polite">
+      <span className="visually-hidden">Loading view</span>
+      <div className="route-fallback-bar w-1" />
+      <div className="route-fallback-bar w-2" />
+      <div className="route-fallback-bar w-3" />
+    </div>
+  )
+}
 
 function Shell() {
-  const { runId, generatedUtc, theme, toggleTheme } = useStore()
+  const { runId, generatedUtc } = useStore()
   const location = useLocation()
-  const isCover = location.pathname === '/'
-  const motionReduced = useMotionReduced()
+  const isCover = location.pathname === '/' || location.pathname === '/cover'
   const { data } = useQuery(loadLeaderboard, [])
   const [paletteOpen, setPaletteOpen] = useState(false)
+  const [clock, setClock] = useState(() => new Date())
   useCommandK(setPaletteOpen)
+
+  useEffect(() => {
+    const t = window.setInterval(() => setClock(new Date()), 30_000)
+    return () => window.clearInterval(t)
+  }, [])
+
+  const gatePassed = useMemo(() => {
+    const gate = data?.gate
+    if (!gate) return null
+    return Object.values(gate).some((g) => g.gate_passed)
+  }, [data])
 
   const items = useMemo<SearchItem[]>(
     () =>
@@ -44,176 +81,122 @@ function Shell() {
     [data],
   )
 
-
-  return (
-    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-      {!isCover && <a href="#main" className="visually-hidden">Skip to content</a>}
-      {!isCover && <header
-        className="hairline-bottom"
-        style={{ position: 'sticky', top: 0, background: 'var(--surface-0)', zIndex: 40 }}
-      >
-        <div
-          className="container"
-          style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            alignItems: 'center',
-            gap: 'var(--sp-5)',
-            paddingBlock: 'var(--sp-3)',
-          }}
-        >
-          <NavLink
-            to="/"
-            style={{
-              fontFamily: 'var(--font-display)',
-              fontWeight: 600,
-              color: 'var(--ink-0)',
-              textDecoration: 'none',
-              fontSize: 'var(--text-lg)',
-            }}
-          >
-            Biblio
-          </NavLink>
-          <nav aria-label="Primary">
-            <ul
-              style={{
-                display: 'flex',
-                flexWrap: 'wrap',
-                gap: 'var(--sp-4)',
-                listStyle: 'none',
-                margin: 0,
-                padding: 0,
-                fontSize: 'var(--text-sm)',
-              }}
-            >
-              {NAV.map((n) => (
-                <li key={n.to}>
-                  <NavLink
-                    to={n.to}
-                    end={n.to === '/leaderboard'}
-                    style={({ isActive }) => ({
-                      color: isActive ? 'var(--ink-0)' : 'var(--ink-2)',
-                      textDecoration: 'none',
-                      borderBottom: isActive ? '2px solid var(--ink-0)' : '2px solid transparent',
-                      paddingBlock: 2,
-                    })}
-                  >
-                    {n.label}
-                  </NavLink>
-                </li>
-              ))}
-            </ul>
-          </nav>
-          <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 'var(--sp-3)' }}>
-            <button
-              onClick={() => setPaletteOpen(true)}
-              aria-label="Search domains (Command K)"
-              className="mono-toggle"
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: 'var(--sp-2)',
-                border: 'var(--hairline)',
-                borderRadius: 2,
-                padding: '4px 10px',
-                fontSize: 'var(--text-sm)',
-                color: 'var(--ink-2)',
-              }}
-            >
-              Search <kbd style={{ fontSize: 'var(--text-xs)' }}>⌘K</kbd>
-            </button>
-            <button
-              onClick={() => setMotionChoice(motionReduced ? 'full' : 'reduced')}
-              aria-pressed={!motionReduced}
-              title={motionReduced ? 'Motion is reduced (OS or in-app). Click to enable full motion.' : 'Full motion is on. Click to reduce it.'}
-              className="mono-toggle"
-              style={{
-                border: 'var(--hairline)',
-                borderRadius: 2,
-                padding: '4px 10px',
-                fontSize: 'var(--text-sm)',
-                color: motionReduced ? 'var(--ink-3)' : 'var(--ink-1)',
-              }}
-            >
-              {motionReduced ? 'Motion off' : 'Motion on'}
-            </button>
-            <button
-              onClick={toggleTheme}
-              aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}
-              className="mono-toggle"
-              style={{
-                border: 'var(--hairline)',
-                borderRadius: 2,
-                padding: '4px 10px',
-                fontSize: 'var(--text-xs)',
-                fontFamily: 'var(--font-mono)',
-                letterSpacing: '0.04em',
-                transition: 'background var(--motion-fast), transform var(--motion-fast) cubic-bezier(0.32, 0.72, 0, 1)',
-              }}
-              onMouseDown={(e) => { e.currentTarget.style.transform = 'scale(0.98)' }}
-              onMouseUp={(e) => { e.currentTarget.style.transform = 'scale(1)' }}
-              onMouseLeave={(e) => { e.currentTarget.style.transform = 'scale(1)' }}
-            >
-              {theme === 'dark' ? 'Dark' : 'Light'}
-            </button>
-          </div>
-        </div>
-      </header>}
-
-      {isCover ? (
+  if (isCover) {
+    return (
+      <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
         <main id="main" style={{ flex: 1 }}>
           <ErrorBoundary>
             <Routes>
               <Route path="/" element={<CoverView />} />
+              <Route path="/cover" element={<CoverView />} />
             </Routes>
           </ErrorBoundary>
         </main>
-      ) : (
-        <>
-      <main id="main" className="container" style={{ flex: 1 }}>
+      </div>
+    )
+  }
+
+  return (
+    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+      <a href="#main" className="visually-hidden">
+        Skip to content
+      </a>
+      <WorkbenchAmbience />
+      <WorkbenchChrome />
+      <IslandNav onOpenSearch={() => setPaletteOpen(true)} />
+      <WireTicker />
+
+      <main id="main" className="container workbench-main" style={{ flex: 1, position: 'relative', zIndex: 1 }}>
+        <div className="status-bar" role="status" aria-label="Run status">
+          <span>
+            run <strong>{runId}</strong>
+          </span>
+          <span>
+            generated{' '}
+            <strong>{data?._meta.generated_utc ?? generatedUtc ?? 'pending'}</strong>
+          </span>
+          {gatePassed != null ? (
+            <span className={gatePassed ? 'status-pass' : 'status-fail'}>
+              forecast gate {gatePassed ? 'passed' : 'failed'}
+            </span>
+          ) : null}
+          <span>
+            utc <strong>{clock.toISOString().slice(11, 16)}</strong>
+          </span>
+        </div>
         <ErrorBoundary>
-        <Routes>
-          <Route path="/cover" element={<CoverView />} />
-          <Route path="/leaderboard" element={<LeaderboardView />} />
-          <Route path="/trajectory" element={<TrajectoryExplorerView />} />
-          <Route path="/domain/:slug" element={<DomainDrilldownView />} />
-          <Route path="/bursts" element={<BurstsView />} />
-          <Route path="/matrix" element={<MatrixView />} />
-          <Route path="/about" element={<AboutView />} />
-          <Route
-            path="*"
-            element={
-              <div style={{ padding: 'var(--sp-7) 0' }}>
-                <h1 style={{ fontSize: 'var(--text-xl)' }}>Page not found</h1>
-                <p style={{ color: 'var(--ink-2)', marginTop: 'var(--sp-3)' }}>
-                  The address does not match any snapshot view.
-                </p>
-                <p style={{ marginTop: 'var(--sp-3)' }}>
-                  <NavLink to="/leaderboard">Return to the leaderboard</NavLink>
-                </p>
-              </div>
-            }
-          />
-        </Routes>
+          <RouteTransition routeKey={location.pathname}>
+            <Suspense fallback={<RouteFallback />}>
+              <Routes>
+                <Route path="/leaderboard" element={<LeaderboardView />} />
+                <Route path="/trajectory" element={<TrajectoryExplorerView />} />
+                <Route path="/domain/:slug" element={<DomainDrilldownView />} />
+                <Route path="/bursts" element={<BurstsView />} />
+                <Route path="/matrix" element={<MatrixView />} />
+                <Route path="/overview" element={<OverviewView />} />
+                <Route path="/about" element={<AboutView />} />
+                <Route
+                  path="*"
+                  element={
+                    <div className="catalog-404" role="status">
+                      <span className="catalog-404-code num" aria-hidden>
+                        404
+                      </span>
+                      <h1 className="catalog-404-title">
+                        This address is <span className="serif-accent">not in the index</span>
+                      </h1>
+                      <p className="catalog-404-lead">
+                        The catalog has no card for this address. Search the
+                        domains or return to the leaderboard.
+                      </p>
+                      <div className="catalog-404-actions">
+                        <NavLink to="/leaderboard" className="catalog-404-cta">
+                          Return to the leaderboard
+                        </NavLink>
+                        <button
+                          type="button"
+                          className="catalog-404-cta catalog-404-cta--ghost"
+                          onClick={() => setPaletteOpen(true)}
+                        >
+                          Search domains
+                        </button>
+                      </div>
+                    </div>
+                  }
+                />
+              </Routes>
+            </Suspense>
+          </RouteTransition>
         </ErrorBoundary>
       </main>
 
-      <footer
-        className="hairline-top"
-        style={{ paddingBlock: 'var(--sp-5)', marginTop: 'var(--sp-7)' }}
-      >
-        <div className="container" style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--sp-4)' }}>
-          <MethodologyNote />
-          <p
-            className="num"
-            style={{
-              fontSize: 'var(--text-xs)',
-              color: 'var(--ink-3)',
-              width: '100%',
-            }}
-          >
-            {snapshotSentence(runId, generatedUtc)}
-            {data ? ` Data: OpenAlex works, 2000–2025.` : ''}
+      <footer className="site-footer hairline-top">
+        <div className="container">
+          <div className="site-footer-wordmark" aria-hidden>
+            BIBLIO
+          </div>
+          <div className="site-footer-row">
+            <MethodologyNote />
+            <nav className="site-footer-legal" aria-label="Legal">
+              <a href="#main">Privacy</a>
+              <a href="#main">Terms</a>
+              <button
+                type="button"
+                className="site-footer-top"
+                onClick={() => {
+                  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+                  window.scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' })
+                }}
+              >
+                Back to top ↑
+              </button>
+            </nav>
+          </div>
+          <p className="num site-footer-meta">
+            {snapshotSentence(runId, data?._meta.generated_utc ?? generatedUtc)}
+            {data
+              ? ` Data: OpenAlex works, 2000-2025. Generated ${relativeAge(data._meta.generated_utc) ?? 'recently'}.`
+              : ''}
           </p>
         </div>
       </footer>
@@ -224,8 +207,6 @@ function Shell() {
         open={paletteOpen}
         onClose={() => setPaletteOpen(false)}
       />
-        </>
-      )}
     </div>
   )
 }

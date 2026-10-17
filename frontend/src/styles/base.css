@@ -24,6 +24,17 @@ body {
   background: var(--surface-0);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  /* Theme toggle reads as physical: surfaces and ink cross-fade instead of
+     snapping. Gated below on reduced motion. */
+  transition:
+    background-color 200ms ease,
+    color 200ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body {
+    transition: none;
+  }
 }
 
 h1,

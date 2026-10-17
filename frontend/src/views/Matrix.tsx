@@ -6,7 +6,7 @@
  * + latest count. Single sequential scale in accent ink — no decorative
  * gradients, no pie-chart-style hue noise.
  */
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { loadMatrix, loadLeaderboard } from '../lib/snapshots'
 import { useQuery } from '../lib/useQuery'
@@ -15,7 +15,13 @@ import { useChart, echarts, axes, baseOption, tooltip } from '../charts/echarts'
 import { fmtInt, fmtScore } from '../lib/format'
 import { StagePill } from '../components/StagePill'
 import { ShimmerAxes } from '../components/ShimmerAxes'
+import { ViewHeader } from '../components/ViewHeader'
 import { CopyLink } from '../components/CopyLink'
+import { YearSpine } from '../components/YearSpine'
+import { TimeLapse } from '../components/TimeLapse'
+import { RankBumps } from '../components/RankBumps'
+import { BarRace } from '../components/BarRace'
+import { RevealShell } from '../components/RevealShell'
 import type { MatrixFile } from '../lib/types'
 
 
@@ -48,6 +54,7 @@ export function MatrixView() {
     return () => mq.removeEventListener('change', onChange)
   }, [])
   const recent = windowParam ? windowParam === '8' : narrow
+  const [hoveredRow, setHoveredRow] = useState<string | null>(null)
 
   const years = useMemo(() => {
     const all = data?.years ?? []
@@ -86,7 +93,26 @@ export function MatrixView() {
     return `${top.display} carries the heaviest output, ${top.total.toLocaleString('en-US')} works since 2000.`
   }, [data, labels])
 
+  // Busiest single year across all domains, computed from the visible window.
+  const busiestYear = useMemo(() => {
+    if (years.length === 0) return null
+    const totals = years.map((y, yi) => {
+      let sum = 0
+      for (const row of domainRows) sum += row.counts[yi] ?? 0
+      return { y, sum }
+    })
+    let best = totals[0]
+    for (const t of totals) if (t.sum > (best?.sum ?? 0)) best = t
+    return best ?? null
+  }, [years, domainRows])
+
   const xLabels = years.map(String)
+
+  const legendMax = useMemo(() => {
+    let max = 0
+    for (const row of domainRows) for (const c of row.counts) if (c > max) max = c
+    return max
+  }, [domainRows])
 
   const { ref } = useChart((t) => {
     const heatData: [number, number, number][] = []
@@ -129,7 +155,11 @@ export function MatrixView() {
         show: false,
         min: 0,
         max: Math.max(...heatData.map((h) => h[2] ?? 0), 1),
-        inRange: { color: [t.surface1, t.ink0] },
+        // Sequential single-hue ramp: surface (low) -> accent gold (high).
+        // The old ink ramp read backwards on OLED — a white cell meant
+        // "most works" but white also read as "empty/highlighted". Amber
+        // intensity cannot be misread: brighter = more work.
+        inRange: { color: [t.surface1, t.matrixMid, t.matrixHigh] },
         calculable: false,
       },
       grid: { left: 8, right: 24, top: 40, bottom: 8, containLabel: true },
@@ -140,7 +170,7 @@ export function MatrixView() {
           itemStyle: {
             borderWidth: 1,
             borderColor: 'transparent',
-            borderRadius: 1,
+            borderRadius: 'var(--r-control)',
           },
           emphasis: {
             itemStyle: { borderColor: t.crosshair, borderWidth: 1 },
@@ -149,7 +179,10 @@ export function MatrixView() {
             show: years.length <= 8, // compact window: read counts inline
             fontFamily: t.fontMono,
             fontSize: 9,
-            color: t.ink2,
+            // Dark ink reads on both ends of the amber ramp (gold cells are
+            // light enough for ink-0's near-black in dark theme; the light
+            // theme's deep-amber top carries white ink via ink0).
+            color: t.ink0,
             formatter: (p: never) => {
               const v = (p as { value: [number, number, number] }).value[2]
               return v >= 10000 ? `${Math.round(v / 1000)}k` : v >= 1000 ? `${(v / 1000).toFixed(1)}k` : String(v)
@@ -171,6 +204,106 @@ export function MatrixView() {
       ],
     } satisfies echarts.EChartsCoreOption
   }, tokens.ink0, [domainRows, years, recent])
+
+  // Click a heatmap cell -> open that domain's drill-down. Hover a cell ->
+  // highlight the matching row-tail link, and hovering a row-tail highlights
+  // the chart row (both directions). Bound on the chart instance; handlers
+  // read current domainRows via a ref so the effect need not re-run.
+  const rowsRef = useRef(domainRows)
+  rowsRef.current = domainRows
+  const hoverDomainRef = useRef<string | null>(null)
+  const setHoverDomain = (domain: string | null) => {
+    if (hoverDomainRef.current === domain) return
+    hoverDomainRef.current = domain
+    setHoveredRow(domain)
+  }
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const chart = echarts.getInstanceByDom(el)
+    if (!chart) return
+    const domainAt = (p: { value?: unknown }) => {
+      const v = p.value as [number, number, number] | undefined
+      const di = v?.[1]
+      return di == null ? null : rowsRef.current[di]?.domain ?? null
+    }
+    const onClick = (p: { value?: unknown }) => {
+      const domain = domainAt(p)
+      if (domain) navigate(`/domain/${domain}`)
+    }
+    // rAF-debounced so a fast pointer sweep does not dispatch per pixel.
+    let raf = 0
+    const pending = { current: null as string | null }
+    const onOver = (p: { value?: unknown }) => {
+      pending.current = domainAt(p)
+      cancelAnimationFrame(raf)
+      raf = requestAnimationFrame(() => setHoverDomain(pending.current))
+    }
+    const onLeave = () => {
+      pending.current = null
+      cancelAnimationFrame(raf)
+      raf = requestAnimationFrame(() => setHoverDomain(null))
+    }
+    chart.on('click', onClick)
+    chart.on('mouseover', onOver)
+    chart.on('globalout', onLeave)
+    return () => {
+      cancelAnimationFrame(raf)
+      chart.off('click', onClick)
+      chart.off('mouseover', onOver)
+      chart.off('globalout', onLeave)
+    }
+  }, [ref, navigate, domainRows, years, recent])
+
+  // Chart -> row-tail highlight: dispatch on the chart when the pointer
+  // enters a row-tail link (the reverse direction of the hover link).
+  const tailEnter = (domain: string) => {
+    setHoverDomain(domain)
+    const el = ref.current
+    const chart = el ? echarts.getInstanceByDom(el) : null
+    if (!chart) return
+    const di = rowsRef.current.findIndex((r) => r.domain === domain)
+    if (di < 0) return
+    chart.dispatchAction({ type: 'highlight', seriesIndex: 0, dataIndex: di * Math.max(1, years.length) })
+  }
+  const tailLeave = () => {
+    setHoverDomain(null)
+    const el = ref.current
+    const chart = el ? echarts.getInstanceByDom(el) : null
+    if (!chart) return
+    chart.dispatchAction({ type: 'downplay', seriesIndex: 0 })
+  }
+
+  // Keyboard cell navigation (d3-viz accessibility): the chart is
+  // focusable; arrows move a visible focus cell, Enter opens the domain.
+  const [focusCell, setFocusCell] = useState<[number, number] | null>(null)
+  const onChartKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    const el = ref.current
+    const chart = el ? echarts.getInstanceByDom(el) : null
+    if (!chart) return
+    const maxDi = Math.max(0, domainRows.length - 1)
+    const maxYi = Math.max(0, years.length - 1)
+    let next = focusCell
+    if (e.key === 'ArrowRight') next = [Math.min(maxYi, (focusCell?.[0] ?? -1) + 1), focusCell?.[1] ?? 0]
+    else if (e.key === 'ArrowLeft') next = [Math.max(0, (focusCell?.[0] ?? 1) - 1), focusCell?.[1] ?? 0]
+    else if (e.key === 'ArrowDown') next = [focusCell?.[0] ?? 0, Math.min(maxDi, (focusCell?.[1] ?? -1) + 1)]
+    else if (e.key === 'ArrowUp') next = [focusCell?.[0] ?? 0, Math.max(0, (focusCell?.[1] ?? 1) - 1)]
+    else if (e.key === 'Enter' && focusCell) {
+      const domain = rowsRef.current[focusCell[1]]?.domain
+      if (domain) navigate(`/domain/${domain}`)
+      return
+    } else if (e.key === 'Escape') {
+      setFocusCell(null)
+      chart.dispatchAction({ type: 'hideTip' })
+      return
+    } else {
+      return
+    }
+    e.preventDefault()
+    setFocusCell(next)
+    const [yi, di] = next
+    chart.dispatchAction({ type: 'showTip', seriesIndex: 0, dataIndex: di * Math.max(1, years.length) + yi })
+  }
 
   if (error) {
     return (
@@ -196,45 +329,94 @@ export function MatrixView() {
   }
 
   return (
-    <div style={{ padding: 'var(--sp-5) 0' }}>
-      <header
-        style={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          alignItems: 'baseline',
-          justifyContent: 'space-between',
-          gap: 'var(--sp-4)',
-          marginBottom: 'var(--sp-4)',
-        }}
+    <RevealShell>
+      <div style={{ padding: 'var(--sp-5) 0' }}>
+      <YearSpine />
+      <ViewHeader
+        title={
+          <>
+            Comparison <span className="serif-accent">matrix</span>
+          </>
+        }
+        lead={
+          <>
+            Works per year across all twenty domains; brighter amber means
+            more published work. {busiestLine}
+            {busiestYear ? ` Busiest year on screen: ${busiestYear.y} with ${fmtInt(busiestYear.sum)} works.` : ''}
+            {' '}Click any cell to open that domain.
+          </>
+        }
       >
-        <div>
-          <h1 style={{ fontSize: 'var(--text-2xl)' }}>Comparison matrix</h1>
-          <p style={{ color: 'var(--ink-2)', marginTop: 'var(--sp-1)', fontSize: 'var(--text-sm)', maxWidth: '72ch' }}>
-            Works per year across all twenty domains; darker cells mean more
-            published work. {busiestLine}
-          </p>
-        </div>
-        <div style={{ display: 'flex', gap: 'var(--sp-3)' }}>
         <CopyLink />
         <button
           onClick={toggleWindow}
           aria-pressed={recent}
           style={{
             border: 'var(--hairline-strong)',
-            borderRadius: 2,
+            borderRadius: 'var(--r-control)',
             padding: '4px 12px',
             fontSize: 'var(--text-sm)',
             background: recent ? 'var(--surface-2)' : 'transparent',
           }}
         >
-          {recent ? 'Last 8 years' : 'Full 2000–2025'}
+          {recent ? 'Last 8 years' : 'Full 2000-2025'}
         </button>
-        </div>
-      </header>
+      </ViewHeader>
 
       <div className="matrix-scroll">
-        <div ref={ref as unknown as React.Ref<HTMLDivElement>} style={{ height: 560 }} />
+        <div
+          ref={ref as unknown as React.Ref<HTMLDivElement>}
+          style={{ height: 560 }}
+          role="img"
+          aria-label="Heatmap of works per year for all twenty domains. Focus the chart and use arrow keys to move between cells; Enter opens a domain. The domain links below also navigate."
+          tabIndex={0}
+          onKeyDown={onChartKeyDown}
+          onBlur={() => {
+            setFocusCell(null)
+            const el = ref.current
+            const chart = el ? echarts.getInstanceByDom(el) : null
+            chart?.dispatchAction({ type: 'hideTip' })
+          }}
+        />
       </div>
+
+      {/* Data-table alternative (d3-viz accessibility): the full domain x
+          year counts, visually hidden so screen readers get the numbers the
+          heatmap encodes. The row-tail links below are the keyboard path. */}
+      <table className="visually-hidden">
+        <caption>Works per year by domain</caption>
+        <thead>
+          <tr>
+            <th scope="col">Domain</th>
+            {years.map((y) => (
+              <th scope="col" key={y}>{y}</th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {domainRows.map((row) => (
+            <tr key={row.domain}>
+              <th scope="row">{labels.get(row.domain) ?? row.domain}</th>
+              {row.counts.map((c, i) => (
+                <td key={i}>{c}</td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+      {/* Sequential-scale legend. The chart's visualMap stays show:false so
+          ECharts does not reclaim grid space; this states the ramp in ink so
+          cell darkness is not left unexplained. */}
+      <div className="matrix-legend" aria-label="Colour scale: works per year per domain">
+        <span className="matrix-legend-cap" aria-hidden />
+        <span className="matrix-legend-end">
+          works per year per domain, low to high ({fmtInt(0)} to {fmtInt(legendMax)}), brighter amber = more works
+        </span>      </div>
+
+      <TimeLapse data={data} />
+      <RankBumps data={data} />
+      <BarRace data={data} />
 
       {/* Row tails: stage + score per the spec's matrix row-tail, each row
           navigates to its drill-down. Doubles as the chart's accessible
@@ -249,20 +431,23 @@ export function MatrixView() {
                   e.preventDefault()
                   navigate(`/domain/${row.domain}`)
                 }}
+                onMouseEnter={() => tailEnter(row.domain)}
+                onMouseLeave={tailLeave}
+                onFocus={() => tailEnter(row.domain)}
+                onBlur={tailLeave}
+                data-hovered={hoveredRow === row.domain}
+                className={`matrix-tail hover-surface${hoveredRow === row.domain ? ' matrix-tail--hot' : ''}`}
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: 'var(--sp-2)',
                   border: 'var(--hairline)',
-                  borderRadius: 2,
+                  borderRadius: 'var(--r-control)',
                   padding: '3px 10px',
                   fontSize: 'var(--text-sm)',
                   color: 'var(--ink-1)',
                   textDecoration: 'none',
-                  transition: 'background var(--motion-fast) cubic-bezier(0.32, 0.72, 0, 1), color var(--motion-fast)',
                 }}
-                onMouseEnter={(e) => { e.currentTarget.style.background = 'var(--surface-1)'; e.currentTarget.style.color = 'var(--ink-0)' }}
-                onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'var(--ink-1)' }}
               >
                 {labels.get(row.domain) ?? row.domain}
                 {row.tail ? (
@@ -285,6 +470,7 @@ export function MatrixView() {
           : 'Hover any cell for the exact value. Row tails carry each domain\'s stage and score; select one for the full picture.'}
         {' '}Counts are annual (no quarters exist in the contract of record).
       </p>
-    </div>
+      </div>
+    </RevealShell>
   )
 }

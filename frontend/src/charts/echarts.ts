@@ -6,7 +6,7 @@
  * so they cannot drift per-view.
  */
 import * as echarts from 'echarts/core'
-import { LineChart, HeatmapChart, CustomChart } from 'echarts/charts'
+import { LineChart, HeatmapChart, CustomChart, BarChart } from 'echarts/charts'
 import {
   GridComponent,
   TooltipComponent,
@@ -22,6 +22,7 @@ echarts.use([
   LineChart,
   HeatmapChart,
   CustomChart,
+  BarChart,
   GridComponent,
   TooltipComponent,
   AxisPointerComponent,
@@ -53,6 +54,13 @@ export interface ThemeTokens {
   stageAccelerating: string
   stageActive: string
   stageWatch: string
+  cat1: string
+  cat2: string
+  cat3: string
+  cat4: string
+  cat5: string
+  matrixMid: string
+  matrixHigh: string
   fontMono: string
   fontBody: string
 }
@@ -76,9 +84,22 @@ function readTokens(): ThemeTokens {
     stageAccelerating: v('--stage-accelerating'),
     stageActive: v('--stage-active'),
     stageWatch: v('--stage-watch'),
+    cat1: v('--cat-1'),
+    cat2: v('--cat-2'),
+    cat3: v('--cat-3'),
+    cat4: v('--cat-4'),
+    cat5: v('--cat-5'),
+    matrixMid: v('--matrix-mid'),
+    matrixHigh: v('--matrix-high'),
     fontMono: v('--font-mono'),
     fontBody: v('--font-body'),
   }
+}
+
+/** Data preparation (d3-viz): filter null/NaN before plotting, so a
+ *  malformed snapshot cannot produce a broken chart. */
+export function cleanSeries(values: Array<number | null | undefined>): number[] {
+  return values.filter((v): v is number => v != null && Number.isFinite(v))
 }
 
 /** Shared craft-rule fragments every view composes. */
@@ -101,8 +122,17 @@ export function baseOption(t: ThemeTokens) {
       containLabel: true,
     },
     axisPointer: {
-      lineStyle: { color: t.crosshair },
-      crossStyle: { color: t.crosshair },
+      lineStyle: { color: t.crosshair, width: 1 },
+      crossStyle: { color: t.crosshair, width: 1 },
+      // Crosshair readout: a hairline label on the surface, no drop shadow.
+      label: {
+        backgroundColor: t.surface1,
+        borderColor: 'transparent',
+        color: t.ink0,
+        fontFamily: t.fontMono,
+        fontSize: 11,
+        padding: [4, 6],
+      },
     },
   }
 }
@@ -135,7 +165,9 @@ export function axes(t: ThemeTokens, xExtra = {}, yExtra = {}) {
         fontSize: 11,
       },
       splitLine: {
-        lineStyle: { color: t.gridMinor }, // low-opacity hairlines only
+        // Subtle grid discipline (d3-viz styling): minor gridlines are
+        // dashed hairlines; the axis line above stays solid.
+        lineStyle: { color: t.gridMinor, type: 'dashed' as const, width: 1 },
       },
       ...yExtra,
     },
@@ -174,9 +206,16 @@ export function useChart(
     const chart = echarts.init(ref.current, undefined, { renderer: 'svg' })
     chartRef.current = chart
     chart.setOption(buildOption(readTokens()))
-    const ro = new ResizeObserver(() => chart.resize())
+    // Debounced resize (d3-viz perf): a window drag fires the observer on
+    // every frame; resizing an SVG chart that often is wasted work.
+    let raf = 0
+    const ro = new ResizeObserver(() => {
+      cancelAnimationFrame(raf)
+      raf = requestAnimationFrame(() => chart.resize())
+    })
     ro.observe(ref.current)
     return () => {
+      cancelAnimationFrame(raf)
       ro.disconnect()
       chart.dispose()
       chartRef.current = null

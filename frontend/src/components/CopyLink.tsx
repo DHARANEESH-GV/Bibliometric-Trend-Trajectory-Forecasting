@@ -50,7 +50,7 @@ export function CopyLink() {
         alignItems: 'center',
         gap: 'var(--sp-2)',
         border: 'var(--hairline)',
-        borderRadius: 2,
+        borderRadius: 'var(--r-control)',
         padding: '4px 10px',
         fontSize: 'var(--text-sm)',
         color: copied ? 'var(--stage-emerging)' : 'var(--ink-2)',
@@ -60,7 +60,7 @@ export function CopyLink() {
       onMouseUp={(e) => { e.currentTarget.style.transform = 'scale(1)' }}
       onMouseLeave={(e) => { e.currentTarget.style.transform = 'scale(1)' }}
     >
-      {copied ? 'Copied' : 'Copy link'}
+      {copied ? '✓ Copied' : 'Copy link'}
     </button>
   )
 }

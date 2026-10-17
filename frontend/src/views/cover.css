@@ -1,341 +1,601 @@
 /* ============================================================
-   Cover — "Ink & Paper" world. Scoped entirely under .cover-scope
-   so it never touches the observatory's dark workbench theme.
-   Fonts: Fraunces (display) + Newsreader (editorial body).
+   Cover — "Ethereal Glass" world (rebuild).
+   OLED black, drifting warm/cold radial orbs, white/10 hairlines,
+   heavy glass plates, wide Geist display, Fraunces wordmark.
+   Scoped under .cover-scope; pins its own shadcn token set in
+   styles/tailwind.css. Motion via GSAP; static-complete under
+   reduced verdict.
    ============================================================ */
 
 .cover-scope {
-  /* The paper world overrides the app tokens it can see */
-  --paper: #f4efe6;
-  --paper-deep: #ebe4d6;
-  --ink: #171512;
-  --ink-soft: #4c463c;
-  --ink-faint: #8a8271;
-  --rule: rgba(23, 21, 18, 0.28);
-  --rule-strong: rgba(23, 21, 18, 0.55);
+  /* The cover is its own OLED world regardless of OS theme, so it pins
+     the theme-aware tokens it consumes to dark values. --surface-0 is
+     theme-aware (#f6f6f4 on light); without this pin the cover would
+     follow the OS theme and break the two-worlds design. */
+  --surface-0: #050507;
+  --accent: #f5b84c;
 
-  --font-cover-display: 'Fraunces', 'Georgia', serif;
-  --font-cover-body: 'Newsreader', 'Georgia', serif;
+  /* Paper-era tokens gone: pin a glass palette + light-token aliases
+     (tailwind.css resolves bg-card etc. here; keep names meaningful) */
+  --paper: #0a0a0e;          /* card glass base (shadcn --card bridge reads this) */
+  --ink: #eceef1;            /* primary ink on glass */
+  --ink-soft: #a3a8b3;
+  /* Faint must clear WCAG AA on the OLED field (5.21:1). Used for
+     colophon, tease feet, run label. */
+  --ink-faint: #7c818c;
+  --rule: rgba(236, 238, 241, 0.1);
+  --rule-strong: rgba(236, 238, 241, 0.2);
 
-  background: var(--paper);
+  --font-cover-display: 'Geist Variable', 'Inter', sans-serif;
+  --font-cover-body: 'Geist Variable', 'Inter', sans-serif;
+  --font-brand-serif: 'Fraunces', 'Georgia', serif;
+
+  /* Stage ticks: the cover is an always-dark world, but the --stage-*
+     taxonomy tokens are theme-aware (muted colors on light).Without this
+     pin, a light-OS user gets the light-theme stage colors on the OLED
+     field. Pinned to the dark-theme values from tokens.css. */
+  --stage-emerging: #4ade97;
+  --stage-accelerating: #64a8ff;
+  --stage-active: #f5b84c;
+  --stage-watch: color-mix(in srgb, var(--ink-0) 55%, transparent);
+
+  background: var(--surface-0);
   color: var(--ink);
   font-family: var(--font-cover-body);
   min-height: 100vh;
+  min-height: 100dvh;
   position: relative;
+  overflow-x: clip;
 }
 
-/* Paper grain: an SVG turbulence wash at ~3% — texture, not noise */
-.cover-scope::before {
-  content: '';
+.cover-scope ::selection {
+  background: var(--accent);
+  color: var(--surface-0);
+}
+
+/* ---------------- Ambient orbs (fixed, GPU-safe) ---------------- */
+.cover-orbs {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  opacity: 0.035;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
-  z-index: 1;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.5;
+  will-change: transform;
+}
+
+.orb-warm {
+  width: 44rem;
+  height: 44rem;
+  top: -12rem;
+  right: -10rem;
+  background: radial-gradient(circle at 35% 35%, rgba(245, 184, 76, 0.22), transparent 62%);
+}
+
+.orb-cold {
+  width: 36rem;
+  height: 36rem;
+  bottom: -8rem;
+  left: -8rem;
+  background: radial-gradient(circle at 60% 60%, rgba(100, 140, 255, 0.14), transparent 60%);
 }
 
 .cover-scope > .container {
   position: relative;
-  z-index: 2;
-}
-
-.cover-scope ::selection {
-  background: var(--ink);
-  color: var(--paper);
+  z-index: 1;
 }
 
 /* ---------------- Masthead ---------------- */
 .cover-mast {
   padding: var(--sp-6) 0 var(--sp-5);
-  border-bottom: 1px solid var(--rule-strong);
+  border-bottom: 1px solid var(--rule);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-4);
+  align-items: baseline;
 }
 
 .cover-brand {
-  font-family: var(--font-cover-display);
-  font-optical-sizing: auto;
-  font-weight: 700;
-  font-size: clamp(1.1rem, 2vw, 1.35rem);
-  letter-spacing: -0.01em;
+  font-family: var(--font-brand-serif);
+  font-style: italic;
+  font-weight: 600;
+  font-size: clamp(1.2rem, 2vw, 1.4rem);
   color: var(--ink);
   text-decoration: none;
+  letter-spacing: 0.01em;
 }
 
-.cover-brand em {
-  font-style: italic;
-  font-weight: 400;
-}
+.cover-brand em { font-style: normal; color: var(--accent); }
 
 .cover-issue {
   font-family: var(--font-cover-body);
-  font-style: italic;
   color: var(--ink-soft);
-  font-size: 0.9rem;
-}
-/* ---------------- Computed stat plate ---------------- */
-.cover-stats {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr));
-  gap: var(--sp-6);
-  padding-block: var(--sp-6);
-  border-top: 1px solid var(--rule);
-}
-
-.cover-stat {
-  text-decoration: none;
-  color: inherit;
-  display: block;
-}
-
-.cover-stat .stat-figure {
-  font-family: var(--font-cover-display);
-  font-weight: 600;
-  font-size: clamp(2rem, 4.5vw, 3.4rem);
-  line-height: 1;
-  letter-spacing: -0.02em;
+  font-size: 0.875rem;
   font-variant-numeric: tabular-nums;
 }
 
-.cover-stat .stat-label {
-  display: block;
-  margin-top: 0.4rem;
-  font-style: italic;
+/* ---------------- Hero ---------------- */
+/* Hero rhythm: the initial viewport must hold kicker + headline + dek +
+   CTA at desktop, so the padding caps well under the old 12vh/9rem and
+   the optical weight shifts to the masthead rule above. */
+.cover-hero {
+  padding-block: clamp(var(--sp-6), 7vh, 6rem) clamp(var(--sp-7), 9vh, 6.5rem);
+}
+
+.cover-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.9rem;
   color: var(--ink-soft);
-  font-size: 0.95rem;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  padding: 0.4rem 1rem;
+  margin: 0 0 var(--sp-5);
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(8px);
 }
 
-.cover-stat:hover .stat-label {
-  color: var(--ink);
+.cover-kicker .dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 12px 2px color-mix(in srgb, var(--accent) 60%, transparent);
 }
 
-/* ---------------- Teases (front-page column) ---------------- */
-.cover-teases {
-  border-top: 1px solid var(--rule-strong);
-  padding-block: var(--sp-6) calc(var(--sp-6) + var(--sp-2)); /* optical: bottom breathes */
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  grid-template-areas:
-    "i ii"
-    "i iii";
-  gap: var(--sp-5) var(--sp-7);
-  align-items: start;
+/* Line-mask reveal spans (GSAP slides the inner span up once on mount).
+   No permanent will-change: the one-shot tween promotes/demotes its own
+   layer, and a standing hint would reserve one for the whole page life. */
+.reveal-line {
+  display: block;
+  overflow: hidden;
 }
-.cover-teases .cover-tease:nth-child(1) { grid-area: i; max-width: none; }
-.cover-teases .cover-tease:nth-child(2) { grid-area: ii; }
-.cover-teases .cover-teases:nth-child(3), .cover-teases .cover-tease:nth-child(3) { grid-area: iii; }
-@media (max-width: 880px) {
-  .cover-teases {
-    grid-template-columns: 1fr;
-    grid-template-areas: "i" "ii" "iii";
-    gap: var(--sp-5);
-  }
+.reveal-line > span {
+  display: block;
 }
 
-.cover-tease {
-  text-decoration: none;
-  color: inherit;
+.cover-title {
+  font-family: var(--font-cover-display);
+  font-weight: 600;
+  /* 6.5rem cap: keeps "Twenty fields," on one line inside the hero grid
+     column (the 7rem cap wrapped it to a 4-line title at 1440x900). */
+  font-size: clamp(2.9rem, 8vw, 6.5rem);
+  line-height: 0.99;
+  letter-spacing: -0.035em;
+  margin: 0;
+  max-width: 15ch;
+  text-wrap: balance;
 }
 
-.cover-tease .tease-no {
-  font-family: var(--font-cover-body);
-  font-style: italic;
-  color: var(--ink-faint);
-  font-size: 0.85rem;
+/* Same-family emphasis (approved identity: ONE editorial display system).
+   The old here was Fraunces italic amber, a mixed-family tell; emphasis
+   now rides Geist weight, color, and a slight size lift, no italics. */
+.cover-title .accent {
+  font-family: var(--font-cover-display);
+  font-style: normal;
+  font-weight: 750;
+  color: var(--accent);
+  font-size: 1.06em;
+  letter-spacing: -0.04em;
 }
 
-.cover-tease .tease-body {
-  margin: 0.5rem 0 0;
-  font-size: 1.1rem;
-  line-height: 1.45;
-  max-width: 34ch;
+.cover-dek {
+  margin: var(--sp-5) 0 0;
+  font-size: clamp(1.05rem, 1.9vw, 1.3rem);
+  line-height: 1.5;
+  color: var(--ink-soft);
+  max-width: 50ch;
   text-wrap: pretty;
 }
-.cover-teases .cover-tease:nth-child(1) .tease-body {
-  font-size: 1.5rem; /* the wide cell earns a bigger read */
-  max-width: 26ch;
-}
 
-.cover-tease .tease-body a {
-  color: var(--ink);
-  text-decoration-color: var(--rule-strong);
-  text-underline-offset: 3px;
-}
-
-.cover-tease .tease-foot {
-  margin-top: 0.6rem;
-  font-family: var(--font-cover-body);
-  font-style: italic;
-  font-size: 0.85rem;
-  color: var(--ink-faint);
-}
-
-/* ---------------- Live wire (marquee) ---------------- */
-.cover-wire {
-  border-top: 1px solid var(--rule-strong);
-  border-bottom: 1px solid var(--rule-strong);
-  overflow: hidden;
-  padding-block: var(--sp-4);
-}
-
-.cover-wire .wire-track {
-  display: flex;
-  width: max-content;
-}
-
-.wire-card {
+/* Hero side: the CTA island */
+.cover-enter {
+  margin-top: var(--sp-7);
   display: inline-flex;
-  align-items: baseline;
-  gap: 0.6rem;
-  padding-inline: 1.4rem;
-  text-decoration: none;
-  color: var(--ink);
-  white-space: nowrap;
+  align-items: center;
+  gap: 1rem;
 }
 
-.wire-card .w-rank {
-  font-family: var(--font-cover-body);
-  font-style: italic;
-  color: var(--ink-faint);
-  font-size: 0.85rem;
-}
-
-.wire-card .w-name {
-  font-family: var(--font-cover-display);
-  font-weight: 600;
-  font-size: 1.2rem;
-}
-
-.wire-card .w-score {
-  color: var(--ink-soft);
+.enter-title {
   font-size: 0.95rem;
+  color: var(--ink-faint);
   font-variant-numeric: tabular-nums;
 }
 
-.wire-card {
-  transition: background 0.25s ease;
-}
-
-.wire-card:hover {
-  background: rgba(23, 21, 18, 0.045);
-}
-
-.wire-card:hover .w-name {
-  font-style: italic;
-}
-
-/* Stat plates: ink-fill sweep on hover, matching the CTA */
-.cover-stat {
+/* The round entrance control */
+.enter-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.15rem;
+  height: 4.25rem;
+  padding: 0.35rem 0.4rem 0.35rem 1.6rem;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--surface-0);
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-cover-body);
+  font-size: 1.02rem;
+  font-weight: 500;
+  overflow: hidden;
   position: relative;
+  transition: transform 0.3s var(--ease-physical, cubic-bezier(0.32, 0.72, 0, 1));
 }
 
+.enter-cta:hover { transform: scale(1.03); }
+.enter-cta:active { transform: scale(0.97); }
+
+/* button-in-button: arrow island */
+.enter-cta .cta-orbit {
+  width: 3.35rem;
+  height: 3.35rem;
+  border-radius: 50%;
+  background: rgba(5, 5, 7, 0.88);
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.35s cubic-bezier(0.32, 0.72, 0, 1);
+}
+.enter-cta:hover .cta-orbit { transform: rotate(45deg); }
+
+/* Hero grid: title left, dek+CTA right */
+.cover-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  gap: clamp(var(--sp-6), 5vw, var(--sp-8));
+  align-items: end;
+}
+.cover-hero-side {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-5);
+  align-items: flex-start;
+  padding-bottom: 0.5rem;
+}
+@media (max-width: 880px) {
+  .cover-hero-grid { grid-template-columns: 1fr; align-items: start; }
+  .cover-hero-side { align-items: flex-start; }
+}
+
+/* ---------------- Glass plates ---------------- */
+.plate {
+  border-radius: var(--r-shell);
+  padding: 1.5px;
+  background: linear-gradient(155deg, rgba(255,255,255,0.09), rgba(255,255,255,0.02) 55%);
+  box-shadow: var(--shadow-float);
+}
+.plate-core {
+  border-radius: calc(var(--r-shell) - 1.5px);
+  background: linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.012)), rgba(10, 10, 14, 0.72);
+  backdrop-filter: blur(20px);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.08);
+  height: 100%;
+}
+
+/* ---------------- Stat plate (bento cell A) ---------------- */
+.cover-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--sp-5);
+  padding: var(--sp-6);
+}
+.cover-stat { text-decoration: none; color: inherit; display: block; }
+.cover-stat .stat-figure {
+  font-family: var(--font-brand-serif);
+  font-style: italic;
+  font-weight: 600;
+  font-size: clamp(2.1rem, 4vw, 3.2rem);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.cover-stat .stat-label {
+  display: block;
+  margin-top: 0.45rem;
+  color: var(--ink-soft);
+  font-size: 0.92rem;
+  text-wrap: balance;
+}
+.cover-stat { position: relative; }
 .cover-stat::after {
   content: '';
   position: absolute;
-  left: 0;
-  bottom: -1px;
-  height: 1px;
-  width: 100%;
-  background: var(--ink);
+  left: 0; bottom: -6px;
+  width: 100%; height: 1px;
+  background: var(--accent);
   transform: scaleX(0);
   transform-origin: left center;
-  transition: transform 0.35s cubic-bezier(0.65, 0, 0.35, 1);
+  transition: transform 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+}
+.cover-stat:hover::after { transform: scaleX(1); }
+
+/* ---------------- Teases (bento cells B) ---------------- */
+.cover-teases {
+  display: grid;
+  grid-template-areas: 'body';
+  gap: var(--sp-5);
+  padding: var(--sp-6);
+}
+.cover-tease { position: relative; padding-left: 1.1rem; }
+.cover-tease::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0.35em; bottom: 0.35em;
+  width: 2px;
+  background: var(--rule-strong);
+  border-radius: 2px;
+}
+.cover-teases .cover-tease:nth-child(1)::before { background: var(--accent); }
+.cover-tease .tease-no {
+  font-family: var(--font-cover-body);
+  color: var(--ink-faint);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  font-variant-numeric: tabular-nums;
+}
+.cover-tease .tease-body {
+  margin: 0.45rem 0 0;
+  font-size: 1.06rem;
+  line-height: 1.5;
+  color: var(--ink-1, var(--ink));
+  max-width: 40ch;
+  text-wrap: pretty;
+}
+.cover-tease .tease-body a { color: var(--ink); text-underline-offset: 3px; }
+.cover-tease .tease-foot {
+  margin-top: 0.55rem;
+  font-size: 0.8rem;
+  color: var(--ink-faint);
 }
 
-.cover-stat:hover::after {
-  transform: scaleX(1);
+/* ---------------- Hero bento: one row, three unequal cells ---------------- */
+.cover-bento {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr 1fr;
+  gap: var(--sp-5);
+  align-items: stretch;
+}
+@media (max-width: 1024px) {
+  .cover-bento { grid-template-columns: 1fr 1fr; }
+  .cover-bento-cell-b { grid-column: span 2; }
+}
+@media (max-width: 760px) {
+  .cover-bento { grid-template-columns: 1fr; }
+  .cover-bento-cell-b { grid-column: auto; }
 }
 
-.wire-card .w-stage {
-  font-style: italic;
-  font-size: 0.85rem;
+/* ---------------- Live wire ---------------- */
+.cover-wire {
+  margin-top: var(--sp-6);
+  border-block: 1px solid var(--rule);
+  overflow: hidden;
+  padding-block: var(--sp-4);
+  position: relative;
+  z-index: 1;
+}
+/* The track defect: .wire-track is ALSO defined in workbench.css with a
+   60s CSS marquee that beats the cover's GSAP 42s tween and kills the
+   hover pause. The cover track carries the owned .cover-wire-track class;
+   the two rules below (higher specificity + animation:none) neutralize
+   the workbench animation from the cover side only, leaving workbench.css
+   untouched, so THIS GSAP tween is the sole driver and mouseenter
+   pause / mouseleave play works again. The bare .wire-track class stays
+   on the element only as an audit-script shim. */
+.cover-wire .wire-track.cover-wire-track {
+  animation: none;
+  will-change: transform;
+}
+.cover-wire .wire-track.cover-wire-track * {
+  animation: none;
+}
+.wire-track { display: flex; width: max-content; }
+.cover-wire-track { display: flex; width: max-content; }
+.cover-wire .wire-card {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.65rem;
+  padding-inline: 1.5rem;
+  text-decoration: none;
+  color: var(--ink);
+  white-space: nowrap;
+  transition: opacity 0.25s;
+}
+.cover-wire .wire-card .w-rank {
+  color: var(--ink-faint);
+  font-size: 0.8rem;
+  font-variant-numeric: tabular-nums;
+}
+.cover-wire .wire-card .w-name {
+  font-family: var(--font-cover-display);
+  font-weight: 500;
+  font-size: 1.15rem;
+}
+.cover-wire .wire-card .w-stage {
+  font-size: 0.78rem;
   color: var(--ink-soft);
-  padding: 0.05rem 0.5rem;
   border: 1px solid var(--rule);
   border-radius: 999px;
+  padding: 0.05rem 0.55rem;
 }
+.cover-wire .wire-card .w-score { color: var(--ink-soft); font-variant-numeric: tabular-nums; font-size: 0.95rem; }
+.cover-wire .wire-card:hover .w-name { color: var(--accent); }
 
 /* ---------------- How to read ---------------- */
-.cover-read {
-  padding-block: var(--sp-6);
-  border-bottom: 1px solid var(--rule-strong);
-}
-
+.cover-read { padding-block: var(--sp-6) var(--sp-7); }
 .cover-read h2 {
   font-family: var(--font-cover-display);
-  font-weight: 600;
-  font-size: 1.4rem;
+  font-weight: 500;
+  font-size: 1.35rem;
   margin: 0 0 0.8rem;
+  text-wrap: balance;
 }
-
 .cover-read p {
-  font-size: 1.15rem;
-  line-height: 1.55;
+  font-size: 1.08rem;
+  line-height: 1.6;
   color: var(--ink-soft);
   max-width: 62ch;
+  text-wrap: pretty;
 }
-
-.cover-read p::first-letter {
-  font-family: var(--font-cover-display);
-  font-weight: 700;
-  float: left;
-  font-size: 3.2rem;
-  line-height: 0.85;
-  padding-right: 0.6rem;
-  padding-top: 0.2rem;
-  color: var(--ink);
-}
-
-.cover-read a {
-  color: var(--ink);
-}
+.cover-read a { color: var(--ink); text-underline-offset: 3px; }
 
 /* ---------------- Colophon ---------------- */
 .cover-colophon {
-  padding-block: var(--sp-5);
-  font-style: italic;
+  padding-block: var(--sp-5) var(--sp-6);
+  border-top: 1px solid var(--rule);
   color: var(--ink-faint);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   display: flex;
   flex-wrap: wrap;
   gap: var(--sp-4);
   justify-content: space-between;
 }
 
-/* ---------------- Curtain ---------------- */
-.curtain {
-  position: fixed;
-  inset: 0;
-  z-index: 100;
-  background: var(--ink);
-  transform-origin: top center;
-  pointer-events: none;
-}
-
-/* Reduced motion: wire loop stops via JS verdict, not CSS */
-
-/* Stillness escape link (colophon) */
 .cover-motion-link {
   background: none;
   border: none;
   padding: 0;
   font: inherit;
-  font-style: italic;
-  color: var(--ink);
+  color: var(--ink-soft);
   text-decoration: underline;
   text-underline-offset: 3px;
   cursor: pointer;
-  transition: opacity 0.25s cubic-bezier(0.32, 0.72, 0, 1);
+  transition: color 0.25s;
 }
-.cover-motion-link:hover {
-  opacity: 0.7;
+.cover-motion-link:hover { color: var(--ink); }
+
+/* ---------------- Spotlight border on the shader card ---------------- */
+.spotlight-wrap { position: relative; }
+.spotlight-border {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--r-shell);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.45s ease;
+  background: radial-gradient(
+    26rem circle at var(--mx, 50%) var(--my, 50%),
+    color-mix(in srgb, var(--accent) 55%, transparent),
+    transparent 45%
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  padding: 1.5px; /* ring thickness */
+  z-index: 3;
+}
+.spotlight-wrap:hover .spotlight-border { opacity: 1; }
+
+/* ---------------- Perf guardrails (vercel rules) ---------------- */
+@media (max-width: 760px) {
+  .orb { filter: blur(64px); opacity: 0.34; } /* cheaper paint on mobile GPUs */
 }
 
-/* Scroll-reveal targets; GSAP animates from. Kept visible by default so
-   no-JS and reduced-motion users see full content. */
-.cover-reveal {
-  min-height: 0;
+/* Cinema curtain (glass ink with amber wordmark) */
+.curtain-glass {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: radial-gradient(120% 120% at 50% 20%, #101018 0%, var(--surface-0) 55%);
+  transform-origin: top center;
+  pointer-events: all;
 }
 
-.card-headline-balance {
-  text-wrap: balance;
+/* --- CTASection integration inside the bento cell ---
+   The ui/ component owns its own plate chrome; inside the glass bento we
+   neutralize its shell so both don't stack, keeping its craft rules. */
+.cover-bento-cell-c section[aria-label] { padding: 0; }
+.cover-bento-cell-c .rounded-\[48px\],
+.cover-bento-cell-c [class*="min-h-[600px]"] {
+  border-radius: calc(var(--r-shell) - 1.5px);
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  min-height: 520px;
+}
+
+/* The shader ships mix-blend-multiply for a paper card; on OLED glass
+   multiply would crush the amber to black. Screen keeps the dither
+   luminous over the dark core, which is the Ethereal Glass intent. */
+.cover-bento-cell-c [class*="mix-blend-multiply"] {
+  mix-blend-mode: screen;
+  opacity: 0.62;
+}
+
+/* ---------------- Front-door film overlay ----------------
+   The explainer MP4 plays once on a fresh load, full-bleed above the
+   cover; click / Esc / Skip dismisses, onEnded dismisses. A
+   sessionStorage flag keeps route swaps back from replaying it. */
+.cover-film {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  background: var(--surface-0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: all;
+  cursor: pointer;
+}
+
+.cover-film video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* The film is an always-dark world like the cover; no letterbox glow */
+  background: var(--surface-0);
+}
+
+.film-skip {
+  position: absolute;
+  right: 40px;
+  bottom: 36px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-cover-body, 'Geist Variable', Inter, sans-serif);
+  font-size: 1rem;
+  color: var(--ink-faint, #7c818c);
+  background: rgba(236, 238, 241, 0.06);
+  border: 1px solid rgba(236, 238, 241, 0.16);
+  border-radius: 999px;
+  padding: 10px 22px;
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.film-skip:hover {
+  color: var(--ink, #eceef1);
+  border-color: rgba(236, 238, 241, 0.36);
+}
+
+/* Sound pill: shown only when autoplay started muted (browser policy);
+   one tap returns the narration. */
+.film-sound {
+  position: absolute;
+  top: 36px;
+  right: 40px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-cover-body, 'Geist Variable', Inter, sans-serif);
+  font-size: 1rem;
+  color: var(--ink, #eceef1);
+  background: rgba(245, 184, 76, 0.14);
+  border: 1px solid rgba(245, 184, 76, 0.4);
+  border-radius: 999px;
+  padding: 10px 22px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.film-sound:hover {
+  background: rgba(245, 184, 76, 0.26);
 }

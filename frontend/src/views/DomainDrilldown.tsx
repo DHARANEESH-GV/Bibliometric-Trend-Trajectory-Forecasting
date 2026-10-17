@@ -5,7 +5,7 @@
  */
 import { useMemo } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import { loadDomainSnapshot, loadTrajectories } from '../lib/snapshots'
+import { loadDomainSnapshot, loadLeaderboard } from '../lib/snapshots'
 import { useQuery } from '../lib/useQuery'
 import { useTokens } from '../lib/useTokens'
 import { useChart, echarts, axes, baseOption, tooltip } from '../charts/echarts'
@@ -13,9 +13,14 @@ import { fmtInt, fmtModel, fmtScore, fmtDelta } from '../lib/format'
 import { StagePill } from '../components/StagePill'
 import { Metric } from '../components/Metric'
 import { ScoreBar } from '../components/ScoreBar'
+import { ScorePetal } from '../components/ScorePetal'
+import { RevealShell } from '../components/RevealShell'
 import { ShimmerAxes } from '../components/ShimmerAxes'
 import { CaveatBanner } from '../components/CaveatBanner'
+import { ViewHeader } from '../components/ViewHeader'
+import { useSpotlight, SpotlightRing } from '../components/SpotlightWrap'
 import type { DomainSnapshot } from '../lib/types'
+import { STAGE_TOKEN } from '../lib/types'
 
 export function DomainDrilldownView() {
   const { slug } = useParams<{ slug: string }>()
@@ -23,8 +28,19 @@ export function DomainDrilldownView() {
     () => (slug ? loadDomainSnapshot(slug) : Promise.reject(new Error('No domain requested'))),
     [slug],
   )
-  const traj = useQuery(loadTrajectories, [])
+  const leaderboard = useQuery(loadLeaderboard, [])
   const tokens = useTokens()
+  const metricSpot = useSpotlight<HTMLDivElement>()
+
+  // The real per-input score split and the run rank live on the leaderboard
+  // file, not the domain snapshot. Look the row up by slug so the
+  // decomposition below is honest instead of approximated.
+  const lbEntry = useMemo(
+    () => leaderboard.data?.leaderboard.find((r) => r.domain === slug) ?? null,
+    [leaderboard.data, slug],
+  )
+  const rankOf = lbEntry ? lbEntry.rank : null
+  const totalDomains = leaderboard.data?.leaderboard.length ?? null
 
   const years = useMemo<number[]>(
     () => (data ? Object.keys(data.annual).map(Number).sort((a, b) => a - b) : []),
@@ -84,7 +100,9 @@ export function DomainDrilldownView() {
           tooltip: { show: false },
           silent: true,
         },
-        // Band fill = (upper - lower) area rendered translucent
+        // Band fill = (upper - lower) area rendered as an uncertainty fan:
+        // gradient cone (dense at the anchor, dissolving at the horizon)
+        // plus a dashed outer edge on the upper bound.
         {
           type: 'line' as const,
           data: intervals.map((iv, i) =>
@@ -95,7 +113,20 @@ export function DomainDrilldownView() {
           stack: 'band',
           lineStyle: { opacity: 0 },
           symbol: 'none',
-          areaStyle: { color: t.forecastBand },
+          areaStyle: {
+            color: {
+              type: 'linear' as const,
+              x: 0,
+              y: 0,
+              x2: 1,
+              y2: 0,
+              colorStops: [
+                { offset: 0, color: t.forecastBandStroke },
+                { offset: 0.35, color: t.forecastBand },
+                { offset: 1, color: 'transparent' },
+              ],
+            },
+          },
           tooltip: { show: false },
           silent: true,
           // Inline label at the band start (§8)
@@ -111,6 +142,21 @@ export function DomainDrilldownView() {
             },
             data: [{ xAxis: String(lastYear) }],
           },
+        },
+        // Fan outer edge: dashed stroke riding the upper bound — the
+        // backtest-error horizon the cone dissolves toward.
+        {
+          type: 'line' as const,
+          data: upperData,
+          lineStyle: {
+            width: 1,
+            color: t.forecastBandStroke,
+            type: 'dashed' as const,
+            opacity: 0.7,
+          },
+          symbol: 'none',
+          tooltip: { show: false },
+          silent: true,
         },
         {
           type: 'line' as const,
@@ -162,144 +208,146 @@ export function DomainDrilldownView() {
 
   if (loading || !data) {
     return (
-      <div style={{ padding: 'var(--sp-5) 0' }}>
+      <div className="domain-view">
         <ShimmerAxes xLabels={['2000', '2025']} height={380} label="Loading domain" />
       </div>
     )
   }
 
-  const rankRow = traj.data?.domains.find((d) => d.domain === slug)
-  void rankRow
-
   return (
-    <article style={{ padding: 'var(--sp-5) 0' }}>
-      <header
-        style={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          alignItems: 'baseline',
-          gap: 'var(--sp-4)',
-          justifyContent: 'space-between',
-          marginBottom: 'var(--sp-4)',
-        }}
-      >
-        <div>
-          <p style={{ fontSize: 'var(--text-xs)', color: 'var(--ink-3)' }}>
+    <RevealShell>
+      <article className="domain-view">
+      <ViewHeader
+        eyebrow={
+          <>
             <Link to="/">Leaderboard</Link> / domain
-          </p>
-          <h1 style={{ fontSize: 'var(--text-2xl)', display: 'flex', alignItems: 'center', gap: 'var(--sp-4)' }}>
+          </>
+        }
+        title={
+          <>
             {data.display_name}
+            <span className="serif-accent" aria-hidden>
+              {' '}
+              ·
+            </span>
             <StagePill label={data.label} />
-          </h1>
-        </div>
-      </header>
+          </>
+        }
+        lead={
+          rankOf != null && totalDomains != null ? (
+            <>
+              Ranks <span className="num">#{rankOf}</span> of{' '}
+              <span className="num">{totalDomains}</span> domains this run.
+            </>
+          ) : undefined
+        }
+      />
 
       {data.caveat ? (
-        <div style={{ marginBottom: 'var(--sp-4)' }}>
+        <div className="domain-caveat">
           <CaveatBanner>{data.caveat}</CaveatBanner>
         </div>
       ) : null}
 
       <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))',
-          gap: 'var(--sp-5)',
-          margin: 'var(--sp-5) 0',
-        }}
+        ref={metricSpot.ref}
+        onMouseMove={metricSpot.onMouseMove}
+        className="panel spotlight-host domain-metrics"
       >
-        <Metric label={`Works ${lastYear ?? ''}`} value={lastWorks != null ? fmtInt(lastWorks) : 'No data'} />
-        {yoy != null ? (
-          <Metric label="Latest YoY" value={fmtDelta(yoy)} />
-        ) : null}
-        <Metric label="Emergence score" value={fmtScore(data.score)} />
-        <Metric label="Peak year" value={peakYear != null ? fmtInt(peakYear) : 'No data'} detail={peakIdx >= 0 ? `${fmtInt(works[peakIdx] ?? 0)} works` : undefined} />
-        <Metric label="Forecast model" value={fmtModel(data.model)} detail={`horizon ${horizonYears[0]}–${horizonYears[horizonYears.length - 1]}`} />
+        <SpotlightRing />
+        <div className="panel-core">
+          <Metric rule label={`Works ${lastYear ?? ''}`} value={lastWorks != null ? fmtInt(lastWorks) : 'No data'} />
+          {yoy != null ? (
+            <Metric rule label="Latest YoY" value={fmtDelta(yoy)} />
+          ) : null}
+          <Metric rule tick={`var(${STAGE_TOKEN[data.label] ?? '--stage-watch'})`} label="Emergence score" value={fmtScore(data.score)} />
+          <Metric rule label="Peak year" value={peakYear != null ? fmtInt(peakYear) : 'No data'} detail={peakIdx >= 0 ? `${fmtInt(works[peakIdx] ?? 0)} works` : undefined} />
+          <Metric rule label="Forecast model" value={fmtModel(data.model)} detail={`horizon ${horizonYears[0]}-${horizonYears[horizonYears.length - 1]}`} />
+        </div>
       </div>
 
-      <div ref={ref as unknown as React.Ref<HTMLDivElement>} style={{ height: 420 }} />
+      <div ref={ref as unknown as React.Ref<HTMLDivElement>} className="domain-chart" />
 
-      <p style={{ fontSize: 'var(--text-xs)', color: 'var(--ink-3)', marginTop: 'var(--sp-2)' }}>
+      <p className="domain-chart-note">
         Forecast extended with {fmtModel(data.model)}; shaded band is the 68%
-        prediction interval. Trained on {years[0]}–{lastYear} annual counts;
+        prediction interval. Trained on {years[0]}-{lastYear} annual counts;
         backtest gate results are cited in the footer of every page.
       </p>
 
+      {horizonYears.length > 0 ? (
+        <div className="forecast-table" role="table" aria-label="Forecast values with 68% interval">
+          <div className="forecast-row forecast-row--head" role="row">
+            <span role="columnheader">Year</span>
+            <span role="columnheader" className="num">Forecast</span>
+            <span role="columnheader" className="num">68% interval</span>
+          </div>
+          {horizonYears.map((y, i) => {
+            const iv = data.interval_68pct[String(y)]
+            return (
+              <div className="forecast-row" role="row" key={y}>
+                <span className="num" role="cell">{y}</span>
+                <span className="num" role="cell">{fmtInt(Math.round(forecast[i] ?? 0))}</span>
+                <span className="num" role="cell" style={{ color: 'var(--ink-2)' }}>
+                  {iv ? `${fmtInt(Math.round(iv[0]))} to ${fmtInt(Math.round(iv[1]))}` : 'n/a'}
+                </span>
+              </div>
+            )
+          })}
+        </div>
+      ) : null}
+
       {data.provenance_note ? (
-        <div style={{ marginTop: 'var(--sp-5)' }}>
+        <div className="domain-provenance">
           <CaveatBanner kind="provenance">Provenance: {data.provenance_note}</CaveatBanner>
         </div>
       ) : null}
 
-      <section style={{ marginTop: 'var(--sp-6)' }}>
-        <h2 style={{ fontSize: 'var(--text-xl)' }}>Score decomposition</h2>
-        <p style={{ color: 'var(--ink-2)', fontSize: 'var(--text-sm)', margin: 'var(--sp-2) 0 var(--sp-4)' }}>
+      <section className="domain-section">
+        <h2>Score decomposition</h2>
+        <p className="domain-section-intro">
           The emergence score blends five normalized inputs. It is a tunable
           prior, not a derived constant; the rank-stability analysis in the
           final report shows how the leaderboard moves when weights shift.
         </p>
         {/* Domain snapshots carry the score but not the input split; the
-            leaderboard file does. Show what exists — no fabricated inputs. */}
-        {traj.data ? (
-          <div style={{ maxWidth: 560 }}>
-            <ScoreBar inputs={{
-              growth_recent: Math.max(0, yoy ?? 0),
-              acceleration: Math.max(0, yoy ?? 0) > 0.3 ? 1 : Math.max(0, yoy ?? 0) / 0.3,
-              keyword_burst: 0,
-              volume_scaled: Math.min(1, (lastWorks ?? 0) / 20000),
-              momentum_intent: 0,
-            }} />
-            <p style={{ fontSize: 'var(--text-xs)', color: 'var(--ink-3)', marginTop: 'var(--sp-2)' }}>
-              Full per-input splits live on the leaderboard view; this summary
-              shows the latest-year growth and volume context only.
-            </p>
+            leaderboard file carries the real score_inputs. Render those,
+            never an approximation. */}
+        {lbEntry ? (
+          <div className="domain-petal-wrap">
+            <ScoreBar inputs={lbEntry.score_inputs} />
+            <ScorePetal inputs={lbEntry.score_inputs} />
           </div>
-        ) : (
+        ) : leaderboard.loading ? (
           <ShimmerAxes height={80} label="Loading score decomposition" />
+        ) : (
+          <p className="domain-unavailable">
+            This domain is not present in the current run's leaderboard, so the
+            per-input split is unavailable for it.
+          </p>
         )}
       </section>
 
-      <section style={{ marginTop: 'var(--sp-6)' }}>
-        <h2 style={{ fontSize: 'var(--text-xl)' }}>Top keywords</h2>
+      <section className="domain-section">
+        <h2>Top keywords</h2>
         {data.top_keywords.length === 0 ? (
-          <p style={{ color: 'var(--ink-2)', fontSize: 'var(--text-sm)', marginTop: 'var(--sp-3)' }}>
+          <p className="domain-empty">
             No keyword ranking survived quality gates for this domain in this
             snapshot. That is an absence of validated signal, not an empty
             field of study.
           </p>
         ) : (
-          <ul
-            style={{
-              display: 'flex',
-              flexWrap: 'wrap',
-              gap: 'var(--sp-2)',
-              listStyle: 'none',
-              padding: 0,
-              marginTop: 'var(--sp-3)',
-            }}
-          >
+          <ul className="domain-keywords">
             {data.top_keywords.map((k, i) => (
-              <li
-                key={k.name}
-                style={{
-                  border: 'var(--hairline)',
-                  borderRadius: 2,
-                  padding: '3px 10px',
-                  fontSize: 'var(--text-sm)',
-                }}
-              >
-                <span style={{ color: 'var(--ink-3)', marginRight: 'var(--sp-2)' }}>{i + 1}</span>
+              <li key={k.name} className="domain-keyword">
+                <span className="domain-keyword-rank">{i + 1}</span>
                 <Link
                   to={slug ? `/bursts?domain=${slug}` : '/bursts'}
                   aria-label={`See ${k.name} in the burst feed`}
-                  style={{ color: 'var(--ink-1)', textDecoration: 'none' }}
+                  className="domain-keyword-link"
                 >
                   {k.name}
                 </Link>
-                <span
-                  className="num"
-                  style={{ color: 'var(--ink-3)', marginLeft: 'var(--sp-2)', fontSize: 'var(--text-xs)' }}
-                >
+                <span className="num domain-keyword-count">
                   {fmtInt(k.total)}
                   {k.bursts.length > 0 ? `, ${k.bursts.length} burst${k.bursts.length === 1 ? '' : 's'}` : ''}
                 </span>
@@ -308,6 +356,7 @@ export function DomainDrilldownView() {
           </ul>
         )}
       </section>
-    </article>
+      </article>
+    </RevealShell>
   )
 }
