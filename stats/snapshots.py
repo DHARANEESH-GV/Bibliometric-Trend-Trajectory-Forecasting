@@ -26,21 +26,26 @@ FORECASTS = REPO / "data" / "forecasts" / "forecasts.json"
 BACKTEST = REPO / "data" / "forecasts" / "backtest.json"
 KW_BURSTS = REPO / "data" / "bursts" / "keyword_bursts.json"
 SAMPLE_STATS = REPO / "raw" / "samples" / "tier_c_stats.json"
+PATENTS = REPO / "data" / "patents" / "patent_series.json"
 OUT = REPO / "snapshots"
 SPARK_YEARS = (2020, 2025)
 
 
 def _meta(run_id: str) -> dict:
+    lineage = {
+        "trajectories": "data/tier_a + panel.json (annual exact, quarterly derived)",
+        "scores": "stats/emergence.py (weights in data/scores/emergence.json)",
+        "forecasts": "stats/forecasts.py (gated; see backtest.json gate)",
+        "bursts": "stats/bursts.py (Kleinberg 2-state)",
+        "samples": "raw/samples (2k recent + 2k top-cited per domain)",
+    }
+    if PATENTS.exists():
+        lineage["patents"] = ("BigQuery patents-public-data (CC BY 4.0) via "
+                              "sql/patent_counts.sql → data/patents/patent_series.json")
     return {
         "generated_utc": datetime.now(timezone.utc).isoformat(),
         "run_id": run_id,
-        "lineage": {
-            "trajectories": "data/tier_a + panel.json (annual exact, quarterly derived)",
-            "scores": "stats/emergence.py (weights in data/scores/emergence.json)",
-            "forecasts": "stats/forecasts.py (gated; see backtest.json gate)",
-            "bursts": "stats/bursts.py (Kleinberg 2-state)",
-            "samples": "raw/samples (2k recent + 2k top-cited per domain)",
-        },
+        "lineage": lineage,
     }
 
 
@@ -79,21 +84,29 @@ def gen_leaderboard(panel, scores, forecasts) -> list[dict]:
     return lb
 
 
-def gen_trajectories(panel, forecasts) -> list[dict]:
+def gen_trajectories(panel, forecasts, patents=None) -> list[dict]:
     out = []
     for slug in sorted(panel):
         annual = {int(y): c for y, c in panel[slug]["annual"].items()}
         f = forecasts["forecasts"][slug]
-        series = [{"year": y, "works": annual[y], "forecast": None}
+        pat = (patents or {}).get("domains", {}).get(slug)
+        pat_annual = {int(y): c for y, c in pat["annual"].items()} if pat else {}
+        series = [{"year": y, "works": annual[y], "patents": pat_annual.get(y),
+                   "forecast": None}
                   for y in sorted(annual)]
         for year, value in zip(f["horizon"], f["forecast"]):
             iv = f["interval_68pct"][str(year)]
-            series.append({"year": year, "works": None, "forecast": value,
+            series.append({"year": year, "works": None, "patents": None,
+                           "forecast": value,
                            "lower": iv[0], "upper": iv[1],
                            "model": f["model"]})
-        out.append({"domain": slug, "display_name": panel[slug]["display_name"],
-                    "series": series, "train_through": f["train_through"],
-                    "model_gate": f["gate_failed"]})
+        row = {"domain": slug, "display_name": panel[slug]["display_name"],
+               "series": series, "train_through": f["train_through"],
+               "model_gate": f["gate_failed"]}
+        if pat:
+            row["patents_total"] = pat["total"]
+            row["patents_caveat"] = pat["metadata"]["caveat"]
+        out.append(row)
     return out
 
 
@@ -125,8 +138,10 @@ def gen_matrix(panel, scores) -> dict:
     return {"years": years, "domains": domains, "cells": cells, "tail": tail}
 
 
-def gen_domain_files(panel, scores, forecasts, kw_bursts, sample_stats) -> dict:
+def gen_domain_files(panel, scores, forecasts, kw_bursts, sample_stats,
+                     patents=None) -> dict:
     by_slug = {r["domain_slug"]: r for r in scores["leaderboard"]}
+    pat_domains = (patents or {}).get("domains", {})
     out = {}
     for slug in sorted(panel):
         f = forecasts["forecasts"][slug]
@@ -141,6 +156,7 @@ def gen_domain_files(panel, scores, forecasts, kw_bursts, sample_stats) -> dict:
             note = "full-corpus domain (every work walked, 814 pages)"
         else:
             note = "sampled domain: drill-down lists from recent+top-cited 4k sample"
+        pat = pat_domains.get(slug)
         out[slug] = {
             "display_name": panel[slug]["display_name"],
             "annual": panel[slug]["annual"],
@@ -152,6 +168,11 @@ def gen_domain_files(panel, scores, forecasts, kw_bursts, sample_stats) -> dict:
             "sample_stats": sample_stats.get(slug),
             "top_keywords": top_keywords,
             "caveat": by_slug[slug].get("caveat"),
+            "patents": ({
+                "annual": pat["annual"], "total": pat["total"],
+                "peak_year": pat["peak_year"],
+                "caveat": pat["metadata"]["caveat"],
+            } if pat else None),
         }
     return out
 
@@ -164,6 +185,10 @@ def main(run_id: str | None = None) -> int:
     backtest = json.loads(BACKTEST.read_text())
     kw_bursts = json.loads(KW_BURSTS.read_text())
     sample_stats = json.loads(SAMPLE_STATS.read_text()) if SAMPLE_STATS.exists() else {}
+    patents = json.loads(PATENTS.read_text()) if PATENTS.exists() else None
+    if patents is None:
+        print("[snapshots] patent series absent — snapshots carry papers only "
+              "(run the BigQuery query, see scripts/gen_patent_query.py)")
 
     dest = OUT / run_id
     dest.mkdir(parents=True, exist_ok=True)
@@ -171,7 +196,7 @@ def main(run_id: str | None = None) -> int:
         {"_meta": _meta(run_id), "gate": backtest["gate"], "leaderboard":
          gen_leaderboard(panel, scores, forecasts)}, indent=1))
     (dest / "trajectories.json").write_text(json.dumps(
-        {"_meta": _meta(run_id), "domains": gen_trajectories(panel, forecasts)}, indent=1))
+        {"_meta": _meta(run_id), "domains": gen_trajectories(panel, forecasts, patents)}, indent=1))
     (dest / "bursts.json").write_text(json.dumps(
         {"_meta": _meta(run_id), "feed": gen_burst_feed(kw_bursts, panel)}, indent=1))
     (dest / "matrix.json").write_text(json.dumps(
@@ -179,7 +204,7 @@ def main(run_id: str | None = None) -> int:
     domain_dir = dest / "domains"
     domain_dir.mkdir(exist_ok=True)
     for slug, doc in gen_domain_files(panel, scores, forecasts, kw_bursts,
-                                      sample_stats).items():
+                                      sample_stats, patents).items():
         (domain_dir / f"{slug}.json").write_text(json.dumps(
             {"_meta": _meta(run_id), **doc}, indent=1))
     n = len(list(dest.rglob("*.json")))

@@ -47,6 +47,10 @@ export function DomainDrilldownView() {
     [data],
   )
   const works = years.map((y) => data?.annual[String(y)] ?? 0)
+  const patents = years.map((y) => data?.patents?.annual[String(y)] ?? null)
+  const hasPatents = data?.patents != null
+  const patentsTotal = data?.patents?.total ?? 0
+  const patentsPeak = data?.patents?.peak_year
   const horizonYears = data?.horizon ?? []
   const forecast = data?.forecast ?? []
   const intervals = horizonYears.map((y) => data?.interval_68pct[String(y)] ?? null)
@@ -80,10 +84,29 @@ export function DomainDrilldownView() {
       lastWorks ?? null,
       ...forecast,
     ]
+    // Patent grants overlay (Phase 3.5): a second, thinner line on the
+    // same year axis. Scales differ by orders of magnitude, so patents
+    // render on their own hidden y-axis (proportional, not shared).
+    const patentsLine = hasPatents ? patents : []
 
     return {
       ...baseOption(t),
       ...axes(t, { data: xLabels, boundaryGap: false }, {}),
+      ...(hasPatents
+        ? {
+            yAxis: [
+              axes(t, { data: xLabels, boundaryGap: false }, {}).yAxis,
+              {
+                type: 'value' as const,
+                min: 0,
+                axisLine: { show: false },
+                axisTick: { show: false },
+                axisLabel: { show: false },
+                splitLine: { show: false },
+              },
+            ],
+          }
+        : {}),
       tooltip: {
         ...tooltip(t),
         axisPointer: { type: 'cross' as const, label: { backgroundColor: t.surface1 } },
@@ -191,9 +214,23 @@ export function DomainDrilldownView() {
           showSymbol: true,
           symbolSize: 4,
         },
+        ...(hasPatents
+          ? [
+              {
+                type: 'line' as const,
+                name: 'Patent grants',
+                data: patentsLine,
+                yAxisIndex: 1,
+                lineStyle: { width: 1.25, color: t.cat3, opacity: 0.9 },
+                itemStyle: { color: t.cat3 },
+                showSymbol: false,
+                emphasis: { focus: 'series' as const },
+              },
+            ]
+          : []),
       ],
     } satisfies echarts.EChartsCoreOption
-  }, tokens.ink0, [data, works, forecast, intervals])
+  }, tokens.ink0, [data, works, forecast, intervals, hasPatents, patents])
 
   if (error) {
     return (
@@ -262,6 +299,14 @@ export function DomainDrilldownView() {
           ) : null}
           <Metric rule tick={`var(${STAGE_TOKEN[data.label] ?? '--stage-watch'})`} label="Emergence score" value={fmtScore(data.score)} />
           <Metric rule label="Peak year" value={peakYear != null ? fmtInt(peakYear) : 'No data'} detail={peakIdx >= 0 ? `${fmtInt(works[peakIdx] ?? 0)} works` : undefined} />
+          {hasPatents ? (
+            <Metric
+              rule
+              label="Patent grants"
+              value={fmtInt(patentsTotal)}
+              detail={patentsPeak != null ? `peak ${fmtInt(patentsPeak)}` : undefined}
+            />
+          ) : null}
           <Metric rule label="Forecast model" value={fmtModel(data.model)} detail={`horizon ${horizonYears[0]}-${horizonYears[horizonYears.length - 1]}`} />
         </div>
       </div>
@@ -272,7 +317,16 @@ export function DomainDrilldownView() {
         Forecast extended with {fmtModel(data.model)}; shaded band is the 68%
         prediction interval. Trained on {years[0]}-{lastYear} annual counts;
         backtest gate results are cited in the footer of every page.
+        {hasPatents
+          ? ' The second line is CPC-matched US patent grants by grant year (right axis, own scale).'
+          : ''}
       </p>
+
+      {hasPatents && data?.patents?.caveat ? (
+        <div className="domain-caveat">
+          <CaveatBanner kind="provenance">Patent series: {data.patents.caveat}</CaveatBanner>
+        </div>
+      ) : null}
 
       {horizonYears.length > 0 ? (
         <div className="forecast-table" role="table" aria-label="Forecast values with 68% interval">

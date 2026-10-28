@@ -64,6 +64,10 @@ export interface TrajectoryPoint {
   /** Annual year 2000–2025 actuals; 2026–2028 forecast tail. */
   year: number
   works: number | null
+  /** CPC-matched US patent grants for this year. Present only when the
+   *  run carries a patent series (BigQuery workaround, Phase 3.5); null
+   *  on forecast-tail points and when no patent data exists. */
+  patents?: number | null
   /** Set only on forecast horizon years (e.g. 2026–2028). */
   forecast: number | null
   /** 68% interval bounds — present on every forecast point on disk. */
@@ -77,6 +81,9 @@ export interface TrajectoryDomain {
   domain: string
   display_name: string
   series: TrajectoryPoint[]
+  /** Present only when the run carries a patent series. */
+  patents_total?: number
+  patents_caveat?: string
 }
 
 export interface TrajectoriesFile {
@@ -133,6 +140,14 @@ export interface DomainSnapshot {
    *  May be empty ([] for quantum_computing) — a real empty state. */
   top_keywords: TopKeyword[]
   caveat: string | null
+  /** CPC-matched US patent grants (Phase 3.5 BigQuery workaround).
+   *  null when the run carries no patent series. */
+  patents: {
+    annual: Record<string, number>
+    total: number
+    peak_year: number | null
+    caveat: string
+  } | null
 }
 
 /** Keyword ranking row as persisted by the aggregate stage. */

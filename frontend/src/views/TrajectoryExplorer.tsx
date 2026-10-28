@@ -48,6 +48,9 @@ export function TrajectoryExplorerView() {
   // exact numbers, for readers who want them rather than the curve.
   // Declared with the other hooks, before any early return.
   const [tableOpen, setTableOpen] = useState(false)
+  // Patents column appears only when the run carries a patent series.
+  const anyPatents = (data?.domains ?? []).some((d) =>
+    d.series.some((p) => p.patents != null))
 
   const domains = data?.domains ?? []
   const selectedRows = useMemo(() => {
@@ -320,6 +323,7 @@ export function TrajectoryExplorerView() {
             <span role="columnheader">Domain</span>
             <span role="columnheader">Year</span>
             <span role="columnheader" className="num">Works</span>
+            {anyPatents ? <span role="columnheader" className="num">Patents</span> : null}
             <span role="columnheader" className="num">Forecast</span>
             <span role="columnheader" className="num">68% interval</span>
           </div>
@@ -331,6 +335,9 @@ export function TrajectoryExplorerView() {
                   <span role="cell" style={{ color: 'var(--ink-2)' }}>{row.display_name}</span>
                   <span className="num" role="cell">{pt.year}</span>
                   <span className="num" role="cell">{pt.works != null ? fmtInt(pt.works) : ''}</span>
+                  {anyPatents ? (
+                    <span className="num" role="cell">{pt.patents != null ? fmtInt(pt.patents) : ''}</span>
+                  ) : null}
                   <span className="num" role="cell">{pt.forecast != null ? fmtInt(pt.forecast) : ''}</span>
                   <span className="num" role="cell" style={{ color: 'var(--ink-2)' }}>
                     {pt.lower != null && pt.upper != null ? `${fmtInt(pt.lower)} to ${fmtInt(pt.upper)}` : ''}

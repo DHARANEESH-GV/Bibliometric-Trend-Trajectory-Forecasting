@@ -78,8 +78,10 @@ export function AboutView() {
           </li>
           <li>
             Counts are annual, from OpenAlex works filtered by deterministic
-            topic-ID sets, not free-text search. Patent series arrive with
-            Phase 3.5.
+            topic-ID sets, not free-text search. Patent grant counts come
+            from USPTO data via the Google Patents Public Data mirror on
+            BigQuery, matched by CPC classification; the concordance is
+            approximate and every patent figure carries that caveat.
           </li>
           <li>
             Where a domain's coverage is thin or its series is entangled
@@ -93,11 +95,15 @@ export function AboutView() {
         <h2 style={{ fontSize: 'var(--text-xl)' }}>Sources and method</h2>
         <p style={{ marginTop: 'var(--sp-3)', color: 'var(--ink-1)' }}>
           Papers via the OpenAlex API (topic-ID filtered, polite pool).
-          Trajectories aggregate works per year, 2000-2025. Burst strength
-          comes from in-house Viterbi decoding of a 2-state automaton.
-          Forecasts use Holt-Winters damped trend with 68% prediction
-          intervals from residual variance. The master plan records every
-          locked decision and its rationale.
+          Trajectories aggregate works per year, 2000-2025. Patents are US
+          grants by grant year, counted in the Google BigQuery sandbox
+          against the CPC classes configured per domain. The query ships
+          in the repository, so the counts are reproducible without
+          downloading any bulk data. Burst strength comes from in-house
+          Viterbi decoding of a 2-state automaton. Forecasts use
+          Holt-Winters damped trend with 68% prediction intervals from
+          residual variance. The master plan records every locked decision
+          and its rationale.
         </p>
       </section>
 

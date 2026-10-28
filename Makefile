@@ -9,12 +9,14 @@
 PY := .venv/bin/python
 DOMAIN ?= quantum_computing
 
-.PHONY: help venv fetch normalize aggregate trajectories bursts forecasts emergence stats snapshots samples validate-domains frontend test clean
+.PHONY: help venv fetch normalize aggregate trajectories bursts forecasts emergence patents stats snapshots samples validate-domains frontend test clean
 
 help:
 	@echo "make venv                     - create venv + install requirements"
 	@echo "make domain DOMAIN=<slug>     - fetch+normalize+aggregate one domain"
 	@echo "make stats                    - rebuild all data products (panel→scores)"
+	@echo "make patents                  - regenerate BigQuery SQL + instructions"
+	@echo "make patent-series            - build patent series (needs data/patents/patent_counts.csv)"
 	@echo "make snapshots                - build dashboard snapshot JSON"
 	@echo "make samples                  - tier-C drill-down samples (API-metered)"
 	@echo "make validate-domains         - re-run domain validation (rate-limit aware)"
@@ -49,7 +51,19 @@ forecasts:
 emergence:
 	$(PY) stats/emergence.py
 
-stats: trajectories bursts forecasts emergence
+patents:
+	$(PY) scripts/gen_patent_query.py
+	@echo "── human step ──────────────────────────────────────────────"
+	@echo "1. Open https://console.cloud.google.com/bigquery (sandbox,"
+	@echo "   free, no credit card — sign in with any Google account)."
+	@echo "2. Paste sql/patent_counts.sql, run it, download CSV."
+	@echo "3. Save as data/patents/patent_counts.csv, then: make patent-series"
+	@echo "────────────────────────────────────────────────────────────"
+
+patent-series:
+	$(PY) stats/patents.py
+
+stats: trajectories bursts forecasts emergence patents
 
 samples:
 	$(PY) scripts/tier_c_samples.py

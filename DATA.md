@@ -19,7 +19,7 @@ For reviewers, auditors, or anyone handed this repository who needs to know
 | What is committed to git? | `data/` (9 files) and `snapshots/` (24 files). `raw/` and `staged/` are **git-ignored** (large, regenerable). |
 | How do I reproduce? | `make fetch && make normalize` then the `stats/` stages, or `make run` for all 20 domains. See §7. |
 | Is it deployed to AWS? | No. Nothing has been deployed; everything runs locally. S3 layout below is the *target* mapping. |
-| What are the known limitations? | §8 — sampled vs full-corpus domains, quarterly interpolation, snapshot citation proxy, no patents yet. |
+| What are the known limitations? | §8 — sampled vs full-corpus domains, quarterly interpolation, snapshot citation proxy, approximate CPC↔domain patent concordance. |
 
 Two facts a reviewer should absorb before trusting any number:
 
@@ -126,7 +126,9 @@ shape matches `raw/openalex/…`.
 ## 3. Staged layer (`staged/`) — Parquet tables
 
 Seven tables are specified (`PROJECT_MASTER_PLAN.md` §Phase 2). Six exist;
-`patents` is Phase 3.5 (not started — no API key).
+`patents` does not — patent counts are computed in the BigQuery sandbox
+instead (see §4.4; the ODP API key is passport-gated and the PatentsView
+bulk TSVs exceed local disk).
 
 Only `quantum_computing` is staged. The six tables below are the **real
 schemas** read from the Parquet files, matching `WORKS_SCHEMA` et al. in
@@ -278,6 +280,8 @@ They are small and versioned in git.
 | `data/scores/emergence.json` | `{weights, caps, hysteresis, leaderboard[]}` | Score config + ranked panel. |
 | `data/forecasts/forecasts.json` | `{horizon, gate, forecasts}` | Point + 68% interval forecast per domain. |
 | `data/forecasts/backtest.json` | `{train_end, targets, gate, per_series}` | Per-series MAE/RMSE/sMAPE/directional. |
+| `data/patents/patent_counts.csv` | `{domain, year, patents}` CSV | BigQuery result (human-downloaded; see §4.4). |
+| `data/patents/patent_series.json` | `{_meta, domains{}, paper_patent_crosswalk{}}` | Patent series + lag analysis (§4.4). |
 
 ### 4.3 Key structures
 
@@ -333,6 +337,69 @@ constants (`config/score_weights.yaml`):
    "hw_damped": {"mae": 1576.93, "rmse": 2069.15, "smape": 0.0639, "directional": 0.75},
    "pooled":    {"mae": 23235.29,"rmse": 23246.87,"smape": 1.8305, "directional": 0.25}}}
 ```
+
+### 4.4 Patents — the BigQuery sandbox workaround (Phase 3.5)
+
+The plan's Phase 3.5 (USPTO ODP API) is **not implementable here**: the ODP
+API key requires ID.me identity verification, which for international
+users without an SSN/ITIN is passport-gated; and the PatentsView bulk TSVs
+(~1 GB zipped, ~10 GB unpacked for the three needed tables) exceed local
+disk. The workaround computes the counts **in Google's copy of the data**
+and downloads only the aggregate:
+
+| Step | Actor | Artifact |
+|---|---|---|
+| 1. Generate SQL from `config/domains.yaml` CPC rules | `make patents` → `scripts/gen_patent_query.py` | `sql/patent_counts.sql` |
+| 2. Run in BigQuery sandbox (free, no credit card, 1 TB scanned/month) | human, ~10 min | query result (~500 rows) |
+| 3. Download result as CSV | human | `data/patents/patent_counts.csv` |
+| 4. Validate + zero-fill + lag analysis | `make patent-series` → `stats/patents.py` | `data/patents/patent_series.json` |
+| 5. Snapshot wiring | `make snapshots` (reads `patent_series.json` when present) | `snapshots/{run_id}/` |
+
+**Source:** `patents-public-data.patents.publications` (Google Patents
+Public Data, CC BY 4.0, updated quarterly). US granted patents only
+(`country_code='US'`, `kind_code LIKE 'B%'`, `grant_date` 2000–2025),
+counted by **grant year**.
+
+**Concordance (deterministic, documented):** a configured CPC code with
+subgroup `00` (e.g. `G06N3/00`) matches every leaf in its group
+(`G06N3/xx`); a specific subgroup (e.g. `G06N3/08`) matches only itself.
+A patent matching several domains counts **once per matched domain**
+(multi-membership). Known overlaps are parent/child pairs: QEC
+(`G06N10/70`) ⊂ quantum_computing (`G06N10/00`) — consistent with the
+existing twin-series caveat — and generative_ai / ai_agents leaves ⊂
+artificial_intelligence's `G06N3/00` group.
+
+**`data/patents/patent_series.json`** shape:
+
+```json
+{
+ "_meta": {"generated_utc": "...", "source": "BigQuery patents-public-data...",
+            "query": "sql/patent_counts.sql", "years": [2000, 2025],
+            "caveat": "CPC-to-domain concordance is approximate..."},
+ "domains": {
+   "quantum_computing": {
+     "display_name": "Quantum Computing",
+     "annual": {"2000": 0, "...": 0, "2025": 0},
+     "total": 0, "peak_year": null,
+     "metadata": {"source": "...", "basis": "US granted patents (kind B*) by grant year",
+                   "concordance": "CPC group/subgroup rules; multi-membership",
+                   "caveat": "..."}}},
+ "paper_patent_crosswalk": {
+   "quantum_computing": {"papers_peak_year": 2025, "patents_peak_year": null,
+                          "lag_years": null, "papers_total": 162781,
+                          "patents_total": 0}}}
+```
+
+Missing years are **real zeros of the concordance**, not missing data —
+but the concordance itself is approximate (plan §15): CPC boundaries do
+not align cleanly with human domain categories. Grant-year basis means
+recent years undercount relative to papers' publication-year basis
+(grant lag 1–3 yr); the crosswalk's `lag_years` (papers peak − patents
+peak) should be read with that bias in mind.
+
+When `patent_counts.csv` is absent, `make stats` still succeeds and
+snapshots simply carry papers only (`patents: null` in domain files, no
+`patents` key in trajectory points).
 
 ---
 
@@ -405,6 +472,11 @@ sample_stats, top_keywords[], caveat}`.
 `top_keywords[]` shape: `{name, total, bursts[{start, end, duration, strength,
 years[]}]}`, top 15 by peak burst strength. May be `[]` (a real empty state).
 
+When the run carries a patent series, domain files also carry
+`patents: {annual{"2000": n,…}, total, peak_year, caveat}` (null
+otherwise), and `trajectories.json` points carry `patents` per year plus
+`patents_total` / `patents_caveat` per domain (§4.4).
+
 ### 5.7 Frontend handoff
 
 `frontend/scripts/copy-snapshots.mjs` copies the **lexicographically-latest**
@@ -438,8 +510,12 @@ Full analytics + snapshot chain (after staged data exists):
 .venv/bin/python stats/bursts.py         # data/bursts/*
 .venv/bin/python stats/emergence.py      # data/scores/emergence.json
 .venv/bin/python stats/forecasts.py      # data/forecasts/*
+.venv/bin/python stats/patents.py        # data/patents/* (needs patent_counts.csv, §4.4)
 .venv/bin/python stats/snapshots.py      # snapshots/{run_id}/*
 ```
+
+Or via make: `make stats` (runs all of the above; the patents step prints
+the BigQuery instructions when the CSV is absent).
 
 Then serve the dashboard (`cd frontend && npm run live`), which copies the
 latest snapshot into `public/snapshots/`.
@@ -469,13 +545,18 @@ actually contains:
    rank-stability sensitivity sweep in `config/score_weights.yaml`.
 5. **Forecasts are gated, not free.** A domain uses the naive baseline if the
    model fails the ≥60% beats-naive gate (`gate_failed`).
-6. **No patent data.** Phase 3.5 needs a USPTO Open Data Portal API key
-   (USPTO.gov account + ID.me verification; the legacy PatentsView API was
-   retired 2026-03-20 — `search.patentsview.org` is NXDOMAIN and old
-   PatentsView keys are void). `patents` table, `raw/patents/`, and
-   paper-to-patent lag analysis do not exist yet. Note: the ODP
-   file-wrapper search returns bibliographic data only — **no patent
-   abstracts** — so the plan's `patent_abstract` field is dropped.
+6. **Patent concordance is approximate, and the ingest path is a
+   workaround.** The USPTO ODP API key requires ID.me verification that is
+   passport-gated for international users without an SSN/ITIN, and the
+   PatentsView bulk TSVs exceed local disk — so patent counts are computed
+   in the BigQuery sandbox against the Google Patents Public Data mirror
+   (CC BY 4.0) and only the ~500-row aggregate is downloaded (§4.4).
+   Consequences: CPC↔domain concordance is approximate (over/under-count);
+   counts are US grants by **grant year** (grant lag biases recent years
+   down); multi-membership means parent/child domain series overlap
+   (QEC ⊂ quantum_computing; genAI/ai_agents ⊂ AI). No patent abstracts,
+   assignees, or paper-to-patent *record-level* linkage exist — the lag
+   analysis is peak-year level only.
 7. **Fan-out tables are not year-partitioned** (they all sit under `year=2026`);
    use the joined `works` row for year filtering (see §3.2 note).
 8. **A ~1-work drift** exists between the staged quantum corpus (162,782 rows)
@@ -495,4 +576,5 @@ actually contains:
 | What did normalize accept/reject? | `staged/normalize_{domain}_{run_id}.json` |
 | How was a score computed? | `stats/emergence.py` + `data/scores/emergence.json` |
 | How was a forecast gated? | `stats/forecasts.py` + `data/forecasts/backtest.json` |
+| Where do patent counts come from? | `sql/patent_counts.sql` + `data/patents/patent_counts.csv` → `stats/patents.py` (§4.4) |
 | What does the UI read? | `frontend/src/lib/types.ts` + `snapshots/{run_id}/` |
