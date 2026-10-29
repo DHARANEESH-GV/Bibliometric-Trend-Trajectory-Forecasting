@@ -19,7 +19,7 @@ For reviewers, auditors, or anyone handed this repository who needs to know
 | What is committed to git? | `data/` (9 files) and `snapshots/` (24 files). `raw/` and `staged/` are **git-ignored** (large, regenerable). |
 | How do I reproduce? | `make fetch && make normalize` then the `stats/` stages, or `make run` for all 20 domains. See §7. |
 | Is it deployed to AWS? | No. Nothing has been deployed; everything runs locally. S3 layout below is the *target* mapping. |
-| What are the known limitations? | §8 — sampled vs full-corpus domains, quarterly interpolation, snapshot citation proxy, approximate CPC↔domain patent concordance. |
+| What are the known limitations? | §8 — sampled vs full-corpus domains, quarterly interpolation, snapshot citation proxy, patent coverage 2014-2025 with approximate CPC concordance. |
 
 Two facts a reviewer should absorb before trusting any number:
 
@@ -350,15 +350,34 @@ and downloads only the aggregate:
 | Step | Actor | Artifact |
 |---|---|---|
 | 1. Generate SQL from `config/domains.yaml` CPC rules | `make patents` → `scripts/gen_patent_query.py` | `sql/patent_counts.sql` |
-| 2. Run in BigQuery sandbox (free, no credit card, 1 TB scanned/month) | human, ~10 min | query result (~500 rows) |
+| 2. Run in BigQuery sandbox (free, no credit card, 1 TB scanned/month) | human, ~10 min | query result (~240 rows) |
 | 3. Download result as CSV | human | `data/patents/patent_counts.csv` |
-| 4. Validate + zero-fill + lag analysis | `make patent-series` → `stats/patents.py` | `data/patents/patent_series.json` |
+| 4. Validate + coverage-gate + lag analysis | `make patent-series` → `stats/patents.py` | `data/patents/patent_series.json` |
 | 5. Snapshot wiring | `make snapshots` (reads `patent_series.json` when present) | `snapshots/{run_id}/` |
 
 **Source:** `patents-public-data.patents.publications` (Google Patents
 Public Data, CC BY 4.0, updated quarterly). US granted patents only
-(`country_code='US'`, `kind_code LIKE 'B%'`, `grant_date` 2000–2025),
-counted by **grant year**.
+(`country_code='US'`, `kind_code LIKE 'B%'`), counted by **grant year**.
+
+### Measured coverage boundaries (2026-10-29)
+
+Two properties of the source, established by direct probe rather than
+assumption. Both change what the series may claim:
+
+| Finding | Evidence | Consequence |
+|---|---|---|
+| **Year 2000 is unusable** | 265 US grants recorded for 2000 vs 166,034 for 2001 | Series starts later; 2000 is `null`, never `0` |
+| **CPC coverage starts 2014 for some sections** | `H01L` (semiconductors) returns 1 patent for 2005 and 24,241 for 2015. Identical counts for spaced, unspaced and trimmed code variants — so it is a coverage property, not a join bug | Series window is **2014–2025**; every domain is continuous from 2014 |
+| **CPC population is 100% where present** | `pct_with_cpc = 100.0` for every year 2001–2025 | Within the covered window, a missing row really is a zero grant |
+
+Pre-2014 years are stored as `null` ("no data"), never `0`. A zero would
+claim no patents were granted, which the source cannot support.
+
+**Grant-lag cutoff.** Patents are granted 1–3 years after filing, so the
+most recent grant years are structurally incomplete — AI patents fall
+18,746 → 17,768 → 15,788 across 2023–2025 purely from ungranted filings.
+The displayed series runs to 2025 with that truncation labelled; the lag
+analysis uses **2014–2022** only.
 
 **Concordance (deterministic, documented):** a configured CPC code with
 subgroup `00` (e.g. `G06N3/00`) matches every leaf in its group
@@ -369,33 +388,78 @@ A patent matching several domains counts **once per matched domain**
 existing twin-series caveat — and generative_ai / ai_agents leaves ⊂
 artificial_intelligence's `G06N3/00` group.
 
+### Paper-to-patent lag: what the data actually supports
+
+Correlating raw **levels** is meaningless here: both series rise steadily
+over 2014–2022, so r sits near 0.99 at every candidate shift and picking
+the maximum is noise. The analysis therefore correlates **year-over-year
+growth**, which removes the shared trend.
+
+Scanning 9 lags and keeping the best r inflates the statistic — with only
+8 growth points, a max-r of 0.8 is routine under pure noise. Each domain
+therefore carries a **permutation p-value** (2000 shuffles of the patent
+series, re-scanning every lag), and `significant` is the only field safe
+to quote.
+
+Result: **5 of 20 domains** reach p ≤ 0.10, and every one of those says
+papers lead patents by 2 years. But 20 tests at that threshold yield
+**~2 false positives by chance**, so the per-domain flags cannot stand
+alone. `lag_panel_test` therefore applies two corrections:
+
+| Check | Value | Reading |
+|---|---|---|
+| Significant domains | 5 / 20 | more than the ~2 expected |
+| Binomial P(≥5 of 20) | 0.043 | weakly surprising |
+| Bonferroni α (0.10/20) | 0.005 | strict |
+| Bonferroni survivors | **`edge_computing` only** (p = 0.002) | one domain holds up |
+
+The honest conclusion: **a general papers-lead-patents pattern is not
+established.** The direction is consistent (all five flags positive) and
+the binomial tail is mildly encouraging, but only `edge_computing` survives
+multiple-comparison correction. Anything stronger would be overclaiming,
+and the report should say exactly this. `caveat` and `lag_basis` travel
+with every domain so a reader cannot quote r without seeing the test.
+
 **`data/patents/patent_series.json`** shape:
 
 ```json
 {
  "_meta": {"generated_utc": "...", "source": "BigQuery patents-public-data...",
             "query": "sql/patent_counts.sql", "years": [2000, 2025],
-            "caveat": "CPC-to-domain concordance is approximate..."},
+            "patent_year_min": 2014, "caveat": "CPC-to-domain concordance..."},
  "domains": {
    "quantum_computing": {
      "display_name": "Quantum Computing",
-     "annual": {"2000": 0, "...": 0, "2025": 0},
-     "total": 0, "peak_year": null,
+     "annual": {"2000": null, "2013": null, "2014": 20, "2025": 775},
+     "covered_years": [2014, 2025],
+     "total": 3696, "peak_year": 2025,
      "metadata": {"source": "...", "basis": "US granted patents (kind B*) by grant year",
+                   "coverage": "2014-2025; earlier years are null because the source has no usable CPC classification before 2014",
                    "concordance": "CPC group/subgroup rules; multi-membership",
                    "caveat": "..."}}},
  "paper_patent_crosswalk": {
-   "quantum_computing": {"papers_peak_year": 2025, "patents_peak_year": null,
-                          "lag_years": null, "papers_total": 162781,
-                          "patents_total": 0}}}
+   "quantum_computing": {"papers_peak_year": 2025, "patents_peak_year": 2025,
+                          "best_lag_years": 1, "best_lag_r": 0.103,
+                          "permutation_p": 0.931, "at_scan_boundary": false,
+                          "underpowered": false, "significant": false,
+                          "lag_scan": [{"lag": -3, "r": 0.41, "n": 8, "powered": true}, "..."],
+                          "lag_window": [2014, 2024], "min_pairs_required": 7,
+                          "lag_basis": "year-over-year growth correlation; p from a 2000-shuffle permutation of the best-lag statistic",
+                          "papers_total": 162781, "patents_total": 3696}},
+ "lag_panel_test": {"domains_tested": 20, "domains_significant": 5,
+                     "alpha_per_domain": 0.1, "expected_false_positives": 2.0,
+                     "binomial_p_at_least_k": 0.0432, "bonferroni_alpha": 0.005,
+                     "survive_bonferroni": ["edge_computing"],
+                     "verdict": "A majority-lead pattern is not established..."}}
 ```
 
-Missing years are **real zeros of the concordance**, not missing data —
-but the concordance itself is approximate (plan §15): CPC boundaries do
-not align cleanly with human domain categories. Grant-year basis means
-recent years undercount relative to papers' publication-year basis
-(grant lag 1–3 yr); the crosswalk's `lag_years` (papers peak − patents
-peak) should be read with that bias in mind.
+Inside the covered window a missing year is a **real zero of the
+concordance** (no CPC-matched grant), while pre-2014 years are `null`.
+The concordance itself is approximate (plan §15): CPC boundaries do not
+align cleanly with human domain categories. Grant-year basis means recent
+years undercount relative to papers' publication-year basis; the last
+three grant years are truncated by grant lag and the lag analysis excludes
+them.
 
 When `patent_counts.csv` is absent, `make stats` still succeeds and
 snapshots simply carry papers only (`patents: null` in domain files, no
@@ -545,18 +609,23 @@ actually contains:
    rank-stability sensitivity sweep in `config/score_weights.yaml`.
 5. **Forecasts are gated, not free.** A domain uses the naive baseline if the
    model fails the ≥60% beats-naive gate (`gate_failed`).
-6. **Patent concordance is approximate, and the ingest path is a
-   workaround.** The USPTO ODP API key requires ID.me verification that is
-   passport-gated for international users without an SSN/ITIN, and the
-   PatentsView bulk TSVs exceed local disk — so patent counts are computed
-   in the BigQuery sandbox against the Google Patents Public Data mirror
-   (CC BY 4.0) and only the ~500-row aggregate is downloaded (§4.4).
-   Consequences: CPC↔domain concordance is approximate (over/under-count);
-   counts are US grants by **grant year** (grant lag biases recent years
-   down); multi-membership means parent/child domain series overlap
-   (QEC ⊂ quantum_computing; genAI/ai_agents ⊂ AI). No patent abstracts,
-   assignees, or paper-to-patent *record-level* linkage exist — the lag
-   analysis is peak-year level only.
+6. **Patent coverage is 2014–2025 only, and the concordance is approximate.**
+   The ingest path is a workaround (§4.4): the USPTO ODP key is
+   passport-gated and PatentsView bulk exceeds local disk, so counts come
+   from the BigQuery sandbox against the Google Patents Public Data mirror
+   (CC BY 4.0), with only the aggregate downloaded. Two measured source
+   limits shape what the series may claim: Google's mirror holds 265 US
+   grants for 2000 (vs ~166k in 2001), and CPC classification for several
+   sections (notably H01L semiconductors) is absent before 2014. Pre-2014
+   years are therefore `null`, not `0`, and the window is 2014–2025.
+   Further: CPC↔domain concordance is approximate (over/under-count);
+   counts are US grants by **grant year** (the last three years are
+   truncated by grant lag); multi-membership means parent/child series
+   overlap (QEC ⊂ quantum_computing; genAI/ai_agents ⊂ AI). No patent
+   abstracts, assignees, or record-level paper→patent linkage exist, and
+   the paper-to-patent lag test (§4.4) finds a detectable relationship in
+   only 1 of 20 domains after multiple-comparison correction — a general
+   papers-lead-patents pattern is not established.
 7. **Fan-out tables are not year-partitioned** (they all sit under `year=2026`);
    use the joined `works` row for year filtering (see §3.2 note).
 8. **A ~1-work drift** exists between the staged quantum corpus (162,782 rows)

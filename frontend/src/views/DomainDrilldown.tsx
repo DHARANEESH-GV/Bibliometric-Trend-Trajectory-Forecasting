@@ -49,8 +49,10 @@ export function DomainDrilldownView() {
   const works = years.map((y) => data?.annual[String(y)] ?? 0)
   const patents = years.map((y) => data?.patents?.annual[String(y)] ?? null)
   const hasPatents = data?.patents != null
+  const coveredYears = data?.patents?.covered_years
   const patentsTotal = data?.patents?.total ?? 0
   const patentsPeak = data?.patents?.peak_year
+  const lag = data?.patents?.lag ?? null
   const horizonYears = data?.horizon ?? []
   const forecast = data?.forecast ?? []
   const intervals = horizonYears.map((y) => data?.interval_68pct[String(y)] ?? null)
@@ -317,8 +319,8 @@ export function DomainDrilldownView() {
         Forecast extended with {fmtModel(data.model)}; shaded band is the 68%
         prediction interval. Trained on {years[0]}-{lastYear} annual counts;
         backtest gate results are cited in the footer of every page.
-        {hasPatents
-          ? ' The second line is CPC-matched US patent grants by grant year (right axis, own scale).'
+        {hasPatents && coveredYears
+          ? ` The second line is CPC-matched US patent grants by grant year, plotted ${coveredYears[0]}-${coveredYears[1]} only: the source has no usable classification before ${coveredYears[0]}.`
           : ''}
       </p>
 
@@ -380,6 +382,101 @@ export function DomainDrilldownView() {
           </p>
         )}
       </section>
+
+      {hasPatents && lag ? (
+        <section className="domain-section">
+          <h2>Papers to patents</h2>
+          <p className="domain-section-intro">
+            Do patent filings follow paper output in this field? Compared on
+            year-over-year growth over {lag.lag_window[0]}-{lag.lag_window[1]},
+            the window where grants are complete. Correlating raw levels would
+            be misleading, since both series rise steadily.
+          </p>
+
+          {lag.underpowered ? (
+            <p className="domain-lag-verdict domain-lag-verdict--null">
+              There are too few overlapping years to test this domain. A
+              correlation on {lag.min_pairs_required - 1} or fewer points would
+              need a near-perfect fit to mean anything, so none is reported.
+            </p>
+          ) : lag.significant && lag.best_lag_years != null && lag.best_lag_years > 0 ? (
+            <p className="domain-lag-verdict">
+              Papers lead patents here by about{' '}
+              <span className="num">{lag.best_lag_years}</span>{' '}
+              year{lag.best_lag_years === 1 ? '' : 's'}: when paper output
+              accelerates, patent grants in this domain accelerate{' '}
+              {lag.best_lag_years} year{lag.best_lag_years === 1 ? '' : 's'} later,
+              with growth-rate correlation r ={' '}
+              <span className="num">{lag.best_lag_r?.toFixed(2)}</span>. Shuffling
+              the patent series reproduces an alignment that strong only{' '}
+              <span className="num">{((lag.permutation_p ?? 1) * 100).toFixed(1)}%</span>{' '}
+              of the time.
+            </p>
+          ) : lag.significant ? (
+            <p className="domain-lag-verdict">
+              Patents move <em>ahead</em> of papers here, by about{' '}
+              <span className="num">{Math.abs(lag.best_lag_years ?? 0)}</span>{' '}
+              year{Math.abs(lag.best_lag_years ?? 0) === 1 ? '' : 's'} (r ={' '}
+              <span className="num">{lag.best_lag_r?.toFixed(2)}</span>, shuffle
+              p ={' '}
+              <span className="num">{(lag.permutation_p ?? 1).toFixed(3)}</span>).
+              Filings anticipating publication is unusual and worth a second
+              look before citing.
+            </p>
+          ) : (
+            <p className="domain-lag-verdict domain-lag-verdict--null">
+              {lag.best_lag_years == null || lag.best_lag_r == null ? (
+                <>
+                  No lead or lag is established for this domain: there is not
+                  enough overlapping variation to fit a shift at all.
+                </>
+              ) : (
+                <>
+                  No lead or lag is established for this domain. The strongest
+                  shift is{' '}
+                  <span className="num">{lag.best_lag_years}</span>{' '}
+                  year{Math.abs(lag.best_lag_years) === 1 ? '' : 's'} at r ={' '}
+                  <span className="num">{lag.best_lag_r.toFixed(2)}</span>, and
+                  shuffling the patent series produces an alignment at least
+                  that strong{' '}
+                  <span className="num">
+                    {((lag.permutation_p ?? 1) * 100).toFixed(0)}%
+                  </span>{' '}
+                  of the time
+                  {lag.at_scan_boundary
+                    ? ', with the optimum sitting at the edge of the scanned range, so the true value is not identified'
+                    : ''}
+                  . Reporting that as a lag would be reading noise.
+                </>
+              )}
+            </p>
+          )}
+
+          {data.patents?.lag_panel ? (
+            <p className="domain-lag-note">
+              Across all {data.patents.lag_panel.domains_tested} domains,{' '}
+              {data.patents.lag_panel.domains_significant} clear a per-domain
+              threshold of {data.patents.lag_panel.alpha_per_domain.toFixed(2)}.
+              Testing that many domains would flag about{' '}
+              {data.patents.lag_panel.expected_false_positives} by chance alone.
+              After Bonferroni correction,{' '}
+              {data.patents.lag_panel.survive_bonferroni.length === 0
+                ? 'no domain survives'
+                : `${data.patents.lag_panel.survive_bonferroni.join(', ')} ${
+                    data.patents.lag_panel.survive_bonferroni.length === 1 ? 'survives' : 'survive'
+                  }`}
+              . {data.patents.lag_panel.verdict}
+            </p>
+          ) : null}
+
+          <p className="domain-lag-note">
+            Papers peak in {lag.papers_peak_year}
+            {lag.patents_peak_year ? `, patents in ${lag.patents_peak_year}` : ''}.
+            Peak years are shown for reference only; patent grants lag filings by
+            1-3 years, and the final grant years are incomplete.
+          </p>
+        </section>
+      ) : null}
 
       <section className="domain-section">
         <h2>Top keywords</h2>

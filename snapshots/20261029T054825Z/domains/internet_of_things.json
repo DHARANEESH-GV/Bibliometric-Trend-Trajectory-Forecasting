@@ -1,0 +1,629 @@
+{
+ "_meta": {
+  "generated_utc": "2026-10-29T05:48:25.510569+00:00",
+  "run_id": "20261029T054825Z",
+  "lineage": {
+   "trajectories": "data/tier_a + panel.json (annual exact, quarterly derived)",
+   "scores": "stats/emergence.py (weights in data/scores/emergence.json)",
+   "forecasts": "stats/forecasts.py (gated; see backtest.json gate)",
+   "bursts": "stats/bursts.py (Kleinberg 2-state)",
+   "samples": "raw/samples (2k recent + 2k top-cited per domain)",
+   "patents": "BigQuery patents-public-data (CC BY 4.0) via sql/patent_counts.sql \u2192 data/patents/patent_series.json"
+  }
+ },
+ "display_name": "Internet of Things",
+ "annual": {
+  "2000": 78,
+  "2001": 66,
+  "2002": 75,
+  "2003": 110,
+  "2004": 302,
+  "2005": 269,
+  "2006": 289,
+  "2007": 281,
+  "2008": 336,
+  "2009": 415,
+  "2010": 473,
+  "2011": 454,
+  "2012": 655,
+  "2013": 716,
+  "2014": 939,
+  "2015": 1137,
+  "2016": 1375,
+  "2017": 1900,
+  "2018": 2748,
+  "2019": 3231,
+  "2020": 3773,
+  "2021": 4769,
+  "2022": 6007,
+  "2023": 5693,
+  "2024": 6083,
+  "2025": 11916
+ },
+ "forecast": [
+  10638,
+  12110,
+  13574
+ ],
+ "model": "hw_damped",
+ "horizon": [
+  2026,
+  2027,
+  2028
+ ],
+ "interval_68pct": {
+  "2026": [
+   7841,
+   13434
+  ],
+  "2027": [
+   9314,
+   14906
+  ],
+  "2028": [
+   10778,
+   16370
+  ]
+ },
+ "score": 88.44,
+ "label": "Emerging",
+ "provenance_note": "sampled domain: drill-down lists from recent+top-cited 4k sample",
+ "sample_stats": {
+  "recent": 2000,
+  "top_cited": 2000
+ },
+ "top_keywords": [
+  {
+   "name": "Internet of Things",
+   "total": 11286,
+   "bursts": [
+    {
+     "start": 2015,
+     "end": 2025,
+     "duration": 11,
+     "strength": 4.7542,
+     "years": [
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "The Internet",
+   "total": 6635,
+   "bursts": [
+    {
+     "start": 2014,
+     "end": 2025,
+     "duration": 12,
+     "strength": 4.4408,
+     "years": [
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Computer security",
+   "total": 11978,
+   "bursts": [
+    {
+     "start": 2013,
+     "end": 2025,
+     "duration": 13,
+     "strength": 4.144,
+     "years": [
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Internet privacy",
+   "total": 4211,
+   "bursts": [
+    {
+     "start": 2014,
+     "end": 2025,
+     "duration": 12,
+     "strength": 3.7925,
+     "years": [
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Data science",
+   "total": 4507,
+   "bursts": [
+    {
+     "start": 2009,
+     "end": 2025,
+     "duration": 17,
+     "strength": 3.5577,
+     "years": [
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Operating system",
+   "total": 4650,
+   "bursts": [
+    {
+     "start": 2012,
+     "end": 2025,
+     "duration": 14,
+     "strength": 3.4515,
+     "years": [
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Cloud computing",
+   "total": 6160,
+   "bursts": [
+    {
+     "start": 2014,
+     "end": 2025,
+     "duration": 12,
+     "strength": 3.4394,
+     "years": [
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "World Wide Web",
+   "total": 8074,
+   "bursts": [
+    {
+     "start": 2013,
+     "end": 2025,
+     "duration": 13,
+     "strength": 3.2722,
+     "years": [
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Electrical engineering",
+   "total": 3857,
+   "bursts": [
+    {
+     "start": 2004,
+     "end": 2025,
+     "duration": 22,
+     "strength": 3.1108,
+     "years": [
+      2004,
+      2005,
+      2006,
+      2007,
+      2008,
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Business",
+   "total": 6009,
+   "bursts": [
+    {
+     "start": 2011,
+     "end": 2025,
+     "duration": 15,
+     "strength": 3.0033,
+     "years": [
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Engineering",
+   "total": 12496,
+   "bursts": [
+    {
+     "start": 2004,
+     "end": 2025,
+     "duration": 22,
+     "strength": 2.9831,
+     "years": [
+      2004,
+      2005,
+      2006,
+      2007,
+      2008,
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Computer network",
+   "total": 4645,
+   "bursts": [
+    {
+     "start": 2013,
+     "end": 2025,
+     "duration": 13,
+     "strength": 2.8924,
+     "years": [
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Telecommunications",
+   "total": 6243,
+   "bursts": [
+    {
+     "start": 2004,
+     "end": 2025,
+     "duration": 22,
+     "strength": 2.7604,
+     "years": [
+      2004,
+      2005,
+      2006,
+      2007,
+      2008,
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Artificial intelligence",
+   "total": 8193,
+   "bursts": [
+    {
+     "start": 2012,
+     "end": 2025,
+     "duration": 14,
+     "strength": 2.7294,
+     "years": [
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Computer science",
+   "total": 37976,
+   "bursts": [
+    {
+     "start": 2009,
+     "end": 2025,
+     "duration": 17,
+     "strength": 2.4679,
+     "years": [
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  }
+ ],
+ "caveat": null,
+ "patents": {
+  "annual": {
+   "2000": null,
+   "2001": null,
+   "2002": null,
+   "2003": null,
+   "2004": null,
+   "2005": null,
+   "2006": null,
+   "2007": null,
+   "2008": null,
+   "2009": null,
+   "2010": null,
+   "2011": null,
+   "2012": null,
+   "2013": null,
+   "2014": 518,
+   "2015": 721,
+   "2016": 983,
+   "2017": 1480,
+   "2018": 1889,
+   "2019": 2477,
+   "2020": 2852,
+   "2021": 2676,
+   "2022": 2745,
+   "2023": 2481,
+   "2024": 2145,
+   "2025": 1873
+  },
+  "total": 22840,
+  "peak_year": 2020,
+  "covered_years": [
+   2014,
+   2025
+  ],
+  "caveat": "CPC-to-domain concordance is approximate: CPC boundaries do not align cleanly with human technology categories, so counts may over- or under-count a domain. Patents are US grants by grant year; grant lag (1-3 years) makes recent years undercount relative to paper publication years.",
+  "coverage": "2014-2025; earlier years are null because the source has no usable CPC classification before 2014",
+  "lag": {
+   "papers_peak_year": 2025,
+   "patents_peak_year": 2020,
+   "best_lag_years": 1,
+   "best_lag_r": 0.581,
+   "permutation_p": 0.4558,
+   "at_scan_boundary": false,
+   "underpowered": false,
+   "significant": false,
+   "lag_scan": [
+    {
+     "lag": -3,
+     "r": 0.109,
+     "n": 9,
+     "powered": true
+    },
+    {
+     "lag": -2,
+     "r": -0.101,
+     "n": 10,
+     "powered": true
+    },
+    {
+     "lag": -1,
+     "r": -0.089,
+     "n": 11,
+     "powered": true
+    },
+    {
+     "lag": 0,
+     "r": 0.035,
+     "n": 12,
+     "powered": true
+    },
+    {
+     "lag": 1,
+     "r": 0.581,
+     "n": 11,
+     "powered": true
+    },
+    {
+     "lag": 2,
+     "r": 0.407,
+     "n": 10,
+     "powered": true
+    },
+    {
+     "lag": 3,
+     "r": 0.008,
+     "n": 9,
+     "powered": true
+    }
+   ],
+   "lag_window": [
+    2014,
+    2024
+   ],
+   "min_pairs_required": 7,
+   "lag_basis": "year-over-year growth correlation; p from a 2000-shuffle permutation of the best-lag statistic",
+   "papers_total": 54090,
+   "patents_total": 22840
+  },
+  "lag_panel": {
+   "domains_tested": 20,
+   "domains_significant": 5,
+   "alpha_per_domain": 0.1,
+   "expected_false_positives": 2.0,
+   "binomial_p_at_least_k": 0.0432,
+   "bonferroni_alpha": 0.005,
+   "survive_bonferroni": [
+    "edge_computing"
+   ],
+   "verdict": "A majority-lead pattern is not established: the per-domain flags are consistent with chance once 20 tests are accounted for. Only the Bonferroni survivors should be cited as findings."
+  }
+ }
+}

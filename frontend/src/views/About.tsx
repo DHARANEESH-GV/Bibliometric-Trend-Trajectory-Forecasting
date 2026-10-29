@@ -81,7 +81,15 @@ export function AboutView() {
             topic-ID sets, not free-text search. Patent grant counts come
             from USPTO data via the Google Patents Public Data mirror on
             BigQuery, matched by CPC classification; the concordance is
-            approximate and every patent figure carries that caveat.
+            approximate, the series covers 2014 onward because the source has
+            no usable classification before then, and every patent figure
+            carries that caveat.
+          </li>
+          <li>
+            The paper-to-patent lead/lag test corrects for multiple
+            comparisons. Five domains clear a per-domain threshold, but
+            testing twenty would flag about two by chance, and only one
+            survives correction. A general pattern is therefore not claimed.
           </li>
           <li>
             Where a domain's coverage is thin or its series is entangled

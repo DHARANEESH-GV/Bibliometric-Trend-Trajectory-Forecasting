@@ -84,6 +84,8 @@ export interface TrajectoryDomain {
   /** Present only when the run carries a patent series. */
   patents_total?: number
   patents_caveat?: string
+  /** [first, last] year with real patent coverage (null patches before). */
+  patents_covered_years?: [number, number]
 }
 
 export interface TrajectoriesFile {
@@ -141,13 +143,54 @@ export interface DomainSnapshot {
   top_keywords: TopKeyword[]
   caveat: string | null
   /** CPC-matched US patent grants (Phase 3.5 BigQuery workaround).
-   *  null when the run carries no patent series. */
+   *  null when the run carries no patent series.
+   *  `annual` is null before covered_years[0]: the source has no usable
+   *  CPC classification there, which is "no data", not "zero patents". */
   patents: {
-    annual: Record<string, number>
+    annual: Record<string, number | null>
     total: number
     peak_year: number | null
+    covered_years: [number, number]
     caveat: string
+    coverage: string
+    lag: PatentLag | null
+    /** Present on every domain file: the full crosswalk entry, which is
+     *  what the lag panel is rendered from. */
+    lag_panel?: PatentLagPanel
   } | null
+}
+
+/** Paper-vs-patent lead/lag over the complete-grant window.
+ *  best_lag_years > 0 means patents trail papers (papers lead).
+ *  permutation_p gates the reading: with 9 lags scanned on ~8 growth
+ *  points, an unadjusted max-r is easily inflated, so `significant`
+ *  is the only field safe to quote. `panel` carries the correction that
+ *  matters most — 20 tests at alpha=0.10 yield ~2 false positives. */
+export interface PatentLag {
+  papers_peak_year: number
+  patents_peak_year: number | null
+  best_lag_years: number | null
+  best_lag_r: number | null
+  permutation_p: number | null
+  at_scan_boundary: boolean
+  underpowered: boolean
+  significant: boolean
+  lag_window: [number, number]
+  min_pairs_required: number
+  lag_basis: string
+  lag_scan: Array<{ lag: number; r: number | null; n: number; powered: boolean }>
+}
+
+/** Panel-level correction across all 20 domain tests. */
+export interface PatentLagPanel {
+  domains_tested: number
+  domains_significant: number
+  alpha_per_domain: number
+  expected_false_positives: number
+  binomial_p_at_least_k: number | null
+  bonferroni_alpha: number
+  survive_bonferroni: string[]
+  verdict: string
 }
 
 /** Keyword ranking row as persisted by the aggregate stage. */

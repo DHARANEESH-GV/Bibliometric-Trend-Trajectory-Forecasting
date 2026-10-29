@@ -1,0 +1,643 @@
+{
+ "_meta": {
+  "generated_utc": "2026-10-29T05:48:25.512189+00:00",
+  "run_id": "20261029T054825Z",
+  "lineage": {
+   "trajectories": "data/tier_a + panel.json (annual exact, quarterly derived)",
+   "scores": "stats/emergence.py (weights in data/scores/emergence.json)",
+   "forecasts": "stats/forecasts.py (gated; see backtest.json gate)",
+   "bursts": "stats/bursts.py (Kleinberg 2-state)",
+   "samples": "raw/samples (2k recent + 2k top-cited per domain)",
+   "patents": "BigQuery patents-public-data (CC BY 4.0) via sql/patent_counts.sql \u2192 data/patents/patent_series.json"
+  }
+ },
+ "display_name": "Solid-State Batteries",
+ "annual": {
+  "2000": 1155,
+  "2001": 1299,
+  "2002": 1758,
+  "2003": 1731,
+  "2004": 1807,
+  "2005": 1952,
+  "2006": 2480,
+  "2007": 2376,
+  "2008": 2449,
+  "2009": 2745,
+  "2010": 3431,
+  "2011": 4005,
+  "2012": 5260,
+  "2013": 6545,
+  "2014": 8178,
+  "2015": 8679,
+  "2016": 10391,
+  "2017": 10668,
+  "2018": 12397,
+  "2019": 14470,
+  "2020": 16304,
+  "2021": 17252,
+  "2022": 20443,
+  "2023": 21646,
+  "2024": 24480,
+  "2025": 26805
+ },
+ "forecast": [
+  29068,
+  31433,
+  33787
+ ],
+ "model": "hw_damped",
+ "horizon": [
+  2026,
+  2027,
+  2028
+ ],
+ "interval_68pct": {
+  "2026": [
+   21257,
+   36880
+  ],
+  "2027": [
+   23622,
+   39245
+  ],
+  "2028": [
+   25975,
+   41598
+  ]
+ },
+ "score": 53.43,
+ "label": "Active",
+ "provenance_note": "sampled domain: drill-down lists from recent+top-cited 4k sample",
+ "sample_stats": {
+  "recent": 2000,
+  "top_cited": 2000
+ },
+ "top_keywords": [
+  {
+   "name": "Anode",
+   "total": 57026,
+   "bursts": [
+    {
+     "start": 2011,
+     "end": 2025,
+     "duration": 15,
+     "strength": 2.8579,
+     "years": [
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Nanotechnology",
+   "total": 84615,
+   "bursts": [
+    {
+     "start": 2010,
+     "end": 2025,
+     "duration": 16,
+     "strength": 2.6202,
+     "years": [
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Metallurgy",
+   "total": 69322,
+   "bursts": [
+    {
+     "start": 2011,
+     "end": 2025,
+     "duration": 15,
+     "strength": 2.3006,
+     "years": [
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Electrochemistry",
+   "total": 86191,
+   "bursts": [
+    {
+     "start": 2004,
+     "end": 2025,
+     "duration": 22,
+     "strength": 2.085,
+     "years": [
+      2004,
+      2005,
+      2006,
+      2007,
+      2008,
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Electrode",
+   "total": 151079,
+   "bursts": [
+    {
+     "start": 2010,
+     "end": 2025,
+     "duration": 16,
+     "strength": 2.0777,
+     "years": [
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Chemical engineering",
+   "total": 135057,
+   "bursts": [
+    {
+     "start": 2010,
+     "end": 2025,
+     "duration": 16,
+     "strength": 2.075,
+     "years": [
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Materials science",
+   "total": 196663,
+   "bursts": [
+    {
+     "start": 2010,
+     "end": 2025,
+     "duration": 16,
+     "strength": 1.9481,
+     "years": [
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Lithium (medication)",
+   "total": 96286,
+   "bursts": [
+    {
+     "start": 2010,
+     "end": 2025,
+     "duration": 16,
+     "strength": 1.9184,
+     "years": [
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Electrolyte",
+   "total": 91876,
+   "bursts": [
+    {
+     "start": 2011,
+     "end": 2025,
+     "duration": 15,
+     "strength": 1.9137,
+     "years": [
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Ion",
+   "total": 66022,
+   "bursts": [
+    {
+     "start": 2010,
+     "end": 2025,
+     "duration": 16,
+     "strength": 1.895,
+     "years": [
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Composite material",
+   "total": 97036,
+   "bursts": [
+    {
+     "start": 2010,
+     "end": 2025,
+     "duration": 16,
+     "strength": 1.878,
+     "years": [
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Chemistry",
+   "total": 187925,
+   "bursts": [
+    {
+     "start": 2010,
+     "end": 2025,
+     "duration": 16,
+     "strength": 1.8128,
+     "years": [
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Inorganic chemistry",
+   "total": 64718,
+   "bursts": [
+    {
+     "start": 2010,
+     "end": 2025,
+     "duration": 16,
+     "strength": 1.7195,
+     "years": [
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Organic chemistry",
+   "total": 94297,
+   "bursts": [
+    {
+     "start": 2010,
+     "end": 2025,
+     "duration": 16,
+     "strength": 1.7192,
+     "years": [
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Physical chemistry",
+   "total": 97978,
+   "bursts": [
+    {
+     "start": 2010,
+     "end": 2025,
+     "duration": 16,
+     "strength": 1.7026,
+     "years": [
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  }
+ ],
+ "caveat": null,
+ "patents": {
+  "annual": {
+   "2000": null,
+   "2001": null,
+   "2002": null,
+   "2003": null,
+   "2004": null,
+   "2005": null,
+   "2006": null,
+   "2007": null,
+   "2008": null,
+   "2009": null,
+   "2010": null,
+   "2011": null,
+   "2012": null,
+   "2013": null,
+   "2014": 77,
+   "2015": 99,
+   "2016": 120,
+   "2017": 158,
+   "2018": 181,
+   "2019": 225,
+   "2020": 346,
+   "2021": 325,
+   "2022": 376,
+   "2023": 396,
+   "2024": 448,
+   "2025": 459
+  },
+  "total": 3210,
+  "peak_year": 2025,
+  "covered_years": [
+   2014,
+   2025
+  ],
+  "caveat": "CPC-to-domain concordance is approximate: CPC boundaries do not align cleanly with human technology categories, so counts may over- or under-count a domain. Patents are US grants by grant year; grant lag (1-3 years) makes recent years undercount relative to paper publication years.",
+  "coverage": "2014-2025; earlier years are null because the source has no usable CPC classification before 2014",
+  "lag": {
+   "papers_peak_year": 2025,
+   "patents_peak_year": 2025,
+   "best_lag_years": 0,
+   "best_lag_r": 0.57,
+   "permutation_p": 0.0875,
+   "at_scan_boundary": false,
+   "underpowered": false,
+   "significant": true,
+   "lag_scan": [
+    {
+     "lag": -3,
+     "r": -0.578,
+     "n": 9,
+     "powered": true
+    },
+    {
+     "lag": -2,
+     "r": 0.459,
+     "n": 10,
+     "powered": true
+    },
+    {
+     "lag": -1,
+     "r": -0.308,
+     "n": 11,
+     "powered": true
+    },
+    {
+     "lag": 0,
+     "r": 0.57,
+     "n": 12,
+     "powered": true
+    },
+    {
+     "lag": 1,
+     "r": 0.323,
+     "n": 11,
+     "powered": true
+    },
+    {
+     "lag": 2,
+     "r": 0.05,
+     "n": 10,
+     "powered": true
+    },
+    {
+     "lag": 3,
+     "r": -0.254,
+     "n": 9,
+     "powered": true
+    }
+   ],
+   "lag_window": [
+    2014,
+    2024
+   ],
+   "min_pairs_required": 7,
+   "lag_basis": "year-over-year growth correlation; p from a 2000-shuffle permutation of the best-lag statistic",
+   "papers_total": 230706,
+   "patents_total": 3210
+  },
+  "lag_panel": {
+   "domains_tested": 20,
+   "domains_significant": 5,
+   "alpha_per_domain": 0.1,
+   "expected_false_positives": 2.0,
+   "binomial_p_at_least_k": 0.0432,
+   "bonferroni_alpha": 0.005,
+   "survive_bonferroni": [
+    "edge_computing"
+   ],
+   "verdict": "A majority-lead pattern is not established: the per-domain flags are consistent with chance once 20 tests are accounted for. Only the Bonferroni survivors should be cited as findings."
+  }
+ }
+}

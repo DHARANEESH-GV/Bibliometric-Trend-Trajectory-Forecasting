@@ -106,6 +106,7 @@ def gen_trajectories(panel, forecasts, patents=None) -> list[dict]:
         if pat:
             row["patents_total"] = pat["total"]
             row["patents_caveat"] = pat["metadata"]["caveat"]
+            row["patents_covered_years"] = pat["covered_years"]
         out.append(row)
     return out
 
@@ -171,7 +172,11 @@ def gen_domain_files(panel, scores, forecasts, kw_bursts, sample_stats,
             "patents": ({
                 "annual": pat["annual"], "total": pat["total"],
                 "peak_year": pat["peak_year"],
+                "covered_years": pat["covered_years"],
                 "caveat": pat["metadata"]["caveat"],
+                "coverage": pat["metadata"]["coverage"],
+                "lag": (patents or {}).get("paper_patent_crosswalk", {}).get(slug),
+                "lag_panel": (patents or {}).get("lag_panel_test"),
             } if pat else None),
         }
     return out
