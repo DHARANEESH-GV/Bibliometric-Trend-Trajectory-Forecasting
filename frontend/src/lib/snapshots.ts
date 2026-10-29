@@ -7,6 +7,7 @@
 import type {
   BurstsFile,
   DomainSnapshot,
+  LagFile,
   LeaderboardFile,
   MatrixFile,
   RunsManifest,
@@ -73,6 +74,10 @@ export function loadBursts(): Promise<BurstsFile> {
 
 export function loadMatrix(): Promise<MatrixFile> {
   return getJson(`${BASE}/matrix.json`)
+}
+
+export function loadLag(): Promise<LagFile> {
+  return getJson(`${BASE}/lag.json`)
 }
 
 export function loadDomainSnapshot(domain: string): Promise<DomainSnapshot> {

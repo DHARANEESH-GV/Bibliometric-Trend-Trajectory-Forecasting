@@ -12,6 +12,10 @@ import { RouteTransition } from './components/RouteTransition'
 import { WorkbenchAmbience } from './components/WorkbenchAmbience'
 import { WorkbenchChrome } from './components/WorkbenchChrome'
 import { WireTicker } from './components/WireTicker'
+import { TourStrip } from './components/TourStrip'
+import { ProvenanceFooter } from './components/ProvenanceFooter'
+import { usePresentation } from './lib/presentation'
+import './styles/demo.css'
 import { CoverView } from './views/Cover'
 import { ErrorBoundary } from './components/ErrorBoundary'
 
@@ -33,6 +37,9 @@ const BurstsView = lazy(() =>
 const MatrixView = lazy(() =>
   import('./views/Matrix').then((m) => ({ default: m.MatrixView })),
 )
+const LagView = lazy(() =>
+  import('./views/Lag').then((m) => ({ default: m.LagView })),
+)
 const AboutView = lazy(() =>
   import('./views/About').then((m) => ({ default: m.AboutView })),
 )
@@ -53,6 +60,9 @@ function RouteFallback() {
 
 function Shell() {
   const { runId, generatedUtc } = useStore()
+  // Apply the persisted presentation preference on EVERY route, including
+  // the cover (which has no island nav to host the toggle).
+  usePresentation()
   const location = useLocation()
   const isCover = location.pathname === '/' || location.pathname === '/cover'
   const { data } = useQuery(loadLeaderboard, [])
@@ -107,6 +117,7 @@ function Shell() {
       <WireTicker />
 
       <main id="main" className="container workbench-main" style={{ flex: 1, position: 'relative', zIndex: 1 }}>
+        <TourStrip />
         <div className="status-bar" role="status" aria-label="Run status">
           <span>
             run <strong>{runId}</strong>
@@ -133,6 +144,7 @@ function Shell() {
                 <Route path="/domain/:slug" element={<DomainDrilldownView />} />
                 <Route path="/bursts" element={<BurstsView />} />
                 <Route path="/matrix" element={<MatrixView />} />
+                <Route path="/lag" element={<LagView />} />
                 <Route path="/overview" element={<OverviewView />} />
                 <Route path="/about" element={<AboutView />} />
                 <Route
@@ -169,6 +181,10 @@ function Shell() {
           </RouteTransition>
         </ErrorBoundary>
       </main>
+
+      <div className="container">
+        <ProvenanceFooter />
+      </div>
 
       <footer className="site-footer hairline-top">
         <div className="container">

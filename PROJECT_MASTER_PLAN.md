@@ -1,3 +1,5 @@
+> **Status note (2026-10-29):** this is the original design plan. Phases 0-6 are implemented locally; Phase 7 (AWS deployment) is not implemented. See README.md for current status.
+
 # MASTER PROJECT PLAN v3.1
 ## Data-Driven Bibliometric Trajectory Analysis and Technology Trend Prediction using Cloud-Based Big Data Pipelines
 

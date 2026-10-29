@@ -1,0 +1,756 @@
+{
+ "_meta": {
+  "generated_utc": "2026-10-29T09:46:00.788812+00:00",
+  "run_id": "20261029T094600Z",
+  "lineage": {
+   "trajectories": "data/tier_a + panel.json (annual exact, quarterly derived)",
+   "scores": "stats/emergence.py (weights in data/scores/emergence.json)",
+   "forecasts": "stats/forecasts.py (gated; see backtest.json gate)",
+   "bursts": "stats/bursts.py (Kleinberg 2-state)",
+   "samples": "raw/samples (2k recent + 2k top-cited per domain)",
+   "patents": "BigQuery patents-public-data (CC BY 4.0) via sql/patent_counts.sql \u2192 data/patents/patent_series.json"
+  }
+ },
+ "display_name": "AI Agents",
+ "annual": {
+  "2000": 2520,
+  "2001": 2735,
+  "2002": 5035,
+  "2003": 4478,
+  "2004": 4969,
+  "2005": 5342,
+  "2006": 6064,
+  "2007": 6115,
+  "2008": 6525,
+  "2009": 6976,
+  "2010": 7065,
+  "2011": 7773,
+  "2012": 7821,
+  "2013": 7688,
+  "2014": 7926,
+  "2015": 7475,
+  "2016": 7738,
+  "2017": 7913,
+  "2018": 8622,
+  "2019": 9120,
+  "2020": 9264,
+  "2021": 9313,
+  "2022": 9468,
+  "2023": 10448,
+  "2024": 10458,
+  "2025": 14717
+ },
+ "forecast": [
+  13882,
+  14291,
+  14699
+ ],
+ "model": "hw_damped",
+ "horizon": [
+  2026,
+  2027,
+  2028
+ ],
+ "interval_68pct": {
+  "2026": [
+   11531,
+   16233
+  ],
+  "2027": [
+   11940,
+   16642
+  ],
+  "2028": [
+   12348,
+   17050
+  ]
+ },
+ "score": 71.45,
+ "label": "Emerging",
+ "provenance_note": "sampled domain: drill-down lists from recent+top-cited 4k sample",
+ "sample_stats": null,
+ "top_keywords": [
+  {
+   "name": "Programming language",
+   "total": 21664,
+   "bursts": [
+    {
+     "start": 2000,
+     "end": 2025,
+     "duration": 26,
+     "strength": 23.7989,
+     "years": [
+      2000,
+      2001,
+      2002,
+      2003,
+      2004,
+      2005,
+      2006,
+      2007,
+      2008,
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Control theory (sociology)",
+   "total": 46196,
+   "bursts": [
+    {
+     "start": 2006,
+     "end": 2025,
+     "duration": 20,
+     "strength": 2.3783,
+     "years": [
+      2006,
+      2007,
+      2008,
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Nonlinear system",
+   "total": 19833,
+   "bursts": [
+    {
+     "start": 2006,
+     "end": 2025,
+     "duration": 20,
+     "strength": 2.3127,
+     "years": [
+      2006,
+      2007,
+      2008,
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Mathematical optimization",
+   "total": 26794,
+   "bursts": [
+    {
+     "start": 2006,
+     "end": 2025,
+     "duration": 20,
+     "strength": 2.1508,
+     "years": [
+      2006,
+      2007,
+      2008,
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Computer network",
+   "total": 22038,
+   "bursts": [
+    {
+     "start": 2002,
+     "end": 2025,
+     "duration": 24,
+     "strength": 2.1352,
+     "years": [
+      2002,
+      2003,
+      2004,
+      2005,
+      2006,
+      2007,
+      2008,
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Robot",
+   "total": 22848,
+   "bursts": [
+    {
+     "start": 2002,
+     "end": 2025,
+     "duration": 24,
+     "strength": 2.0397,
+     "years": [
+      2002,
+      2003,
+      2004,
+      2005,
+      2006,
+      2007,
+      2008,
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Algorithm",
+   "total": 28503,
+   "bursts": [
+    {
+     "start": 2004,
+     "end": 2025,
+     "duration": 22,
+     "strength": 1.9525,
+     "years": [
+      2004,
+      2005,
+      2006,
+      2007,
+      2008,
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Control (management)",
+   "total": 51139,
+   "bursts": [
+    {
+     "start": 2004,
+     "end": 2025,
+     "duration": 22,
+     "strength": 1.84,
+     "years": [
+      2004,
+      2005,
+      2006,
+      2007,
+      2008,
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    },
+    {
+     "start": 2001,
+     "end": 2001,
+     "duration": 1,
+     "strength": 0.0488,
+     "years": [
+      2001
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Physics",
+   "total": 17847,
+   "bursts": [
+    {
+     "start": 2005,
+     "end": 2025,
+     "duration": 21,
+     "strength": 1.8199,
+     "years": [
+      2005,
+      2006,
+      2007,
+      2008,
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Distributed computing",
+   "total": 33129,
+   "bursts": [
+    {
+     "start": 2002,
+     "end": 2025,
+     "duration": 24,
+     "strength": 1.473,
+     "years": [
+      2002,
+      2003,
+      2004,
+      2005,
+      2006,
+      2007,
+      2008,
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Multi-agent system",
+   "total": 28879,
+   "bursts": [
+    {
+     "start": 2002,
+     "end": 2025,
+     "duration": 24,
+     "strength": 1.4699,
+     "years": [
+      2002,
+      2003,
+      2004,
+      2005,
+      2006,
+      2007,
+      2008,
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Mathematics",
+   "total": 69371,
+   "bursts": [
+    {
+     "start": 2004,
+     "end": 2025,
+     "duration": 22,
+     "strength": 1.4672,
+     "years": [
+      2004,
+      2005,
+      2006,
+      2007,
+      2008,
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    },
+    {
+     "start": 2001,
+     "end": 2001,
+     "duration": 1,
+     "strength": 0.0488,
+     "years": [
+      2001
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Engineering",
+   "total": 55153,
+   "bursts": [
+    {
+     "start": 2002,
+     "end": 2025,
+     "duration": 24,
+     "strength": 1.3796,
+     "years": [
+      2002,
+      2003,
+      2004,
+      2005,
+      2006,
+      2007,
+      2008,
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Artificial intelligence",
+   "total": 112172,
+   "bursts": [
+    {
+     "start": 2002,
+     "end": 2025,
+     "duration": 24,
+     "strength": 1.2869,
+     "years": [
+      2002,
+      2003,
+      2004,
+      2005,
+      2006,
+      2007,
+      2008,
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Computer science",
+   "total": 173558,
+   "bursts": [
+    {
+     "start": 2002,
+     "end": 2025,
+     "duration": 24,
+     "strength": 1.0707,
+     "years": [
+      2002,
+      2003,
+      2004,
+      2005,
+      2006,
+      2007,
+      2008,
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  }
+ ],
+ "caveat": null,
+ "patents": {
+  "annual": {
+   "2000": null,
+   "2001": null,
+   "2002": null,
+   "2003": null,
+   "2004": null,
+   "2005": null,
+   "2006": null,
+   "2007": null,
+   "2008": null,
+   "2009": null,
+   "2010": null,
+   "2011": null,
+   "2012": null,
+   "2013": null,
+   "2014": 224,
+   "2015": 247,
+   "2016": 307,
+   "2017": 329,
+   "2018": 446,
+   "2019": 727,
+   "2020": 887,
+   "2021": 1069,
+   "2022": 1332,
+   "2023": 1501,
+   "2024": 1435,
+   "2025": 1316
+  },
+  "total": 9820,
+  "peak_year": 2023,
+  "covered_years": [
+   2014,
+   2025
+  ],
+  "caveat": "CPC-to-domain concordance is approximate: CPC boundaries do not align cleanly with human technology categories, so counts may over- or under-count a domain. Patents are US grants by grant year; grant lag (1-3 years) makes recent years undercount relative to paper publication years.",
+  "coverage": "2014-2025; earlier years are null because the source has no usable CPC classification before 2014",
+  "lag": {
+   "papers_peak_year": 2025,
+   "patents_peak_year": 2023,
+   "best_lag_years": 1,
+   "best_lag_r": 0.123,
+   "permutation_p": 0.7506,
+   "at_scan_boundary": false,
+   "underpowered": false,
+   "significant": false,
+   "lag_scan": [
+    {
+     "lag": -3,
+     "r": -0.168,
+     "n": 9,
+     "powered": true
+    },
+    {
+     "lag": -2,
+     "r": -0.117,
+     "n": 10,
+     "powered": true
+    },
+    {
+     "lag": -1,
+     "r": -0.328,
+     "n": 11,
+     "powered": true
+    },
+    {
+     "lag": 0,
+     "r": -0.081,
+     "n": 12,
+     "powered": true
+    },
+    {
+     "lag": 1,
+     "r": 0.123,
+     "n": 11,
+     "powered": true
+    },
+    {
+     "lag": 2,
+     "r": -0.074,
+     "n": 10,
+     "powered": true
+    },
+    {
+     "lag": 3,
+     "r": 0.007,
+     "n": 9,
+     "powered": true
+    }
+   ],
+   "lag_window": [
+    2014,
+    2024
+   ],
+   "min_pairs_required": 7,
+   "lag_basis": "year-over-year growth correlation; p from a 2000-shuffle permutation of the best-lag statistic",
+   "papers_total": 193568,
+   "patents_total": 9820
+  },
+  "lag_panel": {
+   "domains_tested": 20,
+   "domains_significant": 5,
+   "alpha_per_domain": 0.1,
+   "expected_false_positives": 2.0,
+   "binomial_p_at_least_k": 0.0432,
+   "bonferroni_alpha": 0.005,
+   "survive_bonferroni": [
+    "edge_computing"
+   ],
+   "verdict": "A majority-lead pattern is not established: the per-domain flags are consistent with chance once 20 tests are accounted for. Only the Bonferroni survivors should be cited as findings."
+  }
+ }
+}

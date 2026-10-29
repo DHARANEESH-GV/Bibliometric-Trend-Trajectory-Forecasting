@@ -1,0 +1,658 @@
+{
+ "_meta": {
+  "generated_utc": "2026-10-29T09:46:00.795754+00:00",
+  "run_id": "20261029T094600Z",
+  "lineage": {
+   "trajectories": "data/tier_a + panel.json (annual exact, quarterly derived)",
+   "scores": "stats/emergence.py (weights in data/scores/emergence.json)",
+   "forecasts": "stats/forecasts.py (gated; see backtest.json gate)",
+   "bursts": "stats/bursts.py (Kleinberg 2-state)",
+   "samples": "raw/samples (2k recent + 2k top-cited per domain)",
+   "patents": "BigQuery patents-public-data (CC BY 4.0) via sql/patent_counts.sql \u2192 data/patents/patent_series.json"
+  }
+ },
+ "display_name": "Smart Manufacturing",
+ "annual": {
+  "2000": 609,
+  "2001": 599,
+  "2002": 738,
+  "2003": 833,
+  "2004": 988,
+  "2005": 966,
+  "2006": 1156,
+  "2007": 1214,
+  "2008": 1235,
+  "2009": 1311,
+  "2010": 1618,
+  "2011": 1758,
+  "2012": 1865,
+  "2013": 2082,
+  "2014": 2524,
+  "2015": 2998,
+  "2016": 3932,
+  "2017": 4692,
+  "2018": 6433,
+  "2019": 7477,
+  "2020": 8784,
+  "2021": 9966,
+  "2022": 11516,
+  "2023": 12691,
+  "2024": 14903,
+  "2025": 17157
+ },
+ "forecast": [
+  19332,
+  21567,
+  23791
+ ],
+ "model": "hw_damped",
+ "horizon": [
+  2026,
+  2027,
+  2028
+ ],
+ "interval_68pct": {
+  "2026": [
+   14477,
+   24186
+  ],
+  "2027": [
+   16712,
+   26422
+  ],
+  "2028": [
+   18937,
+   28646
+  ]
+ },
+ "score": 54.65,
+ "label": "Accelerating",
+ "provenance_note": "sampled domain: drill-down lists from recent+top-cited 4k sample",
+ "sample_stats": {
+  "recent": 2000,
+  "top_cited": 2000
+ },
+ "top_keywords": [
+  {
+   "name": "Selective laser melting",
+   "total": 12071,
+   "bursts": [
+    {
+     "start": 2011,
+     "end": 2025,
+     "duration": 15,
+     "strength": 3.0327,
+     "years": [
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Ultimate tensile strength",
+   "total": 13643,
+   "bursts": [
+    {
+     "start": 2011,
+     "end": 2025,
+     "duration": 15,
+     "strength": 2.7465,
+     "years": [
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Process (computing)",
+   "total": 15552,
+   "bursts": [
+    {
+     "start": 2010,
+     "end": 2025,
+     "duration": 16,
+     "strength": 2.2502,
+     "years": [
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Computer science",
+   "total": 29060,
+   "bursts": [
+    {
+     "start": 2010,
+     "end": 2025,
+     "duration": 16,
+     "strength": 2.1804,
+     "years": [
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Microstructure",
+   "total": 45257,
+   "bursts": [
+    {
+     "start": 2010,
+     "end": 2025,
+     "duration": 16,
+     "strength": 2.1613,
+     "years": [
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Engineering",
+   "total": 35167,
+   "bursts": [
+    {
+     "start": 2010,
+     "end": 2025,
+     "duration": 16,
+     "strength": 2.077,
+     "years": [
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Alloy",
+   "total": 38070,
+   "bursts": [
+    {
+     "start": 2010,
+     "end": 2025,
+     "duration": 16,
+     "strength": 2.0665,
+     "years": [
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Mechanical engineering",
+   "total": 24611,
+   "bursts": [
+    {
+     "start": 2010,
+     "end": 2025,
+     "duration": 16,
+     "strength": 2.0025,
+     "years": [
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Composite material",
+   "total": 70160,
+   "bursts": [
+    {
+     "start": 2009,
+     "end": 2025,
+     "duration": 17,
+     "strength": 1.9562,
+     "years": [
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Materials science",
+   "total": 99973,
+   "bursts": [
+    {
+     "start": 2010,
+     "end": 2025,
+     "duration": 16,
+     "strength": 1.8839,
+     "years": [
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Metallurgy",
+   "total": 69019,
+   "bursts": [
+    {
+     "start": 2009,
+     "end": 2025,
+     "duration": 17,
+     "strength": 1.7813,
+     "years": [
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Physics",
+   "total": 21586,
+   "bursts": [
+    {
+     "start": 2009,
+     "end": 2025,
+     "duration": 17,
+     "strength": 1.7461,
+     "years": [
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Optics",
+   "total": 32253,
+   "bursts": [
+    {
+     "start": 2009,
+     "end": 2025,
+     "duration": 17,
+     "strength": 1.5233,
+     "years": [
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    },
+    {
+     "start": 2005,
+     "end": 2005,
+     "duration": 1,
+     "strength": 0.0894,
+     "years": [
+      2005
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Laser",
+   "total": 29177,
+   "bursts": [
+    {
+     "start": 2006,
+     "end": 2025,
+     "duration": 20,
+     "strength": 1.4939,
+     "years": [
+      2006,
+      2007,
+      2008,
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Welding",
+   "total": 11802,
+   "bursts": [
+    {
+     "start": 2007,
+     "end": 2025,
+     "duration": 19,
+     "strength": 1.4156,
+     "years": [
+      2007,
+      2008,
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  }
+ ],
+ "caveat": null,
+ "patents": {
+  "annual": {
+   "2000": null,
+   "2001": null,
+   "2002": null,
+   "2003": null,
+   "2004": null,
+   "2005": null,
+   "2006": null,
+   "2007": null,
+   "2008": null,
+   "2009": null,
+   "2010": null,
+   "2011": null,
+   "2012": null,
+   "2013": null,
+   "2014": 27,
+   "2015": 33,
+   "2016": 37,
+   "2017": 65,
+   "2018": 63,
+   "2019": 125,
+   "2020": 162,
+   "2021": 174,
+   "2022": 191,
+   "2023": 185,
+   "2024": 149,
+   "2025": 149
+  },
+  "total": 1360,
+  "peak_year": 2022,
+  "covered_years": [
+   2014,
+   2025
+  ],
+  "caveat": "CPC-to-domain concordance is approximate: CPC boundaries do not align cleanly with human technology categories, so counts may over- or under-count a domain. Patents are US grants by grant year; grant lag (1-3 years) makes recent years undercount relative to paper publication years.",
+  "coverage": "2014-2025; earlier years are null because the source has no usable CPC classification before 2014",
+  "lag": {
+   "papers_peak_year": 2025,
+   "patents_peak_year": 2022,
+   "best_lag_years": 1,
+   "best_lag_r": 0.935,
+   "permutation_p": 0.066,
+   "at_scan_boundary": false,
+   "underpowered": false,
+   "significant": true,
+   "lag_scan": [
+    {
+     "lag": -3,
+     "r": 0.064,
+     "n": 9,
+     "powered": true
+    },
+    {
+     "lag": -2,
+     "r": 0.493,
+     "n": 10,
+     "powered": true
+    },
+    {
+     "lag": -1,
+     "r": -0.001,
+     "n": 11,
+     "powered": true
+    },
+    {
+     "lag": 0,
+     "r": 0.071,
+     "n": 12,
+     "powered": true
+    },
+    {
+     "lag": 1,
+     "r": 0.935,
+     "n": 11,
+     "powered": true
+    },
+    {
+     "lag": 2,
+     "r": 0.137,
+     "n": 10,
+     "powered": true
+    },
+    {
+     "lag": 3,
+     "r": 0.474,
+     "n": 9,
+     "powered": true
+    }
+   ],
+   "lag_window": [
+    2014,
+    2024
+   ],
+   "min_pairs_required": 7,
+   "lag_basis": "year-over-year growth correlation; p from a 2000-shuffle permutation of the best-lag statistic",
+   "papers_total": 120045,
+   "patents_total": 1360
+  },
+  "lag_panel": {
+   "domains_tested": 20,
+   "domains_significant": 5,
+   "alpha_per_domain": 0.1,
+   "expected_false_positives": 2.0,
+   "binomial_p_at_least_k": 0.0432,
+   "bonferroni_alpha": 0.005,
+   "survive_bonferroni": [
+    "edge_computing"
+   ],
+   "verdict": "A majority-lead pattern is not established: the per-domain flags are consistent with chance once 20 tests are accounted for. Only the Bonferroni survivors should be cited as findings."
+  }
+ }
+}

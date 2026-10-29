@@ -1,0 +1,3956 @@
+{
+ "_meta": {
+  "generated_utc": "2026-10-29T09:46:00.777624+00:00",
+  "run_id": "20261029T094600Z",
+  "lineage": {
+   "trajectories": "data/tier_a + panel.json (annual exact, quarterly derived)",
+   "scores": "stats/emergence.py (weights in data/scores/emergence.json)",
+   "forecasts": "stats/forecasts.py (gated; see backtest.json gate)",
+   "bursts": "stats/bursts.py (Kleinberg 2-state)",
+   "samples": "raw/samples (2k recent + 2k top-cited per domain)",
+   "patents": "BigQuery patents-public-data (CC BY 4.0) via sql/patent_counts.sql \u2192 data/patents/patent_series.json"
+  }
+ },
+ "domains": [
+  {
+   "domain": "advanced_semiconductors",
+   "display_name": "Advanced Semiconductors",
+   "series": [
+    {
+     "year": 2000,
+     "works": 14536,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2001,
+     "works": 15546,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2002,
+     "works": 32656,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2003,
+     "works": 25990,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2004,
+     "works": 22635,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2005,
+     "works": 26506,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2006,
+     "works": 28731,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2007,
+     "works": 28159,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2008,
+     "works": 27482,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2009,
+     "works": 27114,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2010,
+     "works": 28259,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2011,
+     "works": 29743,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2012,
+     "works": 28330,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2013,
+     "works": 29023,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2014,
+     "works": 29482,
+     "patents": 4141,
+     "forecast": null
+    },
+    {
+     "year": 2015,
+     "works": 28492,
+     "patents": 11775,
+     "forecast": null
+    },
+    {
+     "year": 2016,
+     "works": 28466,
+     "patents": 13382,
+     "forecast": null
+    },
+    {
+     "year": 2017,
+     "works": 26524,
+     "patents": 13773,
+     "forecast": null
+    },
+    {
+     "year": 2018,
+     "works": 25903,
+     "patents": 12605,
+     "forecast": null
+    },
+    {
+     "year": 2019,
+     "works": 25999,
+     "patents": 13788,
+     "forecast": null
+    },
+    {
+     "year": 2020,
+     "works": 23770,
+     "patents": 13433,
+     "forecast": null
+    },
+    {
+     "year": 2021,
+     "works": 23203,
+     "patents": 11647,
+     "forecast": null
+    },
+    {
+     "year": 2022,
+     "works": 22651,
+     "patents": 10665,
+     "forecast": null
+    },
+    {
+     "year": 2023,
+     "works": 23780,
+     "patents": 10292,
+     "forecast": null
+    },
+    {
+     "year": 2024,
+     "works": 25405,
+     "patents": 10696,
+     "forecast": null
+    },
+    {
+     "year": 2025,
+     "works": 25528,
+     "patents": 8614,
+     "forecast": null
+    },
+    {
+     "year": 2026,
+     "works": null,
+     "patents": null,
+     "forecast": 24401,
+     "lower": 21145,
+     "upper": 27657,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2027,
+     "works": null,
+     "patents": null,
+     "forecast": 24313,
+     "lower": 21057,
+     "upper": 27570,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2028,
+     "works": null,
+     "patents": null,
+     "forecast": 24243,
+     "lower": 20987,
+     "upper": 27499,
+     "model": "hw_damped"
+    }
+   ],
+   "train_through": 2025,
+   "model_gate": false,
+   "patents_total": 134811,
+   "patents_caveat": "CPC-to-domain concordance is approximate: CPC boundaries do not align cleanly with human technology categories, so counts may over- or under-count a domain. Patents are US grants by grant year; grant lag (1-3 years) makes recent years undercount relative to paper publication years.",
+   "patents_covered_years": [
+    2014,
+    2025
+   ]
+  },
+  {
+   "domain": "ai_agents",
+   "display_name": "AI Agents",
+   "series": [
+    {
+     "year": 2000,
+     "works": 2520,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2001,
+     "works": 2735,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2002,
+     "works": 5035,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2003,
+     "works": 4478,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2004,
+     "works": 4969,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2005,
+     "works": 5342,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2006,
+     "works": 6064,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2007,
+     "works": 6115,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2008,
+     "works": 6525,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2009,
+     "works": 6976,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2010,
+     "works": 7065,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2011,
+     "works": 7773,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2012,
+     "works": 7821,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2013,
+     "works": 7688,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2014,
+     "works": 7926,
+     "patents": 224,
+     "forecast": null
+    },
+    {
+     "year": 2015,
+     "works": 7475,
+     "patents": 247,
+     "forecast": null
+    },
+    {
+     "year": 2016,
+     "works": 7738,
+     "patents": 307,
+     "forecast": null
+    },
+    {
+     "year": 2017,
+     "works": 7913,
+     "patents": 329,
+     "forecast": null
+    },
+    {
+     "year": 2018,
+     "works": 8622,
+     "patents": 446,
+     "forecast": null
+    },
+    {
+     "year": 2019,
+     "works": 9120,
+     "patents": 727,
+     "forecast": null
+    },
+    {
+     "year": 2020,
+     "works": 9264,
+     "patents": 887,
+     "forecast": null
+    },
+    {
+     "year": 2021,
+     "works": 9313,
+     "patents": 1069,
+     "forecast": null
+    },
+    {
+     "year": 2022,
+     "works": 9468,
+     "patents": 1332,
+     "forecast": null
+    },
+    {
+     "year": 2023,
+     "works": 10448,
+     "patents": 1501,
+     "forecast": null
+    },
+    {
+     "year": 2024,
+     "works": 10458,
+     "patents": 1435,
+     "forecast": null
+    },
+    {
+     "year": 2025,
+     "works": 14717,
+     "patents": 1316,
+     "forecast": null
+    },
+    {
+     "year": 2026,
+     "works": null,
+     "patents": null,
+     "forecast": 13882,
+     "lower": 11531,
+     "upper": 16233,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2027,
+     "works": null,
+     "patents": null,
+     "forecast": 14291,
+     "lower": 11940,
+     "upper": 16642,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2028,
+     "works": null,
+     "patents": null,
+     "forecast": 14699,
+     "lower": 12348,
+     "upper": 17050,
+     "model": "hw_damped"
+    }
+   ],
+   "train_through": 2025,
+   "model_gate": false,
+   "patents_total": 9820,
+   "patents_caveat": "CPC-to-domain concordance is approximate: CPC boundaries do not align cleanly with human technology categories, so counts may over- or under-count a domain. Patents are US grants by grant year; grant lag (1-3 years) makes recent years undercount relative to paper publication years.",
+   "patents_covered_years": [
+    2014,
+    2025
+   ]
+  },
+  {
+   "domain": "artificial_intelligence",
+   "display_name": "Artificial Intelligence",
+   "series": [
+    {
+     "year": 2000,
+     "works": 7800,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2001,
+     "works": 7367,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2002,
+     "works": 19972,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2003,
+     "works": 13156,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2004,
+     "works": 10695,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2005,
+     "works": 13448,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2006,
+     "works": 14072,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2007,
+     "works": 12727,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2008,
+     "works": 12919,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2009,
+     "works": 13890,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2010,
+     "works": 14036,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2011,
+     "works": 14783,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2012,
+     "works": 14420,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2013,
+     "works": 14526,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2014,
+     "works": 15344,
+     "patents": 1318,
+     "forecast": null
+    },
+    {
+     "year": 2015,
+     "works": 16080,
+     "patents": 1619,
+     "forecast": null
+    },
+    {
+     "year": 2016,
+     "works": 17046,
+     "patents": 2109,
+     "forecast": null
+    },
+    {
+     "year": 2017,
+     "works": 19242,
+     "patents": 2618,
+     "forecast": null
+    },
+    {
+     "year": 2018,
+     "works": 23295,
+     "patents": 3034,
+     "forecast": null
+    },
+    {
+     "year": 2019,
+     "works": 27338,
+     "patents": 5904,
+     "forecast": null
+    },
+    {
+     "year": 2020,
+     "works": 30596,
+     "patents": 9403,
+     "forecast": null
+    },
+    {
+     "year": 2021,
+     "works": 32479,
+     "patents": 12392,
+     "forecast": null
+    },
+    {
+     "year": 2022,
+     "works": 34787,
+     "patents": 16489,
+     "forecast": null
+    },
+    {
+     "year": 2023,
+     "works": 50737,
+     "patents": 18746,
+     "forecast": null
+    },
+    {
+     "year": 2024,
+     "works": 72274,
+     "patents": 17768,
+     "forecast": null
+    },
+    {
+     "year": 2025,
+     "works": 96987,
+     "patents": 15788,
+     "forecast": null
+    },
+    {
+     "year": 2026,
+     "works": null,
+     "patents": null,
+     "forecast": 119732,
+     "lower": 99401,
+     "upper": 140063,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2027,
+     "works": null,
+     "patents": null,
+     "forecast": 142493,
+     "lower": 122162,
+     "upper": 162823,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2028,
+     "works": null,
+     "patents": null,
+     "forecast": 165139,
+     "lower": 144808,
+     "upper": 185470,
+     "model": "hw_damped"
+    }
+   ],
+   "train_through": 2025,
+   "model_gate": false,
+   "patents_total": 107188,
+   "patents_caveat": "CPC-to-domain concordance is approximate: CPC boundaries do not align cleanly with human technology categories, so counts may over- or under-count a domain. Patents are US grants by grant year; grant lag (1-3 years) makes recent years undercount relative to paper publication years.",
+   "patents_covered_years": [
+    2014,
+    2025
+   ]
+  },
+  {
+   "domain": "autonomous_vehicles",
+   "display_name": "Autonomous Vehicles",
+   "series": [
+    {
+     "year": 2000,
+     "works": 556,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2001,
+     "works": 559,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2002,
+     "works": 1025,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2003,
+     "works": 855,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2004,
+     "works": 945,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2005,
+     "works": 1206,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2006,
+     "works": 1392,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2007,
+     "works": 1503,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2008,
+     "works": 1556,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2009,
+     "works": 1840,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2010,
+     "works": 2004,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2011,
+     "works": 2403,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2012,
+     "works": 2660,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2013,
+     "works": 2834,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2014,
+     "works": 3135,
+     "patents": 1393,
+     "forecast": null
+    },
+    {
+     "year": 2015,
+     "works": 3678,
+     "patents": 1682,
+     "forecast": null
+    },
+    {
+     "year": 2016,
+     "works": 3844,
+     "patents": 1782,
+     "forecast": null
+    },
+    {
+     "year": 2017,
+     "works": 4901,
+     "patents": 2152,
+     "forecast": null
+    },
+    {
+     "year": 2018,
+     "works": 6139,
+     "patents": 2205,
+     "forecast": null
+    },
+    {
+     "year": 2019,
+     "works": 7790,
+     "patents": 2847,
+     "forecast": null
+    },
+    {
+     "year": 2020,
+     "works": 8347,
+     "patents": 3006,
+     "forecast": null
+    },
+    {
+     "year": 2021,
+     "works": 9245,
+     "patents": 3257,
+     "forecast": null
+    },
+    {
+     "year": 2022,
+     "works": 9814,
+     "patents": 3761,
+     "forecast": null
+    },
+    {
+     "year": 2023,
+     "works": 10968,
+     "patents": 4130,
+     "forecast": null
+    },
+    {
+     "year": 2024,
+     "works": 12443,
+     "patents": 4373,
+     "forecast": null
+    },
+    {
+     "year": 2025,
+     "works": 16015,
+     "patents": 4284,
+     "forecast": null
+    },
+    {
+     "year": 2026,
+     "works": null,
+     "patents": null,
+     "forecast": 19222,
+     "lower": 15054,
+     "upper": 23391,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2027,
+     "works": null,
+     "patents": null,
+     "forecast": 22540,
+     "lower": 18371,
+     "upper": 26708,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2028,
+     "works": null,
+     "patents": null,
+     "forecast": 25841,
+     "lower": 21672,
+     "upper": 30009,
+     "model": "hw_damped"
+    }
+   ],
+   "train_through": 2025,
+   "model_gate": false,
+   "patents_total": 34872,
+   "patents_caveat": "CPC-to-domain concordance is approximate: CPC boundaries do not align cleanly with human technology categories, so counts may over- or under-count a domain. Patents are US grants by grant year; grant lag (1-3 years) makes recent years undercount relative to paper publication years.",
+   "patents_covered_years": [
+    2014,
+    2025
+   ]
+  },
+  {
+   "domain": "biotechnology",
+   "display_name": "Biotechnology",
+   "series": [
+    {
+     "year": 2000,
+     "works": 13271,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2001,
+     "works": 13080,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2002,
+     "works": 14200,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2003,
+     "works": 14014,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2004,
+     "works": 15130,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2005,
+     "works": 15846,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2006,
+     "works": 16906,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2007,
+     "works": 17440,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2008,
+     "works": 18405,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2009,
+     "works": 19868,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2010,
+     "works": 20482,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2011,
+     "works": 20535,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2012,
+     "works": 22328,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2013,
+     "works": 23373,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2014,
+     "works": 23993,
+     "patents": 2277,
+     "forecast": null
+    },
+    {
+     "year": 2015,
+     "works": 24448,
+     "patents": 2380,
+     "forecast": null
+    },
+    {
+     "year": 2016,
+     "works": 24790,
+     "patents": 2619,
+     "forecast": null
+    },
+    {
+     "year": 2017,
+     "works": 23981,
+     "patents": 2880,
+     "forecast": null
+    },
+    {
+     "year": 2018,
+     "works": 22780,
+     "patents": 2895,
+     "forecast": null
+    },
+    {
+     "year": 2019,
+     "works": 23308,
+     "patents": 3269,
+     "forecast": null
+    },
+    {
+     "year": 2020,
+     "works": 23380,
+     "patents": 3300,
+     "forecast": null
+    },
+    {
+     "year": 2021,
+     "works": 21432,
+     "patents": 3030,
+     "forecast": null
+    },
+    {
+     "year": 2022,
+     "works": 19459,
+     "patents": 2724,
+     "forecast": null
+    },
+    {
+     "year": 2023,
+     "works": 19533,
+     "patents": 2659,
+     "forecast": null
+    },
+    {
+     "year": 2024,
+     "works": 21099,
+     "patents": 2554,
+     "forecast": null
+    },
+    {
+     "year": 2025,
+     "works": 23912,
+     "patents": 2595,
+     "forecast": null
+    },
+    {
+     "year": 2026,
+     "works": null,
+     "patents": null,
+     "forecast": 26158,
+     "lower": 22595,
+     "upper": 29722,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2027,
+     "works": null,
+     "patents": null,
+     "forecast": 27955,
+     "lower": 24392,
+     "upper": 31519,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2028,
+     "works": null,
+     "patents": null,
+     "forecast": 29393,
+     "lower": 25830,
+     "upper": 32957,
+     "model": "hw_damped"
+    }
+   ],
+   "train_through": 2025,
+   "model_gate": false,
+   "patents_total": 33182,
+   "patents_caveat": "CPC-to-domain concordance is approximate: CPC boundaries do not align cleanly with human technology categories, so counts may over- or under-count a domain. Patents are US grants by grant year; grant lag (1-3 years) makes recent years undercount relative to paper publication years.",
+   "patents_covered_years": [
+    2014,
+    2025
+   ]
+  },
+  {
+   "domain": "blockchain",
+   "display_name": "Blockchain",
+   "series": [
+    {
+     "year": 2000,
+     "works": 341,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2001,
+     "works": 394,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2002,
+     "works": 548,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2003,
+     "works": 603,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2004,
+     "works": 827,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2005,
+     "works": 949,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2006,
+     "works": 1197,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2007,
+     "works": 1395,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2008,
+     "works": 1891,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2009,
+     "works": 2489,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2010,
+     "works": 3460,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2011,
+     "works": 4408,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2012,
+     "works": 5701,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2013,
+     "works": 7479,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2014,
+     "works": 9170,
+     "patents": 2690,
+     "forecast": null
+    },
+    {
+     "year": 2015,
+     "works": 11835,
+     "patents": 2079,
+     "forecast": null
+    },
+    {
+     "year": 2016,
+     "works": 14187,
+     "patents": 2037,
+     "forecast": null
+    },
+    {
+     "year": 2017,
+     "works": 19219,
+     "patents": 2502,
+     "forecast": null
+    },
+    {
+     "year": 2018,
+     "works": 26565,
+     "patents": 2610,
+     "forecast": null
+    },
+    {
+     "year": 2019,
+     "works": 34873,
+     "patents": 3507,
+     "forecast": null
+    },
+    {
+     "year": 2020,
+     "works": 37927,
+     "patents": 4086,
+     "forecast": null
+    },
+    {
+     "year": 2021,
+     "works": 42075,
+     "patents": 4439,
+     "forecast": null
+    },
+    {
+     "year": 2022,
+     "works": 45750,
+     "patents": 4583,
+     "forecast": null
+    },
+    {
+     "year": 2023,
+     "works": 51347,
+     "patents": 4561,
+     "forecast": null
+    },
+    {
+     "year": 2024,
+     "works": 42185,
+     "patents": 4523,
+     "forecast": null
+    },
+    {
+     "year": 2025,
+     "works": 45782,
+     "patents": 3721,
+     "forecast": null
+    },
+    {
+     "year": 2026,
+     "works": null,
+     "patents": null,
+     "forecast": 44354,
+     "lower": 26614,
+     "upper": 62094,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2027,
+     "works": null,
+     "patents": null,
+     "forecast": 43612,
+     "lower": 25872,
+     "upper": 61352,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2028,
+     "works": null,
+     "patents": null,
+     "forecast": 42974,
+     "lower": 25234,
+     "upper": 60714,
+     "model": "hw_damped"
+    }
+   ],
+   "train_through": 2025,
+   "model_gate": false,
+   "patents_total": 41338,
+   "patents_caveat": "CPC-to-domain concordance is approximate: CPC boundaries do not align cleanly with human technology categories, so counts may over- or under-count a domain. Patents are US grants by grant year; grant lag (1-3 years) makes recent years undercount relative to paper publication years.",
+   "patents_covered_years": [
+    2014,
+    2025
+   ]
+  },
+  {
+   "domain": "brain_computer_interfaces",
+   "display_name": "Brain-Computer Interfaces",
+   "series": [
+    {
+     "year": 2000,
+     "works": 2630,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2001,
+     "works": 2480,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2002,
+     "works": 3803,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2003,
+     "works": 3647,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2004,
+     "works": 3719,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2005,
+     "works": 4856,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2006,
+     "works": 5284,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2007,
+     "works": 5805,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2008,
+     "works": 6520,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2009,
+     "works": 7500,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2010,
+     "works": 8192,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2011,
+     "works": 8761,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2012,
+     "works": 9142,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2013,
+     "works": 10611,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2014,
+     "works": 11099,
+     "patents": 173,
+     "forecast": null
+    },
+    {
+     "year": 2015,
+     "works": 11935,
+     "patents": 323,
+     "forecast": null
+    },
+    {
+     "year": 2016,
+     "works": 12164,
+     "patents": 319,
+     "forecast": null
+    },
+    {
+     "year": 2017,
+     "works": 13482,
+     "patents": 335,
+     "forecast": null
+    },
+    {
+     "year": 2018,
+     "works": 14782,
+     "patents": 303,
+     "forecast": null
+    },
+    {
+     "year": 2019,
+     "works": 16321,
+     "patents": 391,
+     "forecast": null
+    },
+    {
+     "year": 2020,
+     "works": 17353,
+     "patents": 397,
+     "forecast": null
+    },
+    {
+     "year": 2021,
+     "works": 17988,
+     "patents": 354,
+     "forecast": null
+    },
+    {
+     "year": 2022,
+     "works": 18085,
+     "patents": 277,
+     "forecast": null
+    },
+    {
+     "year": 2023,
+     "works": 20011,
+     "patents": 239,
+     "forecast": null
+    },
+    {
+     "year": 2024,
+     "works": 19733,
+     "patents": 277,
+     "forecast": null
+    },
+    {
+     "year": 2025,
+     "works": 23258,
+     "patents": 338,
+     "forecast": null
+    },
+    {
+     "year": 2026,
+     "works": null,
+     "patents": null,
+     "forecast": 23084,
+     "lower": 17166,
+     "upper": 29003,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2027,
+     "works": null,
+     "patents": null,
+     "forecast": 24185,
+     "lower": 18267,
+     "upper": 30104,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2028,
+     "works": null,
+     "patents": null,
+     "forecast": 25280,
+     "lower": 19362,
+     "upper": 31199,
+     "model": "hw_damped"
+    }
+   ],
+   "train_through": 2025,
+   "model_gate": false,
+   "patents_total": 3726,
+   "patents_caveat": "CPC-to-domain concordance is approximate: CPC boundaries do not align cleanly with human technology categories, so counts may over- or under-count a domain. Patents are US grants by grant year; grant lag (1-3 years) makes recent years undercount relative to paper publication years.",
+   "patents_covered_years": [
+    2014,
+    2025
+   ]
+  },
+  {
+   "domain": "carbon_capture",
+   "display_name": "Carbon Capture",
+   "series": [
+    {
+     "year": 2000,
+     "works": 3615,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2001,
+     "works": 1637,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2002,
+     "works": 1806,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2003,
+     "works": 2269,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2004,
+     "works": 2342,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2005,
+     "works": 3100,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2006,
+     "works": 2965,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2007,
+     "works": 3184,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2008,
+     "works": 3527,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2009,
+     "works": 5053,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2010,
+     "works": 5273,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2011,
+     "works": 7035,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2012,
+     "works": 6959,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2013,
+     "works": 8008,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2014,
+     "works": 8203,
+     "patents": 568,
+     "forecast": null
+    },
+    {
+     "year": 2015,
+     "works": 7588,
+     "patents": 591,
+     "forecast": null
+    },
+    {
+     "year": 2016,
+     "works": 7999,
+     "patents": 615,
+     "forecast": null
+    },
+    {
+     "year": 2017,
+     "works": 8380,
+     "patents": 629,
+     "forecast": null
+    },
+    {
+     "year": 2018,
+     "works": 7947,
+     "patents": 696,
+     "forecast": null
+    },
+    {
+     "year": 2019,
+     "works": 8760,
+     "patents": 773,
+     "forecast": null
+    },
+    {
+     "year": 2020,
+     "works": 8790,
+     "patents": 782,
+     "forecast": null
+    },
+    {
+     "year": 2021,
+     "works": 9491,
+     "patents": 701,
+     "forecast": null
+    },
+    {
+     "year": 2022,
+     "works": 10482,
+     "patents": 676,
+     "forecast": null
+    },
+    {
+     "year": 2023,
+     "works": 11813,
+     "patents": 724,
+     "forecast": null
+    },
+    {
+     "year": 2024,
+     "works": 13250,
+     "patents": 733,
+     "forecast": null
+    },
+    {
+     "year": 2025,
+     "works": 17129,
+     "patents": 820,
+     "forecast": null
+    },
+    {
+     "year": 2026,
+     "works": null,
+     "patents": null,
+     "forecast": 19374,
+     "lower": 15576,
+     "upper": 23172,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2027,
+     "works": null,
+     "patents": null,
+     "forecast": 22228,
+     "lower": 18430,
+     "upper": 26026,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2028,
+     "works": null,
+     "patents": null,
+     "forecast": 25067,
+     "lower": 21269,
+     "upper": 28865,
+     "model": "hw_damped"
+    }
+   ],
+   "train_through": 2025,
+   "model_gate": false,
+   "patents_total": 8308,
+   "patents_caveat": "CPC-to-domain concordance is approximate: CPC boundaries do not align cleanly with human technology categories, so counts may over- or under-count a domain. Patents are US grants by grant year; grant lag (1-3 years) makes recent years undercount relative to paper publication years.",
+   "patents_covered_years": [
+    2014,
+    2025
+   ]
+  },
+  {
+   "domain": "clean_hydrogen",
+   "display_name": "Clean Hydrogen",
+   "series": [
+    {
+     "year": 2000,
+     "works": 751,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2001,
+     "works": 893,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2002,
+     "works": 1082,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2003,
+     "works": 1383,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2004,
+     "works": 1743,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2005,
+     "works": 2202,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2006,
+     "works": 2638,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2007,
+     "works": 3245,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2008,
+     "works": 3604,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2009,
+     "works": 4580,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2010,
+     "works": 5700,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2011,
+     "works": 7585,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2012,
+     "works": 8696,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2013,
+     "works": 10675,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2014,
+     "works": 12286,
+     "patents": 99,
+     "forecast": null
+    },
+    {
+     "year": 2015,
+     "works": 13187,
+     "patents": 138,
+     "forecast": null
+    },
+    {
+     "year": 2016,
+     "works": 14459,
+     "patents": 141,
+     "forecast": null
+    },
+    {
+     "year": 2017,
+     "works": 15651,
+     "patents": 150,
+     "forecast": null
+    },
+    {
+     "year": 2018,
+     "works": 18495,
+     "patents": 189,
+     "forecast": null
+    },
+    {
+     "year": 2019,
+     "works": 20948,
+     "patents": 243,
+     "forecast": null
+    },
+    {
+     "year": 2020,
+     "works": 24042,
+     "patents": 203,
+     "forecast": null
+    },
+    {
+     "year": 2021,
+     "works": 26426,
+     "patents": 242,
+     "forecast": null
+    },
+    {
+     "year": 2022,
+     "works": 31269,
+     "patents": 272,
+     "forecast": null
+    },
+    {
+     "year": 2023,
+     "works": 34505,
+     "patents": 349,
+     "forecast": null
+    },
+    {
+     "year": 2024,
+     "works": 34161,
+     "patents": 367,
+     "forecast": null
+    },
+    {
+     "year": 2025,
+     "works": 33134,
+     "patents": 437,
+     "forecast": null
+    },
+    {
+     "year": 2026,
+     "works": null,
+     "patents": null,
+     "forecast": 32284,
+     "lower": 20992,
+     "upper": 43575,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2027,
+     "works": null,
+     "patents": null,
+     "forecast": 31579,
+     "lower": 20288,
+     "upper": 42871,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2028,
+     "works": null,
+     "patents": null,
+     "forecast": 30996,
+     "lower": 19704,
+     "upper": 42287,
+     "model": "hw_damped"
+    }
+   ],
+   "train_through": 2025,
+   "model_gate": false,
+   "patents_total": 2830,
+   "patents_caveat": "CPC-to-domain concordance is approximate: CPC boundaries do not align cleanly with human technology categories, so counts may over- or under-count a domain. Patents are US grants by grant year; grant lag (1-3 years) makes recent years undercount relative to paper publication years.",
+   "patents_covered_years": [
+    2014,
+    2025
+   ]
+  },
+  {
+   "domain": "cybersecurity",
+   "display_name": "Cybersecurity",
+   "series": [
+    {
+     "year": 2000,
+     "works": 2316,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2001,
+     "works": 2552,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2002,
+     "works": 4512,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2003,
+     "works": 4901,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2004,
+     "works": 6162,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2005,
+     "works": 7542,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2006,
+     "works": 8898,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2007,
+     "works": 9655,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2008,
+     "works": 10399,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2009,
+     "works": 11894,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2010,
+     "works": 12697,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2011,
+     "works": 14024,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2012,
+     "works": 15324,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2013,
+     "works": 16403,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2014,
+     "works": 17866,
+     "patents": 9770,
+     "forecast": null
+    },
+    {
+     "year": 2015,
+     "works": 18855,
+     "patents": 10195,
+     "forecast": null
+    },
+    {
+     "year": 2016,
+     "works": 19795,
+     "patents": 10592,
+     "forecast": null
+    },
+    {
+     "year": 2017,
+     "works": 21633,
+     "patents": 11249,
+     "forecast": null
+    },
+    {
+     "year": 2018,
+     "works": 24787,
+     "patents": 11208,
+     "forecast": null
+    },
+    {
+     "year": 2019,
+     "works": 26888,
+     "patents": 13476,
+     "forecast": null
+    },
+    {
+     "year": 2020,
+     "works": 28933,
+     "patents": 14699,
+     "forecast": null
+    },
+    {
+     "year": 2021,
+     "works": 29652,
+     "patents": 14449,
+     "forecast": null
+    },
+    {
+     "year": 2022,
+     "works": 30240,
+     "patents": 14800,
+     "forecast": null
+    },
+    {
+     "year": 2023,
+     "works": 34517,
+     "patents": 14678,
+     "forecast": null
+    },
+    {
+     "year": 2024,
+     "works": 40939,
+     "patents": 14522,
+     "forecast": null
+    },
+    {
+     "year": 2025,
+     "works": 50332,
+     "patents": 14307,
+     "forecast": null
+    },
+    {
+     "year": 2026,
+     "works": null,
+     "patents": null,
+     "forecast": 59678,
+     "lower": 47813,
+     "upper": 71543,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2027,
+     "works": null,
+     "patents": null,
+     "forecast": 68977,
+     "lower": 57112,
+     "upper": 80842,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2028,
+     "works": null,
+     "patents": null,
+     "forecast": 78230,
+     "lower": 66365,
+     "upper": 90095,
+     "model": "hw_damped"
+    }
+   ],
+   "train_through": 2025,
+   "model_gate": false,
+   "patents_total": 153945,
+   "patents_caveat": "CPC-to-domain concordance is approximate: CPC boundaries do not align cleanly with human technology categories, so counts may over- or under-count a domain. Patents are US grants by grant year; grant lag (1-3 years) makes recent years undercount relative to paper publication years.",
+   "patents_covered_years": [
+    2014,
+    2025
+   ]
+  },
+  {
+   "domain": "digital_twins",
+   "display_name": "Digital Twins",
+   "series": [
+    {
+     "year": 2000,
+     "works": 218,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2001,
+     "works": 276,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2002,
+     "works": 374,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2003,
+     "works": 352,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2004,
+     "works": 380,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2005,
+     "works": 460,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2006,
+     "works": 539,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2007,
+     "works": 537,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2008,
+     "works": 574,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2009,
+     "works": 598,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2010,
+     "works": 767,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2011,
+     "works": 963,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2012,
+     "works": 1014,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2013,
+     "works": 1217,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2014,
+     "works": 1569,
+     "patents": 2217,
+     "forecast": null
+    },
+    {
+     "year": 2015,
+     "works": 2105,
+     "patents": 1844,
+     "forecast": null
+    },
+    {
+     "year": 2016,
+     "works": 2864,
+     "patents": 1827,
+     "forecast": null
+    },
+    {
+     "year": 2017,
+     "works": 4204,
+     "patents": 1951,
+     "forecast": null
+    },
+    {
+     "year": 2018,
+     "works": 6053,
+     "patents": 1941,
+     "forecast": null
+    },
+    {
+     "year": 2019,
+     "works": 7984,
+     "patents": 3017,
+     "forecast": null
+    },
+    {
+     "year": 2020,
+     "works": 9451,
+     "patents": 2926,
+     "forecast": null
+    },
+    {
+     "year": 2021,
+     "works": 11137,
+     "patents": 2721,
+     "forecast": null
+    },
+    {
+     "year": 2022,
+     "works": 12404,
+     "patents": 2629,
+     "forecast": null
+    },
+    {
+     "year": 2023,
+     "works": 15289,
+     "patents": 2856,
+     "forecast": null
+    },
+    {
+     "year": 2024,
+     "works": 18587,
+     "patents": 2581,
+     "forecast": null
+    },
+    {
+     "year": 2025,
+     "works": 27149,
+     "patents": 2558,
+     "forecast": null
+    },
+    {
+     "year": 2026,
+     "works": null,
+     "patents": null,
+     "forecast": 35583,
+     "lower": 28715,
+     "upper": 42450,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2027,
+     "works": null,
+     "patents": null,
+     "forecast": 44003,
+     "lower": 37136,
+     "upper": 50871,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2028,
+     "works": null,
+     "patents": null,
+     "forecast": 52382,
+     "lower": 45515,
+     "upper": 59250,
+     "model": "hw_damped"
+    }
+   ],
+   "train_through": 2025,
+   "model_gate": false,
+   "patents_total": 29068,
+   "patents_caveat": "CPC-to-domain concordance is approximate: CPC boundaries do not align cleanly with human technology categories, so counts may over- or under-count a domain. Patents are US grants by grant year; grant lag (1-3 years) makes recent years undercount relative to paper publication years.",
+   "patents_covered_years": [
+    2014,
+    2025
+   ]
+  },
+  {
+   "domain": "edge_computing",
+   "display_name": "Edge Computing",
+   "series": [
+    {
+     "year": 2000,
+     "works": 183,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2001,
+     "works": 202,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2002,
+     "works": 349,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2003,
+     "works": 377,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2004,
+     "works": 490,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2005,
+     "works": 674,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2006,
+     "works": 864,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2007,
+     "works": 998,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2008,
+     "works": 1101,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2009,
+     "works": 1385,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2010,
+     "works": 2033,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2011,
+     "works": 3045,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2012,
+     "works": 4290,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2013,
+     "works": 5604,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2014,
+     "works": 6986,
+     "patents": 925,
+     "forecast": null
+    },
+    {
+     "year": 2015,
+     "works": 8551,
+     "patents": 1527,
+     "forecast": null
+    },
+    {
+     "year": 2016,
+     "works": 10240,
+     "patents": 2013,
+     "forecast": null
+    },
+    {
+     "year": 2017,
+     "works": 12648,
+     "patents": 2542,
+     "forecast": null
+    },
+    {
+     "year": 2018,
+     "works": 16378,
+     "patents": 2508,
+     "forecast": null
+    },
+    {
+     "year": 2019,
+     "works": 18992,
+     "patents": 3021,
+     "forecast": null
+    },
+    {
+     "year": 2020,
+     "works": 20535,
+     "patents": 3092,
+     "forecast": null
+    },
+    {
+     "year": 2021,
+     "works": 22962,
+     "patents": 2763,
+     "forecast": null
+    },
+    {
+     "year": 2022,
+     "works": 23073,
+     "patents": 2285,
+     "forecast": null
+    },
+    {
+     "year": 2023,
+     "works": 23752,
+     "patents": 2133,
+     "forecast": null
+    },
+    {
+     "year": 2024,
+     "works": 21378,
+     "patents": 1571,
+     "forecast": null
+    },
+    {
+     "year": 2025,
+     "works": 25933,
+     "patents": 1202,
+     "forecast": null
+    },
+    {
+     "year": 2026,
+     "works": null,
+     "patents": null,
+     "forecast": 25578,
+     "lower": 16433,
+     "upper": 34724,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2027,
+     "works": null,
+     "patents": null,
+     "forecast": 26527,
+     "lower": 17381,
+     "upper": 35673,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2028,
+     "works": null,
+     "patents": null,
+     "forecast": 27382,
+     "lower": 18236,
+     "upper": 36528,
+     "model": "hw_damped"
+    }
+   ],
+   "train_through": 2025,
+   "model_gate": false,
+   "patents_total": 25582,
+   "patents_caveat": "CPC-to-domain concordance is approximate: CPC boundaries do not align cleanly with human technology categories, so counts may over- or under-count a domain. Patents are US grants by grant year; grant lag (1-3 years) makes recent years undercount relative to paper publication years.",
+   "patents_covered_years": [
+    2014,
+    2025
+   ]
+  },
+  {
+   "domain": "generative_ai",
+   "display_name": "Generative AI",
+   "series": [
+    {
+     "year": 2000,
+     "works": 101,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2001,
+     "works": 118,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2002,
+     "works": 212,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2003,
+     "works": 236,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2004,
+     "works": 248,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2005,
+     "works": 305,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2006,
+     "works": 368,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2007,
+     "works": 418,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2008,
+     "works": 415,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2009,
+     "works": 552,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2010,
+     "works": 608,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2011,
+     "works": 631,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2012,
+     "works": 751,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2013,
+     "works": 821,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2014,
+     "works": 972,
+     "patents": 61,
+     "forecast": null
+    },
+    {
+     "year": 2015,
+     "works": 1235,
+     "patents": 94,
+     "forecast": null
+    },
+    {
+     "year": 2016,
+     "works": 1534,
+     "patents": 170,
+     "forecast": null
+    },
+    {
+     "year": 2017,
+     "works": 2487,
+     "patents": 223,
+     "forecast": null
+    },
+    {
+     "year": 2018,
+     "works": 4046,
+     "patents": 350,
+     "forecast": null
+    },
+    {
+     "year": 2019,
+     "works": 5579,
+     "patents": 1276,
+     "forecast": null
+    },
+    {
+     "year": 2020,
+     "works": 6552,
+     "patents": 2738,
+     "forecast": null
+    },
+    {
+     "year": 2021,
+     "works": 7818,
+     "patents": 4302,
+     "forecast": null
+    },
+    {
+     "year": 2022,
+     "works": 8027,
+     "patents": 6223,
+     "forecast": null
+    },
+    {
+     "year": 2023,
+     "works": 10890,
+     "patents": 7305,
+     "forecast": null
+    },
+    {
+     "year": 2024,
+     "works": 8972,
+     "patents": 6887,
+     "forecast": null
+    },
+    {
+     "year": 2025,
+     "works": 21758,
+     "patents": 5953,
+     "forecast": null
+    },
+    {
+     "year": 2026,
+     "works": null,
+     "patents": null,
+     "forecast": 18283,
+     "lower": 13344,
+     "upper": 23222,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2027,
+     "works": null,
+     "patents": null,
+     "forecast": 20930,
+     "lower": 15991,
+     "upper": 25869,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2028,
+     "works": null,
+     "patents": null,
+     "forecast": 23564,
+     "lower": 18625,
+     "upper": 28503,
+     "model": "hw_damped"
+    }
+   ],
+   "train_through": 2025,
+   "model_gate": false,
+   "patents_total": 35582,
+   "patents_caveat": "CPC-to-domain concordance is approximate: CPC boundaries do not align cleanly with human technology categories, so counts may over- or under-count a domain. Patents are US grants by grant year; grant lag (1-3 years) makes recent years undercount relative to paper publication years.",
+   "patents_covered_years": [
+    2014,
+    2025
+   ]
+  },
+  {
+   "domain": "internet_of_things",
+   "display_name": "Internet of Things",
+   "series": [
+    {
+     "year": 2000,
+     "works": 78,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2001,
+     "works": 66,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2002,
+     "works": 75,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2003,
+     "works": 110,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2004,
+     "works": 302,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2005,
+     "works": 269,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2006,
+     "works": 289,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2007,
+     "works": 281,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2008,
+     "works": 336,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2009,
+     "works": 415,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2010,
+     "works": 473,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2011,
+     "works": 454,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2012,
+     "works": 655,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2013,
+     "works": 716,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2014,
+     "works": 939,
+     "patents": 518,
+     "forecast": null
+    },
+    {
+     "year": 2015,
+     "works": 1137,
+     "patents": 721,
+     "forecast": null
+    },
+    {
+     "year": 2016,
+     "works": 1375,
+     "patents": 983,
+     "forecast": null
+    },
+    {
+     "year": 2017,
+     "works": 1900,
+     "patents": 1480,
+     "forecast": null
+    },
+    {
+     "year": 2018,
+     "works": 2748,
+     "patents": 1889,
+     "forecast": null
+    },
+    {
+     "year": 2019,
+     "works": 3231,
+     "patents": 2477,
+     "forecast": null
+    },
+    {
+     "year": 2020,
+     "works": 3773,
+     "patents": 2852,
+     "forecast": null
+    },
+    {
+     "year": 2021,
+     "works": 4769,
+     "patents": 2676,
+     "forecast": null
+    },
+    {
+     "year": 2022,
+     "works": 6007,
+     "patents": 2745,
+     "forecast": null
+    },
+    {
+     "year": 2023,
+     "works": 5693,
+     "patents": 2481,
+     "forecast": null
+    },
+    {
+     "year": 2024,
+     "works": 6083,
+     "patents": 2145,
+     "forecast": null
+    },
+    {
+     "year": 2025,
+     "works": 11916,
+     "patents": 1873,
+     "forecast": null
+    },
+    {
+     "year": 2026,
+     "works": null,
+     "patents": null,
+     "forecast": 10638,
+     "lower": 7841,
+     "upper": 13434,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2027,
+     "works": null,
+     "patents": null,
+     "forecast": 12110,
+     "lower": 9314,
+     "upper": 14906,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2028,
+     "works": null,
+     "patents": null,
+     "forecast": 13574,
+     "lower": 10778,
+     "upper": 16370,
+     "model": "hw_damped"
+    }
+   ],
+   "train_through": 2025,
+   "model_gate": false,
+   "patents_total": 22840,
+   "patents_caveat": "CPC-to-domain concordance is approximate: CPC boundaries do not align cleanly with human technology categories, so counts may over- or under-count a domain. Patents are US grants by grant year; grant lag (1-3 years) makes recent years undercount relative to paper publication years.",
+   "patents_covered_years": [
+    2014,
+    2025
+   ]
+  },
+  {
+   "domain": "quantum_computing",
+   "display_name": "Quantum Computing",
+   "series": [
+    {
+     "year": 2000,
+     "works": 1443,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2001,
+     "works": 1724,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2002,
+     "works": 2448,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2003,
+     "works": 2583,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2004,
+     "works": 2802,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2005,
+     "works": 3492,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2006,
+     "works": 3755,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2007,
+     "works": 3677,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2008,
+     "works": 3940,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2009,
+     "works": 3909,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2010,
+     "works": 4032,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2011,
+     "works": 4273,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2012,
+     "works": 4618,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2013,
+     "works": 4977,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2014,
+     "works": 5218,
+     "patents": 20,
+     "forecast": null
+    },
+    {
+     "year": 2015,
+     "works": 5151,
+     "patents": 33,
+     "forecast": null
+    },
+    {
+     "year": 2016,
+     "works": 5418,
+     "patents": 39,
+     "forecast": null
+    },
+    {
+     "year": 2017,
+     "works": 5626,
+     "patents": 49,
+     "forecast": null
+    },
+    {
+     "year": 2018,
+     "works": 6306,
+     "patents": 75,
+     "forecast": null
+    },
+    {
+     "year": 2019,
+     "works": 7636,
+     "patents": 200,
+     "forecast": null
+    },
+    {
+     "year": 2020,
+     "works": 8757,
+     "patents": 327,
+     "forecast": null
+    },
+    {
+     "year": 2021,
+     "works": 10731,
+     "patents": 364,
+     "forecast": null
+    },
+    {
+     "year": 2022,
+     "works": 11719,
+     "patents": 456,
+     "forecast": null
+    },
+    {
+     "year": 2023,
+     "works": 13854,
+     "patents": 643,
+     "forecast": null
+    },
+    {
+     "year": 2024,
+     "works": 14108,
+     "patents": 715,
+     "forecast": null
+    },
+    {
+     "year": 2025,
+     "works": 20584,
+     "patents": 775,
+     "forecast": null
+    },
+    {
+     "year": 2026,
+     "works": null,
+     "patents": null,
+     "forecast": 21428,
+     "lower": 17000,
+     "upper": 25857,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2027,
+     "works": null,
+     "patents": null,
+     "forecast": 24251,
+     "lower": 19823,
+     "upper": 28679,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2028,
+     "works": null,
+     "patents": null,
+     "forecast": 27059,
+     "lower": 22631,
+     "upper": 31487,
+     "model": "hw_damped"
+    }
+   ],
+   "train_through": 2025,
+   "model_gate": false,
+   "patents_total": 3696,
+   "patents_caveat": "CPC-to-domain concordance is approximate: CPC boundaries do not align cleanly with human technology categories, so counts may over- or under-count a domain. Patents are US grants by grant year; grant lag (1-3 years) makes recent years undercount relative to paper publication years.",
+   "patents_covered_years": [
+    2014,
+    2025
+   ]
+  },
+  {
+   "domain": "quantum_error_correction",
+   "display_name": "Quantum Error Correction",
+   "series": [
+    {
+     "year": 2000,
+     "works": 1443,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2001,
+     "works": 1724,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2002,
+     "works": 2448,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2003,
+     "works": 2583,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2004,
+     "works": 2802,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2005,
+     "works": 3492,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2006,
+     "works": 3755,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2007,
+     "works": 3677,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2008,
+     "works": 3940,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2009,
+     "works": 3909,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2010,
+     "works": 4032,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2011,
+     "works": 4273,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2012,
+     "works": 4618,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2013,
+     "works": 4977,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2014,
+     "works": 5218,
+     "patents": 2,
+     "forecast": null
+    },
+    {
+     "year": 2015,
+     "works": 5151,
+     "patents": 6,
+     "forecast": null
+    },
+    {
+     "year": 2016,
+     "works": 5418,
+     "patents": 7,
+     "forecast": null
+    },
+    {
+     "year": 2017,
+     "works": 5626,
+     "patents": 6,
+     "forecast": null
+    },
+    {
+     "year": 2018,
+     "works": 6306,
+     "patents": 14,
+     "forecast": null
+    },
+    {
+     "year": 2019,
+     "works": 7636,
+     "patents": 32,
+     "forecast": null
+    },
+    {
+     "year": 2020,
+     "works": 8757,
+     "patents": 58,
+     "forecast": null
+    },
+    {
+     "year": 2021,
+     "works": 10731,
+     "patents": 55,
+     "forecast": null
+    },
+    {
+     "year": 2022,
+     "works": 11719,
+     "patents": 84,
+     "forecast": null
+    },
+    {
+     "year": 2023,
+     "works": 13854,
+     "patents": 137,
+     "forecast": null
+    },
+    {
+     "year": 2024,
+     "works": 14108,
+     "patents": 157,
+     "forecast": null
+    },
+    {
+     "year": 2025,
+     "works": 20584,
+     "patents": 165,
+     "forecast": null
+    },
+    {
+     "year": 2026,
+     "works": null,
+     "patents": null,
+     "forecast": 21428,
+     "lower": 17000,
+     "upper": 25857,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2027,
+     "works": null,
+     "patents": null,
+     "forecast": 24251,
+     "lower": 19823,
+     "upper": 28679,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2028,
+     "works": null,
+     "patents": null,
+     "forecast": 27059,
+     "lower": 22631,
+     "upper": 31487,
+     "model": "hw_damped"
+    }
+   ],
+   "train_through": 2025,
+   "model_gate": false,
+   "patents_total": 723,
+   "patents_caveat": "CPC-to-domain concordance is approximate: CPC boundaries do not align cleanly with human technology categories, so counts may over- or under-count a domain. Patents are US grants by grant year; grant lag (1-3 years) makes recent years undercount relative to paper publication years.",
+   "patents_covered_years": [
+    2014,
+    2025
+   ]
+  },
+  {
+   "domain": "smart_manufacturing",
+   "display_name": "Smart Manufacturing",
+   "series": [
+    {
+     "year": 2000,
+     "works": 609,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2001,
+     "works": 599,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2002,
+     "works": 738,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2003,
+     "works": 833,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2004,
+     "works": 988,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2005,
+     "works": 966,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2006,
+     "works": 1156,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2007,
+     "works": 1214,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2008,
+     "works": 1235,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2009,
+     "works": 1311,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2010,
+     "works": 1618,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2011,
+     "works": 1758,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2012,
+     "works": 1865,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2013,
+     "works": 2082,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2014,
+     "works": 2524,
+     "patents": 27,
+     "forecast": null
+    },
+    {
+     "year": 2015,
+     "works": 2998,
+     "patents": 33,
+     "forecast": null
+    },
+    {
+     "year": 2016,
+     "works": 3932,
+     "patents": 37,
+     "forecast": null
+    },
+    {
+     "year": 2017,
+     "works": 4692,
+     "patents": 65,
+     "forecast": null
+    },
+    {
+     "year": 2018,
+     "works": 6433,
+     "patents": 63,
+     "forecast": null
+    },
+    {
+     "year": 2019,
+     "works": 7477,
+     "patents": 125,
+     "forecast": null
+    },
+    {
+     "year": 2020,
+     "works": 8784,
+     "patents": 162,
+     "forecast": null
+    },
+    {
+     "year": 2021,
+     "works": 9966,
+     "patents": 174,
+     "forecast": null
+    },
+    {
+     "year": 2022,
+     "works": 11516,
+     "patents": 191,
+     "forecast": null
+    },
+    {
+     "year": 2023,
+     "works": 12691,
+     "patents": 185,
+     "forecast": null
+    },
+    {
+     "year": 2024,
+     "works": 14903,
+     "patents": 149,
+     "forecast": null
+    },
+    {
+     "year": 2025,
+     "works": 17157,
+     "patents": 149,
+     "forecast": null
+    },
+    {
+     "year": 2026,
+     "works": null,
+     "patents": null,
+     "forecast": 19332,
+     "lower": 14477,
+     "upper": 24186,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2027,
+     "works": null,
+     "patents": null,
+     "forecast": 21567,
+     "lower": 16712,
+     "upper": 26422,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2028,
+     "works": null,
+     "patents": null,
+     "forecast": 23791,
+     "lower": 18937,
+     "upper": 28646,
+     "model": "hw_damped"
+    }
+   ],
+   "train_through": 2025,
+   "model_gate": false,
+   "patents_total": 1360,
+   "patents_caveat": "CPC-to-domain concordance is approximate: CPC boundaries do not align cleanly with human technology categories, so counts may over- or under-count a domain. Patents are US grants by grant year; grant lag (1-3 years) makes recent years undercount relative to paper publication years.",
+   "patents_covered_years": [
+    2014,
+    2025
+   ]
+  },
+  {
+   "domain": "solid_state_batteries",
+   "display_name": "Solid-State Batteries",
+   "series": [
+    {
+     "year": 2000,
+     "works": 1155,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2001,
+     "works": 1299,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2002,
+     "works": 1758,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2003,
+     "works": 1731,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2004,
+     "works": 1807,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2005,
+     "works": 1952,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2006,
+     "works": 2480,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2007,
+     "works": 2376,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2008,
+     "works": 2449,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2009,
+     "works": 2745,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2010,
+     "works": 3431,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2011,
+     "works": 4005,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2012,
+     "works": 5260,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2013,
+     "works": 6545,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2014,
+     "works": 8178,
+     "patents": 77,
+     "forecast": null
+    },
+    {
+     "year": 2015,
+     "works": 8679,
+     "patents": 99,
+     "forecast": null
+    },
+    {
+     "year": 2016,
+     "works": 10391,
+     "patents": 120,
+     "forecast": null
+    },
+    {
+     "year": 2017,
+     "works": 10668,
+     "patents": 158,
+     "forecast": null
+    },
+    {
+     "year": 2018,
+     "works": 12397,
+     "patents": 181,
+     "forecast": null
+    },
+    {
+     "year": 2019,
+     "works": 14470,
+     "patents": 225,
+     "forecast": null
+    },
+    {
+     "year": 2020,
+     "works": 16304,
+     "patents": 346,
+     "forecast": null
+    },
+    {
+     "year": 2021,
+     "works": 17252,
+     "patents": 325,
+     "forecast": null
+    },
+    {
+     "year": 2022,
+     "works": 20443,
+     "patents": 376,
+     "forecast": null
+    },
+    {
+     "year": 2023,
+     "works": 21646,
+     "patents": 396,
+     "forecast": null
+    },
+    {
+     "year": 2024,
+     "works": 24480,
+     "patents": 448,
+     "forecast": null
+    },
+    {
+     "year": 2025,
+     "works": 26805,
+     "patents": 459,
+     "forecast": null
+    },
+    {
+     "year": 2026,
+     "works": null,
+     "patents": null,
+     "forecast": 29068,
+     "lower": 21257,
+     "upper": 36880,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2027,
+     "works": null,
+     "patents": null,
+     "forecast": 31433,
+     "lower": 23622,
+     "upper": 39245,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2028,
+     "works": null,
+     "patents": null,
+     "forecast": 33787,
+     "lower": 25975,
+     "upper": 41598,
+     "model": "hw_damped"
+    }
+   ],
+   "train_through": 2025,
+   "model_gate": false,
+   "patents_total": 3210,
+   "patents_caveat": "CPC-to-domain concordance is approximate: CPC boundaries do not align cleanly with human technology categories, so counts may over- or under-count a domain. Patents are US grants by grant year; grant lag (1-3 years) makes recent years undercount relative to paper publication years.",
+   "patents_covered_years": [
+    2014,
+    2025
+   ]
+  },
+  {
+   "domain": "space_technologies",
+   "display_name": "Space Technologies",
+   "series": [
+    {
+     "year": 2000,
+     "works": 5413,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2001,
+     "works": 5010,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2002,
+     "works": 8618,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2003,
+     "works": 7873,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2004,
+     "works": 7696,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2005,
+     "works": 8278,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2006,
+     "works": 8828,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2007,
+     "works": 8620,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2008,
+     "works": 9174,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2009,
+     "works": 9175,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2010,
+     "works": 10040,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2011,
+     "works": 10757,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2012,
+     "works": 11310,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2013,
+     "works": 11887,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2014,
+     "works": 12110,
+     "patents": 169,
+     "forecast": null
+    },
+    {
+     "year": 2015,
+     "works": 13017,
+     "patents": 181,
+     "forecast": null
+    },
+    {
+     "year": 2016,
+     "works": 11814,
+     "patents": 208,
+     "forecast": null
+    },
+    {
+     "year": 2017,
+     "works": 11940,
+     "patents": 229,
+     "forecast": null
+    },
+    {
+     "year": 2018,
+     "works": 12900,
+     "patents": 256,
+     "forecast": null
+    },
+    {
+     "year": 2019,
+     "works": 13360,
+     "patents": 297,
+     "forecast": null
+    },
+    {
+     "year": 2020,
+     "works": 12571,
+     "patents": 348,
+     "forecast": null
+    },
+    {
+     "year": 2021,
+     "works": 12164,
+     "patents": 281,
+     "forecast": null
+    },
+    {
+     "year": 2022,
+     "works": 12162,
+     "patents": 308,
+     "forecast": null
+    },
+    {
+     "year": 2023,
+     "works": 14096,
+     "patents": 345,
+     "forecast": null
+    },
+    {
+     "year": 2024,
+     "works": 17764,
+     "patents": 395,
+     "forecast": null
+    },
+    {
+     "year": 2025,
+     "works": 21784,
+     "patents": 453,
+     "forecast": null
+    },
+    {
+     "year": 2026,
+     "works": null,
+     "patents": null,
+     "forecast": 24640,
+     "lower": 21300,
+     "upper": 27980,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2027,
+     "works": null,
+     "patents": null,
+     "forecast": 27364,
+     "lower": 24025,
+     "upper": 30704,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2028,
+     "works": null,
+     "patents": null,
+     "forecast": 29965,
+     "lower": 26625,
+     "upper": 33305,
+     "model": "hw_damped"
+    }
+   ],
+   "train_through": 2025,
+   "model_gate": false,
+   "patents_total": 3470,
+   "patents_caveat": "CPC-to-domain concordance is approximate: CPC boundaries do not align cleanly with human technology categories, so counts may over- or under-count a domain. Patents are US grants by grant year; grant lag (1-3 years) makes recent years undercount relative to paper publication years.",
+   "patents_covered_years": [
+    2014,
+    2025
+   ]
+  },
+  {
+   "domain": "synthetic_biology",
+   "display_name": "Synthetic Biology",
+   "series": [
+    {
+     "year": 2000,
+     "works": 3430,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2001,
+     "works": 3478,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2002,
+     "works": 3907,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2003,
+     "works": 4196,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2004,
+     "works": 4648,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2005,
+     "works": 4822,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2006,
+     "works": 5632,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2007,
+     "works": 6289,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2008,
+     "works": 6921,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2009,
+     "works": 8029,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2010,
+     "works": 8820,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2011,
+     "works": 9222,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2012,
+     "works": 9962,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2013,
+     "works": 10685,
+     "patents": null,
+     "forecast": null
+    },
+    {
+     "year": 2014,
+     "works": 10777,
+     "patents": 2573,
+     "forecast": null
+    },
+    {
+     "year": 2015,
+     "works": 11326,
+     "patents": 3060,
+     "forecast": null
+    },
+    {
+     "year": 2016,
+     "works": 11498,
+     "patents": 3321,
+     "forecast": null
+    },
+    {
+     "year": 2017,
+     "works": 11281,
+     "patents": 3518,
+     "forecast": null
+    },
+    {
+     "year": 2018,
+     "works": 10478,
+     "patents": 3493,
+     "forecast": null
+    },
+    {
+     "year": 2019,
+     "works": 10405,
+     "patents": 3500,
+     "forecast": null
+    },
+    {
+     "year": 2020,
+     "works": 10700,
+     "patents": 3645,
+     "forecast": null
+    },
+    {
+     "year": 2021,
+     "works": 10092,
+     "patents": 3629,
+     "forecast": null
+    },
+    {
+     "year": 2022,
+     "works": 9493,
+     "patents": 3542,
+     "forecast": null
+    },
+    {
+     "year": 2023,
+     "works": 9187,
+     "patents": 3322,
+     "forecast": null
+    },
+    {
+     "year": 2024,
+     "works": 9139,
+     "patents": 3348,
+     "forecast": null
+    },
+    {
+     "year": 2025,
+     "works": 9780,
+     "patents": 3691,
+     "forecast": null
+    },
+    {
+     "year": 2026,
+     "works": null,
+     "patents": null,
+     "forecast": 10055,
+     "lower": 7488,
+     "upper": 12622,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2027,
+     "works": null,
+     "patents": null,
+     "forecast": 10284,
+     "lower": 7717,
+     "upper": 12852,
+     "model": "hw_damped"
+    },
+    {
+     "year": 2028,
+     "works": null,
+     "patents": null,
+     "forecast": 10476,
+     "lower": 7909,
+     "upper": 13044,
+     "model": "hw_damped"
+    }
+   ],
+   "train_through": 2025,
+   "model_gate": false,
+   "patents_total": 40642,
+   "patents_caveat": "CPC-to-domain concordance is approximate: CPC boundaries do not align cleanly with human technology categories, so counts may over- or under-count a domain. Patents are US grants by grant year; grant lag (1-3 years) makes recent years undercount relative to paper publication years.",
+   "patents_covered_years": [
+    2014,
+    2025
+   ]
+  }
+ ]
+}

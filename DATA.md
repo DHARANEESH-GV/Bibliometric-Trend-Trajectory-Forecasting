@@ -15,16 +15,16 @@ For reviewers, auditors, or anyone handed this repository who needs to know
 | Question | Answer |
 |---|---|
 | Where is the data? | Local-first. Raw API responses in `raw/`, clean Parquet in `staged/`, analytics in `data/`, dashboard contracts in `snapshots/`. |
-| What is the contract of record? | `snapshots/{run_id}/` — the frontend reads only these. One run exists: `20260923T082601Z`. |
-| What is committed to git? | `data/` (9 files) and `snapshots/` (24 files). `raw/` and `staged/` are **git-ignored** (large, regenerable). |
+| What is the contract of record? | `snapshots/{run_id}/` — the frontend reads only these. Four runs exist; the latest is `20261029T094600Z`. |
+| What is committed to git? | `data/` (12 files) and `snapshots/`. `raw/` and `staged/` are **git-ignored** (large, regenerable). |
 | How do I reproduce? | `make fetch && make normalize` then the `stats/` stages, or `make run` for all 20 domains. See §7. |
-| Is it deployed to AWS? | No. Nothing has been deployed; everything runs locally. S3 layout below is the *target* mapping. |
+| Is it deployed to AWS? | No. `lambdas/` contains six empty placeholder folders (handler.py and Dockerfile are 0 lines) and `template.yaml` is empty. No AWS resources are deployed. The pipeline runs locally; Phase 7 is planned, not implemented. The S3 layout below is the *target* mapping. |
 | What are the known limitations? | §8 — sampled vs full-corpus domains, quarterly interpolation, snapshot citation proxy, patent coverage 2014-2025 with approximate CPC concordance. |
 
 Two facts a reviewer should absorb before trusting any number:
 
 1. **Only one domain is full-corpus on disk.** `quantum_computing` is a complete
-   walk (162,782 staged works, 6 fetch runs). The other 19 domains are
+   walk (162,782 staged works, 8 fetch runs). The other 19 domains are
    **sampled**: their annual counts come from the OpenAlex aggregate
    (`data/tier_a/tier_a.json`), and their drill-down lists come from a
    4,000-work sample each (`raw/samples/<domain>/`).
@@ -78,7 +78,7 @@ raw/openalex/quantum_computing/{run_id}/
   manifest.json                                  # query + accounting
 ```
 
-Six runs contributed staged data (`20260921T041642Z` … `20260921T070143Z`).
+Eight runs contributed staged data (`20260921T041642Z` … `20260921T070143Z`).
 Each batch file is a JSONL stream of **verbatim OpenAlex `works` objects**, so
 normalize is replayable without re-fetching.
 
@@ -281,7 +281,11 @@ They are small and versioned in git.
 | `data/forecasts/forecasts.json` | `{horizon, gate, forecasts}` | Point + 68% interval forecast per domain. |
 | `data/forecasts/backtest.json` | `{train_end, targets, gate, per_series}` | Per-series MAE/RMSE/sMAPE/directional. |
 | `data/patents/patent_counts.csv` | `{domain, year, patents}` CSV | BigQuery result (human-downloaded; see §4.4). |
-| `data/patents/patent_series.json` | `{_meta, domains{}, paper_patent_crosswalk{}}` | Patent series + lag analysis (§4.4). |
+| `data/patents/patent_quarterly.csv` | `{domain, date_type, year, quarter, patents}` CSV | Quarterly BigQuery aggregate; `date_type` is `filing` or `grant`. Absent quarters are real zeros (GROUP BY COUNT emits no row). |
+| `data/patents/patent_series.json` | `{_meta, domains{}, paper_patent_crosswalk{}}` | Patent series + annual lag test (superseded; see §4.4). |
+| `data/papers/panel_quarterly.csv` | `{domain, year, quarter, papers}` CSV | Measured quarterly papers, 20 domains × 72 quarters (2008Q1–2025Q4). |
+| `data/lag/lag_results.json` | `{method, primary_grant{per_domain, pool, placebo, granger, series}, filing_sensitivity, robustness}` | Quarterly lag analysis + robustness block. |
+| `data/scores/rank_stability.json` | `{baseline_weights, all_weights, effective_weights, summary_line}` | ±30% weight-perturbation sweep, 500 draws. |
 
 ### 4.3 Key structures
 
@@ -376,8 +380,11 @@ claim no patents were granted, which the source cannot support.
 **Grant-lag cutoff.** Patents are granted 1–3 years after filing, so the
 most recent grant years are structurally incomplete — AI patents fall
 18,746 → 17,768 → 15,788 across 2023–2025 purely from ungranted filings.
-The displayed series runs to 2025 with that truncation labelled; the lag
-analysis uses **2014–2022** only.
+The displayed series runs to 2025 with that truncation labelled.
+
+**Lag windows (quarterly analysis).** The primary quarterly series uses
+**grant dates, 2015Q1–2025Q4**; the filing-date series is a sensitivity
+check over **2014Q1–2020Q4** and is pooled-only. The two are never mixed.
 
 **Concordance (deterministic, documented):** a configured CPC code with
 subgroup `00` (e.g. `G06N3/00`) matches every leaf in its group
@@ -390,35 +397,73 @@ artificial_intelligence's `G06N3/00` group.
 
 ### Paper-to-patent lag: what the data actually supports
 
-Correlating raw **levels** is meaningless here: both series rise steadily
-over 2014–2022, so r sits near 0.99 at every candidate shift and picking
-the maximum is noise. The analysis therefore correlates **year-over-year
-growth**, which removes the shared trend.
+#### Annual lag test (superseded, kept for provenance)
 
-Scanning 9 lags and keeping the best r inflates the statistic — with only
-8 growth points, a max-r of 0.8 is routine under pure noise. Each domain
-therefore carries a **permutation p-value** (2000 shuffles of the patent
-series, re-scanning every lag), and `significant` is the only field safe
-to quote.
+The original Phase 3.5 test correlated **annual year-over-year growth** with
+only 8 usable growth points per domain, scanning 9 lags. It reported 5/20
+domains at p ≤ 0.10 with only `edge_computing` surviving Bonferroni
+(α = 0.005), and concluded that a general pattern was not established. That
+test was **underpowered by construction** and has been superseded by the
+quarterly analysis below; `paper_patent_crosswalk` and `lag_panel_test` remain
+in `patent_series.json` as provenance.
 
-Result: **5 of 20 domains** reach p ≤ 0.10, and every one of those says
-papers lead patents by 2 years. But 20 tests at that threshold yield
-**~2 false positives by chance**, so the per-domain flags cannot stand
-alone. `lag_panel_test` therefore applies two corrections:
+#### Quarterly lag result (current, 2026-10-29)
 
-| Check | Value | Reading |
-|---|---|---|
-| Significant domains | 5 / 20 | more than the ~2 expected |
-| Binomial P(≥5 of 20) | 0.043 | weakly surprising |
-| Bonferroni α (0.10/20) | 0.005 | strict |
-| Bonferroni survivors | **`edge_computing` only** (p = 0.002) | one domain holds up |
+Correlating raw **levels** is meaningless: both series trend upward, so r sits
+near 0.99 at every shift. The quarterly analysis therefore uses 4-quarter
+rolling sums and year-over-year log growth
+`g_t = ln((S_t+1)/(S_t−4+1))`, then scans lags 0–12.
 
-The honest conclusion: **a general papers-lead-patents pattern is not
-established.** The direction is consistent (all five flags positive) and
-the binomial tail is mildly encouraging, but only `edge_computing` survives
-multiple-comparison correction. Anything stronger would be overclaiming,
-and the report should say exactly this. `caveat` and `lag_basis` travel
-with every domain so a reader cannot quote r without seeing the test.
+**Primary series:** grant dates, patents 2015Q1–2025Q4, papers 2008Q1–2025Q4.
+**Sensitivity series:** filing dates, 2014Q1–2020Q4, pooled only. Never mixed.
+
+| Result | Value |
+|---|---|
+| Pooled best lag | **5 quarters** (bootstrap 95% CI 3–5) |
+| Pooled correlation | **0.23** (95% CI 0.08–0.40, **resampling domains**) |
+| Pooled permutation p | **0.010** |
+| Domains significant individually | **1 / 20** (≈ 1 expected by chance) |
+| Placebo (cross-domain mismatch) | true peak 0.23 vs placebo max 0.19, p = 0.000 |
+
+The **location** of the peak is stable under every robustness check, but its
+**statistical significance is fragile**. The headline 95% CI (0.08 to 0.40) is
+what you get **when resampling domains, which assumes domains are independent —
+they are not**. Under a **time-block bootstrap the interval (−0.13 to 0.28)
+includes zero**, and when the four low-confidence domains are dropped the
+**placebo test no longer separates the true pairing** (true 0.226 vs placebo
+max 0.240). Treat this as **suggestive, not conclusive**.
+
+Robustness (see `robustness` in `lag_results.json`):
+
+| Check | Peak lag | r | CI excludes 0 | Peak in 3–6 |
+|---|---|---|---|---|
+| Baseline (20 domains) | 5 | 0.23 | yes | yes |
+| Leave-one-domain-out | 4–5 | 0.20–0.26 | yes (all 20) | yes |
+| Drop nested (17 domains) | 4 | 0.27 | yes | yes |
+| Drop low-confidence (16 domains) | 4 | 0.23 | **fails placebo** | yes |
+| Time-block bootstrap (8q blocks) | 5 | 0.08 | **no** (−0.13 to 0.28) | yes |
+
+Two dependence caveats bound what this can claim:
+
+- **Nested domains are not independent.** `quantum_error_correction` ⊂
+  `quantum_computing`, and `generative_ai` / `ai_agents` ⊂
+  `artificial_intelligence`'s `G06N3/00` group. Patents matching several
+  domains count once per domain, so the domain bootstrap resamples correlated
+  series as if they were independent.
+- **One emergence-score component is constant across domains.**
+  `momentum_intent` is 0.5 for all 20 domains because the tier-C stats carry
+  counts, not a frontier share. It cannot reorder the leaderboard; see
+  `data/scores/rank_stability.json`, which reports the 4 effective weights
+  separately. **Because that component is inert, the rank-stability result
+  shows insensitivity to the weights, not correctness of the weighting**: a
+  stable ranking is not evidence that the weights are right.
+
+Grant dates include examination pendency, so this is **not** a
+research-to-invention lag.
+
+The filing-date sensitivity check peaks at 12 quarters, the edge of the scan,
+and does **not** beat cross-domain placebo pairing (p = 0.63). It is reported
+for completeness and is not used as corroboration.
 
 **`data/patents/patent_series.json`** shape:
 
@@ -470,7 +515,8 @@ snapshots simply carry papers only (`patents: null` in domain files, no
 ## 5. Dashboard contracts (`snapshots/`) — the product of record
 
 `snapshots/{run_id}/` is what the frontend consumes; the frontend **never reads
-Parquet**. One run exists: **`20260923T082601Z`** (24 JSON files).
+Parquet**. Latest run: **`20261029T094600Z`** (26 JSON files, including
+`lag.json` and `rank_stability.json`).
 `frontend/src/lib/types.ts` documents the same contracts in TypeScript.
 
 ### 5.1 Envelope
@@ -521,6 +567,26 @@ frequencies exist on disk; `strength` + `duration` are the intensity signals.
 
 `{_meta, years[2000..2025], domains[], cells{slug: [n_per_year]}, tail{slug:
 {label, score}}}` — the domain × year heatmap plus the lifecycle tail.
+
+### 5.5b `lag.json` and `rank_stability.json`
+
+`lag.json` is a reshape of `data/lag/lag_results.json`; the `/lag` view renders
+only from it and recomputes nothing in the browser.
+
+`{_meta, windows{papers, patents, date_type}, method, caveats[],
+pooled{curve[13], ci_lo[13], ci_hi[13], best_lag, best_r, best_lag_ci,
+n_domains, perm_p, peak_excludes_zero}, placebo{true_peak,
+placebo_mean_peak, placebo_p95_peak, placebo_max_peak, exceeds_all_placebo,
+empirical_p, n_draws}, counts{n_domains, n_significant}, domains[{domain,
+display_name, best_lag, best_r, perm_p, significant_05, low_confidence,
+n_points, curve, series{quarters[], papers_z[], patents_z[]}}],
+robustness{baseline, leave_one_domain_out{per_drop[], summary},
+drop_nested, drop_low_confidence, time_block_bootstrap},
+filing_sensitivity{...}}`
+
+`rank_stability.json` carries the weight-perturbation sweep.
+`leaderboard.json` embeds the same block under `rank_stability` so the
+leaderboard can print its one summary line without a second request.
 
 ### 5.6 `domains/{slug}.json`
 
@@ -631,7 +697,10 @@ actually contains:
 8. **A ~1-work drift** exists between the staged quantum corpus (162,782 rows)
    and the panel total (162,781) — recorded in
    `panel.json.metadata.live_drift_note` for 2025.
-9. **Not deployed.** No AWS resources exist; the S3/DynamoDB layout is a target.
+9. **Not deployed.** `lambdas/` contains six empty placeholder folders (handler.py
+   and Dockerfile are 0 lines) and `template.yaml` is empty. No AWS resources are
+   deployed. The pipeline runs locally; Phase 7 is planned, not implemented. The
+   S3/DynamoDB layout is a target mapping.
 
 ---
 

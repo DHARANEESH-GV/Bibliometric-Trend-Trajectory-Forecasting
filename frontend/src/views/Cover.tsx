@@ -13,6 +13,7 @@ import { loadLeaderboard, loadBursts } from '../lib/snapshots'
 import { useStore } from '../lib/store'
 import { gsap, useGSAP, prefersReducedMotion } from '../lib/gsap'
 import { setMotionChoice, onMotionChange } from '../lib/motion'
+import { startTour } from '../components/TourStrip'
 import { useEffect, useState, useCallback } from 'react'
 import { CTASection } from '@/components/ui/hero-dithering-card'
 import './cover.css'
@@ -435,6 +436,16 @@ export function CoverView() {
                   <span className="cta-orbit">
                     <ArrowRight weight="light" className="h-5 w-5" />
                   </span>
+                </button>
+                <button
+                  type="button"
+                  className="cover-tour-start"
+                  onClick={() => {
+                    startTour()
+                    navigate('/lag')
+                  }}
+                >
+                  Start tour
                 </button>
               </div>
             </div>

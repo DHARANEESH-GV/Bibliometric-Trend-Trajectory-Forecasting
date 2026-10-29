@@ -10,6 +10,8 @@
  * broken, static site.)
  */
 
+import { isPresentation } from './presentation'
+
 const KEY = 'bt-motion'
 
 export type MotionChoice = 'full' | 'reduced' | null
@@ -35,8 +37,14 @@ export function setMotionChoice(choice: 'full' | 'reduced' | null): void {
 
 const KEY_VALUES = { full: 'full', reduced: 'reduced' } as const
 
-/** Effective verdict: reduced ONLY on explicit user choice. */
+/** Effective verdict: reduced on explicit user choice, or in presentation mode.
+ *
+ * Presentation mode is a reading/demo mode whose charter includes disabling
+ * non-essential motion. Routing it through this one verdict (rather than a
+ * second parallel flag) is why the WebGL dither shader and chart draw-in
+ * switch off correctly — they already ask this question. */
 export function motionReduced(): boolean {
+  if (isPresentation()) return true
   return getMotionChoice() === 'reduced'
 }
 

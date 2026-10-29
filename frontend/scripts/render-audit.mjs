@@ -252,7 +252,11 @@ if (cta) {
 const island = await page.$('.island-wrap')
 report('island nav present on workbench', !!island)
 const islandLinks = await page.$$eval('.island-nav a', (as) => as.length).catch(() => 0)
-report('island nav has 6 links', islandLinks === 6, `links: ${islandLinks}`)
+// Count-independent: assert a full primary nav exists and the Lag view is
+// reachable from it, rather than freezing the exact link count.
+const islandHrefs = await page.$$eval('.island-nav a', (as) => as.map((a) => a.getAttribute('href'))).catch(() => [])
+report('island nav has 6+ links', islandLinks >= 6, `links: ${islandLinks}`)
+report('island nav exposes the lag view', islandHrefs.includes('/lag'), islandHrefs.join(' '))
 
 // --- d3-viz craft: chart accessibility + data-table alternatives ---
 await page.goto(BASE + '/trajectory', { waitUntil: 'networkidle' })

@@ -27,6 +27,8 @@ BACKTEST = REPO / "data" / "forecasts" / "backtest.json"
 KW_BURSTS = REPO / "data" / "bursts" / "keyword_bursts.json"
 SAMPLE_STATS = REPO / "raw" / "samples" / "tier_c_stats.json"
 PATENTS = REPO / "data" / "patents" / "patent_series.json"
+LAG = REPO / "data" / "lag" / "lag_results.json"
+RANK_STABILITY = REPO / "data" / "scores" / "rank_stability.json"
 OUT = REPO / "snapshots"
 SPARK_YEARS = (2020, 2025)
 
@@ -182,6 +184,100 @@ def gen_domain_files(panel, scores, forecasts, kw_bursts, sample_stats,
     return out
 
 
+def gen_lag(lag: dict | None, scores: dict) -> dict | None:
+    """Lag view payload.
+
+    Every number the UI prints is read from data/lag/lag_results.json. Nothing
+    is recomputed or hardcoded here; this function only reshapes the file and
+    attaches display names from the leaderboard.
+    """
+    if not lag:
+        return None
+    names = {r["domain_slug"]: r["display_name"] for r in scores["leaderboard"]}
+    pg = lag["primary_grant"]
+    pooled = pg["pooled"]
+    placebo = pg["placebo"]
+    per = pg["per_domain"]
+    series = pg.get("series", {})
+
+    domains = []
+    for slug, row in per.items():
+        domains.append({
+            "domain": slug,
+            "display_name": names.get(slug, slug.replace("_", " ").title()),
+            "best_lag": row["best_lag"],
+            "best_r": row["best_r"],
+            "perm_p": row["perm_p"],
+            "significant_05": row["significant_05"],
+            "low_confidence": row["low_confidence"],
+            "n_points": row["n_points"],
+            "curve": row["curve"],
+            "series": series.get(slug),
+        })
+    # Sorted by correlation so the panel reads best-first.
+    domains.sort(key=lambda r: -(r["best_r"] if r["best_r"] is not None else -9))
+
+    return {
+        "_meta": lag.get("_meta"),
+        "generated_utc": lag["generated_utc"],
+        "windows": {
+            "papers": pg["window_papers"],
+            "patents": pg["window_patents"],
+            "date_type": pg["date_type"],
+        },
+        "method": lag["method"],
+        "caveats": lag["caveats"],
+        "pooled": {
+            "curve": pooled["curve"],
+            "ci_lo": pooled["ci_lo"],
+            "ci_hi": pooled["ci_hi"],
+            "best_lag": pooled["best_lag"],
+            "best_r": pooled["best_r"],
+            "best_lag_ci": pooled["best_lag_ci"],
+            "n_domains": pooled["n_domains"],
+            "perm_p": pg["pooled_perm_p"],
+            "peak_excludes_zero": pooled["peak_excludes_zero"],
+        },
+        "placebo": {
+            "true_peak": placebo["true_peak"],
+            "placebo_mean_peak": placebo["placebo_mean_peak"],
+            "placebo_p95_peak": placebo["placebo_p95_peak"],
+            "placebo_max_peak": placebo["placebo_max_peak"],
+            "exceeds_all_placebo": placebo["exceeds_all_placebo"],
+            "empirical_p": placebo["empirical_p"],
+            "n_draws": placebo["n_draws"],
+        },
+        "counts": {
+            "n_domains": len(domains),
+            "n_significant": sum(1 for d in domains if d["significant_05"]),
+        },
+        "domains": domains,
+        "robustness": lag.get("robustness"),
+        "filing_sensitivity": {
+            "window_patents": lag["filing_sensitivity"]["window_patents"],
+            "date_type": lag["filing_sensitivity"]["date_type"],
+            "pooled": lag["filing_sensitivity"]["pooled"],
+            "pooled_perm_p": lag["filing_sensitivity"]["pooled_perm_p"],
+            "placebo": lag["filing_sensitivity"]["placebo"],
+        },
+    }
+
+
+def gen_rank_stability(rs: dict | None) -> dict | None:
+    if not rs:
+        return None
+    return {
+        "generated_utc": rs["generated_utc"],
+        "n_draws": rs["n_draws"],
+        "perturbation": rs["perturbation"],
+        "all_weights": rs["all_weights"],
+        "effective_weights": rs["effective_weights"],
+        "degenerate_inputs": rs["degenerate_inputs"],
+        "degenerate_note": rs["degenerate_note"],
+        "summary_line": rs["summary_line"],
+    }
+
+
 def main(run_id: str | None = None) -> int:
     run_id = run_id or datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     panel = json.loads(PANEL.read_text())
@@ -194,11 +290,22 @@ def main(run_id: str | None = None) -> int:
     if patents is None:
         print("[snapshots] patent series absent — snapshots carry papers only "
               "(run the BigQuery query, see scripts/gen_patent_query.py)")
+    lag = json.loads(LAG.read_text()) if LAG.exists() else None
+    if lag is None:
+        print("[snapshots] lag results absent — /lag view will show no data "
+              "(run scripts/run_lag_quarterly.py)")
+    rank_stability = (json.loads(RANK_STABILITY.read_text())
+                      if RANK_STABILITY.exists() else None)
+    if rank_stability is None:
+        print("[snapshots] rank stability absent — leaderboard line omitted "
+              "(run scripts/rank_stability.py)")
 
     dest = OUT / run_id
     dest.mkdir(parents=True, exist_ok=True)
     (dest / "leaderboard.json").write_text(json.dumps(
-        {"_meta": _meta(run_id), "gate": backtest["gate"], "leaderboard":
+        {"_meta": _meta(run_id), "gate": backtest["gate"],
+         "rank_stability": gen_rank_stability(rank_stability),
+         "leaderboard":
          gen_leaderboard(panel, scores, forecasts)}, indent=1))
     (dest / "trajectories.json").write_text(json.dumps(
         {"_meta": _meta(run_id), "domains": gen_trajectories(panel, forecasts, patents)}, indent=1))
@@ -206,6 +313,14 @@ def main(run_id: str | None = None) -> int:
         {"_meta": _meta(run_id), "feed": gen_burst_feed(kw_bursts, panel)}, indent=1))
     (dest / "matrix.json").write_text(json.dumps(
         {"_meta": _meta(run_id), **gen_matrix(panel, scores)}, indent=1))
+    lag_doc = gen_lag(lag, scores)
+    if lag_doc is not None:
+        (dest / "lag.json").write_text(json.dumps(
+            {"_meta": _meta(run_id), **lag_doc}, indent=1))
+    rs_doc = gen_rank_stability(rank_stability)
+    if rs_doc is not None:
+        (dest / "rank_stability.json").write_text(json.dumps(
+            {"_meta": _meta(run_id), **rs_doc}, indent=1))
     domain_dir = dest / "domains"
     domain_dir.mkdir(exist_ok=True)
     for slug, doc in gen_domain_files(panel, scores, forecasts, kw_bursts,

@@ -1,0 +1,698 @@
+{
+ "_meta": {
+  "generated_utc": "2026-10-29T09:46:00.795264+00:00",
+  "run_id": "20261029T094600Z",
+  "lineage": {
+   "trajectories": "data/tier_a + panel.json (annual exact, quarterly derived)",
+   "scores": "stats/emergence.py (weights in data/scores/emergence.json)",
+   "forecasts": "stats/forecasts.py (gated; see backtest.json gate)",
+   "bursts": "stats/bursts.py (Kleinberg 2-state)",
+   "samples": "raw/samples (2k recent + 2k top-cited per domain)",
+   "patents": "BigQuery patents-public-data (CC BY 4.0) via sql/patent_counts.sql \u2192 data/patents/patent_series.json"
+  }
+ },
+ "display_name": "Quantum Error Correction",
+ "annual": {
+  "2000": 1443,
+  "2001": 1724,
+  "2002": 2448,
+  "2003": 2583,
+  "2004": 2802,
+  "2005": 3492,
+  "2006": 3755,
+  "2007": 3677,
+  "2008": 3940,
+  "2009": 3909,
+  "2010": 4032,
+  "2011": 4273,
+  "2012": 4618,
+  "2013": 4977,
+  "2014": 5218,
+  "2015": 5151,
+  "2016": 5418,
+  "2017": 5626,
+  "2018": 6306,
+  "2019": 7636,
+  "2020": 8757,
+  "2021": 10731,
+  "2022": 11719,
+  "2023": 13854,
+  "2024": 14108,
+  "2025": 20584
+ },
+ "forecast": [
+  21428,
+  24251,
+  27059
+ ],
+ "model": "hw_damped",
+ "horizon": [
+  2026,
+  2027,
+  2028
+ ],
+ "interval_68pct": {
+  "2026": [
+   17000,
+   25857
+  ],
+  "2027": [
+   19823,
+   28679
+  ],
+  "2028": [
+   22631,
+   31487
+  ]
+ },
+ "score": 73.5,
+ "label": "Emerging",
+ "provenance_note": "sampled domain: drill-down lists from recent+top-cited 4k sample",
+ "sample_stats": {
+  "recent": 2000,
+  "top_cited": 2000
+ },
+ "top_keywords": [
+  {
+   "name": "Artificial intelligence",
+   "total": 18415,
+   "bursts": [
+    {
+     "start": 2006,
+     "end": 2025,
+     "duration": 20,
+     "strength": 1.5494,
+     "years": [
+      2006,
+      2007,
+      2008,
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Quantum computer",
+   "total": 46999,
+   "bursts": [
+    {
+     "start": 2012,
+     "end": 2025,
+     "duration": 14,
+     "strength": 1.3682,
+     "years": [
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Qubit",
+   "total": 33525,
+   "bursts": [
+    {
+     "start": 2004,
+     "end": 2025,
+     "duration": 22,
+     "strength": 1.3542,
+     "years": [
+      2004,
+      2005,
+      2006,
+      2007,
+      2008,
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Quantum algorithm",
+   "total": 18409,
+   "bursts": [
+    {
+     "start": 2012,
+     "end": 2025,
+     "duration": 14,
+     "strength": 1.3416,
+     "years": [
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Theoretical computer science",
+   "total": 28486,
+   "bursts": [
+    {
+     "start": 2005,
+     "end": 2025,
+     "duration": 21,
+     "strength": 1.2448,
+     "years": [
+      2005,
+      2006,
+      2007,
+      2008,
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Quantum",
+   "total": 124117,
+   "bursts": [
+    {
+     "start": 2005,
+     "end": 2025,
+     "duration": 21,
+     "strength": 1.2112,
+     "years": [
+      2005,
+      2006,
+      2007,
+      2008,
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Computer science",
+   "total": 111104,
+   "bursts": [
+    {
+     "start": 2005,
+     "end": 2025,
+     "duration": 21,
+     "strength": 1.1671,
+     "years": [
+      2005,
+      2006,
+      2007,
+      2008,
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Statistical physics",
+   "total": 26031,
+   "bursts": [
+    {
+     "start": 2005,
+     "end": 2025,
+     "duration": 21,
+     "strength": 1.1295,
+     "years": [
+      2005,
+      2006,
+      2007,
+      2008,
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Physics",
+   "total": 116601,
+   "bursts": [
+    {
+     "start": 2005,
+     "end": 2025,
+     "duration": 21,
+     "strength": 1.0624,
+     "years": [
+      2005,
+      2006,
+      2007,
+      2008,
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Quantum mechanics",
+   "total": 107706,
+   "bursts": [
+    {
+     "start": 2005,
+     "end": 2025,
+     "duration": 21,
+     "strength": 1.0441,
+     "years": [
+      2005,
+      2006,
+      2007,
+      2008,
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Algorithm",
+   "total": 48993,
+   "bursts": [
+    {
+     "start": 2006,
+     "end": 2025,
+     "duration": 20,
+     "strength": 1.0139,
+     "years": [
+      2006,
+      2007,
+      2008,
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Mathematics",
+   "total": 73359,
+   "bursts": [
+    {
+     "start": 2006,
+     "end": 2025,
+     "duration": 20,
+     "strength": 0.9878,
+     "years": [
+      2006,
+      2007,
+      2008,
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Quantum entanglement",
+   "total": 32030,
+   "bursts": [
+    {
+     "start": 2005,
+     "end": 2025,
+     "duration": 21,
+     "strength": 0.9604,
+     "years": [
+      2005,
+      2006,
+      2007,
+      2008,
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Combinatorics",
+   "total": 15258,
+   "bursts": [
+    {
+     "start": 2006,
+     "end": 2025,
+     "duration": 20,
+     "strength": 0.9481,
+     "years": [
+      2006,
+      2007,
+      2008,
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Quantum information",
+   "total": 20147,
+   "bursts": [
+    {
+     "start": 2005,
+     "end": 2025,
+     "duration": 21,
+     "strength": 0.9194,
+     "years": [
+      2005,
+      2006,
+      2007,
+      2008,
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ]
+    }
+   ]
+  }
+ ],
+ "caveat": "twin-series of quantum_computing (do not rank independently)",
+ "patents": {
+  "annual": {
+   "2000": null,
+   "2001": null,
+   "2002": null,
+   "2003": null,
+   "2004": null,
+   "2005": null,
+   "2006": null,
+   "2007": null,
+   "2008": null,
+   "2009": null,
+   "2010": null,
+   "2011": null,
+   "2012": null,
+   "2013": null,
+   "2014": 2,
+   "2015": 6,
+   "2016": 7,
+   "2017": 6,
+   "2018": 14,
+   "2019": 32,
+   "2020": 58,
+   "2021": 55,
+   "2022": 84,
+   "2023": 137,
+   "2024": 157,
+   "2025": 165
+  },
+  "total": 723,
+  "peak_year": 2025,
+  "covered_years": [
+   2014,
+   2025
+  ],
+  "caveat": "CPC-to-domain concordance is approximate: CPC boundaries do not align cleanly with human technology categories, so counts may over- or under-count a domain. Patents are US grants by grant year; grant lag (1-3 years) makes recent years undercount relative to paper publication years.",
+  "coverage": "2014-2025; earlier years are null because the source has no usable CPC classification before 2014",
+  "lag": {
+   "papers_peak_year": 2025,
+   "patents_peak_year": 2025,
+   "best_lag_years": 1,
+   "best_lag_r": 0.039,
+   "permutation_p": 0.951,
+   "at_scan_boundary": false,
+   "underpowered": false,
+   "significant": false,
+   "lag_scan": [
+    {
+     "lag": -3,
+     "r": -0.207,
+     "n": 9,
+     "powered": true
+    },
+    {
+     "lag": -2,
+     "r": -0.291,
+     "n": 10,
+     "powered": true
+    },
+    {
+     "lag": -1,
+     "r": -0.317,
+     "n": 11,
+     "powered": true
+    },
+    {
+     "lag": 0,
+     "r": -0.276,
+     "n": 12,
+     "powered": true
+    },
+    {
+     "lag": 1,
+     "r": 0.039,
+     "n": 11,
+     "powered": true
+    },
+    {
+     "lag": 2,
+     "r": -0.149,
+     "n": 10,
+     "powered": true
+    },
+    {
+     "lag": 3,
+     "r": -0.419,
+     "n": 9,
+     "powered": true
+    }
+   ],
+   "lag_window": [
+    2014,
+    2024
+   ],
+   "min_pairs_required": 7,
+   "lag_basis": "year-over-year growth correlation; p from a 2000-shuffle permutation of the best-lag statistic",
+   "papers_total": 162781,
+   "patents_total": 723
+  },
+  "lag_panel": {
+   "domains_tested": 20,
+   "domains_significant": 5,
+   "alpha_per_domain": 0.1,
+   "expected_false_positives": 2.0,
+   "binomial_p_at_least_k": 0.0432,
+   "bonferroni_alpha": 0.005,
+   "survive_bonferroni": [
+    "edge_computing"
+   ],
+   "verdict": "A majority-lead pattern is not established: the per-domain flags are consistent with chance once 20 tests are accounted for. Only the Bonferroni survivors should be cited as findings."
+  }
+ }
+}

@@ -20,6 +20,8 @@ import { ViewHeader } from '../components/ViewHeader'
 import { SpotlightWrap, useSpotlight, SpotlightRing } from '../components/SpotlightWrap'
 import { CopyLink } from '../components/CopyLink'
 import { RevealShell } from '../components/RevealShell'
+import { HowToRead } from '../components/HowToRead'
+import { GlossaryTerm } from '../components/GlossaryTerm'
 
 function sortRows(
   rows: LeaderboardEntry[],
@@ -160,6 +162,11 @@ export function LeaderboardView() {
             year over year.
           </p>
         ) : null}
+        {data.rank_stability ? (
+          <p className="view-note" title={data.rank_stability.perturbation}>
+            {data.rank_stability.summary_line}
+          </p>
+        ) : null}
         <ViewController stageCounts={stageCounts} total={data.leaderboard.length} />
         <CopyLink />
         {caveatCount > 0 ? (
@@ -180,6 +187,8 @@ export function LeaderboardView() {
         }} />
       ) : null}
 
+      <HowToRead variant="leaderboard" />
+
       {filteredEmpty ? (
         <p style={{ color: 'var(--ink-2)', padding: 'var(--sp-7) 0' }}>
           No domains are labeled “{labelFilter}” in this snapshot.
@@ -198,7 +207,9 @@ export function LeaderboardView() {
               <SortHeader label="DOMAIN" col="name" sort={sort} dir={dir} onSort={setSort} align="left" />
               <span>STAGE</span>
               <SortHeader label="SCORE" col="score" sort={sort} dir={dir} onSort={setSort} />
-              <span>PAPERS 2020-2025</span>
+              <span>
+                PAPERS 2020-2025
+              </span>
               <SortHeader label="YoY" col="yoy" sort={sort} dir={dir} onSort={setSort} numeric />
             </div>
             {rows.map((row) => (
@@ -320,7 +331,10 @@ export function LeaderboardView() {
                     <Metric label="YoY change" value={fmtDelta(focused.yoy_delta)} />
                   </div>
                   <div className="aside-caption">
-                    Score decomposition (normalized inputs)
+                    <GlossaryTerm term="emergence score">
+                      Score decomposition
+                    </GlossaryTerm>{' '}
+                    (normalized inputs)
                   </div>
                   <ScoreBar inputs={focused.score_inputs} />
                   <div className="aside-forecast hairline-top">

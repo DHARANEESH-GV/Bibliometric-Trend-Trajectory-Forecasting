@@ -10,14 +10,17 @@ import { MagnifyingGlass } from '@phosphor-icons/react/dist/csr/MagnifyingGlass'
 import { Waveform } from '@phosphor-icons/react/dist/csr/Waveform'
 import { Sun } from '@phosphor-icons/react/dist/csr/Sun'
 import { Moon } from '@phosphor-icons/react/dist/csr/Moon'
+import { Presentation } from '@phosphor-icons/react/dist/csr/Presentation'
 import { useStore } from '../lib/store'
 import { useMotionReduced, setMotionChoice } from '../lib/motion'
+import { isPresentation, setPresentation, usePresentation } from '../lib/presentation'
 
 const NAV = [
   { to: '/leaderboard', label: 'Leaderboard' },
   { to: '/trajectory', label: 'Trajectories' },
   { to: '/bursts', label: 'Bursts' },
   { to: '/matrix', label: 'Matrix' },
+  { to: '/lag', label: 'Lag' },
   { to: '/overview', label: 'Overview' },
   { to: '/about', label: 'About' },
 ]
@@ -29,6 +32,16 @@ interface IslandNavProps {
 export function IslandNav({ onOpenSearch }: IslandNavProps) {
   const { theme, toggleThemeWipe } = useStore()
   const motionReduced = useMotionReduced()
+  const presentation = usePresentation()
+
+  const togglePresentation = () => {
+    // Presentation mode implies reduced motion via motionReduced(), so the
+    // WebGL shader and chart draw-in switch off through the one existing
+    // verdict. Nothing is written to the separate bt-motion preference:
+    // leaving that untouched means turning presentation mode off restores
+    // the user's own motion choice rather than silently reducing it.
+    setPresentation(!isPresentation())
+  }
 
   return (
     <header className="island-wrap">
@@ -58,6 +71,22 @@ export function IslandNav({ onOpenSearch }: IslandNavProps) {
             className="island-btn"
           >
             <MagnifyingGlass size={16} weight="light" aria-hidden />
+          </button>
+
+          <button
+            type="button"
+            onClick={togglePresentation}
+            aria-pressed={presentation}
+            aria-label={
+              presentation
+                ? 'Presentation mode is on. Turn it off.'
+                : 'Turn on presentation mode: larger type, quieter chrome, no shader'
+            }
+            title={presentation ? 'Presentation mode: on' : 'Presentation mode'}
+            className="island-btn"
+            data-on={presentation ? 'true' : undefined}
+          >
+            <Presentation size={16} weight={presentation ? 'fill' : 'light'} aria-hidden />
           </button>
 
           <button

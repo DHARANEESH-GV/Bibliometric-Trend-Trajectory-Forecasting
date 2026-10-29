@@ -58,6 +58,140 @@ export interface LeaderboardFile {
   _meta: SnapshotMeta
   gate: GateBlock
   leaderboard: LeaderboardEntry[]
+  /** Weight-perturbation sweep; null when the snapshot carries none. */
+  rank_stability?: RankStability | null
+}
+
+/** Rank stability under +/-30% weight perturbation (scripts/rank_stability.py). */
+export interface RankStabilityVariant {
+  n_draws: number
+  perturbed_weights: string[]
+  spearman_mean: number
+  spearman_min: number
+  spearman_max: number
+  spearman_p05: number
+  spearman_p25: number
+  share_rho_above_0_9: number
+  max_rank_shift_any_domain: number
+  top3_changed_share: number
+  top1_counts: Record<string, number>
+}
+
+export interface RankStability {
+  generated_utc: string
+  n_draws: number
+  perturbation: string
+  all_weights: RankStabilityVariant
+  effective_weights: RankStabilityVariant
+  degenerate_inputs: string[]
+  degenerate_note: string
+  summary_line: string
+}
+
+/** One domain in the lag view's exploratory panel. */
+export interface LagDomain {
+  domain: string
+  display_name: string
+  best_lag: number | null
+  best_r: number | null
+  perm_p: number
+  significant_05: boolean
+  low_confidence: boolean
+  n_points: number
+  curve: Array<number | null>
+  /** Z-scored growth series sharing one timeline. */
+  series?: {
+    quarters: string[]
+    papers_z: number[]
+    patents_z: number[]
+  } | null
+}
+
+export interface LagPooled {
+  curve: number[]
+  ci_lo: number[]
+  ci_hi: number[]
+  best_lag: number
+  best_r: number
+  best_lag_ci: [number, number]
+  n_domains: number
+  perm_p: number
+  peak_excludes_zero: boolean
+}
+
+export interface LagPlacebo {
+  true_peak: number
+  placebo_mean_peak: number
+  placebo_p95_peak: number
+  placebo_max_peak: number
+  exceeds_all_placebo: boolean
+  empirical_p: number
+  n_draws: number
+}
+
+/** Robustness block appended by scripts/robustness_lag.py. */
+export interface LagRobustness {
+  generated_utc: string
+  stability_band_quarters: [number, number]
+  baseline: RobustnessVariant
+  leave_one_domain_out: {
+    per_drop: Array<RobustnessVariant & { dropped: string }>
+    summary: {
+      best_lag_min: number
+      best_lag_max: number
+      peak_r_min: number
+      peak_r_max: number
+      all_peaks_in_3_6: boolean
+      all_ci_exclude_zero: boolean
+      n_dropping_peak_out_of_3_6: number
+    }
+  }
+  drop_nested: RobustnessVariant
+  drop_low_confidence: RobustnessVariant
+  time_block_bootstrap: {
+    n_draws: number
+    block_quarters: number
+    lag_used: number
+    mean_r: number
+    ci_at_peak: [number, number]
+    ci_excludes_zero: boolean
+    peak_in_3_6: boolean
+    share_positive: number
+  }
+}
+
+export interface RobustnessVariant {
+  ok: boolean
+  n_domains: number
+  best_lag: number
+  peak_r: number
+  ci_at_peak: [number, number]
+  ci_excludes_zero: boolean
+  peak_in_3_6: boolean
+  best_lag_ci: [number, number]
+  perm_p: number
+  placebo?: LagPlacebo
+  dropped?: string[] | string
+}
+
+export interface LagFile {
+  _meta: SnapshotMeta
+  generated_utc: string
+  windows: { papers: string; patents: string; date_type: string }
+  method: Record<string, unknown>
+  caveats: string[]
+  pooled: LagPooled
+  placebo: LagPlacebo
+  counts: { n_domains: number; n_significant: number }
+  domains: LagDomain[]
+  robustness: LagRobustness | null
+  filing_sensitivity: {
+    window_patents: string
+    date_type: string
+    pooled: LagPooled
+    pooled_perm_p: number
+    placebo: LagPlacebo
+  }
 }
 
 export interface TrajectoryPoint {

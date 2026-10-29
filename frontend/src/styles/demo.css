@@ -1,0 +1,271 @@
+/*
+ * Demo chrome: glossary, "How to read this", provenance footer, tour strip,
+ * presentation mode. Reuses the existing token set only — no new colours,
+ * no new radii, no new shadows.
+ */
+
+/* ---------- glossary ---------- */
+.glossary-wrap {
+  position: relative;
+  display: inline-block;
+}
+.glossary-term {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: help;
+  border-bottom: 1px dotted color-mix(in srgb, var(--ink-0) 40%, transparent);
+}
+.glossary-dot {
+  display: inline-block;
+  margin-left: 2px;
+  font-size: 0.7em;
+  color: var(--ink-3);
+  vertical-align: super;
+}
+.glossary-tip {
+  position: absolute;
+  left: 0;
+  top: calc(100% + 6px);
+  z-index: var(--z-overlay, 50);
+  width: max-content;
+  max-width: 32ch;
+  padding: var(--sp-2) var(--sp-3);
+  background: var(--surface-2);
+  border: var(--hairline-strong);
+  border-radius: var(--r-control);
+  color: var(--ink-1);
+  font-size: var(--text-xs);
+  line-height: var(--leading-body);
+  text-align: left;
+  display: none;
+}
+.glossary-tip--open {
+  display: block;
+}
+
+/* ---------- how to read ---------- */
+.howto {
+  margin: var(--sp-5) 0;
+  border-top: var(--hairline);
+  border-bottom: var(--hairline);
+}
+.howto-toggle {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  width: 100%;
+  padding: var(--sp-3) 0;
+  background: none;
+  border: none;
+  color: var(--ink-1);
+  font: inherit;
+  font-size: var(--text-sm);
+  cursor: pointer;
+  text-align: left;
+}
+.howto-caret {
+  font-family: var(--font-mono);
+  color: var(--ink-3);
+  width: 1ch;
+}
+.howto-body {
+  padding-bottom: var(--sp-4);
+}
+.howto-list {
+  margin: 0;
+  padding-left: 1.2em;
+  max-width: 78ch;
+  color: var(--ink-2);
+  font-size: var(--text-sm);
+  line-height: var(--leading-body);
+}
+.howto-list li + li {
+  margin-top: var(--sp-2);
+}
+.howto-list strong {
+  color: var(--ink-0);
+  font-weight: 500;
+}
+
+/* ---------- provenance footer ---------- */
+.provenance {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2) var(--sp-5);
+  margin-top: var(--sp-6);
+  padding-top: var(--sp-4);
+  border-top: var(--hairline);
+  font-size: var(--text-xs);
+  color: var(--ink-3);
+  line-height: var(--leading-body);
+}
+.provenance-item {
+  display: inline-flex;
+  gap: var(--sp-2);
+  align-items: baseline;
+  max-width: 60ch;
+}
+.provenance-key {
+  color: var(--ink-2);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 0.68rem;
+  white-space: nowrap;
+}
+
+/* ---------- tour strip ---------- */
+.tour {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-nav);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-2) var(--sp-3);
+  margin-bottom: var(--sp-4);
+  background: var(--surface-1);
+  border: var(--hairline);
+  border-radius: var(--r-control);
+}
+.tour-steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-1);
+  align-items: center;
+}
+.tour-step {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-1);
+  padding: 3px 8px;
+  background: none;
+  border: var(--hairline);
+  border-radius: var(--r-control);
+  color: var(--ink-2);
+  font: inherit;
+  font-size: var(--text-xs);
+  cursor: pointer;
+  white-space: nowrap;
+}
+.tour-step--current {
+  color: var(--ink-0);
+  border-color: color-mix(in srgb, var(--accent) 55%, transparent);
+}
+.tour-step-num {
+  color: var(--ink-3);
+  font-size: 0.68rem;
+}
+.tour-step:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.tour-blurb {
+  flex: 1 1 22ch;
+  margin: 0;
+  min-width: 18ch;
+  font-size: var(--text-xs);
+  color: var(--ink-2);
+  line-height: var(--leading-body);
+}
+.tour-actions {
+  display: flex;
+  gap: var(--sp-2);
+}
+.tour-btn {
+  padding: 3px 10px;
+  background: none;
+  border: var(--hairline);
+  border-radius: var(--r-control);
+  color: var(--ink-1);
+  font: inherit;
+  font-size: var(--text-xs);
+  cursor: pointer;
+}
+.tour-btn--primary {
+  border-color: color-mix(in srgb, var(--accent) 55%, transparent);
+  color: var(--accent);
+}
+.tour-btn--ghost {
+  color: var(--ink-3);
+}
+.tour-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ---------- alignment slider (lag panels) ---------- */
+.lag-slider {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  margin-top: var(--sp-2);
+}
+.lag-slider label {
+  font-size: var(--text-xs);
+  color: var(--ink-2);
+  white-space: nowrap;
+}
+.lag-slider input[type='range'] {
+  flex: 1;
+  min-width: 0;
+  accent-color: var(--accent);
+  height: 16px;
+}
+.lag-slider-r {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--ink-1);
+  white-space: nowrap;
+  min-width: 9ch;
+  text-align: right;
+}
+.lag-best {
+  color: var(--accent);
+}
+
+/* ---------- presentation mode ---------- */
+html[data-presentation='on'] {
+  font-size: 118%;
+}
+html[data-presentation='on'] .wire-ticker,
+html[data-presentation='on'] .site-footer-legal,
+html[data-presentation='on'] .status-bar,
+html[data-presentation='on'] .spotlight-border,
+html[data-presentation='on'] .ambience-grain {
+  display: none;
+}
+html[data-presentation='on'] * {
+  animation-duration: 0.001s !important;
+  transition-duration: 0.001s !important;
+}
+
+@media (max-width: 720px) {
+  .tour {
+    position: static;
+  }
+  .tour-blurb {
+    display: none;
+  }
+}
+
+/* Cover: tour entry point (sits beside the Enter CTA). */
+.cover-tour-start {
+  margin-top: var(--sp-2);
+  padding: 4px 12px;
+  background: none;
+  border: var(--hairline);
+  border-radius: var(--r-control);
+  color: var(--ink-2);
+  font: inherit;
+  font-size: var(--text-xs);
+  cursor: pointer;
+}
+.cover-tour-start:hover,
+.cover-tour-start:focus-visible {
+  color: var(--ink-0);
+  border-color: color-mix(in srgb, var(--accent) 55%, transparent);
+}

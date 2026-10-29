@@ -1,0 +1,141 @@
+{
+  "generated_utc": "2026-10-29T09:44:28.090387+00:00",
+  "seed": 20261029,
+  "n_draws": 500,
+  "perturbation": "+/-30% uniform, renormalized to sum 1",
+  "baseline_weights": {
+    "growth_recent": 0.3,
+    "acceleration": 0.2,
+    "keyword_burst": 0.2,
+    "volume_scaled": 0.15,
+    "momentum_intent": 0.15
+  },
+  "baseline_ranking": [
+    {
+      "rank": 1,
+      "domain": "generative_ai"
+    },
+    {
+      "rank": 2,
+      "domain": "internet_of_things"
+    },
+    {
+      "rank": 3,
+      "domain": "quantum_error_correction"
+    },
+    {
+      "rank": 4,
+      "domain": "ai_agents"
+    },
+    {
+      "rank": 5,
+      "domain": "digital_twins"
+    },
+    {
+      "rank": 6,
+      "domain": "edge_computing"
+    },
+    {
+      "rank": 7,
+      "domain": "carbon_capture"
+    },
+    {
+      "rank": 8,
+      "domain": "autonomous_vehicles"
+    },
+    {
+      "rank": 9,
+      "domain": "artificial_intelligence"
+    },
+    {
+      "rank": 10,
+      "domain": "brain_computer_interfaces"
+    },
+    {
+      "rank": 11,
+      "domain": "cybersecurity"
+    },
+    {
+      "rank": 12,
+      "domain": "blockchain"
+    },
+    {
+      "rank": 13,
+      "domain": "space_technologies"
+    },
+    {
+      "rank": 14,
+      "domain": "smart_manufacturing"
+    },
+    {
+      "rank": 15,
+      "domain": "quantum_computing"
+    },
+    {
+      "rank": 16,
+      "domain": "solid_state_batteries"
+    },
+    {
+      "rank": 17,
+      "domain": "clean_hydrogen"
+    },
+    {
+      "rank": 18,
+      "domain": "synthetic_biology"
+    },
+    {
+      "rank": 19,
+      "domain": "biotechnology"
+    },
+    {
+      "rank": 20,
+      "domain": "advanced_semiconductors"
+    }
+  ],
+  "degenerate_inputs": [
+    "momentum_intent"
+  ],
+  "degenerate_note": "momentum_intent is identical (0.5) for every domain because tier_c_stats.json carries sample counts, not a frontier share. It cannot reorder domains; only the 4 remaining weights can.",
+  "all_weights": {
+    "n_draws": 500,
+    "perturbed_weights": [
+      "growth_recent",
+      "acceleration",
+      "keyword_burst",
+      "volume_scaled",
+      "momentum_intent"
+    ],
+    "spearman_mean": 0.99,
+    "spearman_min": 0.9594,
+    "spearman_max": 1.0,
+    "spearman_p05": 0.9774,
+    "spearman_p25": 0.9865,
+    "share_rho_above_0_9": 1.0,
+    "max_rank_shift_any_domain": 6,
+    "top3_changed_share": 0.0,
+    "top1_counts": {
+      "generative_ai": 500
+    }
+  },
+  "effective_weights": {
+    "n_draws": 500,
+    "perturbed_weights": [
+      "growth_recent",
+      "acceleration",
+      "keyword_burst",
+      "volume_scaled"
+    ],
+    "spearman_mean": 0.9902,
+    "spearman_min": 0.9639,
+    "spearman_max": 1.0,
+    "spearman_p05": 0.9789,
+    "spearman_p25": 0.9865,
+    "share_rho_above_0_9": 1.0,
+    "max_rank_shift_any_domain": 6,
+    "top3_changed_share": 0.0,
+    "top1_counts": {
+      "generative_ai": 500
+    }
+  },
+  "summary_line": "Ranking is stable: perturbing the emergence weights by up to 30% keeps Spearman correlation with the baseline at 0.99 on average (worst 0.96); at most 6 rank position(s) move."
+}
