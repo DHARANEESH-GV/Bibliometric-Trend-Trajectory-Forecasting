@@ -65,7 +65,7 @@ export function TrajectoryExplorerView() {
         if (!row) return null
         const last = [...row.series].reverse().find((p) => p.forecast != null)
         return last && last.forecast != null
-          ? `For ${row.display_name}, the model lands ${last.forecast.toLocaleString('en-US')} works by ${last.year}.`
+          ? `For ${row.display_name}, the forecast projects ${last.forecast.toLocaleString('en-US')} papers by ${last.year}.`
           : null
       })()
 
@@ -232,8 +232,7 @@ export function TrajectoryExplorerView() {
         }
         lead={
           <>
-            Annual counts of published works, 2000-2025, with backtested
-            forecast tails. {computedLead}
+            Annual counts of published papers, 2000-2025, with projected growth forecasts through 2028. {computedLead}
           </>
         }
       >

@@ -13,9 +13,18 @@ interface SparklineProps {
   forecast?: number[]
   /** Accessible summary; falls back to first/last readout. */
   ariaLabel?: string
+  /** Synced cursor index across small multiples. */
+  activePointIndex?: number | null
 }
 
-export function Sparkline({ values, width = 120, height = 32, forecast, ariaLabel }: SparklineProps) {
+export function Sparkline({
+  values,
+  width = 120,
+  height = 32,
+  forecast,
+  ariaLabel,
+  activePointIndex,
+}: SparklineProps) {
   const pathId = useId()
   if (values.length < 2) {
     // Single-point series: real empty state, no fake trend line.
@@ -71,12 +80,36 @@ export function Sparkline({ values, width = 120, height = 32, forecast, ariaLabe
           strokeDasharray="3 3"
         />
       ) : null}
-      <circle
-        cx={x(values.length - 1)}
-        cy={y(values[values.length - 1] ?? 0)}
-        r={2}
-        fill="var(--accent)"
-      />
+      {activePointIndex != null &&
+      activePointIndex >= 0 &&
+      activePointIndex < values.length ? (
+        <>
+          <line
+            x1={x(activePointIndex)}
+            y1={0}
+            x2={x(activePointIndex)}
+            y2={height}
+            stroke="var(--crosshair)"
+            strokeWidth={1}
+            strokeDasharray="2 2"
+          />
+          <circle
+            cx={x(activePointIndex)}
+            cy={y(values[activePointIndex] ?? 0)}
+            r={3}
+            fill="var(--accent)"
+            stroke="var(--surface-1)"
+            strokeWidth={1.5}
+          />
+        </>
+      ) : (
+        <circle
+          cx={x(values.length - 1)}
+          cy={y(values[values.length - 1] ?? 0)}
+          r={2}
+          fill="var(--accent)"
+        />
+      )}
       <title id={pathId}>{label}</title>
       <desc>
         {`Line chart of ${values.length} points from ${values[0]} to ${values[values.length - 1]}.`}

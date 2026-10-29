@@ -17,13 +17,17 @@ export interface GlossaryEntry {
 /** The project's shared glossary. One source for every tooltip. */
 export const GLOSSARY: Record<string, string> = {
   cpc:
-    'Cooperative Patent Classification. The patent-office scheme that maps a patent to a technology area. Domain counts depend on this mapping, which is approximate.',
+    'Cooperative Patent Classification: the standard patent-office system that categorizes patents by technology area.',
   burst:
-    'A burst is a stretch of years when a keyword appeared far more often in a domain than its own long-run baseline rate.',
+    'A period when a keyword or topic surged rapidly in published research papers compared to its normal baseline frequency.',
   'emergence score':
-    'A 0-100 weighted blend of recent growth, acceleration, keyword bursts and volume, with configurable weights. It ranks domains; it is not an absolute measure of importance.',
+    'A 0 to 100 score measuring how fast a field is growing and gaining momentum based on paper volume, growth speed, and surging keywords. It ranks fields relative to one another.',
+  'score decomposition':
+    'How the overall score breaks down across five core signals: recent growth speed, acceleration, keyword surges, publication volume, and commercial momentum.',
   'placebo test':
-    'A control that pairs each domain\u2019s papers with a different domain\u2019s patents. If the real pairing scores no better than these deliberate mismatches, the result is not specific to the real pair.',
+    'A verification test that pairs each field\'s papers with a completely different field\'s patents to confirm the pattern is real rather than an accidental coincidence.',
+  'patent offset':
+    'The time difference between academic research publication and granted commercial patents.',
 }
 
 interface GlossaryTermProps {

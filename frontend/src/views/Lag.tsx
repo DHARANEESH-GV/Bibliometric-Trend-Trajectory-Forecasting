@@ -13,7 +13,7 @@
  * clock.
  */
 import { useMemo, useState } from 'react'
-import { loadLag } from '../lib/snapshots'
+import { loadLag, loadLeaderboard } from '../lib/snapshots'
 import { useQuery } from '../lib/useQuery'
 import { useTokens } from '../lib/useTokens'
 import { baseOption, axes, tooltip, useChart, type ThemeTokens } from '../charts/echarts'
@@ -24,6 +24,7 @@ import { CopyLink } from '../components/CopyLink'
 import { RevealShell } from '../components/RevealShell'
 import { HowToRead } from '../components/HowToRead'
 import { GlossaryTerm } from '../components/GlossaryTerm'
+import { PhasePlane } from '../components/PhasePlane'
 import { rAtLag, shiftPatentsForPlot } from '../lib/lagmath'
 import type { LagDomain, LagFile, LagRobustness } from '../lib/types'
 import './lag.css'
@@ -34,6 +35,8 @@ const fmtP = (v: number) => (v < 0.001 ? '<0.001' : v.toFixed(3))
 
 export function LagView() {
   const { data, loading, error } = useQuery<LagFile>(loadLag, [])
+  const { data: lbData } = useQuery(loadLeaderboard, [])
+  const [viewMode, setViewMode] = useState<'pendency' | 'phase_plane'>('pendency')
 
   if (error) {
     return (
@@ -144,29 +147,56 @@ export function LagView() {
           />
         </div>
 
-        <HowToRead variant="lag" />
+        <div className="lag-view-mode-tabs" role="tablist" aria-label="Lag analysis mode">
+          <button
+            type="button"
+            role="tab"
+            aria-selected={viewMode === 'pendency'}
+            className={`lag-mode-tab ${viewMode === 'pendency' ? 'lag-mode-tab--active' : ''}`}
+            onClick={() => setViewMode('pendency')}
+          >
+            Timeline Alignment & Offsets
+          </button>
+          <button
+            type="button"
+            role="tab"
+            aria-selected={viewMode === 'phase_plane'}
+            className={`lag-mode-tab ${viewMode === 'phase_plane' ? 'lag-mode-tab--active' : ''}`}
+            onClick={() => setViewMode('phase_plane')}
+          >
+            Lab-to-Market Quadrants
+          </button>
+        </div>
 
-        <PooledChart data={data} />
+        {viewMode === 'phase_plane' ? (
+          <PhasePlane domains={data.domains} leaderboard={lbData?.leaderboard} />
+        ) : (
+          <>
+            <HowToRead variant="lag" />
 
-        <Robustness robust={data.robustness} />
+            <PooledChart data={data} />
 
-        <section className="lag-section" aria-labelledby="lag-domains-title">
-          <h2 id="lag-domains-title" className="lag-section-title">
-            Exploratory (low statistical power)
-          </h2>
-          <p className="lag-section-lead">
-            One panel per domain: paper growth and patent growth on a shared
-            normalized timeline. Best lag and permutation p are the per-domain
-            values from the same scan as the pooled curve. A single domain
-            carries too few independent quarters to settle the question, so
-            these are exploratory rather than confirmatory.
-          </p>
-          <div className="lag-panel-grid">
-            {data.domains.map((d) => (
-              <DomainPanel key={d.domain} d={d} />
-            ))}
-          </div>
-        </section>
+            <Robustness robust={data.robustness} />
+
+            <section className="lag-section" aria-labelledby="lag-domains-title">
+              <h2 id="lag-domains-title" className="lag-section-title">
+                Exploratory (low statistical power)
+              </h2>
+              <p className="lag-section-lead">
+                One panel per domain: paper growth and patent growth on a shared
+                normalized timeline. Best lag and permutation p are the per-domain
+                values from the same scan as the pooled curve. A single domain
+                carries too few independent quarters to settle the question, so
+                these are exploratory rather than confirmatory.
+              </p>
+              <div className="lag-panel-grid">
+                {data.domains.map((d) => (
+                  <DomainPanel key={d.domain} d={d} />
+                ))}
+              </div>
+            </section>
+          </>
+        )}
 
         <p className="lag-footnote">
           Paper counts come from a single OpenAlex API snapshot; quantum

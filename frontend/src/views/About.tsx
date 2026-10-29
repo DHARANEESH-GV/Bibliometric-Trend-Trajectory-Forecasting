@@ -37,26 +37,24 @@ export function AboutView() {
       ) : null}
 
       <p style={{ marginTop: 'var(--sp-4)', color: 'var(--ink-1)' }}>
-        biblio-trend tracks twenty technology domains across scientific
-        papers indexed by OpenAlex. It classifies each field's trajectory,
-        detects keyword bursts with Kleinberg's 2-state automaton, and
-        publishes forecasts that have been backtested against a naive
+        biblio-trend tracks twenty technology fields across scientific
+        papers indexed by OpenAlex. It classifies each field's multi-year trajectory,
+        detects fast-rising topic keywords, and
+        publishes forecasts that have been validated against a simple historical
         baseline. This site presents the snapshot products of that
         pipeline. It is deliberately not an interactive query engine; the
-        figures you see are the same artifacts the pipeline persisted.
+        figures you see are the exact artifacts produced by the data pipeline.
       </p>
 
       <section style={{ marginTop: 'var(--sp-6)' }}>
         <h2 style={{ fontSize: 'var(--text-xl)' }}>How to read the scores</h2>
         <p style={{ marginTop: 'var(--sp-3)', color: 'var(--ink-1)' }}>
-          Each domain's emergence score blends recent growth, citation
-          acceleration, novelty, keyword burst activity, and volume. The
-          blend weights are configurable priors, chosen and then
-          sensitivity-tested, not fitted. Stage labels describe current
-          behavior: a domain is Emerging when activity is starting from a
-          low base, Accelerating when it is compounding quickly, Active
-          when sustained at high volume, and Watch when the signal is
-          currently static or mixed.
+          Each field's emergence score blends five core signals: recent growth speed,
+          acceleration, keyword surges, publication volume, and commercial patent intent.
+          The weights are transparent and tested for stability rather than fitted to produce a
+          desired outcome. Stage labels describe current behavior: a domain is Emerging when
+          activity is starting from a low base, Accelerating when it is compounding quickly,
+          Active when sustained at high volume, and Watch when the signal is currently steady or mixed.
         </p>
       </section>
 
@@ -102,16 +100,14 @@ export function AboutView() {
       <section style={{ marginTop: 'var(--sp-6)' }}>
         <h2 style={{ fontSize: 'var(--text-xl)' }}>Sources and method</h2>
         <p style={{ marginTop: 'var(--sp-3)', color: 'var(--ink-1)' }}>
-          Papers via the OpenAlex API (topic-ID filtered, polite pool).
-          Trajectories aggregate works per year, 2000-2025. Patents are US
-          grants by grant year, counted in the Google BigQuery sandbox
-          against the CPC classes configured per domain. The query ships
-          in the repository, so the counts are reproducible without
-          downloading any bulk data. Burst strength comes from in-house
-          Viterbi decoding of a 2-state automaton. Forecasts use
-          Holt-Winters damped trend with 68% prediction intervals from
-          residual variance. The master plan records every locked decision
-          and its rationale.
+          Papers are sourced via the OpenAlex API (topic-ID filtered, polite pool).
+          Trajectories aggregate works per year from 2000 through 2025. Patents are US
+          grants counted in the Google BigQuery sandbox against CPC classes configured
+          per domain. The query ships in the repository, so the counts are reproducible
+          without downloading bulk datasets. Burst strength comes from algorithmic
+          burst detection that highlights terminology running far above normal frequency.
+          Forecasts use damped trend projections with 68% prediction intervals based on
+          historical variation.
         </p>
       </section>
 

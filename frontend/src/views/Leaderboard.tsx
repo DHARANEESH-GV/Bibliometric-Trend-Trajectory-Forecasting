@@ -22,16 +22,25 @@ import { CopyLink } from '../components/CopyLink'
 import { RevealShell } from '../components/RevealShell'
 import { HowToRead } from '../components/HowToRead'
 import { GlossaryTerm } from '../components/GlossaryTerm'
+import { SlidersHorizontal } from '@phosphor-icons/react/dist/csr/SlidersHorizontal'
+import { DownloadSimple } from '@phosphor-icons/react/dist/csr/DownloadSimple'
+import { WeightSimulator } from '../components/WeightSimulator'
+import {
+  CANONICAL_WEIGHTS,
+  computeSpearmanRho,
+  type EmergenceWeights,
+  type SimulatedEntry,
+} from '../lib/weights'
 
 function sortRows(
-  rows: LeaderboardEntry[],
+  rows: (LeaderboardEntry | SimulatedEntry)[],
   sort: SortKey,
   dir: SortDir,
-): LeaderboardEntry[] {
+): (LeaderboardEntry | SimulatedEntry)[] {
   const sign = dir === 'asc' ? 1 : -1
-  const cmp: Record<SortKey, (a: LeaderboardEntry, b: LeaderboardEntry) => number> = {
-    rank: (a, b) => a.rank - b.rank,
-    score: (a, b) => a.emergence_score - b.emergence_score,
+  const cmp: Record<SortKey, (a: any, b: any) => number> = {
+    rank: (a, b) => (a.simulated_rank ?? a.rank) - (b.simulated_rank ?? b.rank),
+    score: (a, b) => (a.simulated_score ?? a.emergence_score) - (b.simulated_score ?? b.emergence_score),
     yoy: (a, b) => a.yoy_delta - b.yoy_delta,
     name: (a, b) => a.display_name.localeCompare(b.display_name),
   }
@@ -40,14 +49,17 @@ function sortRows(
 
 export function LeaderboardView() {
   const { data, loading, error } = useQuery(loadLeaderboard, [])
+  const [simulatedEntries, setSimulatedEntries] = useState<SimulatedEntry[] | null>(null)
+  const [currentWeights, setCurrentWeights] = useState<EmergenceWeights>(CANONICAL_WEIGHTS)
+  const [simulatorOpen, setSimulatorOpen] = useState(false)
 
   const computedLead = useMemo(() => {
     const rowsX = data?.leaderboard ?? []
     const lead = rowsX[0]
     if (rowsX.length === 0 || !lead)
-      return 'Twenty technology domains scored on recent growth, citation acceleration, novelty, and keyword bursts.'
+      return 'Twenty technology fields ranked by growth speed, publication momentum, and surging topics.'
     const pct = Math.round((lead.yoy_delta ?? 0) * 100)
-    return `${lead.display_name} holds first place this run, up ${pct}% on the year. Scores below blend recent growth, citation acceleration, novelty, and keyword bursts.`
+    return `${lead.display_name} holds first place this run, up ${pct}% on the year. Growth scores below blend publication growth speed, keyword surges, and research volume.`
   }, [data])
   const [params, setParams] = useSearchParams()
   const [hovered, setHovered] = useState<string | null>(null)
@@ -95,12 +107,33 @@ export function LeaderboardView() {
 
   const rows = useMemo(() => {
     if (!data) return []
-    let list = data.leaderboard
+    let list: (LeaderboardEntry | SimulatedEntry)[] = simulatedEntries ?? data.leaderboard
     if (labelFilter !== 'all') list = list.filter((r) => r.label === labelFilter)
     const ordered = sortRows(list, sort, dir)
     // Keep the canonical rank number visible regardless of sort order.
     return ordered
-  }, [data, sort, dir, labelFilter])
+  }, [data, simulatedEntries, sort, dir, labelFilter])
+
+  const exportCSV = () => {
+    if (!data) return
+    const exportList = simulatedEntries ?? data.leaderboard
+    const headers = ['Rank', 'Domain', 'Display Name', 'Stage', 'Emergence Score', 'YoY Delta', 'Forecast Model']
+    const csvLines = [headers.join(',')]
+    for (const r of exportList as (LeaderboardEntry & { simulated_rank?: number; simulated_score?: number })[]) {
+      const rank = r.simulated_rank ?? r.rank
+      const score = (r.simulated_score ?? r.emergence_score).toFixed(1)
+      const yoy = (r.yoy_delta * 100).toFixed(1) + '%'
+      csvLines.push([rank, r.domain, `"${r.display_name.replace(/"/g, '""')}"`, r.label, score, yoy, r.forecast_model].join(','))
+    }
+    const blob = new Blob([csvLines.join('\n')], { type: 'text/csv;charset=utf-8;' })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = `biblio-leaderboard-${data._meta.run_id}.csv`
+    document.body.appendChild(a)
+    a.click()
+    document.body.removeChild(a)
+  }
 
   const compareRows = useMemo(
     () => compare.map((d) => data?.leaderboard.find((r) => r.domain === d)).filter(Boolean) as LeaderboardEntry[],
@@ -168,6 +201,24 @@ export function LeaderboardView() {
           </p>
         ) : null}
         <ViewController stageCounts={stageCounts} total={data.leaderboard.length} />
+        <button
+          type="button"
+          className="lb-action-btn"
+          onClick={() => setSimulatorOpen(true)}
+          title="Customize ranking priorities and simulate order"
+        >
+          <SlidersHorizontal size={14} weight="light" aria-hidden />
+          <span>Adjust Priorities</span>
+        </button>
+        <button
+          type="button"
+          className="lb-action-btn"
+          onClick={exportCSV}
+          title="Export CSV of current ranking"
+        >
+          <DownloadSimple size={14} weight="light" aria-hidden />
+          <span>Export CSV</span>
+        </button>
         <CopyLink />
         {caveatCount > 0 ? (
           <span
@@ -178,6 +229,35 @@ export function LeaderboardView() {
           </span>
         ) : null}
       </ViewHeader>
+
+      {simulatedEntries ? (
+        <section className="panel-shell sim-banner" aria-label="Simulation status">
+          <div className="panel-core sim-banner-inner">
+            <span className="sim-banner-text">
+              <strong>Custom Priorities Active:</strong> Ranking Match = {computeSpearmanRho(simulatedEntries).toFixed(3)} (1.0 = match with baseline)
+            </span>
+            <div className="sim-banner-actions">
+              <button
+                type="button"
+                className="island-btn"
+                onClick={() => setSimulatorOpen(true)}
+              >
+                Adjust Dials
+              </button>
+              <button
+                type="button"
+                className="island-btn"
+                onClick={() => {
+                  setSimulatedEntries(null)
+                  setCurrentWeights(CANONICAL_WEIGHTS)
+                }}
+              >
+                Reset to Baseline
+              </button>
+            </div>
+          </div>
+        </section>
+      ) : null}
 
       {compareRows.length > 0 ? (
         <CompareStrip rows={compareRows} onClear={() => {
@@ -260,10 +340,25 @@ export function LeaderboardView() {
                 />
                 <span className="cell rank-cell">
                   <span className="ghost-rank" aria-hidden>
-                    {String(row.rank).padStart(2, '0')}
+                    {String((row as any).simulated_rank ?? row.rank).padStart(2, '0')}
                   </span>
                   <span className="num rank-cell-value" style={{ color: 'var(--ink-2)' }}>
-                    {row.rank}
+                    {(row as any).simulated_rank ?? row.rank}
+                    {(row as any).rank_delta != null && (row as any).rank_delta !== 0 ? (
+                      <span
+                        className="sim-delta-badge"
+                        style={{
+                          color:
+                            (row as any).rank_delta > 0
+                              ? 'var(--stage-emerging)'
+                              : 'var(--stage-active)',
+                        }}
+                      >
+                        {(row as any).rank_delta > 0
+                          ? `▲${(row as any).rank_delta}`
+                          : `▼${Math.abs((row as any).rank_delta)}`}
+                      </span>
+                    ) : null}
                   </span>
                 </span>
                 <span className="cell domain-cell">
@@ -285,12 +380,14 @@ export function LeaderboardView() {
                       className="score-rail-fill"
                       data-stage={row.label}
                       style={{
-                        width: `${Math.max(0, Math.min(100, row.emergence_score))}%`,
+                        width: `${Math.max(0, Math.min(100, (row as any).simulated_score ?? row.emergence_score))}%`,
                         background: `var(${STAGE_TOKEN[row.label] ?? '--stage-watch'})`,
                       }}
                     />
                   </span>
-                  <span className="num score-value">{fmtScore(row.emergence_score)}</span>
+                  <span className="num score-value">
+                    {fmtScore((row as any).simulated_score ?? row.emergence_score)}
+                  </span>
                 </span>
                 <span className="cell">
                   <Sparkline
@@ -327,18 +424,18 @@ export function LeaderboardView() {
                     <StagePill label={focused.label} />
                   </div>
                   <div className="aside-metrics">
-                    <Metric label="Emergence score" value={fmtScore(focused.emergence_score)} />
-                    <Metric label="YoY change" value={fmtDelta(focused.yoy_delta)} />
+                    <Metric label="Growth score" value={fmtScore(focused.emergence_score)} />
+                    <Metric label="1-year change" value={fmtDelta(focused.yoy_delta)} />
                   </div>
                   <div className="aside-caption">
-                    <GlossaryTerm term="emergence score">
-                      Score decomposition
+                    <GlossaryTerm term="score decomposition">
+                      Score breakdown
                     </GlossaryTerm>{' '}
-                    (normalized inputs)
+                    (key growth signals)
                   </div>
                   <ScoreBar inputs={focused.score_inputs} />
                   <div className="aside-forecast hairline-top">
-                    <div className="aside-caption">Forecast peek ({fmtModel(focused.forecast_model)})</div>
+                    <div className="aside-caption">Projected growth ({fmtModel(focused.forecast_model)})</div>
                     <div className="num aside-forecast-values">
                       {focused.forecast_next3.map((f) => fmtInt(f)).join('  ')}
                       {" "}
@@ -364,6 +461,16 @@ export function LeaderboardView() {
         </>
       )}
     </div>
+    <WeightSimulator
+      open={simulatorOpen}
+      onClose={() => setSimulatorOpen(false)}
+      entries={data.leaderboard}
+      currentWeights={currentWeights}
+      onWeightsChange={(sim, weights) => {
+        setSimulatedEntries(sim)
+        setCurrentWeights(weights)
+      }}
+    />
     </LbShell>
   )
 }
@@ -399,12 +506,12 @@ function RankOneSpotlight({ row }: { row: LeaderboardEntry }) {
           </div>
           <div className="rank-one-score" aria-hidden={false}>
             <span className="num rank-one-score-value">{fmtScore(row.emergence_score)}</span>
-            <span className="rank-one-score-label">emergence score</span>
+            <span className="rank-one-score-label">growth score</span>
           </div>
           <div className="rank-one-metrics">
-            <Metric label="YoY change" value={fmtDelta(row.yoy_delta)} />
+            <Metric label="1-year change" value={fmtDelta(row.yoy_delta)} />
             <div className="rank-one-spark">
-              <span className="rank-one-spark-label">Trajectory 2020-2025</span>
+              <span className="rank-one-spark-label">6-Year Trend (2020-2025)</span>
               <Sparkline
                 values={row.sparkline}
                 forecast={row.forecast_next3}
@@ -492,9 +599,18 @@ function CompareStrip({ rows, onClear }: { rows: LeaderboardEntry[]; onClear: ()
       <div className="panel-core">
         <div className="compare-head">
           <span className="view-eyebrow">Compare</span>
-          <button type="button" className="island-btn" onClick={onClear}>
-            Clear
-          </button>
+          <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+            <Link
+              to={`/compare?a=${a.domain}${b ? `&b=${b.domain}` : ''}`}
+              className="island-btn"
+              style={{ textDecoration: 'none', color: 'var(--accent)' }}
+            >
+              Open Full Compare Duel →
+            </Link>
+            <button type="button" className="island-btn" onClick={onClear}>
+              Clear
+            </button>
+          </div>
         </div>
         <div className="compare-grid">
           <div />

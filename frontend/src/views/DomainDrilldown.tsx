@@ -3,7 +3,7 @@
  * forecast with 68% interval band, score decomposition, top keywords
  * (with a real empty state), provenance and caveat as first-class prose.
  */
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { loadDomainSnapshot, loadLeaderboard } from '../lib/snapshots'
 import { useQuery } from '../lib/useQuery'
@@ -19,8 +19,38 @@ import { ShimmerAxes } from '../components/ShimmerAxes'
 import { CaveatBanner } from '../components/CaveatBanner'
 import { ViewHeader } from '../components/ViewHeader'
 import { useSpotlight, SpotlightRing } from '../components/SpotlightWrap'
+import { Printer } from '@phosphor-icons/react/dist/csr/Printer'
+import { Copy } from '@phosphor-icons/react/dist/csr/Copy'
+import { Check } from '@phosphor-icons/react/dist/csr/Check'
+import { DownloadSimple } from '@phosphor-icons/react/dist/csr/DownloadSimple'
+import { ArrowLeft } from '@phosphor-icons/react/dist/csr/ArrowLeft'
+import { ArrowRight } from '@phosphor-icons/react/dist/csr/ArrowRight'
+import { ArrowsLeftRight } from '@phosphor-icons/react/dist/csr/ArrowsLeftRight'
 import type { DomainSnapshot } from '../lib/types'
 import { STAGE_TOKEN } from '../lib/types'
+
+const DOMAIN_RELATIONS: Record<string, string[]> = {
+  quantum_error_correction: ['quantum_computing', 'advanced_semiconductors'],
+  quantum_computing: ['quantum_error_correction', 'advanced_semiconductors', 'artificial_intelligence'],
+  ai_agents: ['generative_ai', 'artificial_intelligence', 'cybersecurity'],
+  generative_ai: ['ai_agents', 'artificial_intelligence', 'digital_twins'],
+  artificial_intelligence: ['generative_ai', 'ai_agents', 'brain_computer_interfaces'],
+  synthetic_biology: ['biotechnology', 'clean_hydrogen'],
+  biotechnology: ['synthetic_biology', 'brain_computer_interfaces'],
+  clean_hydrogen: ['carbon_capture', 'solid_state_batteries'],
+  carbon_capture: ['clean_hydrogen', 'smart_manufacturing'],
+  edge_computing: ['internet_of_things', 'cybersecurity', 'smart_manufacturing'],
+  internet_of_things: ['edge_computing', 'smart_manufacturing', 'cybersecurity'],
+  solid_state_batteries: ['autonomous_vehicles', 'clean_hydrogen', 'advanced_semiconductors'],
+  autonomous_vehicles: ['artificial_intelligence', 'edge_computing', 'solid_state_batteries'],
+  advanced_semiconductors: ['quantum_computing', 'edge_computing', 'solid_state_batteries'],
+  brain_computer_interfaces: ['artificial_intelligence', 'biotechnology'],
+  blockchain: ['cybersecurity', 'internet_of_things'],
+  cybersecurity: ['blockchain', 'edge_computing', 'ai_agents'],
+  digital_twins: ['smart_manufacturing', 'internet_of_things', 'generative_ai'],
+  smart_manufacturing: ['digital_twins', 'internet_of_things', 'edge_computing'],
+  space_technologies: ['autonomous_vehicles', 'advanced_semiconductors'],
+}
 
 export function DomainDrilldownView() {
   const { slug } = useParams<{ slug: string }>()
@@ -41,6 +71,22 @@ export function DomainDrilldownView() {
   )
   const rankOf = lbEntry ? lbEntry.rank : null
   const totalDomains = leaderboard.data?.leaderboard.length ?? null
+
+  const [copied, setCopied] = useState(false)
+  const domainList = useMemo(() => leaderboard.data?.leaderboard ?? [], [leaderboard.data])
+  const domainIdx = useMemo(() => domainList.findIndex((r) => r.domain === slug), [domainList, slug])
+  const prevDomain = domainIdx > 0 ? domainList[domainIdx - 1] : null
+  const nextDomain = domainIdx >= 0 && domainIdx < domainList.length - 1 ? domainList[domainIdx + 1] : null
+
+  const relatedSlugs = useMemo(() => (slug ? DOMAIN_RELATIONS[slug] ?? [] : []), [slug])
+  const relatedFields = useMemo(() => {
+    return relatedSlugs
+      .map((s) => {
+        const found = domainList.find((d) => d.domain === s)
+        return found ? { slug: s, name: found.display_name } : null
+      })
+      .filter((r): r is { slug: string; name: string } => r != null)
+  }, [relatedSlugs, domainList])
 
   const years = useMemo<number[]>(
     () => (data ? Object.keys(data.annual).map(Number).sort((a, b) => a - b) : []),
@@ -66,6 +112,38 @@ export function DomainDrilldownView() {
   const peakYear = years[peakIdx]
 
   const xLabels = [...years.map(String), ...horizonYears.map(String)]
+
+  const copyMarkdownDossier = () => {
+    if (!data) return
+    const md = [
+      `# Technology Dossier: ${data.display_name}`,
+      `* Lifecycle Stage: ${data.label}`,
+      `* Observatory Rank: #${rankOf ?? 'n/a'} of ${totalDomains ?? 20}`,
+      `* Emergence Score: ${data.score.toFixed(1)} / 100`,
+      `* Latest Works Volume: ${lastWorks != null ? lastWorks.toLocaleString() : 'n/a'} (${lastYear})`,
+      `* YoY Growth: ${yoy != null ? (yoy * 100).toFixed(1) + '%' : 'n/a'}`,
+      `* Forecasting Model: ${data.model ?? lbEntry?.forecast_model ?? 'n/a'}`,
+      `* Patent Grants: ${hasPatents ? patentsTotal.toLocaleString() : 'None indexed'}`,
+      data.caveat ? `\n> Caveat: ${data.caveat}` : '',
+      `\nGenerated from Biblio-Trend Technology Observatory (${new Date().toISOString().slice(0, 10)})`,
+    ].filter(Boolean).join('\n')
+    navigator.clipboard.writeText(md).then(() => {
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    })
+  }
+
+  const downloadJSON = () => {
+    if (!data) return
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = `${slug}-snapshot.json`
+    document.body.appendChild(a)
+    a.click()
+    document.body.removeChild(a)
+  }
 
   const { ref } = useChart((t) => {
     if (!data) return {}
@@ -263,14 +341,10 @@ export function DomainDrilldownView() {
           </>
         }
         title={
-          <>
-            {data.display_name}
-            <span className="serif-accent" aria-hidden>
-              {' '}
-              ·
-            </span>
+          <span style={{ display: 'inline-flex', alignItems: 'center', gap: 'var(--sp-3)', flexWrap: 'wrap' }}>
+            <span>{data.display_name}</span>
             <StagePill label={data.label} />
-          </>
+          </span>
         }
         lead={
           rankOf != null && totalDomains != null ? (
@@ -280,7 +354,82 @@ export function DomainDrilldownView() {
             </>
           ) : undefined
         }
-      />
+      >
+        <div className="domain-actions-bar" role="toolbar" aria-label="Domain actions">
+          <Link
+            to={`/compare?a=${slug}&b=${prevDomain ? prevDomain.domain : 'generative_ai'}`}
+            className="domain-action-btn"
+            title="Compare with another domain"
+          >
+            <ArrowsLeftRight size={14} weight="light" aria-hidden />
+            <span>Compare</span>
+          </Link>
+          <button
+            type="button"
+            className="domain-action-btn"
+            onClick={copyMarkdownDossier}
+            title="Copy Markdown briefing dossier"
+          >
+            {copied ? <Check size={14} weight="bold" aria-hidden /> : <Copy size={14} weight="light" aria-hidden />}
+            <span>{copied ? 'Copied' : 'Copy Memo'}</span>
+          </button>
+          <button
+            type="button"
+            className="domain-action-btn"
+            onClick={() => window.print()}
+            title="Print or save PDF report"
+          >
+            <Printer size={14} weight="light" aria-hidden />
+            <span>Print PDF</span>
+          </button>
+          <button
+            type="button"
+            className="domain-action-btn"
+            onClick={downloadJSON}
+            title="Download JSON snapshot data"
+          >
+            <DownloadSimple size={14} weight="light" aria-hidden />
+            <span>JSON</span>
+          </button>
+        </div>
+
+        <div className="domain-pager" aria-label="Navigate between domains">
+          {prevDomain ? (
+            <Link to={`/domain/${prevDomain.domain}`} className="domain-pager-btn" title={`Previous: ${prevDomain.display_name}`}>
+              <ArrowLeft size={13} weight="light" aria-hidden />
+              <span>{prevDomain.display_name}</span>
+            </Link>
+          ) : null}
+          {nextDomain ? (
+            <Link to={`/domain/${nextDomain.domain}`} className="domain-pager-btn" title={`Next: ${nextDomain.display_name}`}>
+              <span>{nextDomain.display_name}</span>
+              <ArrowRight size={13} weight="light" aria-hidden />
+            </Link>
+          ) : null}
+        </div>
+
+        {relatedFields.length > 0 ? (
+          <div className="domain-related-bar" aria-label="Related technology domains">
+            <span className="section-eyebrow">Related Fields:</span>
+            <div className="domain-related-chips">
+              {relatedFields.map((rel) => (
+                <div key={rel.slug} className="domain-related-chip-group">
+                  <Link to={`/domain/${rel.slug}`} className="domain-related-link">
+                    {rel.name}
+                  </Link>
+                  <Link
+                    to={`/compare?a=${slug}&b=${rel.slug}`}
+                    className="domain-related-duel"
+                    title={`Compare ${data.display_name} vs ${rel.name}`}
+                  >
+                    VS
+                  </Link>
+                </div>
+              ))}
+            </div>
+          </div>
+        ) : null}
+      </ViewHeader>
 
       {data.caveat ? (
         <div className="domain-caveat">
@@ -359,11 +508,11 @@ export function DomainDrilldownView() {
       ) : null}
 
       <section className="domain-section">
-        <h2>Score decomposition</h2>
+        <h2>Score breakdown</h2>
         <p className="domain-section-intro">
-          The emergence score blends five normalized inputs. It is a tunable
-          prior, not a derived constant; the rank-stability analysis in the
-          final report shows how the leaderboard moves when weights shift.
+          The emergence score blends five key growth signals: recent publication growth speed,
+          acceleration, keyword surges, overall paper volume, and commercial patent momentum.
+          It ranks how rapidly this field is developing relative to others.
         </p>
         {/* Domain snapshots carry the score but not the input split; the
             leaderboard file carries the real score_inputs. Render those,

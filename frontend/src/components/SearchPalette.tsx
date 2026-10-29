@@ -14,6 +14,8 @@ export interface SearchItem {
   domain: string
   display_name: string
   hint?: string
+  route?: string
+  isAction?: boolean
 }
 
 interface SearchPaletteProps {
@@ -62,7 +64,11 @@ export function SearchPalette({ items, to, open, onClose }: SearchPaletteProps) 
   const commit = (i: number) => {
     const item = results[i]
     if (!item) return
-    navigate(to(item.domain))
+    if (item.route) {
+      navigate(item.route)
+    } else {
+      navigate(to(item.domain))
+    }
     onClose()
   }
 

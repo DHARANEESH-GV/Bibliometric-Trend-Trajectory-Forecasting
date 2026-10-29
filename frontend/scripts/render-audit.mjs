@@ -13,12 +13,17 @@
  */
 import { chromium } from 'playwright'
 import { spawn } from 'node:child_process'
+import { fileURLToPath } from 'node:url'
+import { resolve } from 'node:path'
 
 const PORT = 4599
 const BASE = `http://localhost:${PORT}`
 
-const server = spawn('npx', ['vite', 'preview', '--port', String(PORT)], {
-  cwd: new URL('..', import.meta.url).pathname,
+const npxCmd = process.platform === 'win32' ? 'npx.cmd' : 'npx'
+const feDir = resolve(fileURLToPath(import.meta.url), '../..')
+const server = spawn(npxCmd, ['vite', 'preview', '--port', String(PORT)], {
+  cwd: feDir,
+  shell: process.platform === 'win32',
   stdio: 'ignore',
 })
 server.on('error', (e) => {
@@ -47,9 +52,11 @@ const report = (name, ok, detail = '') => {
 const ROUTES = [
   '/?film=0',
   '/leaderboard',
+  '/compare',
   '/trajectory',
   '/bursts',
   '/matrix',
+  '/lag',
   '/about',
   '/domain/ai_agents',
   '/domain/quantum_computing',

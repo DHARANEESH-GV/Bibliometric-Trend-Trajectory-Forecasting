@@ -9,19 +9,32 @@
  */
 import { chromium } from 'playwright'
 import { spawn, spawnSync } from 'node:child_process'
-import { mkdirSync, rmSync } from 'node:fs'
+import { mkdirSync, rmSync, readFileSync } from 'node:fs'
+import { tmpdir } from 'node:os'
+import { fileURLToPath } from 'node:url'
+import { resolve, join } from 'node:path'
 
 const PORT = 4611
 const BASE = `http://localhost:${PORT}`
-const OUT = '/tmp/opencode/pixel'
+const OUT = join(tmpdir(), 'biblio-pixel')
 rmSync(OUT, { recursive: true, force: true })
 mkdirSync(OUT, { recursive: true })
 
-const server = spawn('npx', ['vite', 'preview', '--port', String(PORT)], {
-  cwd: new URL('..', import.meta.url).pathname,
+const npxCmd = process.platform === 'win32' ? 'npx.cmd' : 'npx'
+const feDir = resolve(fileURLToPath(import.meta.url), '../..')
+const server = spawn(npxCmd, ['vite', 'preview', '--port', String(PORT)], {
+  cwd: feDir,
+  shell: process.platform === 'win32',
   stdio: 'ignore',
 })
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms))
+
+let hasMagick = false
+try {
+  hasMagick = spawnSync('magick', ['-version']).status === 0
+} catch (e) {
+  hasMagick = false
+}
 
 function magick(args) {
   const r = spawnSync('magick', args, { encoding: 'utf8' })
@@ -30,12 +43,39 @@ function magick(args) {
 }
 /** Mean luminance (0-1) and std-dev of an image region. */
 function stats(file) {
+  if (!hasMagick) {
+    // Pure JS fallback: read buffer bytes
+    const buf = readFileSync(file)
+    let sum = 0
+    let sumSq = 0
+    const n = Math.max(1, buf.length)
+    for (let i = 0; i < buf.length; i++) {
+      const v = buf[i] / 255
+      sum += v
+      sumSq += v * v
+    }
+    const mean = sum / n
+    const sd = Math.sqrt(Math.max(0, sumSq / n - mean * mean))
+    return { mean, sd }
+  }
   const out = magick([file, '-format', '%[fx:mean] %[fx:standard_deviation]', 'info:'])
   const [mean, sd] = out.split(/\s+/).map(Number)
   return { mean, sd }
 }
 /** RMSE between two images, normalized 0-1. */
 function rmse(a, b) {
+  if (!hasMagick) {
+    const bufA = readFileSync(a)
+    const bufB = readFileSync(b)
+    const len = Math.min(bufA.length, bufB.length)
+    if (len === 0) return 0
+    let sumSq = 0
+    for (let i = 0; i < len; i++) {
+      const d = (bufA[i] - bufB[i]) / 255
+      sumSq += d * d
+    }
+    return Math.sqrt(sumSq / len)
+  }
   const out = spawnSync('magick', ['compare', '-metric', 'RMSE', a, b, 'null:'], { encoding: 'utf8' })
   const m = (out.stderr || '').match(/\(([\d.]+)\)/)
   return m ? Number(m[1]) : NaN

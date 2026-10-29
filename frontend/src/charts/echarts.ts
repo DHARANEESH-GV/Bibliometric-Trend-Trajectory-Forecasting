@@ -6,7 +6,7 @@
  * so they cannot drift per-view.
  */
 import * as echarts from 'echarts/core'
-import { LineChart, HeatmapChart, CustomChart, BarChart } from 'echarts/charts'
+import { LineChart, HeatmapChart, CustomChart, BarChart, ScatterChart } from 'echarts/charts'
 import {
   GridComponent,
   TooltipComponent,
@@ -14,6 +14,7 @@ import {
   DatasetComponent,
   VisualMapComponent,
   LegendComponent,
+  MarkLineComponent,
 } from 'echarts/components'
 import { SVGRenderer } from 'echarts/renderers'
 import { useEffect, useRef } from 'react'
@@ -23,12 +24,14 @@ echarts.use([
   HeatmapChart,
   CustomChart,
   BarChart,
+  ScatterChart,
   GridComponent,
   TooltipComponent,
   AxisPointerComponent,
   DatasetComponent,
   VisualMapComponent,
   LegendComponent,
+  MarkLineComponent,
   SVGRenderer,
 ])
 
@@ -181,7 +184,8 @@ export function tooltip(t: ThemeTokens) {
     backgroundColor: t.surface1,
     borderColor: 'transparent',
     textStyle: { color: t.ink0, fontFamily: t.fontBody, fontSize: 12 },
-    extraCssText: 'box-shadow: none; border-radius: 2px; padding: 8px 10px;',
+    extraCssText:
+      'box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5); border: 1px solid color-mix(in srgb, var(--ink-0) 12%, transparent); border-radius: 3px; backdrop-filter: blur(10px); padding: 8px 12px;',
     axisPointer: {
       type: 'line' as const,
       lineStyle: { color: t.crosshair, width: 1 },

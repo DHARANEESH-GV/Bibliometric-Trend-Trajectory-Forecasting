@@ -4,7 +4,7 @@
  * existing parts, no chart library), grouped by lifecycle stage. Every
  * cell links to its drill-down; every figure comes from the snapshot.
  */
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { loadLeaderboard } from '../lib/snapshots'
 import { useQuery } from '../lib/useQuery'
@@ -20,6 +20,7 @@ const STAGES = ['Emerging', 'Accelerating', 'Active', 'Watch'] as const
 
 export function OverviewView() {
   const { data, loading, error } = useQuery(loadLeaderboard, [])
+  const [syncedPointIdx, setSyncedPointIdx] = useState<number | null>(null)
 
   const groups = useMemo(() => {
     const rows = data?.leaderboard ?? []
@@ -28,6 +29,13 @@ export function OverviewView() {
       rows: rows.filter((r) => r.label === stage),
     })).filter((g) => g.rows.length > 0)
   }, [data])
+
+  const quarterLabel = useMemo(() => {
+    if (syncedPointIdx == null) return null
+    const yr = 2020 + Math.floor(syncedPointIdx / 4)
+    const q = (syncedPointIdx % 4) + 1
+    return `${yr} Q${q}`
+  }, [syncedPointIdx])
 
   if (error) {
     return (
@@ -56,13 +64,30 @@ export function OverviewView() {
         }
         lead={
           <>
-            Twenty technology domains as small multiples, grouped by lifecycle
-            stage. Each panel is the same shape: papers published per year,
-            2020-2025, with the emergence score beneath.
+            Twenty technology fields side by side, grouped by growth stage. Move
+            your cursor over any chart to see quarterly paper output across all
+            fields at the same moment in time (2020-2025).
           </>
         }
       >
-        <CopyLink />
+        <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--sp-3)' }}>
+          {quarterLabel ? (
+            <span
+              className="overview-scrub-indicator font-mono num"
+              style={{
+                fontSize: '12px',
+                padding: '4px 10px',
+                borderRadius: 'var(--r-pill)',
+                background: 'color-mix(in srgb, var(--accent) 15%, transparent)',
+                color: 'var(--accent)',
+                border: '1px solid color-mix(in srgb, var(--accent) 35%, transparent)',
+              }}
+            >
+              Quarter: {quarterLabel}
+            </span>
+          ) : null}
+          <CopyLink />
+        </div>
       </ViewHeader>
 
       {groups.map((g, gi) => (
@@ -81,7 +106,12 @@ export function OverviewView() {
           </div>
           <div className="overview-grid">
             {g.rows.map((row) => (
-              <OverviewCell key={row.domain} row={row} />
+              <OverviewCell
+                key={row.domain}
+                row={row}
+                syncedIdx={syncedPointIdx}
+                onScrub={setSyncedPointIdx}
+              />
             ))}
           </div>
         </section>
@@ -91,13 +121,30 @@ export function OverviewView() {
   )
 }
 
-function OverviewCell({ row }: { row: LeaderboardEntry }) {
+function OverviewCell({
+  row,
+  syncedIdx,
+  onScrub,
+}: {
+  row: LeaderboardEntry
+  syncedIdx: number | null
+  onScrub: (idx: number | null) => void
+}) {
   const trend = seriesTrend(row.sparkline)
+  const hoveredVal = syncedIdx != null && row.sparkline[syncedIdx] != null ? row.sparkline[syncedIdx] : null
+
   return (
     <Link
       to={`/domain/${row.domain}`}
       className="overview-cell"
       aria-label={`${row.display_name}, stage ${row.label}, emergence score ${fmtScore(row.emergence_score)}`}
+      onMouseMove={(e) => {
+        const rect = e.currentTarget.getBoundingClientRect()
+        const relX = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width))
+        const idx = Math.min(row.sparkline.length - 1, Math.floor(relX * row.sparkline.length))
+        onScrub(idx)
+      }}
+      onMouseLeave={() => onScrub(null)}
     >
       <span className="overview-cell-name">
         <span
@@ -111,10 +158,13 @@ function OverviewCell({ row }: { row: LeaderboardEntry }) {
         values={row.sparkline}
         width={200}
         height={44}
+        activePointIndex={syncedIdx}
         ariaLabel={`${row.display_name}, ${fmtInt(row.sparkline[0] ?? 0)} to ${fmtInt(row.sparkline[row.sparkline.length - 1] ?? 0)} papers`}
       />
       <span className="overview-cell-meta">
-        <span className="num overview-cell-score">{fmtScore(row.emergence_score)}</span>
+        <span className="num overview-cell-score">
+          {hoveredVal != null ? `${fmtInt(hoveredVal)} p.` : fmtScore(row.emergence_score)}
+        </span>
         <span
           className="num"
           style={{ color: row.yoy_delta >= 0 ? 'var(--stage-emerging)' : 'var(--stage-active)' }}

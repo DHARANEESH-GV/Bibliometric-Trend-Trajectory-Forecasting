@@ -8,13 +8,15 @@ import { snapshotSentence, relativeAge } from './lib/format'
 import { MethodologyNote } from './components/MethodologyNote'
 import { SearchPalette, useCommandK, type SearchItem } from './components/SearchPalette'
 import { IslandNav } from './components/IslandNav'
+import { ShortcutsModal } from './components/ShortcutsModal'
 import { RouteTransition } from './components/RouteTransition'
 import { WorkbenchAmbience } from './components/WorkbenchAmbience'
 import { WorkbenchChrome } from './components/WorkbenchChrome'
 import { WireTicker } from './components/WireTicker'
 import { TourStrip } from './components/TourStrip'
 import { ProvenanceFooter } from './components/ProvenanceFooter'
-import { usePresentation } from './lib/presentation'
+import { usePresentation, isPresentation, setPresentation } from './lib/presentation'
+import { useMotionReduced, setMotionChoice } from './lib/motion'
 import './styles/demo.css'
 import { CoverView } from './views/Cover'
 import { ErrorBoundary } from './components/ErrorBoundary'
@@ -40,6 +42,9 @@ const MatrixView = lazy(() =>
 const LagView = lazy(() =>
   import('./views/Lag').then((m) => ({ default: m.LagView })),
 )
+const CompareView = lazy(() =>
+  import('./views/Compare').then((m) => ({ default: m.CompareView })),
+)
 const AboutView = lazy(() =>
   import('./views/About').then((m) => ({ default: m.AboutView })),
 )
@@ -59,7 +64,9 @@ function RouteFallback() {
 }
 
 function Shell() {
-  const { runId, generatedUtc } = useStore()
+  const { runId, generatedUtc, toggleThemeWipe } = useStore()
+  const motionReduced = useMotionReduced()
+  const [shortcutsOpen, setShortcutsOpen] = useState(false)
   // Apply the persisted presentation preference on EVERY route, including
   // the cover (which has no island nav to host the toggle).
   usePresentation()
@@ -69,6 +76,12 @@ function Shell() {
   const [paletteOpen, setPaletteOpen] = useState(false)
   const [clock, setClock] = useState(() => new Date())
   useCommandK(setPaletteOpen)
+
+  useEffect(() => {
+    const onOpen = () => setShortcutsOpen(true)
+    window.addEventListener('open-shortcuts-modal', onOpen)
+    return () => window.removeEventListener('open-shortcuts-modal', onOpen)
+  }, [])
 
   useEffect(() => {
     const t = window.setInterval(() => setClock(new Date()), 30_000)
@@ -82,12 +95,19 @@ function Shell() {
   }, [data])
 
   const items = useMemo<SearchItem[]>(
-    () =>
-      (data?.leaderboard ?? []).map((r) => ({
+    () => [
+      { domain: '__action_leaderboard', display_name: 'View Leaderboard', hint: 'Overview & ranks', route: '/leaderboard', isAction: true },
+      { domain: '__action_compare', display_name: 'Head-to-Head Compare', hint: 'Duel two domains', route: '/compare', isAction: true },
+      { domain: '__action_trajectories', display_name: 'Trajectory Explorer', hint: 'Forecast curves', route: '/trajectory', isAction: true },
+      { domain: '__action_lag', display_name: 'Paper vs Patent Lag', hint: 'Transfer & phase plane', route: '/lag', isAction: true },
+      { domain: '__action_bursts', display_name: 'Keyword Bursts', hint: 'Kleinberg frontiers', route: '/bursts', isAction: true },
+      { domain: '__action_matrix', display_name: 'Comparison Matrix', hint: 'Heatmap & bar race', route: '/matrix', isAction: true },
+      ...(data?.leaderboard ?? []).map((r) => ({
         domain: r.domain,
         display_name: r.display_name,
-        hint: `rank ${r.rank}`,
+        hint: `rank #${r.rank} (${r.label})`,
       })),
+    ],
     [data],
   )
 
@@ -113,7 +133,10 @@ function Shell() {
       </a>
       <WorkbenchAmbience />
       <WorkbenchChrome />
-      <IslandNav onOpenSearch={() => setPaletteOpen(true)} />
+      <IslandNav
+        onOpenSearch={() => setPaletteOpen(true)}
+        onOpenShortcuts={() => setShortcutsOpen(true)}
+      />
       <WireTicker />
 
       <main id="main" className="container workbench-main" style={{ flex: 1, position: 'relative', zIndex: 1 }}>
@@ -145,6 +168,7 @@ function Shell() {
                 <Route path="/bursts" element={<BurstsView />} />
                 <Route path="/matrix" element={<MatrixView />} />
                 <Route path="/lag" element={<LagView />} />
+                <Route path="/compare" element={<CompareView />} />
                 <Route path="/overview" element={<OverviewView />} />
                 <Route path="/about" element={<AboutView />} />
                 <Route
@@ -222,6 +246,18 @@ function Shell() {
         to={(domain) => `/domain/${domain}`}
         open={paletteOpen}
         onClose={() => setPaletteOpen(false)}
+      />
+
+      <ShortcutsModal
+        open={shortcutsOpen}
+        onClose={() => setShortcutsOpen(false)}
+        onToggleTheme={() => toggleThemeWipe({ x: window.innerWidth / 2, y: 0 })}
+        onTogglePresentation={() => setPresentation(!isPresentation())}
+        onToggleMotion={() => setMotionChoice(motionReduced ? 'full' : 'reduced')}
+        onOpenSearch={() => {
+          setShortcutsOpen(false)
+          setPaletteOpen(true)
+        }}
       />
     </div>
   )

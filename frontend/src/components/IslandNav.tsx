@@ -11,12 +11,14 @@ import { Waveform } from '@phosphor-icons/react/dist/csr/Waveform'
 import { Sun } from '@phosphor-icons/react/dist/csr/Sun'
 import { Moon } from '@phosphor-icons/react/dist/csr/Moon'
 import { Presentation } from '@phosphor-icons/react/dist/csr/Presentation'
+import { Keyboard } from '@phosphor-icons/react/dist/csr/Keyboard'
 import { useStore } from '../lib/store'
 import { useMotionReduced, setMotionChoice } from '../lib/motion'
 import { isPresentation, setPresentation, usePresentation } from '../lib/presentation'
 
 const NAV = [
   { to: '/leaderboard', label: 'Leaderboard' },
+  { to: '/compare', label: 'Compare' },
   { to: '/trajectory', label: 'Trajectories' },
   { to: '/bursts', label: 'Bursts' },
   { to: '/matrix', label: 'Matrix' },
@@ -27,9 +29,10 @@ const NAV = [
 
 interface IslandNavProps {
   onOpenSearch: () => void
+  onOpenShortcuts?: () => void
 }
 
-export function IslandNav({ onOpenSearch }: IslandNavProps) {
+export function IslandNav({ onOpenSearch, onOpenShortcuts }: IslandNavProps) {
   const { theme, toggleThemeWipe } = useStore()
   const motionReduced = useMotionReduced()
   const presentation = usePresentation()
@@ -72,6 +75,18 @@ export function IslandNav({ onOpenSearch }: IslandNavProps) {
           >
             <MagnifyingGlass size={16} weight="light" aria-hidden />
           </button>
+
+          {onOpenShortcuts ? (
+            <button
+              type="button"
+              onClick={onOpenShortcuts}
+              aria-label="Keyboard navigation HUD (?)"
+              title="Keyboard shortcuts (?)"
+              className="island-btn"
+            >
+              <Keyboard size={16} weight="light" aria-hidden />
+            </button>
+          ) : null}
 
           <button
             type="button"

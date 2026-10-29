@@ -12,22 +12,42 @@
  * Layers 1-3 are composed here; layer 4 scans source with ripgrep.
  */
 import { spawnSync } from 'node:child_process'
+import { fileURLToPath } from 'node:url'
+import { resolve } from 'node:path'
 
 let failed = 0
 const stage = (name, ok, detail = '') => {
   console.log((ok ? 'PASS' : 'FAIL').padEnd(5), name.padEnd(40), detail)
   if (!ok) failed++
 }
+const npmCmd = process.platform === 'win32' ? 'npm.cmd' : 'npm'
 const run = (label, cmd, args, cwd) =>
-  stage(label, spawnSync(cmd, args, { cwd, stdio: 'inherit' }).status === 0)
+  stage(
+    label,
+    spawnSync(cmd === 'npm' ? npmCmd : cmd, args, {
+      cwd,
+      stdio: 'inherit',
+      shell: process.platform === 'win32',
+    }).status === 0,
+  )
 
-const FE = new URL('..', import.meta.url).pathname
-const ROOT = new URL('../..', import.meta.url).pathname
+const FE = resolve(fileURLToPath(import.meta.url), '../..')
+const ROOT = resolve(FE, '..')
 const rg = (pattern, globs) => {
   // -e is required: patterns like --grid-rank-row would otherwise parse
   // as rg flags.
   const args = ['-n', '--no-heading', '-e', pattern, ...globs.flatMap((g) => ['-g', g]), '.']
-  const r = spawnSync('rg', args, { cwd: ROOT, encoding: 'utf8' })
+  let r = spawnSync('rg', args, { cwd: ROOT, encoding: 'utf8' })
+  if (r.error || r.status === 127 || (!r.stdout && r.stderr)) {
+    // rg not installed in PATH, fall back to git grep
+    const gitGlobs = globs.map((g) => (g.includes('*') ? `:(glob)${g}` : g))
+    let gitArgs = ['grep', '-n', '-P', '-e', pattern, '--', ...gitGlobs]
+    r = spawnSync('git', gitArgs, { cwd: ROOT, encoding: 'utf8' })
+    if (r.error || (r.status !== 0 && !r.stdout)) {
+      gitArgs = ['grep', '-n', '-E', '-e', pattern, '--', ...gitGlobs]
+      r = spawnSync('git', gitArgs, { cwd: ROOT, encoding: 'utf8' })
+    }
+  }
   return (r.stdout || '').trim()
 }
 

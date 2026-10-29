@@ -34,9 +34,9 @@ export function BurstsView() {
   const computedLead = useMemo(() => {
     const feedX = bursts.data?.feed ?? []
     if (feedX.length === 0)
-      return 'Kleinberg burst detection marks stretches of years when a keyword appeared far more often in a domain\u2019s papers than its baseline rate.'
+      return 'Keyword bursts highlight sudden surges in research activity, tracking terms that appeared far more often than their normal baseline.'
     const oldest = feedX.reduce((a, b) => (b.duration > a.duration ? b : a))
-    return `${feedX.length} bursts detected this run. The oldest \u2014 \u201c${oldest.keyword}\u201d in ${oldest.domain.replace(/_/g, ' ')} \u2014 has burned for ${oldest.duration} straight years.`
+    return `${feedX.length} bursts detected this run. The longest-running, "${oldest.keyword}" in ${oldest.domain.replace(/_/g, ' ')}, has surged for ${oldest.duration} consecutive years.`
   }, [bursts.data])
   const leaderboard = useQuery(loadLeaderboard, [])
   const [sort, setSort] = useState<BurstSort>('strength')
