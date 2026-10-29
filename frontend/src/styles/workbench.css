@@ -551,6 +551,14 @@
   font-size: 9px;
   color: var(--ink-3);
 }
+/* The burst ribbon as a single gradient-filled bar (see YearRibbon):
+   one element instead of one span per year. */
+.ribbon-bar {
+  display: block;
+  height: 12px;
+  width: 100%;
+  border-radius: 1px;
+}
 
 /* Series table (trajectory "View as table"): the plotted numbers behind
    the chart, reusing the forecast-row grammar. */

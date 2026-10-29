@@ -305,30 +305,33 @@ function YearRibbon({ entry }: { entry: BurstEntry }) {
   const cells = ribbon(entry)
   const first = cells[0]?.year
   const last = cells[cells.length - 1]?.year
+  if (first == null || last == null) return null
+
+  // One element, not 26: the ribbon was previously a span per year, which
+  // cost ~1,560 DOM nodes across the 60 visible rows for a purely
+  // decorative shape. A repeating gradient draws the same active/inactive
+  // run at zero node cost. The exact years remain in the aria-label, so
+  // nothing is lost for assistive tech.
+  const span = Math.max(last - first + 1, 1)
+  const step = 100 / span
+  const stops: string[] = []
+  cells.forEach((c, i) => {
+    const from = (i * step).toFixed(3)
+    const to = ((i + 1) * step).toFixed(3)
+    const colour = c.active ? 'var(--stage-active)' : 'var(--surface-2)'
+    stops.push(`${colour} ${from}%`, `${colour} ${to}%`)
+  })
+
   return (
     <span className="ribbon-wrap">
       <span
         role="img"
         aria-label={`Active ${entry.start} through ${entry.end} (${entry.duration} years)`}
-        className="num"
+        className="num ribbon-bar"
         style={{
-          display: 'flex',
-          gap: 1,
-          height: 12,
-          alignItems: 'stretch',
+          backgroundImage: `linear-gradient(to right, ${stops.join(', ')})`,
         }}
-      >
-        {cells.map((c) => (
-          <span
-            key={c.year}
-            title={`${c.year}${c.active ? ' (burst)' : ''}`}
-            style={{
-              flex: 1,
-              background: c.active ? 'var(--stage-active)' : 'var(--surface-2)',
-            }}
-          />
-        ))}
-      </span>
+      />
       <span className="ribbon-axis num" aria-hidden>
         <span>{first}</span>
         <span>{last}</span>
