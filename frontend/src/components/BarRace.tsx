@@ -13,6 +13,7 @@ import { useChart, echarts, baseOption, tooltip } from '../charts/echarts'
 import { useTokens } from '../lib/useTokens'
 import { fmtInt } from '../lib/format'
 import { motionReduced } from '../lib/motion'
+import { useInViewOnce } from '../lib/useInViewOnce'
 import type { MatrixFile } from '../lib/types'
 
 interface RaceRow {
@@ -132,13 +133,17 @@ export function BarRace({ data }: { data: MatrixFile }) {
   // labels (the numbers) tween in lockstep with the bars. Autoplays once
   // on mount (skipped for reduced motion): the race should RUN when the
   // user arrives, per the brief.
+  // Autoplay once the panel is on screen (skipped for reduced motion).
+  // Gate on visibility: this panel is the LAST thing on /matrix, so an
+  // always-on 650 ms setOption loop repainted a chart nobody could see.
   const raceAutoRef = useRef(false)
+  const { ref: inViewRef, inView } = useInViewOnce<HTMLElement>('240px')
   useEffect(() => {
-    if (motionReduced() || raceAutoRef.current) return
+    if (reduced || raceAutoRef.current || !inView) return
     raceAutoRef.current = true
     setYearIdx(0)
     setPlaying(true)
-  }, [])
+  }, [reduced, inView])
   useEffect(() => {
     const max = frame.rows[0]?.total ?? 0
     setOpts({
@@ -165,7 +170,11 @@ export function BarRace({ data }: { data: MatrixFile }) {
   const year = years[yearIdx] ?? years[years.length - 1]
 
   return (
-    <section className="panel panel--sunk bar-race" aria-label="Cumulative works race across domains">
+    <section
+      ref={inViewRef}
+      className="panel panel--sunk bar-race"
+      aria-label="Cumulative works race across domains"
+    >
       <div className="panel-core">
         <div className="timelapse-head">
           <h2>

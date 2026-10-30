@@ -9,6 +9,7 @@
  */
 import { useEffect, useMemo, useRef, useState, type KeyboardEvent as ReactKeyboardEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useDialogTransition } from '../lib/useDialogTransition'
 
 export interface SearchItem {
   domain: string
@@ -34,6 +35,9 @@ export function SearchPalette({ items, to, open, onClose }: SearchPaletteProps) 
   const inputRef = useRef<HTMLInputElement | null>(null)
   const dialogRef = useRef<HTMLDivElement | null>(null)
   const navigate = useNavigate()
+  // Fluid open/close: the overlay stays mounted through a short exit beat
+  // (see useDialogTransition) instead of frame-cutting on close.
+  const { shouldRender, closing } = useDialogTransition(open)
 
   const results = useMemo(() => {
     const needle = q.trim().toLowerCase()
@@ -59,7 +63,7 @@ export function SearchPalette({ items, to, open, onClose }: SearchPaletteProps) 
     }
   }, [open])
 
-  if (!open) return null
+  if (!shouldRender) return null
 
   const commit = (i: number) => {
     const item = results[i]
@@ -119,12 +123,16 @@ export function SearchPalette({ items, to, open, onClose }: SearchPaletteProps) 
       role="dialog"
       aria-modal="true"
       aria-label="Search domains"
+      aria-hidden={closing || undefined}
       onClick={onClose}
       onKeyDown={onDialogKeyDown}
+      className={`search-palette-overlay${closing ? ' is-closing' : ''}`}
       style={{
         position: 'fixed',
         inset: 0,
         background: 'color-mix(in srgb, var(--surface-0) 70%, transparent)',
+        backdropFilter: 'blur(10px)',
+        WebkitBackdropFilter: 'blur(10px)',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'flex-start',
@@ -135,6 +143,7 @@ export function SearchPalette({ items, to, open, onClose }: SearchPaletteProps) 
       <div
         ref={dialogRef}
         onClick={(e) => e.stopPropagation()}
+        className={`search-palette-panel${closing ? ' is-closing' : ''}`}
         style={{
           width: 'min(560px, calc(100vw - 48px))',
           background: 'var(--surface-1)',

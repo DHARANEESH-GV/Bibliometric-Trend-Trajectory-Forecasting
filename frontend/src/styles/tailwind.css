@@ -7,22 +7,20 @@
    var() chains inside @theme resolve at :root scope ONCE — so
    tokens scoped elsewhere (like the cover's --paper on
    .cover-scope) DO NOT participate. The correct pattern is a
-   full literal palette here, swapped by [data-theme], mirroring
-   tokens.css but under shadcn's names.
+   full literal palette here.
 
-   TWO WORLDS, TWO TOKEN SETS:
-   - App views: --color-* follows [data-theme] (dark default).
-   - Cover (always OLED glass): .cover-scope pins the dark set, so the
-     dark shadcn card stays legible on the cover regardless of OS theme.
+   ONE WORLD: Biblio is dark only. The cover pins the same dark set
+   under .cover-scope so shadcn components there stay legible even if
+   a user's OS preference is light.
    ============================================================ */
 
 @import 'tailwindcss';
 
-/* Tailwind's dark: variants follow OUR toggle, not the OS */
+/* Tailwind's dark: variants follow the studio's palette, never the OS */
 @custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
 
 @theme {
-  /* ---------- APP WORLD (dark default, matches tokens.css) ---------- */
+  /* ---------- APP WORLD (dark only, matches tokens.css) ---------- */
   --color-background: #050507;
   --color-foreground: #eceef1;
 
@@ -58,34 +56,9 @@
   --radius: 0.5rem;
 }
 
-/* ---------- APP WORLD light variant (data-theme='light') ---------- */
-[data-theme='light'] {
-  --color-background: #fafaf8;
-  --color-foreground: #111418;
-  --color-card: #ffffff;
-  --color-card-foreground: #111418;
-  --color-popover: #ffffff;
-  --color-popover-foreground: #111418;
-  --color-primary: #111418;
-  --color-primary-foreground: #fafaf8;
-  --color-secondary: #f4f4f0;
-  --color-secondary-foreground: #3c4149;
-  --color-muted: #f4f4f0;
-  --color-muted-foreground: #565c66;
-  --color-accent: #9a6a10;
-  --color-accent-foreground: #fafaf8;
-  --color-destructive: #b3441f;
-  --color-destructive-foreground: #fafaf8;
-  --color-border: rgba(17, 20, 24, 0.1);
-  --color-input: rgba(17, 20, 24, 0.1);
-  --color-ring: #111418;
-}
-
-/* ---------- COVER WORLD (Ethereal Glass, always dark) ---------- */
-/* The cover is its own OLED world regardless of OS theme. Pin the dark
-   token set here so shadcn tokens used by hero-dithering-card resolve to
-   glass values, not paper — this is what keeps the card legible on the
-   cover (an earlier paper pin left dark ink on the OLED background). */
+/* ---------- COVER WORLD (Ethereal Glass) ---------- */
+/* The cover is its own OLED world; pin the same dark set so shadcn
+   tokens used by hero-dithering-card resolve to glass values. */
 .cover-scope {
   --color-background: #050507;
   --color-foreground: #eceef1;
@@ -122,18 +95,6 @@
   --border: rgba(236, 238, 241, 0.1);
   --ring: #eceef1;
   --radius: 0.5rem;
-}
-[data-theme='light'] {
-  --background: #fafaf8;
-  --foreground: #111418;
-  --card: #ffffff;
-  --card-foreground: #111418;
-  --primary: #111418;
-  --primary-foreground: #fafaf8;
-  --muted: #f4f4f0;
-  --muted-foreground: #565c66;
-  --border: rgba(17, 20, 24, 0.1);
-  --ring: #111418;
 }
 .cover-scope {
   --background: #050507;

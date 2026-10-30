@@ -8,8 +8,11 @@
   width: 100%;
 }
 
-/* Sequential-scale legend: the same surface -> amber ramp the heatmap
-   cells use, with a hairline rail. Brighter = more works. */
+/* Sequential-scale legend: the same floor -> amber ramp the heatmap cells
+   use, with a hairline rail. The scale is LOG growth (1x -> 10x -> 100x),
+   so a linear gradient across the bar is correct: equal distance means
+   equal multiples. Literal hex mirrors tokens.css — the chart's ramp is
+   parsed by zrender, which cannot parse color-mix(). */
 .matrix-legend {
   display: flex;
   align-items: center;
@@ -23,9 +26,9 @@
   border: var(--hairline);
   background: linear-gradient(
     90deg,
-    var(--surface-1) 0%,
-    var(--matrix-mid) 55%,
-    var(--matrix-high) 100%
+    #26272e 0%,
+    #8a6a34 50%,
+    #f5b84c 100%
   );
 }
 .matrix-legend-end {

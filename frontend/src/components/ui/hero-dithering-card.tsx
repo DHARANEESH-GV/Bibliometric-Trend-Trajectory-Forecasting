@@ -21,15 +21,19 @@ const Dithering = lazy(() =>
 
 /**
  * The shader is the single most expensive thing on the landing page: a
- * full-viewport WebGL dither loop that composites continuously. Measured
- * here, hiding it reclaims ~20-25% of frame time; under a software
- * renderer (SwiftShader) the whole page drops to ~16fps with it running.
- * So it is only mounted when all three conditions hold:
- *   1. the user has not chosen reduced motion,
- *   2. the card is actually on screen (no off-screen compositing),
- *   3. the tab is visible (no background rendering).
- * When any fails the card keeps its flat tone: the ambient paper texture
- * behind it is static CSS, so nothing looks broken or unfinished.
+ * WebGL dither loop that redraws every frame. Measured on 2026-10-30 under
+ * 4x CPU throttle with the orbs already fixed: removing it cut main-thread
+ * task time from 896ms/s to 161ms/s (82%) and lifted the page 40.5 -> 51.4
+ * fps. The earlier note in AGENTS.md claiming "~5fps" predated the orb fix
+ * and was never re-measured; that number was wrong.
+ *
+ * It is still the most beautiful thing here, so the rule is: mount it when
+ * on screen and the tab is visible, but keep it FROZEN (speed 0) unless the
+ * pointer is actually over the card. `speed: 0` makes the library cease its
+ * requestAnimationFrame loop entirely (see shader-mount.js: it only calls
+ * requestRender when currentSpeed !== 0), so an idle cover paints a static
+ * dithered texture for free and the dither only moves while you engage
+ * with it. Reduced motion pins it to frozen regardless.
  */
 function useShaderAllowed(ref: React.RefObject<HTMLDivElement | null>): boolean {
   const [onScreen, setOnScreen] = useState(false)
@@ -136,7 +140,10 @@ export function CTASection({
                   colorFront={shaderColor}
                   shape="warp"
                   type="4x4"
-                  speed={isHovered ? 0.6 : 0.2}
+                  // Frozen until the pointer is over the card. speed=0 makes
+                  // the shader stop its rAF loop entirely (see the comment on
+                  // useShaderAllowed), which is what keeps an idle cover cheap.
+                  speed={isHovered ? 0.6 : 0}
                   className="size-full"
                   minPixelRatio={1}
                 />
@@ -145,7 +152,10 @@ export function CTASection({
           ) : null}
 
           <div className="relative z-10 px-6 max-w-4xl mx-auto text-center flex flex-col items-center">
-            <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-primary/10 bg-primary/5 px-4 py-1.5 text-sm font-medium text-primary backdrop-blur-sm">
+            {/* No backdrop-blur here: the pill sits on the fully opaque card
+                core, so the blur has nothing to blur but still forces a
+                compositing pass every frame. */}
+            <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-primary/10 bg-primary/5 px-4 py-1.5 text-sm font-medium text-primary">
               {kicker}
             </div>
 

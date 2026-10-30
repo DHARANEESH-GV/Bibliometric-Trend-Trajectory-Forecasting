@@ -4,7 +4,7 @@ import { NavLink, Route, Routes, useLocation } from 'react-router-dom'
 import { StoreProvider, useStore } from './lib/store'
 import { loadLeaderboard } from './lib/snapshots'
 import { useQuery } from './lib/useQuery'
-import { snapshotSentence, relativeAge } from './lib/format'
+import { snapshotSentence, relativeAge, fmtDate } from './lib/format'
 import { MethodologyNote } from './components/MethodologyNote'
 import { SearchPalette, useCommandK, type SearchItem } from './components/SearchPalette'
 import { IslandNav } from './components/IslandNav'
@@ -13,9 +13,8 @@ import { RouteTransition } from './components/RouteTransition'
 import { WorkbenchAmbience } from './components/WorkbenchAmbience'
 import { WorkbenchChrome } from './components/WorkbenchChrome'
 import { WireTicker } from './components/WireTicker'
-import { TourStrip } from './components/TourStrip'
+import { TourStrip, maybeAutoStartTour } from './components/TourStrip'
 import { ProvenanceFooter } from './components/ProvenanceFooter'
-import { usePresentation, isPresentation, setPresentation } from './lib/presentation'
 import { useMotionReduced, setMotionChoice } from './lib/motion'
 import './styles/demo.css'
 import { CoverView } from './views/Cover'
@@ -64,17 +63,13 @@ function RouteFallback() {
 }
 
 function Shell() {
-  const { runId, generatedUtc, toggleThemeWipe } = useStore()
+  const { runId, generatedUtc } = useStore()
   const motionReduced = useMotionReduced()
   const [shortcutsOpen, setShortcutsOpen] = useState(false)
-  // Apply the persisted presentation preference on EVERY route, including
-  // the cover (which has no island nav to host the toggle).
-  usePresentation()
   const location = useLocation()
   const isCover = location.pathname === '/' || location.pathname === '/cover'
   const { data } = useQuery(loadLeaderboard, [])
   const [paletteOpen, setPaletteOpen] = useState(false)
-  const [clock, setClock] = useState(() => new Date())
   useCommandK(setPaletteOpen)
 
   useEffect(() => {
@@ -83,10 +78,13 @@ function Shell() {
     return () => window.removeEventListener('open-shortcuts-modal', onOpen)
   }, [])
 
+  // First-visit entry ramp. Fires when a visitor first reaches the workbench
+  // (not on the cover — the cover is already a guided introduction, and the
+  // strip would land underneath its cinema curtain). Once ever per browser.
   useEffect(() => {
-    const t = window.setInterval(() => setClock(new Date()), 30_000)
-    return () => window.clearInterval(t)
-  }, [])
+    if (isCover) return
+    maybeAutoStartTour()
+  }, [isCover])
 
   const gatePassed = useMemo(() => {
     const gate = data?.gate
@@ -141,22 +139,18 @@ function Shell() {
 
       <main id="main" className="container workbench-main" style={{ flex: 1, position: 'relative', zIndex: 1 }}>
         <TourStrip />
-        <div className="status-bar" role="status" aria-label="Run status">
+        <div className="status-bar" role="status" aria-label="Data freshness">
           <span>
-            run <strong>{runId}</strong>
-          </span>
-          <span>
-            generated{' '}
-            <strong>{data?._meta.generated_utc ?? generatedUtc ?? 'pending'}</strong>
+            Data from{' '}
+            <strong>
+              {fmtDate(data?._meta.generated_utc ?? generatedUtc) ?? 'an unknown date'}
+            </strong>
           </span>
           {gatePassed != null ? (
             <span className={gatePassed ? 'status-pass' : 'status-fail'}>
-              forecast gate {gatePassed ? 'passed' : 'failed'}
+              {gatePassed ? 'Forecasts checked' : 'Forecast check failed'}
             </span>
           ) : null}
-          <span>
-            utc <strong>{clock.toISOString().slice(11, 16)}</strong>
-          </span>
         </div>
         <ErrorBoundary>
           <RouteTransition routeKey={location.pathname}>
@@ -251,8 +245,6 @@ function Shell() {
       <ShortcutsModal
         open={shortcutsOpen}
         onClose={() => setShortcutsOpen(false)}
-        onToggleTheme={() => toggleThemeWipe({ x: window.innerWidth / 2, y: 0 })}
-        onTogglePresentation={() => setPresentation(!isPresentation())}
         onToggleMotion={() => setMotionChoice(motionReduced ? 'full' : 'reduced')}
         onOpenSearch={() => {
           setShortcutsOpen(false)

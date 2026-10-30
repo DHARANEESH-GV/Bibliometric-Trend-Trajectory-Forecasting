@@ -4,6 +4,120 @@
  * mono numeral idiom. No new colours, no new radii, no shadows of its own.
  */
 
+/* ---- Plain-language explainer (top of the view) ---------------------
+   Leads with the question in ordinary words, then three numbered steps
+   that teach how to read the charts below. Deliberately roomier and
+   calmer than the analytical sections: this is orientation, not result. */
+.lag-explainer {
+  margin: var(--sp-5) 0 var(--sp-6);
+  padding: var(--sp-4) var(--sp-5);
+  border: var(--hairline);
+  border-left: 2px solid color-mix(in srgb, var(--accent) 55%, transparent);
+  border-radius: var(--r-panel);
+  background: color-mix(in srgb, var(--surface-1) 70%, transparent);
+}
+.lag-explainer-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  margin-bottom: var(--sp-3);
+}
+.lag-explainer-title {
+  font-size: var(--text-lg);
+  font-weight: 500;
+  margin: var(--sp-1) 0 0;
+  color: var(--ink-0);
+}
+.lag-explainer-toggle {
+  flex: 0 0 auto;
+  padding: 3px 10px;
+  background: none;
+  border: var(--hairline);
+  border-radius: var(--r-control);
+  color: var(--ink-2);
+  font: inherit;
+  font-size: var(--text-xs);
+  cursor: pointer;
+}
+.lag-explainer-toggle:hover,
+.lag-explainer-toggle:focus-visible {
+  color: var(--ink-0);
+  border-color: color-mix(in srgb, var(--accent) 55%, transparent);
+}
+
+.lag-explainer-question {
+  font-family: var(--font-serif);
+  font-size: var(--text-xl);
+  line-height: 1.25;
+  color: var(--ink-0);
+  max-width: 44ch;
+  margin: 0 0 var(--sp-3);
+}
+.lag-explainer-answer {
+  font-size: var(--text-md);
+  line-height: var(--leading-body);
+  color: var(--ink-1);
+  max-width: 68ch;
+  margin: 0 0 var(--sp-2);
+}
+.lag-explainer-support {
+  font-size: var(--text-sm);
+  line-height: var(--leading-body);
+  color: var(--ink-2);
+  max-width: 68ch;
+  margin: 0 0 var(--sp-4);
+}
+
+.lag-explainer-steps {
+  list-style: none;
+  margin: 0 0 var(--sp-3);
+  padding: 0;
+  display: grid;
+  gap: var(--sp-3);
+  max-width: 70ch;
+}
+.lag-explainer-steps li {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--sp-3);
+  align-items: baseline;
+  font-size: var(--text-sm);
+  line-height: var(--leading-body);
+  color: var(--ink-2);
+}
+.lag-explainer-steps strong {
+  color: var(--ink-0);
+  font-weight: 500;
+}
+.lag-explainer-step-num {
+  font-size: var(--text-xs);
+  color: var(--accent);
+  border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
+  border-radius: 999px;
+  width: 22px;
+  height: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lag-explainer-caveat {
+  margin: 0;
+  padding-top: var(--sp-3);
+  border-top: var(--hairline);
+  font-size: var(--text-xs);
+  line-height: var(--leading-body);
+  color: var(--ink-3);
+  max-width: 72ch;
+}
+.lag-explainer-caveat em {
+  color: var(--ink-2);
+  font-style: normal;
+  font-weight: 500;
+}
+
 .lag-summary {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
@@ -53,6 +167,13 @@
   gap: var(--sp-4);
   font-size: var(--text-xs);
   color: var(--ink-2);
+}
+.lag-chart-help {
+  margin: calc(-1 * var(--sp-2)) 0 var(--sp-3);
+  font-size: var(--text-xs);
+  line-height: var(--leading-body);
+  color: var(--ink-3);
+  max-width: 72ch;
 }
 .lag-legend-item {
   display: inline-flex;

@@ -2,6 +2,7 @@ import { useState, useId, useEffect, useCallback, memo } from 'react'
 import { SlidersHorizontal } from '@phosphor-icons/react/dist/csr/SlidersHorizontal'
 import { ArrowCounterClockwise } from '@phosphor-icons/react/dist/csr/ArrowCounterClockwise'
 import { X } from '@phosphor-icons/react/dist/csr/X'
+import { useDialogTransition } from '../lib/useDialogTransition'
 import {
   CANONICAL_WEIGHTS,
   WEIGHT_LABELS,
@@ -85,13 +86,22 @@ const WeightSliderRow = memo(function WeightSliderRow({
   )
 })
 
-export function WeightSimulator({
+export function WeightSimulator(props: WeightSimulatorProps) {
+  // Fluid exit beat for the drawer (see useDialogTransition). Declared in a
+  // wrapper so the hook order stays unconditional in the inner component.
+  const { shouldRender, closing } = useDialogTransition(props.open)
+  if (!shouldRender) return null
+  return <WeightSimulatorInner {...props} closing={closing} />
+}
+
+function WeightSimulatorInner({
   open,
   onClose,
   entries,
   onWeightsChange,
   currentWeights,
-}: WeightSimulatorProps) {
+  closing,
+}: WeightSimulatorProps & { closing: boolean }) {
   const idPrefix = useId()
   const [activePreset, setActivePreset] = useState<string>('Canonical')
 
@@ -129,8 +139,6 @@ export function WeightSimulator({
     applyPreset('Canonical', CANONICAL_WEIGHTS)
   }, [applyPreset])
 
-  if (!open) return null
-
   const simulated = simulateLeaderboard(entries, currentWeights)
   const rho = computeSpearmanRho(simulated)
   const isCustom =
@@ -145,15 +153,16 @@ export function WeightSimulator({
 
   return (
     <div
-      className="weight-sim-overlay"
+      className={`weight-sim-overlay${closing ? ' is-closing' : ''}`}
       role="dialog"
       aria-modal="true"
+      aria-hidden={closing || undefined}
       aria-label="Emergence score weight simulator"
       onClick={(e) => {
         if (e.target === e.currentTarget) onClose()
       }}
     >
-      <div className="weight-sim-drawer panel-shell">
+      <div className={`weight-sim-drawer panel-shell${closing ? ' is-closing' : ''}`}>
         <div className="panel-core weight-sim-content">
           <header className="weight-sim-head hairline-bottom">
             <div className="weight-sim-title-group">

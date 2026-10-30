@@ -1,12 +1,13 @@
 /* ============================================================
-   biblio-trend design tokens — REBUILD (Ethereal Glass era)
-   Workbench: Soft-Structuralism dark-first, OLED blacks, white/10
-   hairlines, Geist. Single accent (amber). Cover world pins its own
-   palette via .cover-scope (see cover.css). No decorative gradients.
+   biblio-trend design tokens — Ethereal Glass, dark only.
+   Workbench: Soft-Structuralism, OLED blacks, white/10 hairlines,
+   Geist. Single accent (amber). There is no light theme: the
+   observatory is a dark room, and a paper variant read as a second,
+   half-maintained product. Print inherits the dark palette too (see
+   the @media print block in workbench.css).
    ============================================================ */
 
-:root,
-[data-theme='dark'] {
+:root {
   /* Surfaces: OLED-leaning ladder */
   --surface-0: #050507;
   --surface-1: #0b0c0f;
@@ -44,10 +45,17 @@
   --cat-4: #f28b8b; /* rose   */
   --cat-5: #c9a2ff; /* violet */
 
-  /* Matrix sequential ramp: surface (low) -> accent (high). Ink-white at
-     the top end read as "empty vs full" backwards on OLED; a single-hue
-     gold ramp cannot be misread. */
-  --matrix-mid: color-mix(in srgb, var(--accent) 42%, var(--surface-1));
+  /* Matrix sequential ramp: a visible floor -> accent (high). Two hard
+     rules learned the hard way:
+     1. Solid hex only. zrender (ECharts) parses colors in JS and has no
+        color-mix() branch — an unparsable token silently falls back to
+        #000000, which is exactly how the heatmap once rendered as a black
+        void while the CSS legend (real CSS parser) looked correct.
+     2. The floor must clear the OLED page black (#050507) by a visible
+        step, or low cells dissolve into the void. #26272e reads as a
+        distinct "near-zero" plate, never as background. */
+  --matrix-low: #26272e;
+  --matrix-mid: #8a6a34;
   --matrix-high: var(--accent);
 
   /* Series */
@@ -154,44 +162,3 @@
   --content-pad: var(--sp-6);
 }
 
-[data-theme='light'] {
-  --surface-0: #f6f6f4;
-  --surface-1: #ffffff;
-  --surface-2: #eeeee9;
-
-  --ink-0: #101216;
-  --ink-1: color-mix(in srgb, var(--ink-0) 78%, transparent);
-  --ink-2: color-mix(in srgb, var(--ink-0) 66%, transparent);
-  --ink-3: color-mix(in srgb, var(--ink-0) 59%, transparent);
-
-  --hairline: 1px solid color-mix(in srgb, var(--ink-0) 10%, transparent);
-  --hairline-strong: 1px solid color-mix(in srgb, var(--ink-0) 20%, transparent);
-
-  --accent: #b3791c;
-  --accent-ink: #f6f6f4;
-  --link: #8a6516;
-
-  --stage-emerging: #1a7f4e;
-  --stage-accelerating: #1a56b8;
-  --stage-active: #9a6a10;
-
-  /* Categorical series (light-theme: darkened for WCAG on paper) */
-  --cat-1: #9a6a10;
-  --cat-2: #1a56b8;
-  --cat-3: #1a7f4e;
-  --cat-4: #b4536b;
-  --cat-5: #6d4fc2;
-
-  /* Matrix sequential ramp (light theme): paper -> deep amber. */
-  --matrix-mid: color-mix(in srgb, var(--accent) 38%, var(--surface-1));
-  --matrix-high: var(--accent);
-
-  --grid-minor: color-mix(in srgb, var(--ink-0) 6%, transparent);
-  --grid-major: color-mix(in srgb, var(--ink-0) 12%, transparent);
-  --crosshair: color-mix(in srgb, var(--ink-0) 35%, transparent);
-
-  --shadow-sunk: 0 6px 20px -12px rgba(16, 18, 22, 0.12);
-  --shadow-plate: 0 10px 32px -14px rgba(16, 18, 22, 0.18);
-  --shadow-float: 0 20px 48px -20px rgba(16, 18, 22, 0.22);
-  --inner-highlight: inset 0 1px 1px rgba(255, 255, 255, 0.6);
-}

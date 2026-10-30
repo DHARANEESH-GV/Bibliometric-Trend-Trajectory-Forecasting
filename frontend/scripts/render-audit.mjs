@@ -320,18 +320,20 @@ const rmWire = await page.$$eval('.cover-wire .wire-card', (as) => as.length).ca
 report('reduced-motion wire intact (no loop)', rmWire === 40, `cards: ${rmWire}`)
 await page.evaluate(() => { try { localStorage.removeItem('bt-motion') } catch (e) {} })
 
-// --- Theme pass: both explicit themes must render legible workbench UI ---
-for (const theme of ['dark', 'light']) {
-  await page.evaluate((th) => { try { localStorage.setItem('bt-theme', th) } catch (e) {} }, theme)
+// --- Theme pass: the single (dark) palette must render legible UI ---
+// Biblio is dark only; a light variant would be dead code. This still
+// asserts the tokens resolve rather than collapsing to transparent.
+{
   await page.goto(BASE + '/leaderboard', { waitUntil: 'networkidle' })
   await sleep(900)
   const islandBg = await page.$eval('.island', (el) => getComputedStyle(el).backgroundColor).catch(() => '')
   const h1Ink = await page.$eval('h1', (el) => getComputedStyle(el).color).catch(() => '')
   const bg = await page.$eval('body', (el) => getComputedStyle(el).backgroundColor).catch(() => '')
-  report(`${theme} theme: workbench island resolves`, !/rgba\(0, 0, 0, 0\)/.test(islandBg), `island: ${islandBg}`)
-  report(`${theme} theme: heading ink resolves`, !/rgba\(0, 0, 0, 0\)/.test(h1Ink), `h1: ${h1Ink}, bg: ${bg}`)
+  report('workbench island resolves', !/rgba\(0, 0, 0, 0\)/.test(islandBg), `island: ${islandBg}`)
+  report('heading ink resolves', !/rgba\(0, 0, 0, 0\)/.test(h1Ink), `h1: ${h1Ink}, bg: ${bg}`)
+  const themeAttr = await page.evaluate(() => document.documentElement.dataset.theme)
+  report('no light theme is applied', themeAttr === 'dark' || themeAttr == null, `data-theme: ${themeAttr}`)
 }
-await page.evaluate(() => { try { localStorage.setItem('bt-theme', 'dark') } catch (e) {} })
 
 // --- Contrast pass: ink ladder must clear WCAG AA (4.5:1) on its surface ---
 // Chromium reports color-mix() as `color(srgb r g b / a)` with 0-1 channels,
@@ -368,8 +370,7 @@ const CONTRAST = (fgStr, bgStr) => {
 }
 // Resolve the ink tokens directly: mount a probe element, point its color
 // at the token var, and read the computed color back. Compare to body bg.
-for (const theme of ['dark', 'light']) {
-  await page.evaluate((th) => { try { localStorage.setItem('bt-theme', th) } catch (e) {} }, theme)
+{
   await page.goto(BASE + '/leaderboard', { waitUntil: 'networkidle' })
   await sleep(800)
   const probe = await page.evaluate(() => {
@@ -391,11 +392,10 @@ for (const theme of ['dark', 'light']) {
   })
   for (const [name, fg] of [['ink-2', probe.ink2], ['ink-3', probe.ink3]]) {
     const r = CONTRAST(fg, probe.bg)
-    report(`${theme} ${name} >= 4.5:1`, r != null && r >= 4.5, r ? `${r.toFixed(2)}:1` : 'unresolved')
+    report(`${name} >= 4.5:1`, r != null && r >= 4.5, r ? `${r.toFixed(2)}:1` : 'unresolved')
   }
 }
 // Cover world faint ink on its OLED field
-await page.evaluate(() => { try { localStorage.removeItem('bt-theme') } catch (e) {} })
 await page.goto(BASE + '/?film=0', { waitUntil: 'networkidle' })
 await sleep(1800)
 const coverContrast = await page.evaluate(() => {
@@ -416,7 +416,6 @@ const coverContrast = await page.evaluate(() => {
 }
 
 // --- P2: search palette focus trap + return ---
-await page.evaluate(() => { try { localStorage.setItem('bt-theme', 'dark') } catch (e) {} })
 await page.goto(BASE + '/leaderboard', { waitUntil: 'networkidle' })
 await sleep(900)
 const triggerId = await page.evaluate(() => {
@@ -491,7 +490,9 @@ await page.goto(BASE + '/matrix', { waitUntil: 'networkidle' })
 await sleep(1300)
 report('matrix legend present', !!(await page.$('.matrix-legend')), '')
 const legendText = await page.textContent('.matrix-legend-end').catch(() => '')
-report('matrix legend states the scale', /works per year/i.test(legendText || ''), (legendText || '').slice(0, 48))
+// The matrix encodes GROWTH against each domain's own 2000 baseline, so the
+// legend must state a multiple, not a works count.
+report('matrix legend states the growth scale', /1x.*year-2000/i.test(legendText || ''), (legendText || '').slice(0, 48))
 const legendRamp = await page.$eval('.matrix-legend-cap', (el) => getComputedStyle(el).backgroundImage).catch(() => '')
 report('matrix legend renders a ramp', /gradient/.test(legendRamp), '')
 

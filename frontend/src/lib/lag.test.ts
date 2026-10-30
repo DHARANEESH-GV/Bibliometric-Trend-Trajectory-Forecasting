@@ -48,20 +48,42 @@ describe('lag wording rules', () => {
   })
 
   it('states the association carefully and the pendency caveat', () => {
-    expect(LAG_VIEW).toMatch(/shows\s+a weak association with/i)
+    // Plain language may not soften the honesty claim into a causal one.
+    expect(LAG_VIEW).toMatch(/move together weakly/i)
     expect(LAG_VIEW).toMatch(/not a\s+research-to-invention lag/i)
   })
 
-  it('qualifies both the domain-bootstrap CI and the significance', () => {
-    // The interval must be labelled as assuming independence it does not have.
-    expect(LAG_VIEW).toMatch(/resampling\s+domains \(assumes domains are independent, which they are not\)/)
+  it('qualifies both the domain-bootstrap interval and the significance', () => {
+    // The interval must still be labelled as assuming independence it lacks.
+    expect(LAG_VIEW).toMatch(/assumes domains are independent, which\s+they are not/)
     // The fragility sentence must be built from the robustness block.
     expect(LAG_VIEW).toMatch(/time_block_bootstrap\.ci_at_peak/)
     expect(LAG_VIEW).toMatch(/suggestive, not conclusive/)
   })
 
-  it('labels the per-domain panel as exploratory', () => {
-    expect(LAG_VIEW).toMatch(/Exploratory \(low statistical power\)/)
+  it('warns that a single field cannot settle the question', () => {
+    expect(LAG_VIEW).toMatch(/too few years to settle the question/i)
+    expect(LAG_VIEW).toMatch(/illustrations rather than verdicts/i)
+  })
+
+  it('leads with a plain-language walkthrough before the statistics', () => {
+    // The explainer is the first content block, so a non-technical reader
+    // meets the question before any coefficient.
+    const explainer = read('components', 'LagExplainer.tsx')
+    expect(LAG_VIEW).toMatch(/<LagExplainer/)
+    expect(explainer).toMatch(/What this page is asking/)
+    expect(explainer).toMatch(/granted/)
+  })
+
+  it('describes the jargon surfaces in ordinary words', () => {
+    // These labels used to read "pooled correlation", "Permutation p",
+    // "Peak r" and "CI excludes 0", which assumed a stats background.
+    expect(LAG_VIEW).toMatch(/How closely they move together/)
+    expect(LAG_VIEW).toMatch(/Chance of a fluke/)
+    expect(LAG_VIEW).toMatch(/Does the result hold up\?/)
+    expect(LAG_VIEW).not.toMatch(/Permutation p/)
+    expect(LAG_VIEW).not.toMatch(/95% CI \(domain bootstrap\)/)
+    expect(LAG_VIEW).not.toMatch(/Exploratory \(low statistical power\)/)
   })
 })
 

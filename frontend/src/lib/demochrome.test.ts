@@ -60,17 +60,29 @@ describe('the new explainer covers what it must', () => {
   })
 })
 
-describe('presentation mode is persisted safely', () => {
-  it('wraps localStorage access in try/catch', () => {
-    const presentation = read('lib', 'presentation.ts')
-    expect(presentation).toMatch(/try\s*{/)
-    expect(presentation).toMatch(/catch\s*{/)
-    expect(presentation).toMatch(/localStorage/)
+describe('there is no theme or presentation mode', () => {
+  it('never reads a stored theme preference', () => {
+    // Biblio is dark only. A `bt-theme` read would mean a light variant
+    // survived somewhere, and those blocks were dead, half-maintained code.
+    const presentation = read('lib', 'store.tsx')
+    expect(presentation).not.toMatch(/bt-theme/)
+    expect(presentation).not.toMatch(/data-theme/)
   })
 
-  it('is wired to a keyboard-reachable nav button with aria-pressed', () => {
-    expect(NAV).toMatch(/aria-pressed={presentation}/)
-    expect(NAV).toMatch(/usePresentation/)
+  it('has no presentation-mode module', () => {
+    // Removed outright: the reading mode duplicated what the motion toggle
+    // and the browser's own zoom already do.
+    expect(() => read('lib', 'presentation.ts')).toThrow()
+  })
+
+  it('ships no presentation-mode CSS hooks', () => {
+    const demo = read('styles', 'demo.css')
+    expect(demo).not.toMatch(/data-presentation/)
+  })
+
+  it('still offers a keyboard-reachable motion toggle', () => {
+    expect(NAV).toMatch(/setMotionChoice/)
+    expect(NAV).toMatch(/useMotionReduced/)
   })
 })
 
@@ -93,9 +105,30 @@ describe('numbers are read, not typed', () => {
   })
 })
 
-describe('tour is off by default', () => {
-  it('only activates when the start button sets sessionStorage', () => {
+describe('tour is a first-visit entry ramp', () => {
+  it('auto-opens exactly once, then never again', () => {
+    // The tour is no longer opt-in behind a button nobody pressed: it opens
+    // itself on the first workbench visit and records that it was seen, so a
+    // returning visitor is never interrupted a second time.
+    expect(TOUR).toMatch(/maybeAutoStartTour/)
+    expect(TOUR).toMatch(/localStorage\.getItem\(SEEN_KEY\)/)
+    expect(TOUR).toMatch(/localStorage\.setItem\(SEEN_KEY, '1'\)/)
+  })
+
+  it('still activates its strip through sessionStorage', () => {
     expect(TOUR).toMatch(/sessionStorage/)
     expect(TOUR).toMatch(/getItem\(KEY\) === 'active'/)
+  })
+
+  it('closes via a dismiss control that also marks it seen', () => {
+    expect(TOUR).toMatch(/dismissTour/)
+    expect(TOUR).toMatch(/markSeen/)
+  })
+
+  it('every step is reachable from inside the workbench', () => {
+    // The strip only mounts on non-cover routes, so a "/" step could never
+    // be the highlighted one. Guards against reintroducing a dead step.
+    const steps = TOUR.slice(TOUR.indexOf('const STEPS'))
+    expect(steps).not.toMatch(/path: \(\) => '\/'/)
   })
 })

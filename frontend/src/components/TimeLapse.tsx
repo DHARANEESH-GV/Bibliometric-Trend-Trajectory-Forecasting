@@ -11,6 +11,7 @@ import { useChart, echarts, baseOption, tooltip } from '../charts/echarts'
 import { useTokens } from '../lib/useTokens'
 import { fmtInt } from '../lib/format'
 import { motionReduced } from '../lib/motion'
+import { useInViewOnce } from '../lib/useInViewOnce'
 import type { MatrixFile } from '../lib/types'
 
 export function TimeLapse({ data }: { data: MatrixFile }) {
@@ -122,18 +123,26 @@ export function TimeLapse({ data }: { data: MatrixFile }) {
     setOpts({ series: [{ data: cellsUpTo.map((r) => r.count) }] })
   }, [cellsUpTo, setOpts])
 
-  // Autoplay once on mount (skipped for reduced motion): the user asked
-  // for the film to PLAY, not to wait behind a click. Starts from 2000.
+  // Autoplay once the panel is actually on screen (skipped for reduced
+  // motion). The intent ("the film should be running when you reach it")
+  // is unchanged, but an off-screen panel no longer drives a setOption
+  // every 420 ms: on /matrix these panels sit below the fold, and the
+  // always-on timer measured at 43 fps while scrolling the page.
   const autoRef = useRef(false)
+  const { ref: inViewRef, inView } = useInViewOnce<HTMLElement>('240px')
   useEffect(() => {
-    if (reduced || autoRef.current) return
+    if (reduced || autoRef.current || !inView) return
     autoRef.current = true
     setYearIdx(0)
     setPlaying(true)
-  }, [reduced])
+  }, [reduced, inView])
 
   return (
-    <section className="panel panel--sunk timelapse" aria-label="Year time-lapse of works per domain">
+    <section
+      ref={inViewRef}
+      className="panel panel--sunk timelapse"
+      aria-label="Year time-lapse of works per domain"
+    >
       <div className="panel-core">
         <div className="timelapse-head">
           <h2>

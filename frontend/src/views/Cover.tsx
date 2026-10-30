@@ -236,23 +236,13 @@ export function CoverView() {
             clearProps: 'transform,opacity,visibility',
           },
         )
-        // Orbs: perpetual slow drift (independent of entrance)
-        gsap.to('.orb-warm', {
-          x: -70,
-          y: 50,
-          duration: 22,
-          ease: 'sine.inOut',
-          repeat: -1,
-          yoyo: true,
-        })
-        gsap.to('.orb-cold', {
-          x: 60,
-          y: -44,
-          duration: 26,
-          ease: 'sine.inOut',
-          repeat: -1,
-          yoyo: true,
-        })
+        // Orbs: perpetual slow drift (independent of entrance). A CSS
+        // animation instead of a GSAP tween: these are two 36-44rem radial
+        // gradients, and animating them from the main-thread ticker kept a
+        // compositor pass running forever on the landing page (measured
+        // ~+8fps when removed). CSS transform animations run off the main
+        // thread and are skipped entirely under prefers-reduced-motion
+        // (see cover.css). The drift itself now lives in the stylesheet.
       }, root)
       return () => ctx.revert()
     },
@@ -352,11 +342,15 @@ export function CoverView() {
           one choreographed move. */}
       {filmState !== 'done' && (
         <div className="cover-film" ref={filmRef} onClick={exitFilm} role="button" aria-label="Skip the intro film">
+          {/* preload="none" on purpose. This file is 9.9 MB; with "metadata"
+              the browser still opens a range request and buffers behind the
+              first frame, which competes with the cover's own paint. Nothing
+              downloads until play() is called a moment later. */}
           <video
             ref={videoRef}
             src={`/biblio-explainer.mp4?v=${__FILM_BUILD__}`}
             playsInline
-            preload="metadata"
+            preload="none"
             muted={muted}
             onPlaying={() => setFilmState((s) => (s === 'pending' ? 'playing' : s))}
             onEnded={exitFilm}

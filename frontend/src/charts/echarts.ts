@@ -62,6 +62,7 @@ export interface ThemeTokens {
   cat3: string
   cat4: string
   cat5: string
+  matrixLow: string
   matrixMid: string
   matrixHigh: string
   fontMono: string
@@ -92,6 +93,7 @@ function readTokens(): ThemeTokens {
     cat3: v('--cat-3'),
     cat4: v('--cat-4'),
     cat5: v('--cat-5'),
+    matrixLow: v('--matrix-low'),
     matrixMid: v('--matrix-mid'),
     matrixHigh: v('--matrix-high'),
     fontMono: v('--font-mono'),

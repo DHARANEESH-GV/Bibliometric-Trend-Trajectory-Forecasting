@@ -44,17 +44,6 @@
         } catch (e) {}
       })()
     </script>
-    <script>
-      // Set theme before first paint to avoid flash.
-      (function () {
-        var stored = null
-        try { stored = localStorage.getItem('bt-theme') } catch (e) {}
-        var dark = stored
-          ? stored === 'dark'
-          : window.matchMedia('(prefers-color-scheme: dark)').matches
-        document.documentElement.dataset.theme = dark ? 'dark' : 'light'
-      })()
-    </script>
   </head>
   <body>
     <div id="root"></div>

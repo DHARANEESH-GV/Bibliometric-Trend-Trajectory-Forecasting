@@ -30,10 +30,9 @@
   --font-cover-body: 'Geist Variable', 'Inter', sans-serif;
   --font-brand-serif: 'Fraunces', 'Georgia', serif;
 
-  /* Stage ticks: the cover is an always-dark world, but the --stage-*
-     taxonomy tokens are theme-aware (muted colors on light).Without this
-     pin, a light-OS user gets the light-theme stage colors on the OLED
-     field. Pinned to the dark-theme values from tokens.css. */
+  /* Stage ticks: the cover is an always-dark world. Pinned to the dark
+     values from tokens.css so the taxonomy colours never depend on
+     anything outside this scope. */
   --stage-emerging: #4ade97;
   --stage-accelerating: #64a8ff;
   --stage-active: #f5b84c;
@@ -62,12 +61,45 @@
   overflow: hidden;
 }
 
+/* Orbs: two large ambient light pools. BIG PERFORMANCE TRAP — a 44rem
+   element with filter: blur(90px) must be re-rasterised on every transform
+   frame, which measured as a 10.7 -> 38.7 fps drop on this page (4x CPU
+   throttle). Two fixes, both required:
+   1. The gradient itself is already soft, so the blur is redundant at this
+      size — dropping it removes the per-frame rasterisation entirely.
+   2. `will-change: transform` on a blurred layer promotes a huge surface;
+      without the blur it is unnecessary.
+   Keep the gradients, keep the drift, drop the blur.
+
+   Second trap: a radial-gradient element animating its transform still
+   re-paints when the browser cannot keep it on its own GPU layer (any
+   ancestor with overflow/filter/backdrop forces it back). 44rem of gradient
+   repainted per frame measured ~10fps here. The drift is therefore a
+   COMPOSITED-ONLY animation: the orb itself is promoted (translateZ(0)) and
+   only transform moves. Measured with the shader also frozen: 40.5 -> 60.1
+   fps (4x throttle). */
 .orb {
   position: absolute;
   border-radius: 50%;
-  filter: blur(90px);
   opacity: 0.5;
-  will-change: transform;
+  /* Promote once; the drift then runs off the main thread. */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  animation: orb-drift-warm 44s ease-in-out infinite alternate;
+}
+
+@keyframes orb-drift-warm {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-70px, 50px, 0); }
+}
+
+/* The in-app Motion toggle wins over the OS setting, so honour both: the
+   toggle sets [data-motion='reduced'] on <html> (lib/motion.ts). */
+[data-motion='reduced'] .orb {
+  animation: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .orb { animation: none; }
 }
 
 .orb-warm {
@@ -84,6 +116,12 @@
   bottom: -8rem;
   left: -8rem;
   background: radial-gradient(circle at 60% 60%, rgba(100, 140, 255, 0.14), transparent 60%);
+  animation: orb-drift-cold 52s ease-in-out infinite alternate;
+}
+
+@keyframes orb-drift-cold {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(60px, -44px, 0); }
 }
 
 .cover-scope > .container {

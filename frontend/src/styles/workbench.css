@@ -1,8 +1,8 @@
 /* ============================================================
    Workbench — Ethereal Glass surface for the analytical views.
    Floating island nav, route-transition canvas, long-list perf
-   rules. Companion to cover.css (the landing world). All color comes
-   from tokens.css ([data-theme] aware); nothing here hardcodes a theme.
+   rules. Companion to cover.css (the landing world). All colour is
+   read from tokens.css; nothing here hardcodes a palette value.
 
    z-index scale (documented; no arbitrary values anywhere):
      0    content
@@ -43,10 +43,8 @@
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-/* On paper the same unblended grain veils; keep it whisper-faint there. */
-[data-theme='light'] .ambience-grain {
-  opacity: 0.035;
-}
+/* Grain stays whisper-neutral: unblended grayscale noise composites over
+   OLED blacks without lifting the floor. */
 
 @media (prefers-reduced-transparency: reduce) {
   .ambience-grain {
@@ -1547,11 +1545,6 @@
   }
 }
 
-/* Light world: the glass needs a touch more opacity to stay legible */
-[data-theme='light'] .island {
-  background: color-mix(in srgb, var(--surface-1) 84%, transparent);
-}
-
 /* Solid fallback when the user asks for less transparency */
 @media (prefers-reduced-transparency: reduce) {
   .island {
@@ -2440,6 +2433,97 @@
   }
 }
 
+/* ---- Fluid dialog choreography (shared) -------------------------------
+   Every overlay plays a two-half choreography: entrance keyframes on
+   mount, and the same curves reversed via `.is-closing` (set by
+   useDialogTransition during the exit beat). Durations are tuned to the
+   hook's EXIT_MS so the unmount lands as the motion settles. */
+.search-palette-overlay {
+  animation: fadeIn 0.18s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.search-palette-overlay.is-closing {
+  animation: fadeOut 0.17s ease-in both;
+  pointer-events: none;
+}
+.search-palette-panel {
+  animation: paletteIn 0.22s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.search-palette-panel.is-closing {
+  animation: paletteOut 0.17s cubic-bezier(0.4, 0, 1, 1) both;
+}
+@keyframes paletteIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+@keyframes paletteOut {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.99);
+  }
+}
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+.shortcuts-overlay.is-closing {
+  animation: fadeOut 0.17s ease-in both;
+  pointer-events: none;
+}
+.shortcuts-dialog.is-closing {
+  animation: scaleOut 0.17s cubic-bezier(0.4, 0, 1, 1) both;
+}
+@keyframes scaleOut {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: scale(0.97);
+    opacity: 0;
+  }
+}
+.weight-sim-overlay.is-closing {
+  animation: fadeOut 0.17s ease-in both;
+  pointer-events: none;
+}
+.weight-sim-drawer.is-closing {
+  animation: slideOutRight 0.17s cubic-bezier(0.4, 0, 1, 1) both;
+}
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .search-palette-overlay,
+  .search-palette-panel,
+  .search-palette-overlay.is-closing,
+  .search-palette-panel.is-closing,
+  .shortcuts-overlay.is-closing,
+  .shortcuts-dialog.is-closing,
+  .weight-sim-overlay.is-closing,
+  .weight-sim-drawer.is-closing {
+    animation: none;
+  }
+}
+
 .weight-sim-overlay {
   position: fixed;
   inset: 0;
@@ -2988,8 +3072,7 @@
   .shortcuts-dialog {
     animation: none;
   }
-}
-.shortcuts-core {
+}.shortcuts-core {
   padding: var(--sp-5);
   display: flex;
   flex-direction: column;
@@ -3113,14 +3196,22 @@
   .copy-link-btn {
     display: none;
   }
-  body, .workbench-main {
-    background: #ffffff;
-    color: #0a0a0a;
+  /* Biblio is dark only, and print keeps that palette rather than
+     inventing a paper mode: the site's identity survives on the page,
+     and browsers honour background printing for the charts. */
+  html,
+  body,
+  .workbench-main {
+    background: var(--surface-0);
+    color: var(--ink-0);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
   }
-  .panel-shell, .panel-core {
+  .panel-shell,
+  .panel-core {
     box-shadow: none;
-    border: 1px solid #cccccc;
-    background: #ffffff;
+    border: var(--hairline-strong);
+    background: var(--surface-1);
   }
 }
 

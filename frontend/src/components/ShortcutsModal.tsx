@@ -7,12 +7,11 @@ import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { X } from '@phosphor-icons/react/dist/csr/X'
 import { Command } from '@phosphor-icons/react/dist/csr/Command'
+import { useDialogTransition } from '../lib/useDialogTransition'
 
 interface ShortcutsModalProps {
   open: boolean
   onClose: () => void
-  onToggleTheme?: () => void
-  onTogglePresentation?: () => void
   onToggleMotion?: () => void
   onOpenSearch?: () => void
 }
@@ -31,8 +30,6 @@ const VIEW_SHORTCUTS = [
 const CONTROL_SHORTCUTS = [
   { key: '⌘K', desc: 'Omnibar domain search & quick actions' },
   { key: '?', desc: 'Toggle keyboard shortcuts cheatsheet' },
-  { key: 'T', desc: 'Switch Dark / Light theme wipe' },
-  { key: 'P', desc: 'Toggle Presentation mode (clean, large type)' },
   { key: 'M', desc: 'Toggle fluid vs reduced motion' },
   { key: 'Esc', desc: 'Close open dialogs, drawers, or search' },
 ]
@@ -40,12 +37,13 @@ const CONTROL_SHORTCUTS = [
 export function ShortcutsModal({
   open,
   onClose,
-  onToggleTheme,
-  onTogglePresentation,
   onToggleMotion,
   onOpenSearch,
 }: ShortcutsModalProps) {
   const navigate = useNavigate()
+  // Fluid exit: hold the HUD for one beat so the close animation can play
+  // (see useDialogTransition) instead of frame-cutting on unmount.
+  const { shouldRender, closing } = useDialogTransition(open)
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -86,13 +84,7 @@ export function ShortcutsModal({
 
       // Single-letter controls (without meta/ctrl)
       if (!e.metaKey && !e.ctrlKey && !e.altKey) {
-        if (e.key.toLowerCase() === 't') {
-          e.preventDefault()
-          onToggleTheme?.()
-        } else if (e.key.toLowerCase() === 'p') {
-          e.preventDefault()
-          onTogglePresentation?.()
-        } else if (e.key.toLowerCase() === 'm') {
+        if (e.key.toLowerCase() === 'm') {
           e.preventDefault()
           onToggleMotion?.()
         }
@@ -101,15 +93,16 @@ export function ShortcutsModal({
 
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [open, onClose, navigate, onToggleTheme, onTogglePresentation, onToggleMotion])
+  }, [open, onClose, navigate, onToggleMotion])
 
-  if (!open) return null
+  if (!shouldRender) return null
 
   return (
     <div
-      className="shortcuts-overlay"
+      className={`shortcuts-overlay${closing ? ' is-closing' : ''}`}
       role="dialog"
       aria-modal="true"
+      aria-hidden={closing || undefined}
       aria-label="Keyboard shortcuts"
       onClick={(e) => {
         if (e.target === e.currentTarget) onClose()

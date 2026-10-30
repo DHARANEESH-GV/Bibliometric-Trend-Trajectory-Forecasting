@@ -67,17 +67,43 @@ export function MatrixView() {
     return m
   }, [leaderboard.data])
 
-  // cells aligned to the visible window, ordered by leaderboard rank
+  // Cells aligned to the visible window, ordered by leaderboard rank.
+  //
+  // The heatmap shows GROWTH, indexed to each domain's own 2000 baseline,
+  // not absolute volume. On an absolute scale the twenty rows differ by up
+  // to 60x in any given year, so 90% of the 520 cells sat in the bottom
+  // quarter of the ramp and a cell told you which domain was big rather
+  // than what its year did — every row just hugged its own baseline.
+  // Indexing per row makes the rows comparable and the question becomes
+  // the interesting one: which fields are accelerating?
+  //
+  // The baseline is the first year of the FULL series (2000) even when the
+  // compact last-8-years window is showing, so toggling the window does not
+  // silently re-base every colour. A zero baseline (no works in 2000) falls
+  // back to 1, and the value is clamped at 0 because a negative index is
+  // meaningless here.
   const domainRows = useMemo(() => {
     const cells = data?.cells ?? {}
+    const allYears = data?.years ?? []
     const order = (leaderboard.data?.leaderboard ?? []).map((r) => r.domain)
     const extra = Object.keys(cells).filter((d) => !order.includes(d))
     const tails = data?.tail ?? {}
-    return [...order, ...extra].map((domain) => ({
-      domain,
-      counts: years.map((y) => cells[domain]?.[data?.years.indexOf(y) ?? -1] ?? 0),
-      tail: tails[domain] ?? null,
-    }))
+    return [...order, ...extra].map((domain) => {
+      const series = cells[domain] ?? []
+      const first = series[0]
+      const baseline = first != null && first > 0 ? first : 1
+      return {
+        domain,
+        counts: years.map((y) => cells[domain]?.[allYears.indexOf(y) ?? -1] ?? 0),
+        // Growth multiple vs the domain's own 2000 output (1 = no change).
+        index: years.map((y) => {
+          const raw = series[allYears.indexOf(y) ?? -1] ?? 0
+          return Math.max(0, raw / baseline)
+        }),
+        baseline,
+        tail: tails[domain] ?? null,
+      }
+    })
   }, [data, leaderboard.data, years])
 
   const busiestLine = useMemo(() => {
@@ -93,34 +119,46 @@ export function MatrixView() {
     return `${top.display} carries the heaviest output, ${top.total.toLocaleString('en-US')} works since 2000.`
   }, [data, labels])
 
-  // Busiest single year across all domains, computed from the visible window.
-  const busiestYear = useMemo(() => {
-    if (years.length === 0) return null
-    const totals = years.map((y, yi) => {
-      let sum = 0
-      for (const row of domainRows) sum += row.counts[yi] ?? 0
-      return { y, sum }
-    })
-    let best = totals[0]
-    for (const t of totals) if (t.sum > (best?.sum ?? 0)) best = t
-    return best ?? null
-  }, [years, domainRows])
+  // The headline the matrix is actually about: which field has grown the
+  // most since 2000. Growth is what the colour encodes now, so the lead
+  // sentence must quote growth, not raw volume.
+  const fastestLine = useMemo(() => {
+    let best: { display: string; multiple: number } | null = null
+    for (const row of domainRows) {
+      const last = row.index[row.index.length - 1] ?? 1
+      if (!best || last > best.multiple) {
+        best = { display: labels.get(row.domain) ?? row.domain.replace(/_/g, ' '), multiple: last }
+      }
+    }
+    if (!best) return null
+    const { display, multiple } = best
+    return `${display} has grown fastest, ${multiple.toFixed(multiple >= 10 ? 0 : 1)} times its year-2000 output.`
+  }, [domainRows, labels])
 
   const xLabels = years.map(String)
 
+  // Legend bounds are in GROWTH MULTIPLES, not works counts: 1x = flat
+  // against the domain's own 2000 output.
   const legendMax = useMemo(() => {
-    let max = 0
-    for (const row of domainRows) for (const c of row.counts) if (c > max) max = c
+    let max = 1
+    for (const row of domainRows) for (const v of row.index) if (v > max) max = v
     return max
   }, [domainRows])
 
   const { ref } = useChart((t) => {
+    // Cells plot the log of the growth index: growth is multiplicative, so a
+    // linear ramp would let one 215x outlier flatten every other row the
+    // same way absolute counts did. log10 keeps 1x (flat) at 0, 10x at 1,
+    // and 100x at 2, which is how the eye should read "how many times more".
     const heatData: [number, number, number][] = []
     domainRows.forEach((row, di) => {
-      row.counts.forEach((count, yi) => {
-        heatData.push([yi, di, count])
+      row.index.forEach((idx, yi) => {
+        heatData.push([yi, di, Math.log10(Math.max(idx, 0.1))])
       })
     })
+    // Shared by the visualMap scale and the label-ink threshold so the two
+    // can never disagree.
+    const heatMax = Math.max(...heatData.map((h) => h[2] ?? 0), 0.001)
 
     return {
       ...baseOption(t),
@@ -146,46 +184,70 @@ export function MatrixView() {
         trigger: 'item' as const,
         formatter: (p: never) => {
           const { value } = p as { value: [number, number, number] }
-          const [yi, di, count] = value
-          const domain = domainRows[di]?.domain ?? ''
-          return `${domain}<br/>${years[yi]}: ${fmtInt(count)} works`
+          const [yi, di, logIdx] = value
+          const row = domainRows[di]
+          if (!row) return ''
+          const domain = labels.get(row.domain) ?? row.domain
+          const idx = row.index[yi] ?? 0
+          const raw = row.counts[yi] ?? 0
+          // Growth multiple is the headline; the absolute count stays as
+          // supporting context so the number is never unmoored.
+          void logIdx
+          return `${domain}<br/>${years[yi]}: ${idx.toFixed(idx >= 10 ? 0 : 1)}x vs 2000<br/><span style="opacity:.65">${fmtInt(raw)} works</span>`
         },
       },
       visualMap: {
         show: false,
+        // Scale is log10(growth). min 0 = 1x (flat, i.e. the 2000 baseline);
+        // the ramp therefore reads "unchanged -> 10x -> 100x". The floor is
+        // a visible plate (#26272e), never the OLED page black.
         min: 0,
-        max: Math.max(...heatData.map((h) => h[2] ?? 0), 1),
-        // Sequential single-hue ramp: surface (low) -> accent gold (high).
-        // The old ink ramp read backwards on OLED — a white cell meant
-        // "most works" but white also read as "empty/highlighted". Amber
-        // intensity cannot be misread: brighter = more work.
-        inRange: { color: [t.surface1, t.matrixMid, t.matrixHigh] },
+        max: heatMax,
+        // Two stops do the work here because the values are already
+        // log-compressed: a 5-stop sqrt spread was compensating for the raw
+        // count distribution, which no longer exists. Solid hex only —
+        // zrender cannot parse color-mix() (tokens.css).
+        inRange: {
+          color: [t.matrixLow, t.matrixMid, t.matrixHigh],
+        },
         calculable: false,
       },
       grid: { left: 8, right: 24, top: 40, bottom: 8, containLabel: true },
       series: [
         {
           type: 'heatmap' as const,
-          data: heatData,
+          // Per-item data: each cell carries its own label ink — dark ink on
+          // bright amber cells, light ink on the dark floor cells. A single
+          // series-level ink cannot clear contrast on both ends of the ramp.
+          // The 0.55 threshold matches the ramp: above it the interpolated
+          // cell color is bright enough for #0a0a0a ink (accent-ink).
+          data: heatData.map((h) => {
+            const norm = h[2] / heatMax
+            return norm > 0.55
+              ? { value: h, label: { color: '#0a0a0a' } }
+              : { value: h, label: { color: t.ink0 } }
+          }),
           itemStyle: {
             borderWidth: 1,
-            borderColor: 'transparent',
+            // Hairline cell grid: on OLED a borderless heatmap smears into
+            // one dark field; a 1px page-black gap gives every cell an
+            // edge, so the lattice reads even at the ramp's dark floor.
+            borderColor: '#050507',
             borderRadius: 'var(--r-control)',
           },
           emphasis: {
             itemStyle: { borderColor: t.crosshair, borderWidth: 1 },
           },
           label: {
-            show: years.length <= 8, // compact window: read counts inline
+            show: years.length <= 8, // compact window: read growth inline
             fontFamily: t.fontMono,
             fontSize: 9,
-            // Dark ink reads on both ends of the amber ramp (gold cells are
-            // light enough for ink-0's near-black in dark theme; the light
-            // theme's deep-amber top carries white ink via ink0).
-            color: t.ink0,
+            color: t.ink0, // default; bright cells override per-item above
             formatter: (p: never) => {
-              const v = (p as { value: [number, number, number] }).value[2]
-              return v >= 10000 ? `${Math.round(v / 1000)}k` : v >= 1000 ? `${(v / 1000).toFixed(1)}k` : String(v)
+              // The plotted value is log10(growth); show the multiple.
+              const logIdx = (p as { value: [number, number, number] }).value[2]
+              const idx = Math.pow(10, logIdx)
+              return idx >= 100 ? `${Math.round(idx)}x` : idx >= 10 ? `${idx.toFixed(0)}x` : idx.toFixed(1) + 'x'
             },
           },
           // Row tail markline: year domain separation is implicit in data;
@@ -340,9 +402,10 @@ export function MatrixView() {
         }
         lead={
           <>
-            Works per year across all twenty domains; brighter amber means
-            more published work. {busiestLine}
-            {busiestYear ? ` Busiest year on screen: ${busiestYear.y} with ${fmtInt(busiestYear.sum)} works.` : ''}
+            How fast each of the twenty fields has grown since 2000, indexed
+            to its own starting output; brighter amber means more growth.
+            {fastestLine ? ` ${fastestLine}` : ''}
+            {busiestLine ? ` ${busiestLine}` : ''}
             {' '}Click any cell to open that domain.
           </>
         }
@@ -368,7 +431,7 @@ export function MatrixView() {
           ref={ref as unknown as React.Ref<HTMLDivElement>}
           style={{ height: 560 }}
           role="img"
-          aria-label="Heatmap of works per year for all twenty domains. Focus the chart and use arrow keys to move between cells; Enter opens a domain. The domain links below also navigate."
+          aria-label="Heatmap of growth versus 2000 for all twenty domains; brighter amber means faster growth. Focus the chart and use arrow keys to move between cells; Enter opens a domain. The domain links below also navigate."
           tabIndex={0}
           onKeyDown={onChartKeyDown}
           onBlur={() => {
@@ -380,11 +443,12 @@ export function MatrixView() {
         />
       </div>
 
-      {/* Data-table alternative (d3-viz accessibility): the full domain x
-          year counts, visually hidden so screen readers get the numbers the
-          heatmap encodes. The row-tail links below are the keyboard path. */}
+      {/* Data-table alternative (d3-viz accessibility): the growth multiple
+          each cell encodes, plus the underlying count, visually hidden so
+          screen readers get the numbers the heatmap shows. The row-tail
+          links below are the keyboard path. */}
       <table className="visually-hidden">
-        <caption>Works per year by domain</caption>
+        <caption>Annual works and growth versus 2000, by domain</caption>
         <thead>
           <tr>
             <th scope="col">Domain</th>
@@ -398,7 +462,9 @@ export function MatrixView() {
             <tr key={row.domain}>
               <th scope="row">{labels.get(row.domain) ?? row.domain}</th>
               {row.counts.map((c, i) => (
-                <td key={i}>{c}</td>
+                <td key={i}>
+                  {c} works ({row.index[i]?.toFixed(row.index[i]! >= 10 ? 0 : 1)}x)
+                </td>
               ))}
             </tr>
           ))}
@@ -407,12 +473,14 @@ export function MatrixView() {
 
       {/* Sequential-scale legend. The chart's visualMap stays show:false so
           ECharts does not reclaim grid space; this states the ramp in ink so
-          cell darkness is not left unexplained. */}
-      <div className="matrix-legend" aria-label="Colour scale: works per year per domain">
+          cell brightness is not left unexplained. Scale is LOG growth: the
+          same distance covers 1x -> 10x -> 100x. */}
+      <div className="matrix-legend" aria-label="Colour scale: growth versus 2000, by domain">
         <span className="matrix-legend-cap" aria-hidden />
         <span className="matrix-legend-end">
-          works per year per domain, low to high ({fmtInt(0)} to {fmtInt(legendMax)}), brighter amber = more works
-        </span>      </div>
+          1x (unchanged) to {legendMax.toFixed(legendMax >= 10 ? 0 : 1)}x its year-2000 output; brighter amber = faster growth, log scale
+        </span>
+      </div>
 
       <TimeLapse data={data} />
       <RankBumps data={data} />

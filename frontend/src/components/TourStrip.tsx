@@ -16,6 +16,10 @@ import { useQuery } from '../lib/useQuery'
 import { loadLeaderboard } from '../lib/snapshots'
 
 const KEY = 'bt-tour'
+/** One-time flag: the guided tour auto-opens for a first-time visitor,
+ *  then never again. localStorage (not sessionStorage) because "have they
+ *  seen this before" must survive closing the tab. */
+const SEEN_KEY = 'bt-tour-seen'
 
 export function tourActive(): boolean {
   try {
@@ -23,6 +27,37 @@ export function tourActive(): boolean {
   } catch {
     return false
   }
+}
+
+/** Has this browser ever been shown the tour (auto or manually)? */
+export function tourSeen(): boolean {
+  try {
+    return localStorage.getItem(SEEN_KEY) === '1'
+  } catch {
+    return true // private mode: never auto-open, rather than on every load
+  }
+}
+
+function markSeen(): void {
+  try {
+    localStorage.setItem(SEEN_KEY, '1')
+  } catch {
+    /* private mode: the tour simply may re-appear next session */
+  }
+}
+
+/**
+ * First-visit entry ramp: open the guided tour once, automatically.
+ *
+ * The tour used to be opt-in behind a "Start tour" button, which nobody
+ * pressed — so the people who most needed the orientation never saw it.
+ * Returns true when it opened, so the caller can react if it needs to.
+ */
+export function maybeAutoStartTour(): boolean {
+  if (tourSeen()) return false
+  markSeen()
+  startTour()
+  return true
 }
 
 export function startTour(): void {
@@ -35,6 +70,7 @@ export function startTour(): void {
 }
 
 export function dismissTour(): void {
+  markSeen()
   try {
     sessionStorage.removeItem(KEY)
   } catch {
@@ -69,26 +105,27 @@ interface Step {
 
 const STEPS: Step[] = [
   {
-    key: 'cover',
-    label: 'Cover',
-    blurb: 'The landing page: what this is, and the run it was built from.',
-    path: () => '/',
-    match: (p) => p === '/' || p === '/cover',
+    key: 'leaderboard',
+    label: 'Leaderboard',
+    blurb:
+      'All twenty fields ranked, with the score explained in one line at the top.',
+    path: () => '/leaderboard',
+    match: (p) => p.startsWith('/leaderboard'),
+  },
+  {
+    key: 'domain',
+    label: 'One field',
+    blurb: 'A single technology in depth: its trajectory, keywords and patents.',
+    path: (slug) => `/domain/${slug}`,
+    match: (p) => p.startsWith('/domain/'),
   },
   {
     key: 'lag',
     label: 'Lag',
     blurb:
-      'Paper growth against patent grants, with a slider and the robustness checks.',
+      'Do busier fields patent sooner? A slider you can drag, and an honest look at how strong the answer is.',
     path: () => '/lag',
     match: (p) => p.startsWith('/lag'),
-  },
-  {
-    key: 'domain',
-    label: 'Domain',
-    blurb: 'One technology in depth: its trajectory, keywords and patents.',
-    path: (slug) => `/domain/${slug}`,
-    match: (p) => p.startsWith('/domain/'),
   },
   {
     key: 'about',

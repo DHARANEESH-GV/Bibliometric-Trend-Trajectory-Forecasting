@@ -24,6 +24,7 @@ import { CopyLink } from '../components/CopyLink'
 import { RevealShell } from '../components/RevealShell'
 import { HowToRead } from '../components/HowToRead'
 import { GlossaryTerm } from '../components/GlossaryTerm'
+import { LagExplainer } from '../components/LagExplainer'
 import { PhasePlane } from '../components/PhasePlane'
 import { rAtLag, shiftPatentsForPlot } from '../lib/lagmath'
 import type { LagDomain, LagFile, LagRobustness } from '../lib/types'
@@ -73,22 +74,25 @@ export function LagView() {
         <ViewHeader
           title={
             <>
-              Paper growth and <span className="serif-accent">patent grants</span>
+              Research and <span className="serif-accent">patents</span>
             </>
           }
           lead={
             <>
-              Across {counts.n_domains} domains, growth in research papers shows
-              a weak association with growth in granted patents, with the peak
-              roughly {lagLo} to {lagHi} quarters later (pooled correlation{' '}
-              {fmtR(pooled.best_r)}). The location of the peak is stable under
-              every robustness check, but its statistical significance is
-              fragile.
+              Do fields that publish more also patent more, and how far apart
+              do those two waves travel? Across {counts.n_domains} domains the
+              answer is: yes, loosely, with about a year of separation.
             </>
           }
         >
           <CopyLink />
         </ViewHeader>
+
+        <LagExplainer
+          headline={`Research growth and patent growth move together weakly, and the patent wave arrives about ${pooled.best_lag} quarters later.`}
+          support={`The peak sits between ${lagLo} and ${lagHi} quarters. The link is real enough to see but weak enough to be easily overstated: only ${counts.n_significant} of ${counts.n_domains} fields is strong on its own. The signal is what emerges when all ${counts.n_domains} are pooled.`}
+          nDomains={counts.n_domains}
+        />
 
         <div className="lag-summary">
           <p className="lag-statement">
@@ -97,17 +101,18 @@ export function LagView() {
             is a pooled signal.
           </p>
           <p className="lag-statement lag-statement--muted">
-            {fmtR(peakLo)} to {fmtR(peakHi)} is the 95% CI when resampling
-            domains (assumes domains are independent, which they are not).
+            {fmtR(peakLo)} to {fmtR(peakHi)} is the 95% confidence interval
+            when domains are resampled (assumes domains are independent, which
+            they are not).
           </p>
           {data.robustness ? (
             <p className="lag-statement lag-statement--muted">
-              Under a time-block bootstrap the interval (
+              Resampling whole time blocks instead gives (
               {`${fmtR(data.robustness.time_block_bootstrap.ci_at_peak[0])} to ${fmtR(data.robustness.time_block_bootstrap.ci_at_peak[1])}`}
-              ) includes zero, and when the{' '}
-              {nLowConfDropped} low-confidence domains are dropped the placebo
-              test no longer separates the true pairing. Treat this as
-              suggestive, not conclusive.
+              ), which includes zero, and when the {nLowConfDropped}{' '}
+              low-confidence domains are dropped the{' '}
+              <GlossaryTerm term="placebo test" /> no longer separates the true
+              pairing. Treat this as suggestive, not conclusive.
             </p>
           ) : null}
           <p className="lag-statement lag-statement--muted">
@@ -118,31 +123,27 @@ export function LagView() {
 
         <div className="lag-strip">
           <Metric
-            label="Pooled correlation"
+            label="How closely they move together"
             value={fmtR(pooled.best_r)}
-            detail={`at ${pooled.best_lag} quarters`}
+            detail={`at the ${pooled.best_lag}-quarter offset`}
             rule
           />
           <Metric
-            label="95% CI (domain resampling)"
+            label="Plausible range"
             value={`${fmtR(peakLo)} to ${fmtR(peakHi)}`}
-            detail={
-              pooled.peak_excludes_zero
-                ? 'excludes zero per domain resampling'
-                : 'includes zero'
-            }
+            detail="95% of resampled fields"
             rule
           />
           <Metric
-            label="Permutation p"
+            label="Chance of a fluke"
             value={fmtP(pooled.perm_p)}
-            detail={`${data.method.permutations as number} circular shifts`}
+            detail={`from ${data.method.permutations as number} shuffled runs`}
             rule
           />
           <Metric
-            label="Significant domains"
-            value={`${counts.n_significant} / ${counts.n_domains}`}
-            detail="about chance"
+            label="Fields strong on their own"
+            value={`${counts.n_significant} of ${counts.n_domains}`}
+            detail="about what chance gives"
             rule
           />
         </div>
@@ -155,7 +156,7 @@ export function LagView() {
             className={`lag-mode-tab ${viewMode === 'pendency' ? 'lag-mode-tab--active' : ''}`}
             onClick={() => setViewMode('pendency')}
           >
-            Timeline Alignment & Offsets
+            Line things up
           </button>
           <button
             type="button"
@@ -164,7 +165,7 @@ export function LagView() {
             className={`lag-mode-tab ${viewMode === 'phase_plane' ? 'lag-mode-tab--active' : ''}`}
             onClick={() => setViewMode('phase_plane')}
           >
-            Lab-to-Market Quadrants
+            Lab to market
           </button>
         </div>
 
@@ -180,14 +181,14 @@ export function LagView() {
 
             <section className="lag-section" aria-labelledby="lag-domains-title">
               <h2 id="lag-domains-title" className="lag-section-title">
-                Exploratory (low statistical power)
+                One field at a time
               </h2>
               <p className="lag-section-lead">
-                One panel per domain: paper growth and patent growth on a shared
-                normalized timeline. Best lag and permutation p are the per-domain
-                values from the same scan as the pooled curve. A single domain
-                carries too few independent quarters to settle the question, so
-                these are exploratory rather than confirmatory.
+                A chart per field: how fast its papers grew against how fast
+                its patents grew, on the same scale. Slide the control to push
+                the patent line later and watch how well the two line up. A
+                single field has too few years to settle the question on its
+                own, so treat these as illustrations rather than verdicts.
               </p>
               <div className="lag-panel-grid">
                 {data.domains.map((d) => (
@@ -336,23 +337,28 @@ function PooledChart({ data }: { data: LagFile }) {
     <section className="lag-chart" aria-labelledby="lag-chart-title">
       <div className="lag-chart-head">
         <h2 id="lag-chart-title" className="lag-chart-title">
-          Correlation by lag
+          How well the two move together, at every offset
         </h2>
         <div className="lag-chart-legend">
           <span className="lag-legend-item">
             <span className="lag-legend-swatch" style={{ borderTopColor: 'var(--accent)' }} aria-hidden />
-            pooled correlation
+            the agreement
           </span>
           <span className="lag-legend-item">
             <span className="lag-legend-swatch lag-legend-swatch--band" aria-hidden />
-            95% CI (domain bootstrap)
+            plausible range
           </span>
           <span className="lag-legend-item">
             <span className="lag-legend-swatch lag-legend-swatch--dashed" aria-hidden />
-            placebo 95th percentile
+            what chance alone reaches
           </span>
         </div>
       </div>
+      <p className="lag-chart-help">
+        Left to right is the offset, in quarters. Higher means the two records
+        move together more closely. The peak is the best offset; the dashed
+        line is how high a meaningless pairing can climb by luck.
+      </p>
       <div
         ref={ref as unknown as React.Ref<HTMLDivElement>}
         style={{ width: '100%', height: 320 }}
@@ -460,7 +466,7 @@ function DomainPanel({ d }: { d: LagDomain }) {
       )}
       {series ? (
         <div className="lag-slider">
-          <label htmlFor={`k-${d.domain}`}>shift</label>
+          <label htmlFor={`k-${d.domain}`}>shift patents by</label>
           <input
             id={`k-${d.domain}`}
             type="range"
@@ -469,32 +475,40 @@ function DomainPanel({ d }: { d: LagDomain }) {
             step={1}
             value={k}
             onChange={(e) => setK(Number(e.target.value))}
-            aria-valuetext={`${k} quarters earlier`}
+            aria-valuetext={`${k} quarters later`}
             aria-describedby={`kval-${d.domain}`}
           />
           <span className="lag-slider-r" id={`kval-${d.domain}`}>
-            k={k} r={fmtR(liveR)}
+            {k}q · match {fmtR(liveR)}
           </span>
         </div>
       ) : null}
       <div className="lag-domain-stats">
-        <span className="num">lag {d.best_lag ?? 'n/a'}q</span>
-        <span className="num">r {fmtR(d.best_r)}</span>
-        <span className="num">p {fmtP(d.perm_p)}</span>
-        <span className="num">{d.n_points} pts</span>
+        <span className="num" title="The offset where the two lines line up best">
+          best {d.best_lag ?? 'n/a'}q
+        </span>
+        <span className="num" title="How closely the lines move together at that offset">
+          match {fmtR(d.best_r)}
+        </span>
+        <span className="num" title="Chance of seeing this by luck alone">
+          fluke chance {fmtP(d.perm_p)}
+        </span>
+        <span className="num" title="Years of data behind this panel">
+          {d.n_points} yrs
+        </span>
         {k === d.best_lag ? (
-          <span className="lag-badge lag-best">best k</span>
+          <span className="lag-badge lag-best">best offset</span>
         ) : (
           <button
             type="button"
             className="lag-badge"
             onClick={() => setK(d.best_lag ?? 0)}
           >
-            reset to best
+            reset
           </button>
         )}
         {d.low_confidence ? (
-          <span className="lag-badge lag-badge--lowconf">low confidence</span>
+          <span className="lag-badge lag-badge--lowconf">thin data</span>
         ) : null}
       </div>
     </article>
@@ -513,7 +527,7 @@ function Robustness({ robust }: { robust: LagRobustness | null }) {
 
   const rows = [
     {
-      label: 'Baseline (all domains)',
+      label: 'All fields',
       n: robust.baseline.n_domains,
       lag: robust.baseline.best_lag,
       r: robust.baseline.peak_r,
@@ -522,7 +536,7 @@ function Robustness({ robust }: { robust: LagRobustness | null }) {
       band: robust.baseline.peak_in_3_6,
     },
     {
-      label: 'Drop nested domains',
+      label: 'Drop overlapping fields',
       n: robust.drop_nested.n_domains,
       lag: robust.drop_nested.best_lag,
       r: robust.drop_nested.peak_r,
@@ -531,7 +545,7 @@ function Robustness({ robust }: { robust: LagRobustness | null }) {
       band: robust.drop_nested.peak_in_3_6,
     },
     {
-      label: 'Drop low-confidence domains',
+      label: 'Drop thinly covered fields',
       n: robust.drop_low_confidence.n_domains,
       lag: robust.drop_low_confidence.best_lag,
       r: robust.drop_low_confidence.peak_r,
@@ -546,25 +560,27 @@ function Robustness({ robust }: { robust: LagRobustness | null }) {
   return (
     <section className="lag-section" aria-labelledby="lag-robust-title">
       <h2 id="lag-robust-title" className="lag-section-title">
-        Robustness
+        Does the result hold up?
       </h2>
       <p className="lag-section-lead">
-        The peak is checked against four perturbations, including a{' '}
-        <GlossaryTerm term="placebo test" /> that re-pairs each domain&rsquo;s
-        papers with another domain&rsquo;s patents. A result that survives only
-        the baseline would not be worth showing.
+        A finding that only appears in one arrangement is not worth showing, so
+        the answer is re-run four ways: without overlapping fields, without
+        thinly covered fields, dropping one field at a time, and{' '}
+        <GlossaryTerm term="placebo test">scrambling which papers are paired
+        with which patents</GlossaryTerm>. The peak should stay in the same
+        place each time.
       </p>
       <div className="lag-robust-scroll">
         <table className="lag-robust">
           <thead>
             <tr>
-              <th scope="col">Perturbation</th>
-              <th scope="col">Domains</th>
-              <th scope="col">Peak lag</th>
-              <th scope="col">Peak r</th>
-              <th scope="col">95% CI</th>
-              <th scope="col">CI excludes 0</th>
-              <th scope="col">Peak in 3-6</th>
+              <th scope="col">How it was re-run</th>
+              <th scope="col">Fields</th>
+              <th scope="col">Best offset</th>
+              <th scope="col">Agreement</th>
+              <th scope="col">Plausible range</th>
+              <th scope="col">Range clears zero</th>
+              <th scope="col">Peak in 3-6 quarters</th>
             </tr>
           </thead>
           <tbody>
@@ -582,21 +598,21 @@ function Robustness({ robust }: { robust: LagRobustness | null }) {
               </tr>
             ))}
             <tr>
-              <td>Leave one domain out (range)</td>
-              <td className="num">{robust.baseline.n_domains} refits</td>
+              <td>Drop each field once, in turn</td>
+              <td className="num">{robust.baseline.n_domains} re-runs</td>
               <td className="num">
                 {s.best_lag_min} to {s.best_lag_max}
               </td>
               <td className="num">
                 {fmtR(s.peak_r_min)} to {fmtR(s.peak_r_max)}
               </td>
-              <td className="num">all refits</td>
+              <td className="num">every re-run</td>
               <td>{yes(s.all_ci_exclude_zero)}</td>
               <td>{yes(s.all_peaks_in_3_6)}</td>
             </tr>
             <tr>
-              <td>Time-block bootstrap ({tb.block_quarters}-quarter blocks)</td>
-              <td className="num">{tb.n_draws} draws</td>
+              <td>Reshuffle whole time blocks ({tb.block_quarters} quarters)</td>
+              <td className="num">{tb.n_draws} reshuffles</td>
               <td className="num">{tb.lag_used}</td>
               <td className="num">{fmtR(tb.mean_r)}</td>
               <td className="num">
@@ -609,12 +625,11 @@ function Robustness({ robust }: { robust: LagRobustness | null }) {
         </table>
       </div>
       <p className="lag-note">
-        The peak stays in the 3 to 6 quarter band under every perturbation. The
-        resampling CI excludes zero for the domain-level checks; the
-        time-block bootstrap, which perturbs the time axis rather than the
-        domain set, does not ({fmtR(tb.ci_at_peak[0])} to{' '}
-        {fmtR(tb.ci_at_peak[1])}), so the strength of the association depends on
-        which dependence structure you assume.
+        The best offset stays in the same 3 to 6 quarter window no matter how
+        the data is cut. The agreement holds above zero when whole fields are
+        resampled, but not when whole stretches of time are reshuffled (
+        {fmtR(tb.ci_at_peak[0])} to {fmtR(tb.ci_at_peak[1])}). So the pattern is
+        consistent, but how strong it looks depends on which way you slice it.
       </p>
     </section>
   )

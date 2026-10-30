@@ -10,8 +10,6 @@
  * broken, static site.)
  */
 
-import { isPresentation } from './presentation'
-
 const KEY = 'bt-motion'
 
 export type MotionChoice = 'full' | 'reduced' | null
@@ -37,16 +35,28 @@ export function setMotionChoice(choice: 'full' | 'reduced' | null): void {
 
 const KEY_VALUES = { full: 'full', reduced: 'reduced' } as const
 
-/** Effective verdict: reduced on explicit user choice, or in presentation mode.
- *
- * Presentation mode is a reading/demo mode whose charter includes disabling
- * non-essential motion. Routing it through this one verdict (rather than a
- * second parallel flag) is why the WebGL dither shader and chart draw-in
- * switch off correctly — they already ask this question. */
+/** Effective verdict: reduced only on an explicit user choice. */
 export function motionReduced(): boolean {
-  if (isPresentation()) return true
   return getMotionChoice() === 'reduced'
 }
+
+/**
+ * Mirror the motion verdict onto the document so CSS can honour it.
+ *
+ * The in-app toggle historically only reached JS (`motionReduced()`), so
+ * every CSS animation on the site ignored it — including the ambient orb
+ * drift on the cover. Pushing `data-motion` onto <html> lets stylesheets
+ * opt out with `[data-motion='reduced']`, keeping one verdict for JS and
+ * CSS instead of two that can disagree.
+ */
+function syncDocumentAttribute(): void {
+  if (typeof document === 'undefined') return
+  const reduced = motionReduced()
+  if (reduced) document.documentElement.dataset.motion = 'reduced'
+  else delete document.documentElement.dataset.motion
+}
+
+syncDocumentAttribute()
 
 /* Tiny pub-sub so a toggle click can re-render listeners (charts, hooks). */
 type Listener = () => void
@@ -56,6 +66,7 @@ export function onMotionChange(fn: Listener): () => void {
   return () => listeners.delete(fn)
 }
 function notify(): void {
+  syncDocumentAttribute()
   listeners.forEach((fn) => fn())
 }
 

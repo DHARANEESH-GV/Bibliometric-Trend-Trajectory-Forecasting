@@ -227,22 +227,6 @@
   color: var(--accent);
 }
 
-/* ---------- presentation mode ---------- */
-html[data-presentation='on'] {
-  font-size: 118%;
-}
-html[data-presentation='on'] .wire-ticker,
-html[data-presentation='on'] .site-footer-legal,
-html[data-presentation='on'] .status-bar,
-html[data-presentation='on'] .spotlight-border,
-html[data-presentation='on'] .ambience-grain {
-  display: none;
-}
-html[data-presentation='on'] * {
-  animation-duration: 0.001s !important;
-  transition-duration: 0.001s !important;
-}
-
 @media (max-width: 720px) {
   .tour {
     position: static;

@@ -52,3 +52,6 @@ samconfig.toml
 .idea/
 .DS_Store
 *.swp
+
+# Personal judge-prep notes (not part of the deliverable)
+jury-prep/

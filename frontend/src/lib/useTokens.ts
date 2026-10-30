@@ -1,21 +1,14 @@
 /**
- * useTokens — hook exposing the current ThemeTokens; re-renders consumers
- * when the theme attribute flips on <html>.
+ * useTokens — the current ThemeTokens.
+ *
+ * Biblio is dark only, so the palette is read once per mount and never
+ * changes. Kept as a hook (rather than a constant) so chart components did
+ * not all have to change shape when the light theme was removed, and so a
+ * future palette swap has exactly one place to hook into.
  */
-import { useEffect, useState } from 'react'
+import { useMemo } from 'react'
 import { readTokens, type ThemeTokens } from '../charts/echarts'
 
 export function useTokens(): ThemeTokens {
-  const [tokens, setTokens] = useState<ThemeTokens>(() => readTokens())
-
-  useEffect(() => {
-    const observer = new MutationObserver(() => setTokens(readTokens()))
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ['data-theme'],
-    })
-    return () => observer.disconnect()
-  }, [])
-
-  return tokens
+  return useMemo(() => readTokens(), [])
 }

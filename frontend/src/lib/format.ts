@@ -50,9 +50,17 @@ export function gateFootnote(gates: { model: string; wins: number; series: numbe
   return `Forecasts validated by backtest against a naive baseline: ${parts.join('; ')}.`
 }
 
+/** Plain date from an ISO timestamp, e.g. "29 October 2026". Null when
+ *  unparseable, so callers can fall back rather than print garbage. */
+export function fmtDate(iso: string | null | undefined): string | null {
+  if (!iso) return null
+  const d = new Date(iso)
+  if (Number.isNaN(d.getTime())) return null
+  return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })
+}
+
 /** Stale-data footer sentence from the run timestamp. */
-export function snapshotSentence(runId: string | null, generatedUtc: string | null): string {
-  if (!generatedUtc) {
+export function snapshotSentence(runId: string | null, generatedUtc: string | null): string {  if (!generatedUtc) {
     if (!runId) return 'No snapshot loaded yet.'
     return `Snapshot run ${runId}.`
   }

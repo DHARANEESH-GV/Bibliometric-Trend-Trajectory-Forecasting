@@ -8,13 +8,8 @@
 import { NavLink } from 'react-router-dom'
 import { MagnifyingGlass } from '@phosphor-icons/react/dist/csr/MagnifyingGlass'
 import { Waveform } from '@phosphor-icons/react/dist/csr/Waveform'
-import { Sun } from '@phosphor-icons/react/dist/csr/Sun'
-import { Moon } from '@phosphor-icons/react/dist/csr/Moon'
-import { Presentation } from '@phosphor-icons/react/dist/csr/Presentation'
 import { Keyboard } from '@phosphor-icons/react/dist/csr/Keyboard'
-import { useStore } from '../lib/store'
 import { useMotionReduced, setMotionChoice } from '../lib/motion'
-import { isPresentation, setPresentation, usePresentation } from '../lib/presentation'
 
 const NAV = [
   { to: '/leaderboard', label: 'Leaderboard' },
@@ -33,18 +28,7 @@ interface IslandNavProps {
 }
 
 export function IslandNav({ onOpenSearch, onOpenShortcuts }: IslandNavProps) {
-  const { theme, toggleThemeWipe } = useStore()
   const motionReduced = useMotionReduced()
-  const presentation = usePresentation()
-
-  const togglePresentation = () => {
-    // Presentation mode implies reduced motion via motionReduced(), so the
-    // WebGL shader and chart draw-in switch off through the one existing
-    // verdict. Nothing is written to the separate bt-motion preference:
-    // leaving that untouched means turning presentation mode off restores
-    // the user's own motion choice rather than silently reducing it.
-    setPresentation(!isPresentation())
-  }
 
   return (
     <header className="island-wrap">
@@ -90,22 +74,6 @@ export function IslandNav({ onOpenSearch, onOpenShortcuts }: IslandNavProps) {
 
           <button
             type="button"
-            onClick={togglePresentation}
-            aria-pressed={presentation}
-            aria-label={
-              presentation
-                ? 'Presentation mode is on. Turn it off.'
-                : 'Turn on presentation mode: larger type, quieter chrome, no shader'
-            }
-            title={presentation ? 'Presentation mode: on' : 'Presentation mode'}
-            className="island-btn"
-            data-on={presentation ? 'true' : undefined}
-          >
-            <Presentation size={16} weight={presentation ? 'fill' : 'light'} aria-hidden />
-          </button>
-
-          <button
-            type="button"
             onClick={() => setMotionChoice(motionReduced ? 'full' : 'reduced')}
             aria-pressed={!motionReduced}
             aria-label={motionReduced ? 'Motion is reduced. Enable full motion.' : 'Full motion is on. Reduce it.'}
@@ -113,23 +81,6 @@ export function IslandNav({ onOpenSearch, onOpenShortcuts }: IslandNavProps) {
             className="island-btn"
           >
             <Waveform size={16} weight={motionReduced ? 'light' : 'bold'} aria-hidden />
-          </button>
-
-          <button
-            type="button"
-            onClick={(e) => {
-              const r = e.currentTarget.getBoundingClientRect()
-              toggleThemeWipe({ x: r.left + r.width / 2, y: r.top + r.height / 2 })
-            }}
-            aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}
-            title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}
-            className="island-btn"
-          >
-            {theme === 'dark' ? (
-              <Moon size={16} weight="light" aria-hidden />
-            ) : (
-              <Sun size={16} weight="light" aria-hidden />
-            )}
           </button>
         </div>
       </div>

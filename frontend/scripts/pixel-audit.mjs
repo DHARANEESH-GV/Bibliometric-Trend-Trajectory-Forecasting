@@ -93,17 +93,12 @@ const page = await browser.newPage({ viewport: { width: 1440, height: 900 } })
 await page.goto(BASE + '/leaderboard', { waitUntil: 'networkidle' })
 await sleep(1200)
 
-// ---- 1. GRAIN: measure both themes in an empty margin.
+// ---- 1. GRAIN: measure in an empty margin of the single dark palette.
 // Must REMOVE the injected rule, not reset inline display (the rule uses
 // !important, which inline style cannot override).
 const grainBox = { x: 1330, y: 280, width: 90, height: 340 }
-async function measureGrain(theme) {
-  await page.evaluate((th) => { try { localStorage.setItem('bt-theme', th) } catch (e) {} }, theme)
-  await page.reload({ waitUntil: 'networkidle' })
-  await sleep(900)
-  const applied = await page.evaluate(() => document.documentElement.dataset.theme)
-  if (applied !== theme) throw new Error(`theme not applied: wanted ${theme}, got ${applied}`)
-  const on = `${OUT}/grain-${theme}-on.png`
+async function measureGrain() {
+  const on = `${OUT}/grain-on.png`
   await page.screenshot({ path: on, clip: grainBox })
   await page.evaluate(() => {
     const s = document.createElement('style')
@@ -112,7 +107,7 @@ async function measureGrain(theme) {
     document.head.appendChild(s)
   })
   await sleep(250)
-  const off = `${OUT}/grain-${theme}-off.png`
+  const off = `${OUT}/grain-off.png`
   await page.screenshot({ path: off, clip: grainBox })
   await page.evaluate(() => document.getElementById('audit-hide-grain')?.remove())
   const o = stats(off)
@@ -120,20 +115,12 @@ async function measureGrain(theme) {
   return { off: o, on: n, rmse: rmse(off, on) }
 }
 
-const gd = await measureGrain('dark')
-check('grain visible on dark (RMSE >= 0.02)', gd.rmse >= 0.02, `rmse ${gd.rmse.toFixed(4)}`)
-check('grain adds texture on dark', gd.on.sd > gd.off.sd + 0.005, `sd ${gd.off.sd.toFixed(4)} -> ${gd.on.sd.toFixed(4)}`)
-const gl = await measureGrain('light')
-// Light-theme grain is intentionally whisper-faint (paper veils sooner), so
-// the bar is "present at all and not zero", not the dark bar.
-check('grain present on light (RMSE > 0.003)', gl.rmse > 0.003, `rmse ${gl.rmse.toFixed(4)}`)
-// On paper, grain darkens uniformly; a large mean drop reads as a grey
-// veil, which is the failure mode to guard. (Dark theme lifts the floor by
-// design and is covered by the WCAG contrast check in render-audit.)
-check('grain does not veil light theme (mean drop < 0.05)', (gl.off.mean - gl.on.mean) < 0.05, `mean ${gl.off.mean.toFixed(4)} -> ${gl.on.mean.toFixed(4)}`)
-await page.evaluate(() => { try { localStorage.setItem('bt-theme', 'dark') } catch (e) {} })
-await page.reload({ waitUntil: 'networkidle' })
-await sleep(900)
+const gd = await measureGrain()
+check('grain visible (RMSE >= 0.02)', gd.rmse >= 0.02, `rmse ${gd.rmse.toFixed(4)}`)
+check('grain adds texture', gd.on.sd > gd.off.sd + 0.005, `sd ${gd.off.sd.toFixed(4)} -> ${gd.on.sd.toFixed(4)}`)
+// A large mean drop reads as a grey veil over the OLED field, which is the
+// failure mode to guard (a visible lift is by design).
+check('grain does not veil the surface (mean drop < 0.05)', (gd.off.mean - gd.on.mean) < 0.05, `mean ${gd.off.mean.toFixed(4)} -> ${gd.on.mean.toFixed(4)}`)
 
 // ---- 2. SPOTLIGHT: hover the rank-one plate, compare against unhovered.
 const spot = await page.$('.rank-one')
