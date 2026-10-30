@@ -76,29 +76,19 @@ describe('StagePill does not force layout during render', () => {
   })
 })
 
-describe('the cover shader does not animate while idle', () => {
-  // The shader redraws every frame while its speed is non-zero. Measured
-  // 2026-10-30 under 4x CPU throttle: an always-moving shader cost 896ms of
-  // main-thread task time per second (vs 161ms frozen) and held the cover at
-  // 40.5fps instead of 56.9. `speed: 0` makes @paper-design stop its rAF loop
-  // outright (shader-mount.js only calls requestRender when speed !== 0), so
-  // it must be the idle value — not a low non-zero one.
+describe('the cover shader is removed', () => {
   const card = read('..', 'components', 'ui', 'hero-dithering-card.tsx')
 
-  it('freezes the shader when the card is not hovered', () => {
-    expect(card).toMatch(/speed=\{[^}]*isHovered[^}]*:\s*0\s*\}/)
-  })
-
-  it('never ships a non-zero idle speed', () => {
-    // Guards the specific regression: `isHovered ? 0.6 : 0.2` is always-on.
-    expect(card).not.toMatch(/isHovered\s*\?\s*[\d.]+\s*:\s*0\.\d+/)
+  it('no longer mounts the heavy WebGL shader', () => {
+    expect(card).not.toContain('@paper-design/shaders-react')
+    expect(card).not.toContain('<Dithering')
   })
 })
 
-describe('the intro film does not buffer on load', () => {
-  it('uses preload="none" so the 9.9MB file waits for play()', () => {
+describe('the intro film is removed', () => {
+  it('no longer loads or renders the intro video overlay', () => {
     const cover = read('..', 'views', 'Cover.tsx')
-    expect(cover).toMatch(/preload="none"/)
-    expect(cover).not.toMatch(/preload="metadata"/)
+    expect(cover).not.toContain('biblio-explainer.mp4')
+    expect(cover).not.toContain('cover-film')
   })
 })
