@@ -1,0 +1,70 @@
+# Dockerfile.batch — the pipeline image for AWS Batch / Fargate.
+#
+# Why AWS Batch and not Lambda: the OpenAlex polite pool allows ~1000
+# credits/day per IP and a full domain backfill needs ~814 pages, so a run
+# legitimately takes hours. Lambda's 15-minute hard timeout cannot hold it.
+# Batch has no such ceiling.
+#
+# Why Fargate and not EC2: no instances to patch, no AMI, no spot
+# interruption handling. Pay only while a job runs.
+#
+# Build:
+#   docker build -f docker/Dockerfile.batch -t biblio-pipeline .
+#
+# Push (see .github/workflows/build-image.yml for the automated path):
+#   aws ecr get-login-password | docker login --username AWS --password-stdin <acct>.dkr.ecr.<region>.amazonaws.com
+#   docker tag biblio-pipeline:latest <acct>.dkr.ecr.<region>.amazonaws.com/biblio-pipeline:latest
+#   docker push <acct>.dkr.ecr.<region>.amazonaws.com/biblio-pipeline:latest
+
+FROM python:3.12-slim
+
+# Keep the image small: ECR storage is billed past 500 MB, and every pull
+# pays for the bytes. No compilers in the final layer.
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PIP_NO_CACHE_DIR=1 \
+    PIP_DISABLE_PIP_VERSION_CHECK=1
+
+# duckdb and pyarrow ship manylinux wheels, so no build toolchain is needed.
+# If a future dependency lacks a wheel, add build-essential here and remove
+# it in the same layer.
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends ca-certificates tini \
+ && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+# Dependencies first: this layer caches across code-only changes.
+COPY requirements.txt ./
+RUN pip install -r requirements.txt
+
+# Code and the tracked data products. `raw/` and `staged/` are gitignored
+# (472 MB) and are NOT baked in: ingestion fetches them at runtime.
+COPY config/ ./config/
+COPY pipelines/ ./pipelines/
+COPY stats/ ./stats/
+COPY scripts/ ./scripts/
+COPY data/ ./data/
+COPY docker/ ./docker/
+COPY Makefile ./
+
+# Batch jobs write here; S3 sync reads from here. Declared as a volume so a
+# Fargate ephemeral-storage bump can be applied without changing this file.
+VOLUME ["/app/snapshots"]
+
+# Run as a non-root user. Fargate defaults to root, which is unnecessary.
+RUN useradd --create-home --uid 10001 pipeline \
+ && mkdir -p /app/snapshots \
+ && chown -R pipeline:pipeline /app
+USER pipeline
+
+# tini reaps zombies; without it a killed Batch job can leave child
+# processes holding the task open until the timeout fires.
+# Default: rebuild every data product, then the dashboard snapshots.
+# Override at submit time for a single-domain ingest, e.g.
+#   ["make", "domain", "DOMAIN=quantum_computing"]
+# Or run the structured wrapper (preferred for Batch: it reports each stage
+# to CloudWatch and exits non-zero on any failure):
+#   docker run ... biblio-pipeline python docker/entrypoint.py stats
+ENTRYPOINT ["/usr/bin/tini", "--"]
+CMD ["python", "docker/entrypoint.py", "stats"]

@@ -1,0 +1,215 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+
+# ============================================================================
+# biblio-trend — STATIC FRONTEND ONLY (S3 + CloudFront + OAC)
+#
+# Scope note: this deliberately deploys ONLY the React build. The data
+# pipeline (Step Functions, container Lambdas, ECR, DynamoDB, API Gateway)
+# is Phase 7 in PROJECT_MASTER_PLAN.md and is NOT part of this stack. The
+# dashboard reads pre-generated JSON snapshots bundled into the build, so
+# the API tier is not needed until live querying is a requirement.
+#
+# Cost profile: S3 storage is a few cents, CloudFront fits comfortably in
+# the always-free 1 TB/month egress + 10M requests. Expect roughly $0-1/mo.
+#
+# Teardown returns the account to $0: ./scripts/teardown.sh
+# ============================================================================
+
+Description: >
+  Biblio Trend dashboard — private S3 origin behind CloudFront with
+  Origin Access Control. Static frontend only; no compute, no database.
+
+Parameters:
+  ProjectName:
+    Type: String
+    Default: biblio-trend
+    AllowedPattern: '^[a-z0-9-]+$'
+    Description: Lowercase project slug, used in bucket and resource names.
+
+  Environment:
+    Type: String
+    Default: dev
+    AllowedValues: [dev, prod]
+    Description: Deployment environment; also a resource tag.
+
+  BudgetAlertEmail:
+    Type: String
+    Default: ''
+    Description: >
+      Optional. If set, creates a $1/month AWS Budget with an email alert
+      (cost guardrail from PROJECT_MASTER_PLAN.md §13). Leave blank to skip.
+
+  PriceClass:
+    Type: String
+    Default: PriceClass_100
+    AllowedValues: [PriceClass_100, PriceClass_200, PriceClass_All]
+    Description: >
+      CloudFront edge footprint. PriceClass_100 (US/Canada/Europe) is the
+      cheapest and is the right default for a low-traffic dashboard.
+
+Conditions:
+  HasBudgetEmail: !Not [!Equals [!Ref BudgetAlertEmail, '']]
+
+Resources:
+  # ---------------------------------------------------------------------
+  # Origin bucket — fully private. No public ACLs, no website endpoint.
+  # Only this CloudFront distribution may read from it (see bucket policy).
+  # ---------------------------------------------------------------------
+  SiteBucket:
+    Type: AWS::S3::Bucket
+    DeletionPolicy: Delete
+    UpdateReplacePolicy: Delete
+    Properties:
+      BucketName: !Sub '${ProjectName}-${Environment}-site-${AWS::AccountId}'
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: AES256
+      OwnershipControls:
+        Rules:
+          - ObjectOwnership: BucketOwnerEnforced
+      VersioningConfiguration:
+        Status: Suspended
+      Tags:
+        - Key: Project
+          Value: !Ref ProjectName
+        - Key: Environment
+          Value: !Ref Environment
+        - Key: CostCenter
+          Value: free-tier
+
+  # ---------------------------------------------------------------------
+  # Origin Access Control — the modern replacement for Origin Access
+  # Identity. Signs CloudFront -> S3 requests with SigV4.
+  # ---------------------------------------------------------------------
+  SiteOAC:
+    Type: AWS::CloudFront::OriginAccessControl
+    Properties:
+      OriginAccessControlConfig:
+        Name: !Sub '${ProjectName}-${Environment}-oac'
+        Description: SigV4 signing for the private dashboard bucket
+        OriginAccessControlOriginType: s3
+        SigningBehavior: always
+        SigningProtocol: sigv4
+
+  # Grants read to THIS distribution only, via the SourceArn condition.
+  # Without the condition any CloudFront distribution could read the bucket.
+  SiteBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref SiteBucket
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Sid: AllowCloudFrontServicePrincipalReadOnly
+            Effect: Allow
+            Principal:
+              Service: cloudfront.amazonaws.com
+            Action: s3:GetObject
+            Resource: !Sub '${SiteBucket.Arn}/*'
+            Condition:
+              StringEquals:
+                AWS:SourceArn: !Sub 'arn:aws:cloudfront::${AWS::AccountId}:distribution/${SiteDistribution}'
+
+  # ---------------------------------------------------------------------
+  # CloudFront distribution
+  # ---------------------------------------------------------------------
+  SiteDistribution:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        Enabled: true
+        Comment: !Sub '${ProjectName}-${Environment} dashboard'
+        DefaultRootObject: index.html
+        PriceClass: !Ref PriceClass
+        HttpVersion: http2and3
+        IPV6Enabled: true
+        Origins:
+          - Id: s3-origin
+            DomainName: !GetAtt SiteBucket.RegionalDomainName
+            OriginAccessControlId: !GetAtt SiteOAC.Id
+            # S3 REST endpoint; OAC handles auth. Never the website endpoint.
+            S3OriginConfig:
+              OriginAccessIdentity: ''
+        DefaultCacheBehavior:
+          TargetOriginId: s3-origin
+          ViewerProtocolPolicy: redirect-to-https
+          AllowedMethods: [GET, HEAD, OPTIONS]
+          CachedMethods: [GET, HEAD, OPTIONS]
+          Compress: true
+          CachePolicyId: 658327ea-f89d-4fab-a63d-7e88639e58f6 # CachingOptimized (managed)
+          OriginRequestPolicyId: 88a5eaf4-2fd4-4709-b370-b4c650ea3fcf # CORS-S3Origin (managed)
+          ResponseHeadersPolicyId: 67f7725c-6f97-4210-82d7-5512b31e9d03 # SecurityHeadersPolicy (managed)
+        # SPA routing: the app owns its own paths (/leaderboard, /domain/...),
+        # so a deep link must return index.html with a 200 rather than a 403.
+        CustomErrorResponses:
+          - ErrorCode: 403
+            ResponseCode: 200
+            ResponsePagePath: /index.html
+            ErrorCachingMinTTL: 10
+          - ErrorCode: 404
+            ResponseCode: 200
+            ResponsePagePath: /index.html
+            ErrorCachingMinTTL: 10
+        ViewerCertificate:
+          CloudFrontDefaultCertificate: true
+      Tags:
+        - Key: Project
+          Value: !Ref ProjectName
+        - Key: Environment
+          Value: !Ref Environment
+        - Key: CostCenter
+          Value: free-tier
+
+  # ---------------------------------------------------------------------
+  # Optional $1 budget guardrail (plan §13).
+  # ---------------------------------------------------------------------
+  CostBudget:
+    Type: AWS::Budgets::Budget
+    Condition: HasBudgetEmail
+    Properties:
+      Budget:
+        BudgetName: !Sub '${ProjectName}-${Environment}-monthly'
+        BudgetType: COST
+        TimeUnit: MONTHLY
+        BudgetLimit:
+          Amount: 1
+          Unit: USD
+      NotificationsWithSubscribers:
+        - Notification:
+            NotificationType: ACTUAL
+            ComparisonOperator: GREATER_THAN
+            Threshold: 80
+            ThresholdType: PERCENTAGE
+          Subscribers:
+            - SubscriptionType: EMAIL
+              Address: !Ref BudgetAlertEmail
+
+Outputs:
+  BucketName:
+    Description: Private origin bucket. Deploy uploads the Vite build here.
+    Value: !Ref SiteBucket
+    Export:
+      Name: !Sub '${ProjectName}-${Environment}-BucketName'
+
+  DistributionId:
+    Description: CloudFront distribution id, used for cache invalidation.
+    Value: !Ref SiteDistribution
+    Export:
+      Name: !Sub '${ProjectName}-${Environment}-DistributionId'
+
+  SiteUrl:
+    Description: Public URL of the dashboard.
+    Value: !Sub 'https://${SiteDistribution.DomainName}'
+    Export:
+      Name: !Sub '${ProjectName}-${Environment}-SiteUrl'
+
+  StackName:
+    Description: Pass this to scripts/teardown.sh.
+    Value: !Ref AWS::StackName

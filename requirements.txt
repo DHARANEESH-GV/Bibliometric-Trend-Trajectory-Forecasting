@@ -18,5 +18,8 @@ regex>=2024.0
 # stats
 statsmodels>=0.14,<0.15    # ExponentialSmoothing + ARIMA §Phase 4
 
+# storage hand-off (Batch writes snapshots to S3; no awscli in the image)
+boto3>=1.34,<2
+
 # testing
 pytest>=8.0,<9

@@ -21,6 +21,13 @@ help:
 	@echo "make samples                  - tier-C drill-down samples (API-metered)"
 	@echo "make validate-domains         - re-run domain validation (rate-limit aware)"
 	@echo "make frontend                 - build the React dashboard"
+	@echo "make deploy                   - build + publish to S3/CloudFront (needs AWS creds)"
+	@echo "make deploy-fast              - publish the existing dist/ without rebuilding"
+	@echo "make pipeline                 - deploy the AWS Batch pipeline stack (Fargate)"
+	@echo "make pipeline-run             - submit a Batch job and follow its logs"
+	@echo "make snapshots-pull           - pull the newest snapshot from S3 into the repo"
+	@echo "make teardown                 - delete the AWS stack (prompts; empties bucket first)"
+	@echo "make test-deploy              - dry-run the deploy/teardown scripts, no AWS calls"
 	@echo "make test                     - pytest unit + data + backtest tests"
 
 venv:
@@ -76,6 +83,34 @@ snapshots:
 
 frontend:
 	cd frontend && npm ci && npm run build
+
+# ---- AWS static hosting (S3 + CloudFront, frontend only) -----------------
+# The deploy script checks for the aws + sam CLIs and real credentials, and
+# explains exactly what is missing rather than half-deploying. Teardown
+# empties the bucket first, which is what actually returns the account to $0.
+deploy:
+	./scripts/deploy.sh
+
+deploy-fast:
+	./scripts/deploy.sh --skip-build
+
+# ---- AWS Batch pipeline (the "produce" half, separate stack) -------------
+# Runs the Python pipeline in Fargate. No Lambda (15-min timeout cannot hold
+# a rate-limited multi-hour ingest), no NAT Gateway (public subnets).
+pipeline:
+	./scripts/deploy-pipeline.sh
+
+pipeline-run:
+	./scripts/run-pipeline.sh
+
+snapshots-pull:
+	./scripts/sync-snapshots.sh
+
+teardown:
+	./scripts/teardown.sh
+
+test-deploy:
+	./scripts/test-deploy-dryrun.sh
 
 test:
 	.venv/bin/pytest tests/ -q

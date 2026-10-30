@@ -1,0 +1,313 @@
+AWSTemplateFormatVersion: '2010-09-09'
+
+# ============================================================================
+# biblio-trend — AWS BATCH PIPELINE (the "produce" stage)
+#
+# This stack runs the Python pipeline in AWS. It is deliberately separate
+# from the static-site stack (s3.cloudfront.yaml) so you can deploy the
+# website without paying for any compute, and tear compute down while keeping
+# the site up.
+#
+# WHY BATCH AND NOT LAMBDA (read this before changing it):
+#   config/settings.yaml limits ingestion to ~800 OpenAlex credits/day, and a
+#   full domain backfill needs ~814 pages. A run therefore takes HOURS by
+#   design. Lambda has a 15-minute hard timeout and cannot hold it. Batch has
+#   no timeout, retries automatically, and Fargate means no instances to patch.
+#
+# COST: Fargate charges per vCPU-second. A 2h job at 2 vCPU / 4 GB is roughly
+#   $0.06. Running this weekly costs well under $0.50/month. Nothing runs
+#   between invocations.
+# ============================================================================
+
+Description: >
+  Biblio Trend data pipeline — AWS Batch on Fargate. Runs the Python stats
+  and ingestion stages, writes snapshots to S3, and optionally triggers the
+  static-site deploy. No Lambda, no VPC, no NAT Gateway.
+
+Parameters:
+  ProjectName:
+    Type: String
+    Default: biblio-trend
+
+  Environment:
+    Type: String
+    Default: dev
+    AllowedValues: [dev, prod]
+
+  PipelineImageUri:
+    Type: String
+    Description: >
+      Full ECR image URI including tag, e.g.
+      123456789012.dkr.ecr.us-east-1.amazonaws.com/biblio-pipeline:latest
+      Build and push it first (see docker/Dockerfile.batch).
+
+  ScheduleExpression:
+    Type: String
+    Default: 'cron(0 6 ? * MON *)'
+    Description: >
+      EventBridge schedule for the weekly refresh (UTC). Default: Mondays
+      06:00. Set to 'NONE' to create the job with no schedule (manual only).
+
+  EnableSchedule:
+    Type: String
+    Default: 'true'
+    AllowedValues: ['true', 'false']
+
+  JobVCpus:
+    Type: String
+    Default: '2'
+    AllowedValues: ['0.25', '0.5', '1', '2', '4', '8', '16']
+
+  JobMemoryMb:
+    Type: String
+    Default: '4096'
+    AllowedValues: ['512', '1024', '2048', '4096', '8192', '16384', '30720']
+
+  SubnetIds:
+    Type: CommaDelimitedList
+    # REQUIRED. Fargate tasks must live in a subnet. Use PUBLIC subnets from
+    # your default VPC: a public subnet has a route to an Internet Gateway,
+    # so the task can reach ECR and OpenAlex with NO NAT Gateway (~$32/month
+    # avoided). Find them with:
+    #
+    #   aws ec2 describe-subnets \
+    #     --filters Name=vpc-id,Values=$(aws ec2 describe-vpcs \
+    #       --filters Name=is-default,Values=true --query 'Vpcs[0].VpcId' --output text) \
+    #     --query 'Subnets[?MapPublicIpOnLaunch==`true`].SubnetId' --output text
+    #
+    # Paste the result as a comma-separated list.
+    Description: >
+      Public subnet IDs (comma-separated) for the Fargate tasks. Must be
+      public subnets so the job has outbound internet without a NAT Gateway.
+
+  SecurityGroupId:
+    Type: String
+    Default: ''
+    Description: >
+      Optional security group for the tasks. Leave blank to use the VPC's
+      default security group. The job only makes OUTBOUND connections, so no
+      inbound rules are needed.
+
+  OpenAlexMailto:
+    Type: String
+    Default: dharaneeshgv@gmail.com
+    Description: OpenAlex polite-pool contact address.
+
+Conditions:
+  WithSchedule: !Equals [!Ref EnableSchedule, 'true']
+  HasSecurityGroup: !Not [!Equals [!Ref SecurityGroupId, '']]
+
+Resources:
+  # ---------------------------------------------------------------------
+  # Snapshots bucket — the hand-off point between pipeline and website.
+  # The site stack reads from its own bucket; deploy.sh syncs these into it.
+  # ---------------------------------------------------------------------
+  SnapshotsBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub '${ProjectName}-${Environment}-snapshots-${AWS::AccountId}'
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: AES256
+      LifecycleConfiguration:
+        Rules:
+          # Keep the last few runs, expire the rest. Snapshots are small, but
+          # an unbounded run-per-week directory would still grow forever.
+          - Id: expire-old-snapshots
+            Status: Enabled
+            Prefix: snapshots/
+            ExpirationInDays: 180
+      Tags:
+        - Key: Project
+          Value: !Ref ProjectName
+
+  # ---------------------------------------------------------------------
+  # ECR repository. Kept out of the image URI parameter so CloudFormation
+  # owns its lifecycle and teardown removes it (avoiding orphaned storage
+  # charges against the 500 MB free tier).
+  # ---------------------------------------------------------------------
+  ImageRepository:
+    Type: AWS::ECR::Repository
+    Properties:
+      RepositoryName: !Sub '${ProjectName}-pipeline'
+      ImageScanningConfiguration:
+        ScanOnPush: true
+      LifecyclePolicy:
+        LifecyclePolicyText: |
+          {
+            "rules": [
+              {
+                "rulePriority": 1,
+                "description": "Keep only the 5 most recent images",
+                "selection": { "tagStatus": "any", "countType": "imageCountMoreThan", "countNumber": 5 },
+                "action": { "type": "expire" }
+              }
+            ]
+          }
+      Tags:
+        - Key: Project
+          Value: !Ref ProjectName
+
+  # ---------------------------------------------------------------------
+  # IAM — least privilege. The job needs: read config/data from the image
+  # (no permission needed), read/write its own bucket, and write logs.
+  # ---------------------------------------------------------------------
+  JobExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal: { Service: ecs-tasks.amazonaws.com }
+            Action: sts:AssumeRole
+      ManagedPolicyArns:
+        # Required for Batch/ECS to pull the image and ship logs.
+        - arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy
+
+  JobRole:
+    # Separate from the execution role: this is what the CONTAINER itself may
+    # do. Keeping them apart means a compromised dependency in the pipeline
+    # cannot push images or read task metadata.
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal: { Service: ecs-tasks.amazonaws.com }
+            Action: sts:AssumeRole
+      Policies:
+        - PolicyName: snapshots-rw
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action: [s3:GetObject, s3:PutObject, s3:ListBucket, s3:DeleteObject]
+                Resource:
+                  - !GetAtt SnapshotsBucket.Arn
+                  - !Sub '${SnapshotsBucket.Arn}/*'
+
+  LogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub '/aws/batch/${ProjectName}-${Environment}'
+      RetentionInDays: 30
+
+  # ---------------------------------------------------------------------
+  # Batch compute: Fargate-only, no EC2 instances, no VPC subnet requirement
+  # for FARGATE_SPOT/ FARGATE types. concurrency=1 prevents two refreshes
+  # racing for the same OpenAlex credit pool.
+  # ---------------------------------------------------------------------
+  ComputeEnvironment:
+    Type: AWS::Batch::ComputeEnvironment
+    Properties:
+      Type: MANAGED
+      ComputeResources:
+        Type: FARGATE
+        MaxvCpus: 4
+        Subnets: !Ref SubnetIds
+        SecurityGroupIds: !If [HasSecurityGroup, [!Ref SecurityGroupId], !Ref 'AWS::NoValue']
+      State: ENABLED
+
+  JobQueue:
+    Type: AWS::Batch::JobQueue
+    Properties:
+      Priority: 1
+      ComputeEnvironmentOrder:
+        - Order: 1
+          ComputeEnvironment: !Ref ComputeEnvironment
+      State: ENABLED
+
+  JobDefinition:
+    Type: AWS::Batch::JobDefinition
+    Properties:
+      Type: container
+      PlatformCapabilities: [FARGATE]
+      ContainerProperties:
+        Image: !Ref PipelineImageUri
+        ResourceRequirements:
+          - { Type: VCPU, Value: !Ref JobVCpus }
+          - { Type: MEMORY, Value: !Ref JobMemoryMb }
+        ExecutionRoleArn: !GetAtt JobExecutionRole.Arn
+        JobRoleArn: !GetAtt JobRole.Arn
+        Environment:
+          - { Name: BIBLIO_MODE, Value: stats }
+          - { Name: SNAPSHOT_BUCKET, Value: !Ref SnapshotsBucket }
+          - { Name: OPENALEX_MAILTO, Value: !Ref OpenAlexMailto }
+          - { Name: AWS_DEFAULT_REGION, Value: !Ref AWS::Region }
+      Timeout:
+        # 6 hours: generous for a rate-limited refresh, but bounded so a hung
+        # job cannot bill indefinitely.
+        AttemptDurationSeconds: 21600
+      RetryStrategy:
+        # One retry. OpenAlex 429s are transient; a second failure is a real
+        # bug and should surface rather than loop.
+        Attempts: 2
+
+  # ---------------------------------------------------------------------
+  # Weekly trigger.
+  # ---------------------------------------------------------------------
+  ScheduleRole:
+    Type: AWS::IAM::Role
+    Condition: WithSchedule
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal: { Service: events.amazonaws.com }
+            Action: sts:AssumeRole
+      Policies:
+        - PolicyName: submit-batch-job
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - batch:SubmitJob
+                Resource:
+                  - !Ref JobDefinition
+                  - !Ref JobQueue
+                  - !Sub 'arn:aws:batch:${AWS::Region}:${AWS::AccountId}:job-definition/*'
+
+  Schedule:
+    Type: AWS::Events::Rule
+    Condition: WithSchedule
+    Properties:
+      Description: Weekly snapshot refresh
+      ScheduleExpression: !Ref ScheduleExpression
+      State: ENABLED
+      Targets:
+        - Id: submit-refresh
+          Arn: !Sub 'arn:aws:batch:${AWS::Region}:${AWS::AccountId}:job-queue/${JobQueue}'
+          RoleArn: !GetAtt ScheduleRole.Arn
+          BatchParameters:
+            JobDefinition: !Ref JobDefinition
+            JobName: biblio-weekly-refresh
+
+Outputs:
+  SnapshotsBucketName:
+    Value: !Ref SnapshotsBucket
+    Export:
+      Name: !Sub '${ProjectName}-${Environment}-SnapshotsBucket'
+
+  RepositoryUri:
+    Description: Push the pipeline image here.
+    Value: !GetAtt ImageRepository.RepositoryUri
+
+  JobQueueArn:
+    Value: !Ref JobQueue
+
+  JobDefinitionArn:
+    Value: !Ref JobDefinition
+
+  LogGroupName:
+    Description: Where to watch a run (`aws logs tail`).
+    Value: !Ref LogGroup
