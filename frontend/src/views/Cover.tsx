@@ -14,7 +14,7 @@ import { useStore } from '../lib/store'
 import { gsap, useGSAP, prefersReducedMotion } from '../lib/gsap'
 import { setMotionChoice, onMotionChange } from '../lib/motion'
 import { startTour } from '../components/TourStrip'
-import { useEffect, useState, useCallback } from 'react'
+import { useEffect, useState } from 'react'
 import { CTASection } from '@/components/ui/hero-dithering-card'
 import './cover.css'
 
@@ -61,14 +61,6 @@ function MaskedLine({ children }: { children: React.ReactNode }) {
   )
 }
 
-// Front-door film: plays on every fresh open of the site (full page
-// load). A module-level flag keeps SPA route changes from replaying it —
-// navigating Cover → Leaderboard → Cover stays quiet — but a reload or a
-// new tab opens the film again, which is what "entering the site" means.
-let filmWatchedThisSession = false
-
-declare const __FILM_BUILD__: string
-
 export function CoverView() {
   const { data: lb } = useQuery(loadLeaderboard, [])
   const { data: bursts } = useQuery(loadBursts, [])
@@ -79,115 +71,6 @@ export function CoverView() {
   const spotRef = useRef<HTMLDivElement>(null)
   const [, setTick] = useState(0)
   useEffect(() => onMotionChange(() => setTick((t) => t + 1)), [])
-
-  // ---- Front-door film: the explainer plays once on arrival, then the
-  // cover reveals underneath. Skippable (click / Esc / skip button);
-  // remembered per tab so a route swap back never replays it, but a fresh
-  // load does. Transitions are GSAP-driven so they never read choppy:
-  // fade-up + scale-settle on entry, slow crossfade + scale-down on exit,
-  // timed so the cover's own hero animation lands as the film lifts.
-  const videoRef = useRef<HTMLVideoElement>(null)
-  const filmRef = useRef<HTMLDivElement>(null)
-  const filmGsapRef = useRef<gsap.core.Timeline | null>(null)
-  const exitingRef = useRef(false)
-  const [filmState, setFilmState] = useState<'pending' | 'playing' | 'done'>(() => {
-    // Audit/deep-link escape hatch: ?film=0 skips the front-door film
-    // entirely (headless audits cannot wait out a 52s film).
-    if (new URLSearchParams(window.location.search).get('film') === '0') return 'done'
-    return filmWatchedThisSession ? 'done' : 'pending'
-  })
-  const [muted, setMuted] = useState(true)
-
-  const endFilm = useCallback(() => {
-    exitingRef.current = true
-    setFilmState((prev) => {
-      if (prev === 'done') return prev
-      filmWatchedThisSession = true
-      return 'done'
-    })
-  }, [])
-
-  // Entry: fade the film up from black and settle the picture from a hair
-  // of over-scale, right as playback begins. KEY: the effect is latched to
-  // `mounted`, not `filmState` — the pending→playing flip (which fires when
-  // playback starts) would otherwise re-run this effect, killing the fade
-  // mid-flight and resetting opacity to 0: the "film pops up, then dies a
-  // second later" bug.
-  const filmMounted = filmState !== 'done'
-  useGSAP(
-    () => {
-      if (!filmMounted) return
-      const el = filmRef.current
-      if (!el) return
-      if (prefersReducedMotion()) {
-        gsap.set(el, { opacity: 1 })
-        return
-      }
-      const inner = el.querySelector('video')
-      const tl = gsap.timeline()
-      gsap.set(el, { opacity: 0 })
-      if (inner) gsap.set(inner, { scale: 1.045, transformOrigin: 'center center' })
-      tl.to(el, { opacity: 1, duration: 0.9, ease: 'power2.inOut' }, 0)
-      if (inner) tl.to(inner, { scale: 1, duration: 5.5, ease: 'power1.out' }, 0)
-      filmGsapRef.current = tl
-      return () => {
-        tl.kill()
-      }
-    },
-    { dependencies: [filmMounted] },
-  )
-
-  // Exit: fade the film out over ~1.1s (unmount happens after the fade
-  // completes), letting the cover underneath be seen arriving.
-  const exitFilm = useCallback(() => {
-    const el = filmRef.current
-    if (!el || exitingRef.current) {
-      endFilm()
-      return
-    }
-    exitingRef.current = true
-    const v = videoRef.current
-    if (v) v.pause()
-    if (prefersReducedMotion()) {
-      endFilm()
-      return
-    }
-    gsap.to(el, {
-      opacity: 0,
-      duration: 1.1,
-      ease: 'power2.inOut',
-      onComplete: endFilm,
-    })
-  }, [endFilm])
-
-  useEffect(() => {
-    if (filmState !== 'playing') return
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') exitFilm()
-    }
-    window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
-  }, [filmState, exitFilm])
-
-  useEffect(() => {
-    if (filmState !== 'pending') return
-    const v = videoRef.current
-    if (!v) return
-    // Audible autoplay is routinely rejected; try sound first, fall back to
-    // muted playback (with an unmute pill) rather than skipping the film.
-    v.play()
-      .then(() => {
-        setFilmState('playing')
-        setMuted(false)
-      })
-      .catch(() => {
-        v.muted = true
-        setMuted(true)
-        v.play()
-          .then(() => setFilmState('playing'))
-          .catch(() => endFilm())
-      })
-  }, [filmState, endFilm])
 
   const rows = lb?.leaderboard ?? []
   const feed = bursts?.feed ?? []
@@ -236,13 +119,23 @@ export function CoverView() {
             clearProps: 'transform,opacity,visibility',
           },
         )
-        // Orbs: perpetual slow drift (independent of entrance). A CSS
-        // animation instead of a GSAP tween: these are two 36-44rem radial
-        // gradients, and animating them from the main-thread ticker kept a
-        // compositor pass running forever on the landing page (measured
-        // ~+8fps when removed). CSS transform animations run off the main
-        // thread and are skipped entirely under prefers-reduced-motion
-        // (see cover.css). The drift itself now lives in the stylesheet.
+        // Orbs: perpetual slow drift (independent of entrance)
+        gsap.to('.orb-warm', {
+          x: -70,
+          y: 50,
+          duration: 22,
+          ease: 'sine.inOut',
+          repeat: -1,
+          yoyo: true,
+        })
+        gsap.to('.orb-cold', {
+          x: 60,
+          y: -44,
+          duration: 26,
+          ease: 'sine.inOut',
+          repeat: -1,
+          yoyo: true,
+        })
       }, root)
       return () => ctx.revert()
     },
@@ -335,56 +228,6 @@ export function CoverView() {
 
   return (
     <div className="cover-scope" ref={root}>
-      {/* Front-door film overlay: covers the cover until watched/skipped.
-          Plays on every fresh site open (reload/new tab); SPA route changes
-          within the visit stay quiet. GSAP fades it up on entry and lifts
-          it out over ~1.1s on exit, so the reveal into the cover reads as
-          one choreographed move. */}
-      {filmState !== 'done' && (
-        <div className="cover-film" ref={filmRef} onClick={exitFilm} role="button" aria-label="Skip the intro film">
-          {/* preload="none" on purpose. This file is 9.9 MB; with "metadata"
-              the browser still opens a range request and buffers behind the
-              first frame, which competes with the cover's own paint. Nothing
-              downloads until play() is called a moment later. */}
-          <video
-            ref={videoRef}
-            src={`/biblio-explainer.mp4?v=${__FILM_BUILD__}`}
-            playsInline
-            preload="none"
-            muted={muted}
-            onPlaying={() => setFilmState((s) => (s === 'pending' ? 'playing' : s))}
-            onEnded={exitFilm}
-            onError={endFilm}
-          />
-          {muted && (
-            <button
-              type="button"
-              className="film-sound"
-              onClick={(e) => {
-                e.stopPropagation()
-                const v = videoRef.current
-                if (v) {
-                  v.muted = false
-                  setMuted(false)
-                }
-              }}
-            >
-              Sound on
-            </button>
-          )}
-          <button
-            type="button"
-            className="film-skip"
-            onClick={(e) => {
-              e.stopPropagation()
-              exitFilm()
-            }}
-          >
-            Skip <ArrowRight weight="light" className="h-4 w-4" />
-          </button>
-        </div>
-      )}
-
       {/* Ambient field */}
       <div className="cover-orbs" aria-hidden>
         <div className="orb orb-warm" />
